@@ -1,0 +1,1081 @@
+[Register/Log In](https://www.weinrichmineralsinc.com/member/login/index) [Home](https://www.weinrichmineralsinc.com/)
+
+- [Facebook](https://www.facebook.com/weinrichmineralsinc/)
+- [Instagram](https://www.instagram.com/weinrich_minerals_inc/)
+
+Cart: 0 Items
+
+Your cart is empty
+
+- [Shop](https://www.weinrichmineralsinc.com/product/shop/index)
+  - [Shop](https://www.weinrichmineralsinc.com/product/shop/index)
+  - [Latest Additions](https://www.weinrichmineralsinc.com/product/shop/index?show_new=1&quality%5B%5D=best&quality%5B%5D=general&quality%5B%5D=discounted)
+  - [View the Galleries](https://www.weinrichmineralsinc.com/product/shop/index?quality%5B%5D=general)
+  - [Our Very Best](https://www.weinrichmineralsinc.com/product/shop/index?quality%5B%5D=best)
+  - [Discounted Items & Wholesale Lots](https://www.weinrichmineralsinc.com/product/shop/index?quality%5B%5D=discounted)
+  - [Special Collections](https://www.weinrichmineralsinc.com/product/shop/collection)
+  - [Auction specimens](http://auction.danweinrich.com/)
+  - [advanced search](https://www.weinrichmineralsinc.com/product/shop/index)
+
+- [About Us](https://www.weinrichmineralsinc.com/about-us.php)   \|
+- [Events](https://www.weinrichmineralsinc.com/events.php)   \|
+- [Contact](https://www.weinrichmineralsinc.com/contact.php)
+
+[Weinrich Minerals](https://www.weinrichmineralsinc.com/)
+
+# Current Products
+
+## narrow results
+
+[Special Collections](https://www.weinrichmineralsinc.com/product/shop/collection) [Auction Specimens](http://auction.danweinrich.com/) [Archive](https://www.weinrichmineralsinc.com/product/shop/archive)
+
+### Quality
+
+Our Very BestGeneralDiscounted Items & Wholesale Lots
+
+### Filter
+
+new specimenson sale
+
+### size
+
+ThumbnailMiniatureSmall-CabinetCabinetLarge-Cabinet
+
+### price
+
+$50.00 and under$50.00 - $100.00$100.00 - $200.00$200.00 - $500.00$500.00+
+$ to $
+
+### specimen number
+
+### name
+
+### species
+
+(Any)AbellaiteAbhuriteAcanthiteAchtaragditeActinoliteAdamiteAdeliteAdulariaAegirineAenigmatiteAeriniteaeschyniteAeschynite-(ce)Aeschynite-(y)Aeschynite-YAfanasievaiteAfghaniteAfwilliteAgarditeAgateAgrelliteAguilariteAikiniteAjoiteAkdalaiteAkermaniteAkhtenskiteAkrochorditeAlabanditeAlabasterAlamositeAlbiteAldermaniteAldridgeiteAleksiteAlgodoniteAliettiteallactiteAllaniteAllanite-(Ce)Allanite-(La)Allanite-CeAllargentumAlleghanyiteAllemontiteAllophaneAlmandineAlmeidaiteAlpersiteAlstoniteAltaiteAlteriteAlthausiteAlumAluminiteAluminoceladoniteAluminumAlumohydrocalciteAlumoklyuchevskiteAlumopharmacosideriteAluniteAlunogenAmalgamAmarantiteAmberAmblygoniteAmesiteAmmoniojarositeAmmoniozippeiteAmmoniteAmphiboleAnalcimeAnanditeAnapaiteAnataseAncyliteAncylite-(ce)AndalusiteAndersoniteAndesineAndesiteAndoriteAndraditeAndrewmeyeriteAngastoniteAngelelliteAnglesiteAnhydriteAniliteAnkangiteAnkeriteAnnabergiteAnniteAnorpimentAnorthiteAnorthoclaseAnorthoroseliteAnthophylliteAntigoriteAntimonyAntiqueAntleriteAntofagastiteApachiteApatiteApexiteAphthitaliteApjohniteApophylliteApophyllite-(KF)ApuaniteAragoniteAravaipaiteArcaniteArctiteArdaiteArdenniteArdennite-(As)ArfvedsoniteArgentobaumhaueriteArgentojarositeArgentopyriteArgentotennantiteArgyroditeArhbariteArmeniteArmstrongiteArrojaditeArsenbrackebuschiteArsendescloiziteArsenicArseniopleiteArseniosideriteArsenoclasiteArsenocrandalliteArsenogoyaziteArsenohauchecorniteArsenolampriteArsenoliteArsenopyriteArsenpolybasiteArsentsumebiteArsenuranospathiteArthuriteArtifactArtiniteArtsmithiteAsbecasiteAsbestosAschamalamiteAschamalmiteAshburtoniteAshcroftineAsisiteAsphaltAstrophylliteAtacamiteAtelestiteAtencioiteAtencoiteAthabascaiteAugeliteAugiteAurichalciteAuricuprideAuroriteAustiniteAutuniteAwaruiteAwfilliteAxiniteAxinite FeAxinite-(Fe)Axinite-FeAzuriteBabanekiteBabingtoniteBaddeleyiteBafertisiteBahianiteBakeriteBalangeroiteBalipholiteBanalsiteBannisteriteBaotiteBarahonaiteBaratoviteBarbertoniteBarbosaliteBarianditeBariciteBariopharmacosideriteBariopyrochloreBariteBarium PharmacosideriteBariumpharmacosideriteBarnesiteBarreriteBarringeriteBarroisiteBarylitebarysiliteBarytocalciteBarytolamprophylliteBasaltBastnÃ¤site-(Ce)BastnasiteBastnasite-(ce)BatisiteBaumhaueriteBaumstarkiteBauxiteBaveniteBayldoniteBayleyiteBazhenoviteBaziriteBeaveriteBechereriteBecquereliteBehieriteBehoiteBelendorffiteBellingeriteBeloviteBelyankiniteBementiteBenavidesiteBenitoiteBenjaminiteBenleonarditeBenstoniteBentoriteBenyacariteBerauniteBerezanskiteBergeniteBergslagiteBermaniteBerthierineBerthieriteBertranditeBerylBeryl var AquamarineBeryl var. Aquamarine BerylloniteBerzelianiteBerzeliiteBetafiteBetalomonosoviteBetekhteniteBetekhtiniteBetpakdaliteBeudantiteBeusiteBicchuliteBiehliteBikitaiteBiliniteBillingsleyiteBindheimiteBiotiteBirnessiteBisbeeiteBischofiteBismiteBismocliteBismuthBismuthiniteBismutiteBismutocolumbiteBismutoferriteBismutotantaliteBitumenBityiteBixbyiteBlakeiteBlatoniteBlixiteBloditeBloediteBluestreakiteBobcookiteBobdownsiteBobierriteBoehmiteBoggsiteBohmiteBoleiteBoltwooditeBonattiteBonshtedtiteBookBoothiteBoraciteBoraxBorcariteBornemaniteBorniteBorocookeiteBoromuscoviteBotallaciteBotallackiteBotryogenBottinoiteBoulangeriteBournoniteBoussingaultiteBrackebuschiteBraitschiteBrandtiteBranneriteBrauniteBravoiteBrazilianiteBreithaupiteBreithauptiteBrendeliteBrenkiteBrewsteriteBrianyoungiteBrindleyiteBritholiteBrochantiteBrockiteBromargyriteBrookiteBruciteBrugnatelliteBrushiteBuddingtoniteBuergeriteBukovskyiteBultfonteiniteBurbankiteBurckhardtiteBurpaliteBursaiteBuryatiteBustamiteButtgenbachiteByelorussiteBystriteBystromiteCabinetCacoxeniteCadmoseliteCafarsiteCafetiteCahniteCalaveriteCalcioancyliteCalciobetafiteCalcioferriteCalcioursiliteCalciteCalderiteCalderoniteCaledoniteCallaghaniteCalomelCalumetiteCalzirtiteCamerolaiteCanasiteCanavesiteCancriniteCancrisiliteCanfielditeCannizzariteCannoniteCaracoliteCarbonCarbonate-fluorapatiteCarbonate-hydroxylapatiteCarbonatecyanotrichiteCarborundumcarletoniteCarlhintzeiteCarlhinzeiteCarlosbarbosaiteCarlosruiziteCarlosturaniteCarminiteCarnalliteCarnotiteCarpathiteCarpholitecarrboyditeCarrolliteCaryochroiteCaryopiliteCassiteriteCatapleiiteCattieriteCavansiteCayishite(Y)CaysichiteCejkaiteCeladoniteCelestineCelsianCentennialiteCerchiaraiteCeriopyrochlore-(Ce)CeriteCerite-(ce)CernyiteCeruleiteCerussiteCervandoniteCervandonite-(ce)CervantiteCervelleiteCesaroliteCesbroniteCetineiteChabaziteChabazite-CaChabourneiteChaidamuiteChalcanthiteChalcoalumiteChalcociteChalcoditeChalcomeniteChalcophaniteChalcophylliteChalcopyriteChalcosideriteChalcostibiteChallacolloiteChambersiteChamositeChaoiteChapmaniteCharlesiteCharoiteChekhovichiteChenevixiteCheniteCheraliteChernoviteChernovite-(y)ChernykhiteChervetiteChestermaniteChevkiniteChevkinite-(Ce)Chevkinite-CeChiavenniteChildreniteChioliteChkaloviteChlorapatiteChlorargyriteChlorbartoniteChloriteChloritoidChlormagaluminiteChlormayeniteChlorothioniteChloroxiphiteChloroxiphiteCholoaliteChondroditechrichtoniteChristeliteChromiteChrysoberylChrysocollaChrysopraseChrysotileChurchiteChursiniteCinnabarClaringbulliteClarkeiteClarkiteClaudetiteClausthaliteClifforditeClinoatacamiteClinobehoiteClinobisvaniteClinocervantiteClinochloreClinochlore var. KammereriteClinochrysotileClinoclaseClinoenstatiteClinoferroholmquistiteClinohedriteClinoholmquistiteClinohumiteClinoptiloliteClinoptilolite-KClinoptilolite-NaClinosaffloriteClinosuenoiteClinotyroliteClinozoisiteClintoniteCoalCoalingiteCobaltarthuriteCobaltaustiniteCobaltiteCobaltkoritnigiteCobaltlotharmeyeriteCobaltobloditeCobaltomeniteCocciniteCoconinoiteCoffiniteCoheniteColemaniteCollinsiteColoradoiteColquiriiteColumbiteColumbite-(Fe)ColusiteComancheiteCondor AgateCongoliteConichalciteConnelliteCookeiteCoombsiteCopalCopiapiteCopperCoquanditeCoquimbiteCoquimbiteCoralCorderoiteCordieriteCordyliteCorkiteCornetiteCornubiteCornwalliteCoronaditeCorreianevesiteCorrensiteCorundumCorundum var RubyCorvusiteCosaliteCotunniteCoulsoniteCovelliteCowlesiteCoyoteiteCrandalliteCreaseyiteCredneriteCreediteCrestmoreiteCrichtoniteCristobaliteCrocidoliteCrocoiteCronstedtiteCrookesiteCrossiteCryoliteCryolithioniteCryptohaliteCryptomelaneCubaniteCumengeiteCumengiteCummingtoniteCupriteCuprobismutiteCuprodongchuaniteCupropearceiteCuproromeiteCuprosklodowskiteCuprostibiteCuprotungstiteCurieniteCuriteCuspidineCuzticiteCyanotrichiteCylindriteCymatoliteCymriteCyriloviteDachiarditeDachiardite-CaDadsoniteDamaraiteDanaliteDanburiteDaqingshaniteDarapiositeDashkovaiteDatoliteDaviditeDawsoniteDecrespigniteDecrespignyiteDecrespignyite-(y)DecrespigyiteDeeriteDeferniteDelafossiteDelvauxiteDemesmaekeriteDenisoviteDenningiteDerbyliteDesautelsiteDescloiziteDespujolsiteDestineziteDeveroiteDevillineDewindtiteDiaboleiteDiadochiteDiamondDiaphoriteDiasporeDickiteDickthomsseniteDietrichiteDigeniteDiopsideDioptaseDioriteDissakisiteDjerfisheriteDjurleiteDollaseite-(ce)DolomiteDomeykiteDonbassiteDonnayiteDonnayite-(y)Donnayite-YDonpeacoriteDorfmaniteDorriteDoyleiteDraviteDresseriteDufreniteDufrenoysiteDuftiteDuftite-alphaDuftite-betaDugganiteDuhameliteDumortieriteDundasiteDurangiteDusmatoviteDussertiteDuttoniteDypingiteDyscrasiteDzharkeniteEakeriteEastoniteEcdemiteEckermanniteEdeniteEdgarbaileyiteEdgariteEdingtoniteEdoyleriteEglestoniteEiteliteEkaniteEkateriniteElbaiteElectrumEllenbergeriteEllenbergiteElpasoliteElpiditeElyiteEmboliteEmeleusiteEmmonsiteEmplectiteEmplektiteEmpressiteEnargiteEnglishiteEnstatiteEosphoriteEphesiteEpididymiteEpidoteEpistilbiteEpistoliteEpsomiteEricaiteEricssoniteErioniteErnienickeliteErnstiteErshoviteErythriteErythrosideriteEskimoiteEskolaiteEsperiteEsseneiteEttringiteEuchroiteEuclaseEucryptiteEudialyteEudidymiteEugeniteEulytineEulytiteEurekadumpiteEuxeniteEuxenite-(y)EvansiteEvenkiteEwalditeEzcurriteEztliteFabianiteFahleiteFairfielditeFalcondoiteFalkmaniteFamantiniteFamatiniteFassaiteFaujasiteFaustiteFayaliteFedoriteFedorovskiteFedotoviteFeitknechtiteFeklicheviteFeldsparFelsobanyaiteFenaksiteFerberiteFerchromideFergusoniteFernandiniteFerrieriteFerrierite-NaFerrifluorokatophoriteFerrilotharmeyeriteFerrimolybditeFerrinatriteFerrisickleriteFerristrunziteFerrisymplesiteFerritungstiteFerro-actinoliteFerroactinoliteferroedeniteFerrohornblendeFerrokesteriteFerronickelFerronigeriteFerronorditeFerronordite-(Ce)FerropargasiteFerrorichteriteFerrosaponiteFerroseliteFerrosiliconFerrosiliteFerrotantaliteFerrotapioliteFerrovanadiumFerrowyllieiteFerrrimolybdeniteFersmaniteFeruviteFervaniteFetiasiteFetteliteFilipstaditeFizelyiteFlorenciteFlorencite-(ce)FlorkeiteFlourelbaiteFluckiteFluelliteFluoboriteFluoceriteFluocerite-CeFluorapatiteFluorapophylliteFluorbritholiteFluorbuergeriteFluorcalciomicroliteFluorcalciopyrochloreFluorcaphiteFluordraviteFluorelbaiteFluorellestaditeFluoriteFluorliddicoatiteFluornatromicroliteFluornatropyrochloreFluoropargasiteFluororichteriteFluorwavelliteFoggiteFoititeFormicaiteFornaciteForsteriteFoshagiteFoshallasitefossilFourmarieriteFraiponiteFraipontiteFrancevilliteFranckeiteFranconiteFranklinfurnaceiteFrankliniteFranziniteFredrikssoniteFreibergiteFreieslebeniteFreislebeniteFresnoiteFreudenbergiteFriedeliteFriedrichiteFrohbergiteFroloviteFrondeliteFuchsiteFuenzalidaiteFulgariteFulguriteFuloppiteGadoliniteGadolinite-(Y)GadolinteGageiteGahniteGaidonnayiteGalaxiteGalenaGalenobismutiteGalkhaiteGamagariteGanomaliteGanophylliteGarnetGarnieriteGarroniteGartrelliteGaspariteGaspeiteGaudefroyiteGaylussiteGearksutiteGedriteGeeriteGeffroyiteGehleniteGeikieliteGeminiteGenthelviteGeocroniteGeorgechaoiteGeorgeiteGerhardtiteGermaniteGersdorffiteGerstleyiteGetchelliteGianellaiteGibbsiteGilaiteGilaliteGillarditeGillespiteGilluluyiteGillulyiteGilmariteGinoriteGiorgiositeGirditeGismondineGladiteGlauberiteGlaucoceriniteGlaucochroiteGlaucodotGlauconiteGlaucophaneGlaukosphaeriteGlushinskiteGmeliniteGobbinsiteGodovikoviteGoethiteGoldGoldamalgamGoldfielditeGoldichiteGoldmaniteGonnarditeGoosecreekiteGorceixiteGordaiteGordoniteGorgeyiteGormaniteGoslariteGoudeyiteGoweriteGoyaziteGraftoniteGrandidieriteGrandviewiteGraphiteGratoniteGreenaliteGreenockiteGregoryiteGreifensteiniteGreigiteGriphiteGrossularGroutiteGrumipluciteGruneriteGruzdeviteGuanacoiteGuanajuatiteGuaraniteGuarinoiteGudmunditeGueriniteGuettarditeGuilleminiteGuimaraesiteGuitermanitegummiteGunningiteGunterblassiteGustaviteGutkovaiteGypsumGyroliteHackmaniteHafnonHagendorfiteHaidingeriteHainiteHaiweeiteHakiteHaliteHallimonditeHalloysiteHalotrichiteHalurgiteHambergiteHammariteHancockiteHanksiteHannayiteHannebachiteHardystoniteHarkeriteHarmotomeHarrisoniteHarstigiteHartiteHastingsiteHauckiteHaueriteHausmanniteHauyneHauyne var. LazuriteHawleyiteHaydeeiteHaynesiteHeazlewooditeHechtsbergiteHectorfloresiteHectoriteHedenbergiteHedleyiteHedyphaneHeinrichiteHejtmaniteHeklaiteHellanditeHellyeriteHelviteHematiteHematoliteHemimorphiteHendricksiteHenmiliteHenritermieriteHentscheliteHerbertsmithiteHercyniteHerderiteHerscheliteHessiteHetaeroliteHeterogeniteHeteromorphiteHeterositeHeulanditeHeulandite-CaHewettiteHexacoralHexahydriteHexahydroboriteHeyiteHeyrovskyiteHiarneiteHiboniteHidalgoiteHilairiteHilgarditeHillebranditeHingganiteHinsdaliteHiortdahliteHisingeriteHocartiteHochelagaiteHodgkinsoniteHodrusiteHogbomiteHogtuvaiteHoldeniteHolfertiteHollanditeHolmquistiteHoltedahliteHoltitehomiliteHonessiteHopeiteHornblendeHorvathiteHotsoniteHowieiteHowliteHsianghualiteHuanghoiteHuanghoite-(ce)HubeiteHubneriteHuemuliteHumiteHummeriteHuntiteHureauliteHurlbutiteHutchinsoniteHyaliteHyalite OpalHyalophaneHyalotekiteHydroboraciteHydrocalumiteHydrocerussiteHydrodelhayeliteHydroglauberiteHydrohetaeroliteHydrohonessiteHydrokenoralstoniteHydromagnesiteHydromagnesiteHydroniumjarositeHydroplumboromeiteHydropyrochloreHydroromarchiteHydrotalciteHydroxlapatiteHydroxyapophylliteHydroxycancriniteHydroxyl-HerderiteHydroxylapatiteHydroxylapophylliteHydroxylbastnasiteHydroxylclinohumiteHydroxylellastaditeHydroxylellestaditeHydroxylhedyphaneHydroxylherderiteHydrozinciteIdaiteIdrialiteIgumnoviteIkaiteIkunoliteIlliteIlmeniteIlmenorutileIlsemanniteIltisiteIlvaiteImayoshiiteImiteriteImogoliteImpactiteInaglyiteInderboriteInderiteInesiteInneliteInyoiteIodargyriteIowaiteIowaiteIquiqueiteIraniteIridiumIridosmiumIronIshikawaiteIsoferroplatinumIsolueshiteIsomertieiteIwakiiteIxioliteIzoklakeiteJacobsiteJadeJadeitejagoiteJagoweriteJahnsiteJalpaiteJamboriteJamesoniteJanhaugiteJarositeJasmunditeJeanbandyiteJenniteJenseniteJeppeiteJeremejeviteJeromiteJetJimthompsoniteJinshajiangiteJoanneumitejoaquiniteJohachidoliteJohanniteJohannseniteJohilleriteJohnbaumiteJohninnesiteJonesiteJordaniteJordisiteJoseiteJouravaskiteJouravskiteJuangodoyiteJuanitaiteJulgolditeJulgoldite-(Fe2+)JunitoiteJunoiteKaatialaiteKaersutiteKafehydrocyaniteKainitekainositeKainosite-(Y)KalborsiteKaliboriteKaliciniteKalifersiteKalininiteKaliniteKaliophiliteKalsiliteKamarizaiteKambaldaiteKamchatkiteKamotoitekampfiteKamphaugiteKankiteKanonaiteKaoliniteKapundaiteKarelianiteKaribibiteKarpatiteKarpholiteKashiniteKasoliteKastningiteKatayamalitekatophoriteKatoptiteKawazulitekazakhstaniteKazakoviteKeckiteKeithconniteKeiviite-(y)KellyiteKenhsuiteKenotobermoriteKentroliteKermesiteKerniteKesteriteKettneriteKeyiteKhademiteKhaidarkaniteKhanneshiteKhiniteKhristoviteKiddcreekiteKidwelliteKieseriteKimberliteKimuraite-(Y)Kimuraite-(y)KimzeyiteKingsmountiteKinichiliteKinoiteKinoshitaliteKintoreiteKipushiteKirkiiteKirschsteiniteKlebelsbergiteKleiniteKlockmanniteKlyuchevskiteKobelliteKobyasheviteKochkariteKoechliniteKoflachiteKogarkoiteKolbeckiteKoliciteKolweziteKolymiteKombatiteKoninckiteKornerupineKorobitsyniteKorzhinskiteKosmochlorKosnariteKostyleviteKotoiteKottigiteKotulskiteKoutekiteKovdorskiteKraissliteKrasnovitekrausiteKrauskopfiteKremersiteKrenneriteKristianseniteKrohnkiteKrupkaiteKrutaitekrutoviteKryzhanovskiteKtenasiteKukharenkoiteKukisvumiteKulaniteKuliokite-YKupletskiteKuramiteKuranakhiteKurnakoviteKutnahoriteKutnohoriteKutyukhiniteKuzmenkoiteKuzmenkoite MnKuzmenkoite-MnKuznetsoviteKyaniteLabradoriteLabuntsoviteLacroixiteLaffittiteLaguna AgateLaihuniteLaitakariteLammeriteLamprophylliteLanarkiteLandauiteLangbaniteLangiteLansforditeLanthaniteLapis LazuliLapis LazuliLaplanditeLarisaiteLasaliteLatiumiteLatrappiteLaubmaniteLaubmanniteLaueiteLaumontiteLaureliteLaurioniteLautariteLautiteLavaLavendulanLaveniteLavinskyiteLavrentieviteLawsonbaueriteLawsoniteLawsoniteLazarenkoiteLazuliteLazuriteLeadLeadhilliteLegranditeLeifiteLeightoniteLeiteiteLemanskiiteLemmleiniteLengenbachiteLeogangiteleoniteLepidocrociteLepidoliteLermontoviteLeuciteLeucophaniteLeucophoeniciteLeucophosphiteLeucospheniteLevyneLibetheniteLiddicoatiteLiebenbergiteLiebigiteLikasiteLillianiteLimoniteLinariteLindbergiteLindgreniteLindqvistiteLingreniteLinnaeiteLintisiteLiottiteLipscombiteLiroconiteLiskearditeLithargeLithiophiliteLithiophoriteLithiophosphateLithiophylliteLithiotantiteLithiowodginiteLitidioniteLitvinskiteLiveingiteLivingstoniteLizarditeLobanoviteLollingiteLomonosoviteLondoniteLonsdaleiteLopariteLoparite-CeLopeziteLoranditeLorenzeniteLorettoiteLotharmeyeriteLoudouniteLoughliniteLourenswalsiteLoveringiteLovozeriteLuanheiteLuddeniteLudlamiteLudlockiteLudwigiteLueshiteluetheiteLuinaiteLuinaite-(OH)Luinaite-(OH)luinite-(OH)LulzaciteLunebergiteLuneburgiteLusernaiteLuzonitemacdonalditeMacedoniteMacfalliteMackayiteMackinawiteMacphersoniteMagadiiteMagnesio-arfvedsoniteMagnesioarfvedsoniteMagnesioaubertiteMagnesioaxiniteMagnesiochromiteMagnesioferriteMagnesiohornblendeMagnesiokataphoriteMagnesiokoritnigiteMagnesiopascoiteMagnesiovoltaiteMagnesiteMagnetiteMagnetoplumbiteMagnussoniteMahlmooditeMahnertiteMakarochkiniteMakatiteMalachiteMalayaiteMaldoniteMalhmooditeManandoniteManasseiteManganaxiniteManganbabingoniteManganbabingtoniteManganberzeliiteManganbloditeManganeseManganese NoduleManganiteManganneptuniteManganoeudialyteManganomanganiungarettiiteManganoneptuniteManganonorditeManganositeManganotantaliteManganotychiteManganpyrosmaliteManganvesuvianiteManjiroiteMansfielditeMarcasiteMargariteMargarosaniteMarialiteMariciteMaricopaiteMarokiteMarshallsussmaniteMarshiteMarsturiteMarthoziteMasloviteMassicotMasutomiliteMatlockiteMattagamiteMatulaiteMaucheriteMawbyiteMawsoniteMaxwelliteMbobomkuliteMcallisteriteMcalpineiteMcgoverniteMcguinnessiteMcKelveyiteMckinstryiteMedaiteMeioniteMeixneriteMelanoceriteMelanocerite-(Ce)MelanophlogiteMelanotekiteMelanovanaditeMelanteriteMeliliteMeliphaniteMelliteMeloniteMendipiteMendozaviliteMeneghiniteMenezesiteMercuryMereheaditeMerelaniiteMerlinoiteMesoliteMesselitemesseliteMetaAnkoleiteMetaautuniteMetacinnabarMetaheinrichiteMetahewettiteMetakottigiteMetalodeviteMetamuniriteMetanovacekiteMetarossiteMetaschoderiteMetastibniteMetatorberniteMetatuyamuniteMetatyuyamuniteMetauranocirciteMetauranospiniteMetavarisciteMetavauxiteMetavivianiteMetavoltineMetazeuneritemeteoritemeurigiteMeyerhofferiteMeymaciteMiargyriteMicaMicroclineMicroliteMicrosommiteMiddletoniteMiersiteMiguelromeroiteMilariteMilleriteMillisiteMillosevichiteMimetiteMinasragriteMinehilliteMiniumMinrecorditeMinyuliteMiseriteMitridatiteMixedmixed-mineralsMixiteMoctezumiteMoganiteMohawkiteMolbydofornaciteMoldaviteMolinelloiteMolybdeniteMolybditeMolybdofornaciteMonaziteMonazite-(ce)Monazite-CeMoncheitemonetiteMonimoliteMontaniteMontbrayiteMontebrasiteMonteregianiteMontergianiteMontgomeryiteMonticelliteMontmorilloniteMontroseiteMontroyditeMontryoditeMooihoekiteMooreiteMopungiteMoraesiteMordeniteMorenositeMosandriteMosesiteMottramiteMotukoreaiteMountainiteMountkeithiteMozartiteMucheiteMuiriteMulliteMurdochiteMurmaniteMuscoviteMushistoniteNabaphiteNacriteNadoritenagyagiteNakauriiteNakauriteNamansiliteNambuliteNamibiteNamuwiteNarsarsukiteNashitenasoniteNataniteNatriteNatroaluniteNatrochalciteNatrojarositeNatrolemoyniteNatroliteNatromontebrasiteNatropharmacoalumiteNatropharmacosideritenatrophiliteNatrophosphateNatrosiliteNaujakasiteNaumanniteNekoiteNeleniteNenadkevichiteNeotociteNephelineNephriteNeptuniteNeskevaaraiteNesquehoniteNevadaiteNewberyiteNiccoliteNickelNickel-skutteruditeNickelineNickellotharmeyeriteNickelskutteruditeNifontoviteNikischeriteNimiteNingyoiteNiobophylliteNiocaliteNisbiteNissoniteNobeliteNobleiteNoelbensoniteNontroniteNoonkabahiteNorbergiteNordstranditeNordstromiteNormanditeNorrishiteNorsethiteNorthupiteNoseanNovacekiteNovgorodovaiteNsutiteNuffielditeNullaginiteNyboiteObsidianOffretiteOgdensburgiteOhmiliteOjuelaiteOkeniteOklonskoviteOleniteOligoclaseOliveniteOlivineOlmiiteOlmsteaditeOlshanskyiteOosterboschiteOpalOrdoneziteOrganovaiteOrientiteOrpimentOrthoclaseOrthopinakioliteOrthoserperiteOrthoserpieriteOsarizawaiteOsmiridiumOsumiliteOsumilite-(Mg)OtaviteOttreliteOwyheeiteOxykinoshitaliteOxyplumboromeiteOxystannomicroliteOyeliteOzoceritePaakkonenitePaakonenitePabstitePachnolitePainitePainitepalenzonaitePalladiumPalygorskitePapagoiteParabutleriteParacelsianParadamiteParagoniteParaguanajuatiteParahopeiteParalaurioniteParalstoniteParamelaconiteParamendozaviliteParapierrotitePararammelsbergitePararealgarParascoroditeParasibirskiteParasymplesiteParatacamiteParatelluriteParatooite-LaParaumbiteParavauxitePargasiteParisiteParisite-(Ce)Parisite-CeParkinsoniteParnauiteParsettensiteParsoniteParsonsitePartheitePartziteParvowinchitePascoitePascoitePatronitepaulmooreitePavonitePearceitePecoraitePectolitePeisleyitePekoitePenfielditePenkvilksitePenkvilskitePennantitePenroseitePentagonitePentahydroboritePentlanditePeprossiitePeprossitePeretaitePerhamitePeritePerovskitePerrieritePerrouditePetalitePetarasitePetersenitePetersitePetrified Palm WoodPetrified WoodPetzitePezzottaitePharmacoalumitePharmacolitePharmacosideritePharmacosideritePhaunouxitePhenakitePhilipsbornitePhilipsburgitePhillipsitePhlogopitePhoenicochroitePhosgenitePhosinaitePhosphoellenbergeritePhosphohedyphanePhosphophyllitePhosphosideritePhosphovanadylitePhosphuranylitePhurcalitePickeringitePicromeritePicropharmacolitePicturePiemontitePierrotitePilsenitePinakiolitePinitePinkakiolitePinnoitePintadoitepirssonitePitticitePiypitePlagioclasePlagionitePlancheitePlaneritePlasilitePlatinumPlattneritePlumboferritePlumbogummitePlumbojarositePlumbomicrolitePlumbotsumitePodlesnoitePodnoginitePokrovskitePollucitePolybasitePolycrasePolydymitePolyhalitePolylithionitePortlanditePosnjakitePotaritePotassicrichteritePotosiitePottsitePoubaitePoudretteitePoughitePovondraitePowellitePrehnitePreobrazhenskitePriceitePrideritePrismatineProbertiteProsopiteProustitePseudoboleitePseudobrookitePseudolaueitePseudomalachitePsilomelanePucheritePumpellyitePurpuritePushcharovskitePyargyritePyrargyritePyritePyroauritePyroaurite-2HPyrobelonitePyrochlorePyrochroitePyrolusitePyromorphitePyropePyrophanitePyrophyllitePyrosmalitePyrosmalite-(Mn)PyrostilpnitePyroxenePyroxferroitePyroxmangitePyrrhotiteQandiliteQuartzQuartz var. AmethystQuetzalcoatliteQuintaniteQuintiniteRabdophaneRabejaciteRaguniteRainbow ObsidianRaiteRajiteRakovaniteRalstoniteRameauiteRammelsbergiteRamsbeckiteRamsdelliteRancieiteRankachiteRankiniteRapidcreekiteRasmuviteRaspiteRathiteRauviteRealgarReddingiteRedgilliteRedledgeiteReedmergneriteReevesiteReineriteReinhardbraunsiteRemondite-(ce)RenarditeRenieriteReppiaiteRevditeRezbanyiteRhabdophaneRhabdophane-(Ce)Rhabdophane-CeRheniiteRhodiziteRhodochrositeRhodoniteRhomboclaseRhoniteRibbeiteRichelliteRichelsdorfiteRichteriteRiebeckiteRimkorolgiteRinkiteRivadaviteRobertsiteRobinsoniteRockbridgeiteRodalquilariteRoeblingiteRoedderiteRomancheiteRomanechiteRomaniteRomeiteRomeriteRongibbsiteRontgeniteRosasiteRoscheriteroscoeliteRoseliteRoselite-BRoselite-betaRosenbuschiteRosenhahniteRosiaiteRosickyiteRossiteRossleriteRostiteRouaiteRoweiteRoxbyiteRucklidgeiteRuifrancoiteRuiziteRusselliteRutherfordineRutileSabatieriteSabinaiteSabugaliteSacrofaniteSaffloriteSahliniteSailaufiteSainfelditeSakhaiteSakuraiiteSal-AmmoniacSalammoniacSaleeiteSalesiteSamarskiteSamarskite-(Y)SampleiiteSampleiteSanborniteSandstoneSanidineSanjuaniteSanmartiniteSanromaniteSantabarbaraiteSantaclaraiteSantafeiteSantarosaiteSaponiteSapphirineSarabauiteSarcoliteSarcopsideSarkiniteSarmientiteSartoriteSassoliteSatoriteSatterlyiteSauconiteSazhiniteSazykinaiteScainiiteScainiteScandiobabingtoniteScapoliteScarbroiteScawtiteSchafarzikiteSchaferiteSchapbachiteSchaurteiteScheeliteScheuchzeriteSchieffeliniteSchirmeriteSchizoliteSchlossmacheriteSchmiederiteSchmitteriteSchneiderhohniteSchoderiteSchoenfliesiteSchoepiteScholziteSchorlSchorlomiteSchrockingeriteSchubneliteSchuetteiteSchulenbergiteSchulleriteSchulteniteSchwartzembergiteScoleciteScoroditeScorzaliteScottyiteScrutinyiteSearlesiteSedoviteSeeligeriteSegeleriteSegnititeSeiditeSekaninaiteSeleniumSeligmanniteSellaiteSemseyiteSenaiteSenarmontiteSenegaliteSengieriteSepioliteSeranditeSerendibiteSericiteSerpentineSerpieriteShabyniteShafranovskiteShannoniteShattuckiteShcherbakoviteShcherbinaiteShibkoviteShigaiteShinichengiteShkatulkaliteShortiteShubnikoviteShuiskiteShumwayiteSibirskiteSiderazotSideriteSideronatriteSiderotilSidorenkiteSidwilliteSiegeniteSigloiteSilhydriteSiliconSiliconcarbideSillimaniteSilverSimpsoniteSincositeSinkankasiteSitinakiteSjogreniteSkippeniteSklodowskiteSkorpioniteSkutteruditeSlagSlavikiteSlawsoniteSmithiteSmithsoniteSmolyaninoviteSmrkoveciteSmythiteSodaliteSoddyiteSogdianiteSohngeiteSonoliteSonoraiteSorbyiteSorenseniteSouzaliteSpangoliteSpenceriteSperryliteSpertiniiteSpessartineSphaerocobaltiteSphaleriteSphenisciditeSphercobaltiteSpherocobaltiteSpinelSpionkopiteSpiroffiteSpodumeneSpurriteStanleyiteStanniteStannomicroliteStaroceskeiteStauroliteSteacyiteSteenstrupineSteenstrupine-(Ce)StelleriteStephaniteStepiteSternbergiteStevensiteStewartiteStibarsenStibiconiteStibiocolumbiteStibiotantaliteStibivaniteStibniteStichtiteStilbiteStilbite-CaStillwelliteStillwellite-CeStilpnomelaneStistaiteStokesiteStolziteStoppaniiteStraczekiteStrakhoviteStrashimiriteStratlingiteStrengiteStringhamiteStromatoliteStromeyeriteStrontianiteStrontioginoriteStrontiojoaquiniteStrontiowhitlockiteStrunziteStruviteStudenitsiteStudtiteSturmaniteStutziteSuaniteSudoiteSugiliteSulfoboriteSulfohaliteSulfurSulphoboriteSulphohaliteSulphohaliteSulphotsumoiteSulvaniteSuoluniteSursassiteSusanniteSussexiteSvabiteSvanbergiteSwamboiteSwitzeriteSylvaniteSylviteSymplesiteSynchysiteSynchysite-(Ce)SyngeniteSzaibelyiteSzenicsiteSzomolnokiteTacharaniteTaeniteTainioliteTakedaiteTakoviteTalcTalmessiteTalnakhiteTamarugiteTaneyamaliteTangdaniteTangeiteTantaliteTantalite-(Mn)Tantalite-MnTantiteTapioliteTapiolite-MnTaramelliteTaramiteTaranakiteTarapacaiteTarbuttiteTasmaniteTausoniteTavoriteTazheraniteTealliteTegengreniteTeineiteTektiteTellurantimonyTelluriteTelluriumTelluro-BismuthiteTellurobismuthiteTellurobismutiteTelluronevskiteTelluropalladiniteTengeriteTennantiteTenoriteTephroiteTerlinguaiteTerskiteTeruggiteTetra-ferriphlogopiteTetradymiteTetraferriphlogopiteTetrahedriteTetranatroliteThaleniteThalenite-(Y)Thalenite-YThaumasiteTheisiteThenarditeThometzekiteThomsenoliteThomsoniteThomsonite-CaThorianiteThorikositeThoriteThorneiteThorosteenstrupineThortveititeThuliteThumbnail-LotThumbnailsTiemanniteTienshaniteTigers EyeTilasiteTilleyiteTinaksiteTincalconiteTinticiteTinzeniteTiragalloiteTisinaliteTitaniteTitaniumTitanowodginiteTitantaramelliteTlapalliteTobeliteTobermoriteTocornaliteTodorokiteTokkoiteTolbachik volcano, Kamchatka Oblast', RussiaTolbachiteTombarthite-YTooeleiteTopazTorbermoriteTorberniteTosuditeTounkiteTourmalinetraskiteTreasuriteTrechmanniteTremoliteTridymiteTrilithioniteTrimeriteTrinititeTriphyliteTriphylliteTripliteTriploiditeTripuhyiteTritomiteTritomite-(ce)TroiliteTrolleiteTronaTryoliteTsaregorodtseviteTschermigitetschernichiteTsepiniteTsepinite NaTsepinite-NaTsumcoriteTsumebiteTsumoiteTucekiteTugtupiteTuhualiteTulameeniteTundriteTunelliteTungstenTungsteniteTungstibiteTungstiteTunisiteTuperssuatisiaiteTuperssuatsiaiteturgiteTurkestaniteTurneaureiteTurquoiseTuscaniteTusioniteTveititeTwinniteTyretskiteTyroliteTyuyamuniteUchucchacuaiteUklonskoviteUlexiteUllmanniteUlrichiteUmangiteUmbiteUmbozeriteUngemachiteUraloliteUraniniteUranocirciteUranophaneUranopiliteUranopolycraseUranospahiteUranospathiteUranospiniteUranpyrochloreUshkoviteUssingiteUvaniteUvaroviteUviteUytenbogaardtiteVaesiteVajdakiteValentiniteValleriiteVanadiniteVanaliteVandenbrandeiteVandendriesscheiteVantasseliteVarennesiteVarisciteVarlamoffiteVaruliteVauqueliniteVauxiteVayryneniteveatchiteVendidaiteVermiculiteVerplanckiteVerplankiteVersiliaiteVesignieiteVesuvianiteVeszelyiteViburnum Trend FlatVicaniteVihorlaiteVihorlatiteVillamaniniteVillaumiteVilliaumiteVillyaelleniteVincentiteViolariteViseiteVishneviteVitusiteVivianiteVladimiriteVlasoviteVlodavetsiteVogliteVolborthiteVolkonskoiteVolkovskiteVoltaiteVonseniteVuagnatiteVulcano Island, Lipari, Eolie Islands, Messina Province, Sicily, ItalyVuonnemiteVuoriyarviteWadeiteWagneriteWairakiteWakabayashiliteWakefieldite-(Ce)WalentaiteWalpurgiteWalstromiteWarditeWarwickiteWattersiteWavelliteWaylanditeWeberiteWeddelliteWeeksiteWegscheideriteWeiliteWeissbergiteWeloganiteWelshiteWendwilsoniteWermlanditeWerneriteWesselsiteWesselsiteWestervelditeWetherilliteWhelaniteWherryiteWhewelliteWhitecapsiteWhiteiteWhiteite-(CaFeMg)WhitlockiteWhitmoreiteWholesaleWholesale-FlatWholesale-Lot WholesaleLotWickenburgiteWickmaniteWicksiteWidgiemoolthaliteWightmaniteWilkinsoniteWillemiteWillemseiteWillhendersoniteWillyamiteWiluiteWinchiteWinstanleyiteWiseriteWitheriteWitticheniteWittiteWodginiteWohleriteWolfeiteWolframiteWollastoniteWoodhouseiteWoodruffiteWoodwarditeWroewolfeiteWroewolfiteWulfenitewupatkiiteWurtziteXanthoconiteXanthoxeniteXenotimeXenotime-(Y)XilingoliteXocomecatliteXocomecatltiteXonotliteYakhontoviteYanomamiteYftisite-(Y)YoderiteYofortieriteYoshimuraiteYttroceriteYttropyrochloreYttrotungsiteYuanfuliiteYugawaraliteYuksporiteYvoniteZabuyeliteZakharoviteZalesiiteZanaziiteZanazziiteZanazziteZapataliteZaratiteZdeneckiteZektzeriteZelleriteZemanniteZeophylliteZeuneriteZincZinciteZincolibetheniteZincoliveniteZinkeniteZinnwalditeZippeiteZirconZirconoliteZirkeliteZoisiteZoriteZunyiteZussmaniteZvyagintseviteZwieselite
+
+(Any)
+
+### locality
+
+### ex-
+
+(Any)Alan JenkinsAllen MiciekAlvin PranschkeArt SmithBarbara MuntyanBarbara Wells MacIntoshBill and Diana DameronBob & Jeanette BarnesBob & Pam StewartBruce & Dale WadleighCarole Lee RulneyCatherine J. & Bruce Paul GaberCharles NollCharles ThorntonCharlie SahlmanChris & Agatha GalasDale ArmstrongDan & Diana WeinrichDan WeinrichDave LeheckaDavid BrandonDawn & James MinetteDiana WeinrichDoug TolandDouglas PaoneDr. Collin KaederDr. Hernandez-UribeEd RainesEmmanuel BravaisEugenio AndradesEvan JonesFabre MineralsGary StacyGene TribbeyGeorge SayersGus EiflerHans LuthiHarris PrechtHarry CritchleyHoward & Barbara HymanJ.F. RakovanJames KasteJames SmithJan DietrichJim & Imelda KleinJim ChenardJim GebelJoe McCown, Jr.John CallenJonathan PerkinsJordi PovillKaren & David DeBruinKen RaabeKenneth O'MalleyLindsay GlassLloyd TateMagma MineralsMarc FleischerMarcus OriglieriMark & Karen VendlMarshall KovalMarshall SussmanMartin JensenMatilda PfeifferMike & Mary JaworskiMike LuttonMike SweeneyNicholas TheisNick HawesNorm WoodsOtto GrusonPatty Gaspari-BridgesPeter Rosewarne Phil MartinRalph MerrillRantz CollectionRay DeMarkRenaud VochtenRichard HelselRichard K. SmithRichard KoskeyRichard M Meiners IIIRick NagelRick ShubertRobert GustafsonRobert NowakowskiRod & Helen TysonRoger B Sedgwick Ron PellarRoseann ScottiRoy JonesScott MaylenStan PerryStan WoollamsStephen BlyskalSteve GrantSteve NeelySteve PullmanTab FarthingThomas K TousleyThomas von CriegernTim SherburnTom DonnellyTony PotucekUniversity of ArizonaViburnum TrendW.H. Wilkinson, Jr.Walter BoydWholesaleWilliam H WakeleyWilliam SeveranceWolfgang E. Henkel
+
+(Any)
+
+[(Log in to save searches)](https://www.weinrichmineralsinc.com/member/login/index)
+
+Filter:
+Available [Remove](https://www.weinrichmineralsinc.com/product/shop/index?)
+
+Smithsonite — Morocco
+
+large-cabinet
+
+900.00
+
+### Smithsonite — Morocco
+
+**Origin:** Touissit, Oujda, Morocco
+
+**Number:** (1654942)
+
+**Size:** 18.5 x 13.0 x 3.5 cm (large-cabinet)
+
+900.00
+
+Chrysocolla — DR Congo
+
+large-cabinet
+
+5625.00
+
+### Chrysocolla — DR Congo
+
+**Origin:** Tenke-Fungurume, Kolwezi, Lualaba, DR Congo
+
+**Number:** (9505253)
+
+**Size:** 16.0 x 9.0 x 7.0 cm (large-cabinet)
+
+5625.00
+
+Smithsonite — Namibia
+
+cabinet
+
+185.00
+
+### Smithsonite — Namibia
+
+**Origin:** Tsumeb mine, Otjikoto, Namibia
+
+**Number:** (9851215)
+
+**Size:** 11.0 x 5.0 x 5.0 cm (cabinet)
+
+185.00
+
+Smithsonite — Zambia
+
+small-cabinet
+
+500.00
+
+### Smithsonite — Zambia
+
+**Origin:** Kabwe Mine, Central Province, Zambia
+
+**Number:** (9851293)
+
+**Size:** 9.0 x 5.0 x 4.5 cm (small-cabinet)
+
+500.00
+
+Marcasite — Missouri
+
+small-cabinet
+
+350.00
+
+### Marcasite — Missouri
+
+**Origin:** Magmont Mine, Viburnum Trend, Iron Co., Missouri, USA
+
+**Number:** (2013195)
+
+**Size:** 7.0 x 4.5 x 3.0 cm (small-cabinet)
+
+350.00
+
+Calcite — Ireland
+
+cabinet
+
+300.00
+
+### Calcite — Ireland
+
+**Origin:** Ballyegan Quarry, Castleisland, Kerry Co., Munster, Ireland
+
+**Number:** (9851318)
+
+**Size:** 10.5 x 7.5 x 4.0 cm (cabinet)
+
+300.00
+
+Malachite — Namibia
+
+small-cabinet
+
+1450.00
+
+### Malachite — Namibia
+
+**Origin:** Tsumeb mine, Otjikoto, Namibia
+
+**Number:** (8282455)
+
+**Size:** 7.5 x 5.5 x 2.5 cm (small-cabinet)
+
+1450.00
+
+Fluorapatite — Mexico
+
+thumbnail
+
+50.00
+
+### Fluorapatite — Mexico
+
+**Origin:** Cerro de Mercado, Durango, Mexico
+
+**Number:** (2292292)
+
+**Size:** 2.5 x 1.0 x 0.8 cm (thumbnail)
+
+50.00
+
+Veszelyite — China
+
+miniature
+
+460.00
+
+### Veszelyite — China
+
+**Origin:** Sanguozhuang, Dongchuan, Yunnan, China
+
+**Number:** (9302295)
+
+**Size:** 4.0 x 2.5 x 1.5 cm (miniature)
+
+460.00
+
+Orpiment — Peru
+
+cabinet
+
+750.00
+
+### Orpiment — Peru
+
+**Origin:** Quiruvilca Mine, La Libertad, Peru
+
+**Number:** (2072006)
+
+**Size:** 11.0 x 5.5 x 2.5 cm (cabinet)
+
+750.00
+
+Kermesite — Slovakia
+
+small-cabinet
+
+1455.00
+
+### Kermesite — Slovakia
+
+**Origin:** Pezinok, Bratislava, Slovakia
+
+**Number:** (9302238)
+
+**Size:** 9.0 x 5.0 x 2.5 cm (small-cabinet)
+
+1455.00
+
+Barite — China
+
+cabinet
+
+2600.00
+
+### Barite — China
+
+**Origin:** Xiefang mine, Ruijin Co., Ganzhou, Jiangxi, China
+
+**Number:** (8291019)
+
+**Size:** 13.5 x 11.0 x 6.5 cm (cabinet)
+
+2600.00
+
+Pyromorphite — Germany
+
+miniature
+
+335.00
+
+### Pyromorphite — Germany
+
+**Origin:** Jeanette Mine, Kransberg, Usingen, Hochtaunuskreis, Darmstadt, Hesse, Germany
+
+**Number:** (9302179)
+
+**Size:** 4.5 x 3.5 x 2.3 cm (miniature)
+
+335.00
+
+Celestine — Michigan
+
+miniature
+
+500.00
+
+### Celestine — Michigan
+
+**Origin:** Stoneco Quarry, Newport, Michigan, USA
+
+**Number:** (2013023)
+
+**Size:** 5.0 x 5.0 x 3.0 cm (miniature)
+
+500.00
+
+Quartz — Indonesia
+
+small-cabinet
+
+600.00
+
+### Quartz — Indonesia
+
+**Origin:** Mamaju, West Sulawesi, Indonesia
+
+**Number:** (9273121)
+
+**Size:** 8.0 x 5.0 x 4.0 cm (small-cabinet)
+
+600.00
+
+Calcite — Kosovo
+
+small-cabinet
+
+145.00
+
+### Calcite — Kosovo
+
+**Origin:** Trepca, Mitrovica, Kosovo
+
+**Number:** (2113020)
+
+**Size:** 9.0 x 7.5 x 5.0 cm (small-cabinet)
+
+145.00
+
+Galena — Illinois
+
+small-cabinet
+
+875.00
+
+### Galena — Illinois
+
+**Origin:** Annabel Lee Mine, Hardin Co., Illinois, USA
+
+**Number:** (2013421)
+
+**Size:** 7.0 x 5.5 x 4.0 cm (small-cabinet)
+
+875.00
+
+Malachite — DR Congo
+
+large-cabinet
+
+2500.00
+
+### Malachite — DR Congo
+
+**Origin:** Mindingi mine, Kambove, Haut-Katanga, DR Congo
+
+**Number:** (9505992)
+
+**Size:** 19.0 x 15.5 x 2.5 cm (large-cabinet)
+
+2500.00
+
+Barite — Wisconsin
+
+miniature
+
+300.00
+
+### Barite — Wisconsin
+
+**Origin:** Montreal Mine, Iron Co., Wisconsin, USA
+
+**Number:** (2062069)
+
+**Size:** 5.0 x 3.0 x 2.0 cm (miniature)
+
+300.00
+
+Barite — Illinois
+
+small-cabinet
+
+1500.00
+
+### Barite — Illinois
+
+**Origin:** Annabel Lee Mine, Hardin Co., Illinois, USA
+
+**Number:** (2013109)
+
+**Size:** 6.0 x 4.5 x 3.0 cm (small-cabinet)
+
+1500.00
+
+Fluorite — UK
+
+cabinet
+
+375.00
+
+### Fluorite — UK
+
+**Origin:** Cambokeels Mine, Stanhope, Westgate, Co. Durham, England, UK
+
+**Number:** (9711646)
+
+**Size:** 12.0 x 11.0 x 5.0 cm (cabinet)
+
+375.00
+
+Pyrite — Kosovo
+
+small-cabinet
+
+45.00
+
+### Pyrite — Kosovo
+
+**Origin:** Trepca, Mitrovica, Kosovo
+
+**Number:** (2113141)
+
+**Size:** 7.5 x 7.0 x 5.0 cm (small-cabinet)
+
+45.00
+
+Copper — Michigan
+
+small-cabinet
+
+335.00
+
+### Copper — Michigan
+
+**Origin:** White Pine Mine, Ontonagon Co., Michigan, USA
+
+**Number:** (8311553)
+
+**Size:** 7.0 x 4.0 x 0.4 cm (small-cabinet)
+
+335.00
+
+Copper — Michigan
+
+miniature
+
+300.00
+
+### Copper — Michigan
+
+**Origin:** Mass Mine, Ontonagon Co., Michigan, USA
+
+**Number:** (8311559)
+
+**Size:** 3.8 x 1.6 x 0.5 cm (miniature)
+
+300.00
+
+Hematite — Michigan
+
+cabinet
+
+1800.00
+
+### Hematite — Michigan
+
+**Origin:** Sherwood Mine, Iron Co., Michigan, USA
+
+**Number:** (2062084)
+
+**Size:** 14.0 x 9.0 x 5.0 cm (cabinet)
+
+1800.00
+
+Quartz — Kosovo
+
+small-cabinet
+
+20.00
+
+### Quartz — Kosovo
+
+**Origin:** Trepca, Mitrovica, Kosovo
+
+**Number:** (2113160)
+
+**Size:** 6.5 x 5.0 x 4.0 cm (small-cabinet)
+
+20.00
+
+Calcite — Missouri
+
+small-cabinet
+
+750.00
+
+### Calcite — Missouri
+
+**Origin:** Sweetwater Mine, Viburnum Trend, Reynolds Co., Missouri, USA
+
+**Number:** (2013352)
+
+**Size:** 9.0 x 6.5 x 6.5 cm (small-cabinet)
+
+750.00
+
+Wurtzite — Tanzania
+
+miniature
+
+660.00
+
+### Wurtzite — Tanzania
+
+**Origin:** Merelani Hills, Simanjiro, Manyara, Tanzania
+
+**Number:** (9711076)
+
+**Size:** 3.8 x 2.6 x 1.5 cm (miniature)
+
+660.00
+
+Inesite — California
+
+cabinet
+
+2500.00
+
+### Inesite — California
+
+**Origin:** Hale Creek Mine, Trinity Co., California, USA
+
+**Number:** (1115242)
+
+**Size:** 10.0 x 10.0 x 4.5 cm (cabinet)
+
+2500.00
+
+Fluorite — China
+
+cabinet
+
+2330.00
+
+### Fluorite — China
+
+**Origin:** Jiang Jun Gou, Huairou, Beijing, China
+
+**Number:** (9506764)
+
+**Size:** 10.0 x 8.0 x 4.0 cm (cabinet)
+
+2330.00
+
+Galena — Czech Republic
+
+cabinet
+
+500.00
+
+### Galena — Czech Republic
+
+**Origin:** Pribram, Bohemia, Czech Republic
+
+**Number:** (2273021)
+
+**Size:** 10.0 x 9.0 x 3.0 cm (cabinet)
+
+500.00
+
+Sulfur — Bolivia
+
+cabinet
+
+185.00
+
+### Sulfur — Bolivia
+
+**Origin:** El Desierto mine, San Pablo de Napa, Daniel Campos, Potosi, Bolivia
+
+**Number:** (2292247)
+
+**Size:** 13.0 x 5.0 x 4.5 cm (cabinet)
+
+185.00
+
+Malachite — DR Congo
+
+miniature
+
+90.00
+
+### Malachite — DR Congo
+
+**Origin:** Kolwezi, Lualaba, DR Congo
+
+**Number:** (2292204)
+
+**Size:** 5.5 x 4.5 x 2.5 cm (miniature)
+
+90.00
+
+Fluorite — China
+
+cabinet
+
+1250.00
+
+### Fluorite — China
+
+**Origin:** Shangbao Mine, Leiyang Co., Hunan, China
+
+**Number:** (8311303)
+
+**Size:** 13.0 x 8.0 x 6.0 cm (cabinet)
+
+1250.00
+
+Calcite — DR Congo
+
+cabinet
+
+1200.00
+
+### Calcite — DR Congo
+
+**Origin:** Mashamba West Mine, Kolwezi, Lualaba, DR Congo
+
+**Number:** (9506789)
+
+**Size:** 11.0 x 6.0 x 2.0 cm (cabinet)
+
+1200.00
+
+Cuprite — Mexico
+
+small-cabinet
+
+1200.00
+
+### Cuprite — Mexico
+
+**Origin:** Milpillas mine, Santa Cruz, Sonora, Mexico
+
+**Number:** (8282595)
+
+**Size:** 8.0 x 5.0 x 1.5 cm (small-cabinet)
+
+1200.00
+
+Fluorite — China
+
+large-cabinet
+
+15000.00
+
+### Fluorite — China
+
+**Origin:** Shangbao mine, Hunan, China
+
+**Number:** (9505544)
+
+**Size:** 20.0 x 14.0 x 5.0 cm (large-cabinet)
+
+15000.00
+
+Fluorite — Illinois
+
+small-cabinet
+
+545.00
+
+### Fluorite — Illinois
+
+**Origin:** Southern Illinois Fluorspar District, Illinois, USA
+
+**Number:** (2092222)
+
+**Size:** 7.0 x 5.5 x 5.0 cm (small-cabinet)
+
+545.00
+
+Copper — Michigan
+
+large-cabinet
+
+1500.00
+
+### Copper — Michigan
+
+**Origin:** White Pine Mine, Ontonagon Co., Michigan, USA
+
+**Number:** (8311536)
+
+**Size:** 23.0 x 6.0 x 0.3 cm (large-cabinet)
+
+1500.00
+
+Painite — Myanmar
+
+miniature
+
+1260.00
+
+### Painite — Myanmar
+
+**Origin:** Kyauk-Pyat-That, Mogok, Pyin-Oo-Lwin, Mandalay, Myanmar
+
+**Number:** (9506835)
+
+**Size:** 5.0 x 2.7 x 1.8 cm (miniature)
+
+1260.00
+
+Chabazite — Faroe Islands
+
+miniature
+
+190.00
+
+### Chabazite — Faroe Islands
+
+**Origin:** Naalso, Faroe Islands
+
+**Number:** (9302260)
+
+**Size:** 5.5 x 4.0 x 2.5 cm (miniature)
+
+190.00
+
+Fluorite — Ohio
+
+miniature
+
+1500.00
+
+### Fluorite — Ohio
+
+**Origin:** White Rock Quarry, Clay Center, Ohio, USA
+
+**Number:** (2013447)
+
+**Size:** 5.0 x 4.0 x 3.0 cm (miniature)
+
+1500.00
+
+Fluorite — UK
+
+cabinet
+
+1150.00
+
+### Fluorite — UK
+
+**Origin:** Blackdene Mine, Weardale, Cumbria, England, UK
+
+**Number:** (1653609)
+
+**Size:** 14.5 x 12.0 x 9.5 cm (cabinet)
+
+1150.00
+
+Anglesite — Italy
+
+miniature
+
+895.00
+
+### Anglesite — Italy
+
+**Origin:** Monteponi Mine, Sardinia, Italy
+
+**Number:** (1655035)
+
+**Size:** 5.5 x 4.5 x 4.0 cm (miniature)
+
+895.00
+
+Siegenite — Germany
+
+small-cabinet
+
+2500.00
+
+### Siegenite — Germany
+
+**Origin:** Siegen-Wittgenstein, Arnsberg, North Rhine-Westphalia, Germany
+
+**Number:** (1052286)
+
+**Size:** 8.5 x 5.5 x 1.0 cm (small-cabinet)
+
+2500.00
+
+Elbaite — Brazil
+
+thumbnail
+
+640.00
+
+### Elbaite — Brazil
+
+**Origin:** Cruzeiro mine, Minas Gerais, Brazil
+
+**Number:** (9505778)
+
+**Size:** 3.0 x 1.3 x 1.2 cm (thumbnail)
+
+640.00
+
+Fluorite — Illinois
+
+cabinet
+
+750.00
+
+### Fluorite — Illinois
+
+**Origin:** Denton Mine, Hardin Co., Illinois, USA
+
+**Number:** (2092165)
+
+**Size:** 10.5 x 8.0 x 6.0 cm (cabinet)
+
+750.00
+
+Sphalerite — Oklahoma
+
+small-cabinet
+
+60.00
+
+### Sphalerite — Oklahoma
+
+**Origin:** Picher Field, Tri-State District, Oklahoma, USA
+
+**Number:** (2212186)
+
+**Size:** 8.0 x 7.0 x 5.5 cm (small-cabinet)
+
+60.00
+
+Fluorapatite — New Hampshire
+
+miniature
+
+60.00
+
+### Fluorapatite — New Hampshire
+
+**Origin:** Rt. 112, Lost River, New Hampshire, USA
+
+**Number:** (9771241)
+
+**Size:** 3.8 x 2.9 x 2.3 cm (miniature)
+
+60.00
+
+Cuprite — Arizona
+
+miniature
+
+850.00
+
+### Cuprite — Arizona
+
+**Origin:** Bisbee, Cochise Co., Arizona, USA
+
+**Number:** (2262023)
+
+**Size:** 5.0 x 4.0 x 4.0 cm (miniature)
+
+850.00
+
+Silver — Peru
+
+small-cabinet
+
+7800.00
+
+### Silver — Peru
+
+**Origin:** Uchucchacua Mine, Oyon, Lima, Peru
+
+**Number:** (9273077)
+
+**Size:** 7.0 x 5.0 x 1.0 cm (small-cabinet)
+
+7800.00
+
+Barite — Germany
+
+small-cabinet
+
+350.00
+
+### Barite — Germany
+
+**Origin:** Pohla-Tellerhauser Mine, Saxony, Germany
+
+**Number:** (1115249)
+
+**Size:** 7.0 x 3.5 x 3.5 cm (small-cabinet)
+
+350.00
+
+Zincolivenite — Namibia
+
+miniature
+
+550.00
+
+### Zincolivenite — Namibia
+
+**Origin:** Tsumeb mine, Otjikoto, Namibia
+
+**Number:** (1653556)
+
+**Size:** 5.5 x 3.5 x 3.0 cm (miniature)
+
+550.00
+
+Quartz — China
+
+small-cabinet
+
+285.00
+
+### Quartz — China
+
+**Origin:** Jinlong hill, Longchuan Co., Heyuan, Guangdong, China
+
+**Number:** (9506457)
+
+**Size:** 8.0 x 5.0 x 4.0 cm (small-cabinet)
+
+285.00
+
+Galena — Oklahoma
+
+small-cabinet
+
+60.00
+
+### Galena — Oklahoma
+
+**Origin:** Grace Walker Mine, Ottawa Co., Oklahoma, USA
+
+**Number:** (2212116)
+
+**Size:** 6.0 x 4.5 x 4.0 cm (small-cabinet)
+
+60.00
+
+Microcline — Colorado
+
+large-cabinet
+
+9000.00
+
+### Microcline — Colorado
+
+**Origin:** Teller Co., Colorado, USA
+
+**Number:** (1052514)
+
+**Size:** 30.0 x 18.0 x 6.5 cm (large-cabinet)
+
+9000.00
+
+Euclase — Brazil
+
+miniature
+
+275.00
+
+### Euclase — Brazil
+
+**Origin:** Ouro Preto, Minas Gerais, Brazil
+
+**Number:** (2133118)
+
+**Size:** 4.0 x 1.8 x 0.9 cm (miniature)
+
+275.00
+
+Quartz — Germany
+
+large-cabinet
+
+2000.00
+
+### Quartz — Germany
+
+**Origin:** Freiberg, Saxony, Germany
+
+**Number:** (1052611)
+
+**Size:** 24.5 x 20.0 x 3.5 cm (large-cabinet)
+
+2000.00
+
+Altaite — New Mexico
+
+small-cabinet
+
+400.00
+
+### Altaite — New Mexico
+
+**Origin:** Hilltop Mine, Dona Ana Co., New Mexico, USA
+
+**Number:** (1052278)
+
+**Size:** 8.0 x 6.0 x 3.5 cm (small-cabinet)
+
+400.00
+
+Gerhardtite — DR Congo
+
+thumbnail
+
+370.00
+
+### Gerhardtite — DR Congo
+
+**Origin:** Likasi, Kambove, Katanga, DR Congo
+
+**Number:** (9302302)
+
+**Size:** 1.0 x 1.0 x 0.3 cm (thumbnail)
+
+370.00
+
+[«](https://www.weinrichmineralsinc.com/product/shop/index?page=1) 1 [2](https://www.weinrichmineralsinc.com/product/shop/index?page=2) [3](https://www.weinrichmineralsinc.com/product/shop/index?page=3) [4](https://www.weinrichmineralsinc.com/product/shop/index?page=4) [5](https://www.weinrichmineralsinc.com/product/shop/index?page=5) [6](https://www.weinrichmineralsinc.com/product/shop/index?page=6) [›](https://www.weinrichmineralsinc.com/product/shop/index?page=2) [»](https://www.weinrichmineralsinc.com/product/shop/index?page=50)
+
+## navigation
+
+[About Us](https://www.weinrichmineralsinc.com/about-us.php) [Events](https://www.weinrichmineralsinc.com/events.php) [Return Policy](https://www.weinrichmineralsinc.com/return-policy.php) [Disclaimer](https://www.weinrichmineralsinc.com/disclaimer.php) [Contact Us](https://www.weinrichmineralsinc.com/contact.php)
+
+## my account
+
+[Log In](https://www.weinrichmineralsinc.com/member/login/index) [View Cart](https://www.weinrichmineralsinc.com/cart/index/index) [Help](https://www.weinrichmineralsinc.com/)
+
+## newsletter signup
+
+## Thanks for signing up!
+
+You can unsubscribe at any time using the Unsubscribe link at the bottom of every email.
+
+Email
+
+Sorry, we could not complete your sign-up. Please contact us to resolve this.
+
+Operation timed out, please try again.
+
+By submitting this form, you are consenting to receive marketing emails from: Weinrich Minerals, Inc., P.O. Box 425, Grover, MO, 63040, US, https://www.weinrichmineralsinc.com. You can revoke your consent to receive emails at any time by using the SafeUnsubscribe® link, found at the bottom of every email.
+[Emails are serviced by Constant Contact.](https://www.constantcontact.com/legal/service-provider)
+
+Sign Up
+
+reCAPTCHA
+
+Recaptcha requires verification.
+
+protected by **reCAPTCHA**
+
+This site is exceeding [reCAPTCHA Enterprise free quota](https://cloud.google.com/recaptcha/docs/billing-information).
+
+© Weinrich Minerals. All Rights Reserved.
+
+phone: 314-341-1811     email: [dan@weinrichmineralsinc.com](mailto:dan@weinrichmineralsinc.com)
+
+Save Searchclose
+
+Enter a name for this saved search
+
+OkCancel
+
+Save Search Resultsclose
+
+Ok
+
+reCAPTCHA

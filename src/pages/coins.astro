@@ -2,7 +2,10 @@
 import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
-const items = specimens.filter((s) => s.line === "coins");
+const all = specimens.filter((s) => s.line === "coins");
+const bullion = all.filter((s) => s.coinType === "bullion");
+const coins = all.filter((s) => s.coinType === "numismatic");
+const notes = all.filter((s) => s.coinType === "banknote");
 ---
 <Base title="Coins & Currency — Grimsley Mineral Co." active="coins">
   <div class="pagehead">
@@ -12,17 +15,46 @@ const items = specimens.filter((s) => s.line === "coins");
       <p>Our smallest line, and a favorite of the family. Collector coins, silver and gold, old money, and foreign currency drawn from a personal collection built over many years. Pieces come and go as the collection changes, so it is worth checking back. If you are curious about a specific coin or note, ask and we will tell you what we know about it.</p>
     </div>
   </div>
+
   <section>
     <div class="wrap">
-      {items.length > 0 ? (
-        <div class="grid">{items.map((item) => <SpecimenCard item={item} />)}</div>
-      ) : (
-        <div class="empty">
-          <div class="sec-top"><div class="k">The collection rotates</div><h2>Coins are cataloged as they come out</h2></div>
-          <p>We are still deciding which pieces from the coin and currency collection go up for the launch. Silver, gold, old money, and foreign notes will be on the table at the 127, and listed here after.</p>
-          <p style="margin-top:22px;"><a class="btn btn-dark" href="/visit">See us at the 127</a></p>
-        </div>
-      )}
+
+      <div class="subcol">
+        <div class="sh"><h2>Silver &amp; Gold</h2><span class="tag">Bullion · by weight</span></div>
+        <p>Bars and rounds priced off metal content: the weight, the purity, and the spot price. Straightforward stores of value, not graded rarities.</p>
+        {bullion.length > 0
+          ? <div class="grid">{bullion.map((item) => <SpecimenCard item={item} />)}</div>
+          : <div class="soon">Cataloged for the 127. Our silver and gold come out for the grand opening Aug 6–9, then get listed here with weight and purity on each piece.</div>}
+      </div>
+
+      <div class="subcol">
+        <div class="sh"><h2>Collector Coins</h2><span class="tag">Graded &amp; raw</span></div>
+        <p>US and world coins listed with the year, mint mark, denomination, and condition. Where a coin is certified by PCGS or NGC, we show the grade and the certification number so you can look it up on their own database before you buy.</p>
+        {coins.length > 0
+          ? <div class="grid">{coins.map((item) => <SpecimenCard item={item} />)}</div>
+          : <div class="soon">Being sorted and graded for the grand opening. We are deciding which pieces from the collection go up first. Ask about a specific coin any time.</div>}
+      </div>
+
+      <div class="subcol">
+        <div class="sh"><h2>Paper Money &amp; World Currency</h2><span class="tag">Banknotes</span></div>
+        <p>Old US notes and foreign currency, listed with the country, series, denomination, and condition. The interesting ones, star notes, unusual seals, and older large-size notes, get called out.</p>
+        {notes.length > 0
+          ? <div class="grid">{notes.map((item) => <SpecimenCard item={item} />)}</div>
+          : <div class="soon">Old money and foreign notes will be on the table at the 127, and listed here after. Have something you collect? Ask and we will tell you what we have.</div>}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <div class="sec-top"><div class="k">Buy with confidence</div><h2>How we describe a coin</h2></div>
+      <div class="cols">
+        <div class="c"><div class="n"><span class="b"></span>Certification shown</div><p>Slabbed coins list the grading service and cert number, so you can verify the grade on PCGS or NGC before you buy.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Grade and condition</div><p>Every coin lists its condition honestly, whether it is a certified grade or our own plain description of a raw coin.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Metal and weight</div><p>Bullion is described by weight and purity, priced against spot, with no mystery markups.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Ask anything</div><p>This is a personal collection. If you want more detail or photos of a piece, reach out and we will send them.</p></div>
+      </div>
     </div>
   </section>
 </Base>

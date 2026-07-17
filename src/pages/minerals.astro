@@ -3,20 +3,75 @@ import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "minerals");
+const sizes = ["Miniature", "Small Cabinet", "Cabinet"];
 ---
 <Base title="Minerals — Grimsley Mineral Co." active="minerals">
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href="/">Home</a> / Minerals</div>
       <h1>Minerals</h1>
-      <p>Display and collector grade specimens, chosen for crystal quality and clean form rather than raw size. Amethyst, fluorite, cobalt calcite, vanadinite, epidote, rutilated quartz, chrysocolla, and more, each photographed as it really is and described with its locality and any condition notes. If a piece has a bruise or a repair, we tell you.</p>
+      <p>Display and collector grade specimens, chosen for crystal quality and clean form rather than raw size. Each is photographed as it really is and described with its locality and any condition notes. If a piece has a bruise or a repair, we tell you.</p>
     </div>
   </div>
   <section>
     <div class="wrap">
-      <div class="grid">
+      <div class="filters">
+        <div class="grp">
+          <span class="lbl">Size</span>
+          <button class="chip on" data-filter="size" data-value="all">All</button>
+          {sizes.map((s) => <button class="chip" data-filter="size" data-value={s}>{s}</button>)}
+        </div>
+        <span class="sep"></span>
+        <div class="grp">
+          <span class="lbl">Price</span>
+          <button class="chip on" data-filter="price" data-value="all">All</button>
+          <button class="chip" data-filter="price" data-value="0-100">Under $100</button>
+          <button class="chip" data-filter="price" data-value="100-250">$100 – $250</button>
+          <button class="chip" data-filter="price" data-value="250-99999">$250+</button>
+        </div>
+        <span class="count" id="count"></span>
+      </div>
+
+      <div class="grid" id="grid">
         {items.map((item) => <SpecimenCard item={item} />)}
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      const grid = document.getElementById("grid");
+      const cards = Array.from(grid.querySelectorAll(".card"));
+      const countEl = document.getElementById("count");
+      const state = { size: "all", price: "all" };
+
+      function apply() {
+        let shown = 0;
+        cards.forEach((c) => {
+          const okSize = state.size === "all" || c.dataset.size === state.size;
+          const price = parseInt(c.dataset.price, 10);
+          let okPrice = true;
+          if (state.price !== "all") {
+            const [lo, hi] = state.price.split("-").map(Number);
+            okPrice = price >= lo && price <= hi;
+          }
+          const show = okSize && okPrice;
+          c.classList.toggle("hide", !show);
+          if (show) shown++;
+        });
+        countEl.textContent = shown + " of " + cards.length + " specimens";
+      }
+
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const f = chip.dataset.filter;
+          state[f] = chip.dataset.value;
+          document.querySelectorAll('.chip[data-filter="' + f + '"]').forEach((c) => c.classList.remove("on"));
+          chip.classList.add("on");
+          apply();
+        });
+      });
+      apply();
+    })();
+  </script>
 </Base>

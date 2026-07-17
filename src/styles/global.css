@@ -132,6 +132,54 @@ section{padding:74px 0;}
 .card.soldout .sp,.card.soldout .price{color:var(--muted);}
 .center-cta{text-align:center;margin-top:48px;}
 
+/* faceted filters */
+.filters{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center;margin-bottom:34px;padding-bottom:24px;border-bottom:1px solid var(--line);}
+.filters .grp{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.filters .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:2px;}
+.chip{font-family:var(--sans);font-size:12.5px;letter-spacing:.03em;padding:8px 15px;border:1px solid var(--line-2);background:#fff;color:var(--ink-2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+.chip:hover{border-color:var(--gold);color:var(--ink);}
+.chip.on{background:var(--dark);color:#fff;border-color:var(--dark);}
+.filters .sep{width:1px;height:24px;background:var(--line-2);margin:0 6px;}
+.filters .count{font-size:12.5px;color:var(--muted);margin-left:auto;}
+.card.hide{display:none;}
+
+/* sub-collection sections (coins, fossils) */
+.subcol{border-top:1px solid var(--line);padding-top:40px;margin-top:8px;}
+.subcol:first-of-type{border-top:none;padding-top:0;}
+.subcol .sh{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:10px;}
+.subcol .sh h2{font-size:26px;font-weight:600;}
+.subcol .sh .tag{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
+.subcol > p{color:var(--ink-2);max-width:64ch;font-size:15.5px;margin:0 0 22px;}
+.subcol .soon{border:1px dashed var(--line-2);background:var(--cream);padding:26px 28px;font-size:14.5px;color:var(--ink-2);}
+
+/* taxonomy lists (coins / fossils "what we carry") */
+.taxo{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px;margin:6px 0 4px;}
+.taxo .t{border-top:1px solid var(--line);padding:15px 0;}
+.taxo .t .n{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);}
+.taxo .t .d{font-size:13.5px;color:var(--ink-2);margin-top:4px;line-height:1.55;}
+.taxo .t .s{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+/* browse pills */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px;}
+.pills span{font-size:12.5px;letter-spacing:.02em;padding:8px 15px;border:1px solid var(--line-2);color:var(--ink-2);background:#fff;transition:border-color .15s,color .15s;}
+.pills span:hover{border-color:var(--gold);color:var(--ink);}
+
+/* grading scale table */
+.tablewrap{overflow-x:auto;margin:20px 0 6px;}
+.gradescale{width:100%;min-width:520px;border-collapse:collapse;font-size:14px;}
+.gradescale th,.gradescale td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+.gradescale th{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.gradescale td.g{font-family:var(--serif);font-weight:600;color:var(--ink);white-space:nowrap;}
+.gradescale td.band{color:var(--gold);white-space:nowrap;font-size:13px;}
+
+/* disclosure cards (fossil repair/restoration/composite) */
+.disclose{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px;}
+.disclose .d{border:1px solid var(--line-2);padding:26px 26px 28px;background:#fff;}
+.disclose .d .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
+.disclose .d h3{font-family:var(--serif);font-size:20px;font-weight:600;margin:10px 0 8px;}
+.disclose .d p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.6;}
+.disclose .d.flag{background:var(--cream);border-color:var(--gold);}
+
 /* price bands */
 .bands{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .bandcard{border:1px solid var(--line-2);padding:34px 30px;display:flex;flex-direction:column;gap:5px;transition:border-color .18s,transform .18s;}

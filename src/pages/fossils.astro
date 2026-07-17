@@ -9,20 +9,33 @@ const items = specimens.filter((s) => s.line === "fossils");
     <div class="inner">
       <div class="crumb"><a href="/">Home</a> / Fossils &amp; Shells</div>
       <h1>Fossils &amp; Shells</h1>
-      <p>These are records of living things, kept the way they were found. Fish plates, blister pearl shells, and coral, selected for clear detail and solid preservation. We note the formation or origin where we know it, since that context is part of what you are collecting.</p>
+      <p>These are records of living things, kept the way they were found. Fish plates, blister pearl shells, coral, and more, selected for clear detail and solid preservation. We note the species, the geologic age, and the formation or origin where we know it, since that context is part of what you are collecting.</p>
     </div>
   </div>
+
   <section>
     <div class="wrap">
       {items.length > 0 ? (
         <div class="grid">{items.map((item) => <SpecimenCard item={item} />)}</div>
       ) : (
-        <div class="empty">
-          <div class="sec-top"><div class="k">Being cataloged</div><h2>Photographed for launch</h2></div>
-          <p>Our fossils and shells are being measured and photographed for the grand opening at the Highway 127 Yard Sale. See the full spread in person Aug 6–9, then shop them here.</p>
-          <p style="margin-top:22px;"><a class="btn btn-dark" href="/visit">See us at the 127</a></p>
+        <div class="subcol">
+          <div class="sh"><h2>What we carry</h2><span class="tag">Cataloged for launch</span></div>
+          <p>Green River fish plates, natural blister pearl shells, fossil coral, shark teeth, and more from a collection built over years. Each will be listed with its species, geologic age, and locality once photographed.</p>
+          <div class="soon">Our fossils are being measured and photographed for the grand opening at the Highway 127 Yard Sale. See the full spread in person Aug 6–9, then shop them here with full detail on every piece.</div>
         </div>
       )}
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <div class="sec-top"><div class="k">Honesty first</div><h2>Repair, restoration, and what we disclose</h2></div>
+      <div class="cols">
+        <div class="c"><div class="n"><span class="b"></span>Repair</div><p>Many fossils are found in pieces and glued back together. A clean repair is normal and does not hurt a specimen. We say when a piece has been repaired.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Restoration</div><p>Restoration means material was added that was not originally there. We disclose it every time, and we tell you roughly how much.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Genuine, never replica</div><p>We sell real fossils. If a piece is a cast or replica, it is labeled clearly as one and priced as one.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Age &amp; formation</div><p>Where we know it, we list the geologic age and the formation, so you know exactly what era you are holding.</p></div>
+      </div>
     </div>
   </section>
 </Base>
