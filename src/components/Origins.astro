@@ -1,0 +1,55 @@
+---
+// Reusable "sourced from around the world" strip. Groups items by country
+// (last segment of the locality), ordered west-to-east by average longitude so
+// it reads like a world line. Pieces with an unknown/assorted source collect
+// under one honest "Source varies" card at the end.
+import { u } from "../consts";
+
+const { items, kicker = "Sourced from around the world", heading = "Where these pieces came from", intro } = Astro.props;
+
+const UNKNOWN = "Source varies";
+function countryOf(s) {
+  const loc = s.locality || "";
+  if (s.localityConfidence === "assorted" || /on request|assorted|varies|unknown/i.test(loc)) return UNKNOWN;
+  const parts = loc.replace(/\)/g, "").split(/,|\(/).map((x) => x.trim()).filter(Boolean);
+  return parts.pop() || UNKNOWN;
+}
+
+const map = {};
+for (const s of items) {
+  const c = countryOf(s);
+  (map[c] ||= { country: c, pieces: [], lng: [] });
+  map[c].pieces.push(s);
+  if (s.coords) map[c].lng.push(s.coords.lng);
+}
+const origins = Object.values(map)
+  .map((o) => ({ ...o, avgLng: o.lng.length ? o.lng.reduce((a, b) => a + b, 0) / o.lng.length : 999 }))
+  .sort((a, b) => {
+    // Unknown always last; otherwise west-to-east.
+    if (a.country === UNKNOWN) return 1;
+    if (b.country === UNKNOWN) return -1;
+    return a.avgLng - b.avgLng;
+  });
+const named = origins.filter((o) => o.country !== UNKNOWN).length;
+const resolvedIntro = intro || `We trace each piece to its most likely source by comparing it against documented localities. ${named} countries are represented here, from the Americas east to Asia. Where we are not certain of the exact source, we say so on the piece.`;
+---
+<section class="origins">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="k">{kicker}</div>
+      <h2>{heading}</h2>
+      <p>{resolvedIntro}</p>
+    </div>
+    <div class="worldline">
+      {origins.map((o) => (
+        <div class="origin">
+          <div class="oc">{o.country}</div>
+          <div class="on">{o.pieces.length} piece{o.pieces.length > 1 ? "s" : ""}</div>
+          <div class="op">
+            {o.pieces.map((p) => <a href={u(`specimen/${p.slug}`)}>{p.name}</a>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

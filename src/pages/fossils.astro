@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import { u } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
+import Origins from "../components/Origins.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "fossils");
 ---
@@ -27,6 +28,15 @@ const items = specimens.filter((s) => s.line === "fossils");
       )}
     </div>
   </section>
+
+  {items.length > 0 && (
+    <Origins
+      items={items}
+      kicker="From deep time and far places"
+      heading="Where these fossils came from"
+      intro="Each fossil carries its geologic age and, where we know it, its formation and locality. From Wyoming's Eocene lakes to Morocco's phosphate beds. Where a piece is genuinely generic, we leave the source open rather than invent one."
+    />
+  )}
 
   <section class="trust">
     <div class="wrap">

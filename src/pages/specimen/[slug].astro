@@ -99,7 +99,10 @@ const productSchema = {
 <Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active} schema={productSchema}>
   <div class="detail">
     <div class="gallery">
-      <div class="main"><img src={u(item.image)} alt={item.name} /></div>
+      <div class="main">
+        <img src={u(item.image)} alt={item.name} class={item.image && !item.image.includes("placeholder") ? "zoomable" : ""} />
+        {item.image && !item.image.includes("placeholder") && <span class="zoomtag">Click to zoom</span>}
+      </div>
     </div>
     <div class="buy">
       <div class="crumb"><a href={lineHref}>{lineLabel}</a> / {item.species}</div>
@@ -265,4 +268,6 @@ const productSchema = {
       </div>
     </section>
   )}
+
+  <script src={u("js/lightbox.js")}></script>
 </Base>
