@@ -3,6 +3,8 @@ import Base from "../../layouts/Base.astro";
 import { u, CARE_LABELS } from "../../consts";
 import specimens from "../../data/specimens.json";
 import { resolveMineral } from "../../data/minerals";
+import { resolveFossil } from "../../data/fossils";
+import { PERIODS, ageToPct, ageMidpoint } from "../../data/geotime";
 import SpecimenCard from "../../components/SpecimenCard.astro";
 
 // Mohs positions for the hardness bar reference marks.
@@ -60,6 +62,14 @@ const hardnessNum = mineral
       return nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
     })()
   : null;
+
+// Resolve fossil reference + geologic-time marker (fossils only).
+const fossil = item.line === "fossils" ? resolveFossil(item) : null;
+const agePct = fossil && item.ageMin != null
+  ? ageToPct(ageMidpoint(item.ageMax != null ? (item.ageMin + item.ageMax) / 2 : item.ageMin))
+  : null;
+const ageStartPct = fossil && item.ageMax != null ? ageToPct(item.ageMax) : null;
+const ageEndPct = fossil && item.ageMin != null ? ageToPct(item.ageMin) : null;
 
 // Product schema: price, availability, and image so each piece is eligible for
 // product rich results and readable by AI shopping answers.
@@ -194,6 +204,49 @@ const productSchema = {
         <div class="mp-foot">
           <p><b>Handling:</b> {mineral.care}</p>
           <a class="mp-link" href={u(`mineral/${mineral.key}`)}>Full {mineral.name} reference and pieces in stock →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {fossil && (
+    <section class="mineralpanel">
+      <div class="wrap">
+        <div class="mp-head">
+          <div class="k">Fossil data</div>
+          <h2>{fossil.name}</h2>
+          <p>{fossil.about}</p>
+        </div>
+
+        <div class="mp-grid">
+          <div class="mp-facts">
+            <div class="f"><span class="l">What it is</span><span class="v">{fossil.classification}</span></div>
+            <div class="f"><span class="l">Geologic age</span><span class="v">{item.ageLabel}</span></div>
+            <div class="f"><span class="l">Period</span><span class="v">{item.period}{item.epoch ? ` · ${item.epoch}` : ""}</span></div>
+            <div class="f"><span class="l">Formation / origin</span><span class="v">{item.formation}</span></div>
+          </div>
+
+          <div class="mp-hardness">
+            <span class="l">Where it sits in geologic time</span>
+            <div class="timeline">
+              {PERIODS.map((p) => {
+                const l = ageToPct(p.start);
+                const w = ageToPct(p.end) - ageToPct(p.start);
+                return <span class="band" style={`left:${l}%;width:${w}%`} title={`${p.name} (${p.start}–${p.end} mya)`}><i>{p.short}</i></span>;
+              })}
+              {ageStartPct != null && ageEndPct != null && (
+                <span class="agespan" style={`left:${ageStartPct}%;width:${Math.max(0.8, ageEndPct - ageStartPct)}%`}></span>
+              )}
+              {agePct != null && <span class="agedot" style={`left:${agePct}%`}></span>}
+            </div>
+            <div class="tl-ends"><span>541 mya</span><span>today</span></div>
+            <p class="tl-note">The marker shows this piece against the Phanerozoic, the last 541 million years of complex life.</p>
+          </div>
+        </div>
+
+        <div class="mp-foot">
+          <p><b>Handling:</b> {fossil.care}</p>
+          <a class="mp-link" href={u("fossils")}>See all fossils in stock →</a>
         </div>
       </div>
     </section>

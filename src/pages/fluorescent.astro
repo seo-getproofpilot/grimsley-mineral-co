@@ -1,0 +1,85 @@
+---
+import Base from "../layouts/Base.astro";
+import { u } from "../consts";
+import SpecimenCard from "../components/SpecimenCard.astro";
+import specimens from "../data/specimens.json";
+import { MINERALS } from "../data/minerals";
+
+// Pieces flagged fluorescent in the catalog.
+const glowing = specimens.filter((s) => s.fluorescent);
+
+// Minerals in our reference known to react under UV (for the "what to look for" list).
+const fluorMinerals = Object.values(MINERALS).filter(
+  (m) => m.fluorescence && !/^not/i.test(m.fluorescence)
+);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Fluorescent Minerals — Grimsley Mineral Co.",
+  "description": "Minerals that glow under ultraviolet light, and what makes them fluoresce.",
+};
+---
+<Base
+  title="Under the UV — Fluorescent Minerals — Grimsley Mineral Co."
+  description="Some of our minerals glow under ultraviolet light. What fluorescence is, why fluorite gave it its name, and the pieces in stock that react."
+  active="minerals"
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / <a href={u("minerals")}>Minerals</a> / Under the UV</div>
+      <h1>Under the UV</h1>
+      <p>Some minerals hold a second life you only see in the dark. Switch on an ultraviolet lamp and they light up in colors that have nothing to do with how they look in daylight. Here is what makes it happen, and the pieces we have that do it.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      {glowing.length > 0 ? (
+        <>
+          <div class="sec-top">
+            <div class="k">In stock now</div>
+            <h2>Pieces that react</h2>
+            <p>These carry a fluorescence note on their page. Response varies by lamp wavelength, so we describe what we see rather than promise a specific glow.</p>
+          </div>
+          <div class="grid">{glowing.map((item) => <SpecimenCard item={item} />)}</div>
+        </>
+      ) : (
+        <div class="subcol">
+          <div class="soon">No fluorescent pieces are listed online right now. We bring the UV lamp to the booth at the 127, so this is one to see in person Aug 6 through 9.</div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <div class="prose">
+    <h2>What fluorescence actually is</h2>
+    <p class="lead">A fluorescent mineral absorbs ultraviolet light you cannot see and throws it back out as visible light you can. The energy in, the color out.</p>
+    <p>Ultraviolet is higher-energy light just past the violet end of what our eyes register. When it hits certain minerals, tiny amounts of impurity elements, called activators, soak up that energy and release it again as a longer, visible wavelength. Manganese is the classic activator behind the red and orange glows, and it is why a plain gray calcite can flood a dark room with red under the right lamp.</p>
+
+    <h3>Shortwave, longwave, and why your lamp matters</h3>
+    <p>UV comes in bands. A cheap "blacklight" is longwave (LW) UV and wakes up some minerals. Shortwave (SW) UV, from a specialized lamp, triggers a different and often stronger set of reactions. The same rock can glow one color under shortwave, another under longwave, and nothing at all under a party blacklight. That is why we describe the reaction we personally see rather than guarantee yours.</p>
+
+    <h3>The mineral that named the effect</h3>
+    <p>The word fluorescence comes straight from <a href={u("mineral/fluorite")} style="color:var(--gold);">fluorite</a>. Nineteenth-century scientists noticed that certain fluorite specimens glowed blue under invisible light and coined the term after the mineral. Not every fluorite fluoresces, and the color depends on trace chemistry and locality, but the connection is why fluorite sits at the center of any fluorescence conversation.</p>
+  </div>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">What to look for</div>
+        <h2>Minerals in our reference that react</h2>
+      </div>
+      <div class="learn-grid">
+        {fluorMinerals.map((m) => (
+          <a class="t" href={u(`mineral/${m.key}`)}>
+            <h3>{m.name}</h3>
+            <p>{m.fluorescence}</p>
+            <span class="r">See reference →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

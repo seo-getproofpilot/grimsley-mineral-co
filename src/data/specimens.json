@@ -451,7 +451,7 @@
     "line": "fossils",
     "tier": "collector",
     "species": "Knightia (Eocene)",
-    "locality": "Kemmerer, Wyoming",
+    "locality": "Kemmerer / Fossil Butte, Wyoming",
     "sizeClass": "Small Cabinet",
     "dimensions": "15 × 11 cm",
     "price": 30,
@@ -465,7 +465,20 @@
     "asIdentified": false,
     "provenance": "Estate collection",
     "condition": "Clear fish detail on limestone plate",
-    "description": "A fossil Knightia fish preserved in a Green River limestone plate, about 50 million years old. Several plates available. Photo coming soon."
+    "description": "A fossil Knightia fish preserved in a Green River limestone plate, about 50 million years old. Several plates available. Photo coming soon.",
+    "fossilKey": "knightia",
+    "period": "Paleogene",
+    "epoch": "Early Eocene",
+    "ageLabel": "50 to 52 million years",
+    "ageMin": 50,
+    "ageMax": 52,
+    "formation": "Green River Formation, Fossil Butte Member",
+    "localityConfidence": "confirmed",
+    "localityNote": "Quarried from the Fossil Lake beds near Kemmerer, the lagerstatte that makes Green River fish the most detailed and abundant articulated fossil fish in the world.",
+    "coords": {
+      "lat": 41.79,
+      "lng": -110.54
+    }
   },
   {
     "slug": "favosite-coral",
@@ -486,7 +499,16 @@
     "asIdentified": false,
     "provenance": "Estate collection",
     "condition": "Clear honeycomb structure",
-    "description": "Fossil honeycomb coral with the classic favosite cell structure. Photo coming soon."
+    "description": "Fossil honeycomb coral with the classic favosite cell structure. Photo coming soon.",
+    "fossilKey": "favosites",
+    "period": "Ordovician to Devonian",
+    "epoch": "",
+    "ageLabel": "about 360 to 445 million years",
+    "ageMin": 360,
+    "ageMax": 445,
+    "formation": "Paleozoic marine limestone (no single formation)",
+    "localityConfidence": "assorted",
+    "localityNote": "A classic Paleozoic reef-builder, but trade specimens like this rarely carry a reliable source, so we do not put a city on it."
   },
   {
     "slug": "tektites",
@@ -494,7 +516,7 @@
     "line": "fossils",
     "tier": "collector",
     "species": "Tektite",
-    "locality": "Southeast Asia",
+    "locality": "Indochina, Southeast Asia",
     "sizeClass": "Thumbnail",
     "dimensions": "2 to 4 cm",
     "price": 10,
@@ -508,7 +530,20 @@
     "asIdentified": false,
     "provenance": "Old stock",
     "condition": "Natural sculpted surfaces",
-    "description": "Natural glass formed by ancient meteorite impacts, with the sculpted surface tektites are known for. Four available. Photo coming soon."
+    "description": "Natural glass formed by ancient meteorite impacts, with the sculpted surface tektites are known for. Four available. Photo coming soon.",
+    "fossilKey": "tektite",
+    "period": "Quaternary",
+    "epoch": "Pleistocene",
+    "ageLabel": "about 790,000 years",
+    "ageMin": 0.79,
+    "ageMax": 0.79,
+    "formation": "Australasian strewn field (Indochinite)",
+    "localityConfidence": "likely",
+    "localityNote": "From the youngest and largest tektite strewn field on Earth, roughly 790,000 years old, far younger than a true Eocene fossil. The source crater has never been found.",
+    "coords": {
+      "lat": 15.1,
+      "lng": 106.5
+    }
   },
   {
     "slug": "abalone-pearl-shell",
@@ -516,7 +551,7 @@
     "line": "fossils",
     "tier": "bin",
     "species": "Abalone shell",
-    "locality": "Pacific",
+    "locality": "Pacific coast",
     "sizeClass": "Miniature",
     "dimensions": "varies",
     "price": 12,
@@ -530,7 +565,20 @@
     "asIdentified": false,
     "provenance": "Old stock",
     "condition": "High iridescent luster",
-    "description": "Iridescent abalone shells with strong natural luster. Photo coming soon."
+    "description": "Iridescent abalone shells with strong natural luster. Photo coming soon.",
+    "fossilKey": "abalone",
+    "period": "Modern",
+    "epoch": "Holocene",
+    "ageLabel": "Modern shell, not a fossil",
+    "ageMin": 0,
+    "ageMax": 0,
+    "formation": "None, a recent harvested shell",
+    "localityConfidence": "tentative",
+    "localityNote": "Honestly a modern shell, not an ancient fossil. We sell it for the nacre, likely California red abalone or New Zealand paua.",
+    "coords": {
+      "lat": 36.6,
+      "lng": -121.9
+    }
   },
   {
     "slug": "quartz-cluster",
@@ -624,7 +672,7 @@
     "line": "fossils",
     "tier": "bin",
     "species": "Fossil shark teeth",
-    "locality": "Morocco",
+    "locality": "Khouribga, Ouled Abdoun Basin, Morocco",
     "sizeClass": "Assorted",
     "dimensions": "small",
     "price": 5,
@@ -638,7 +686,20 @@
     "asIdentified": false,
     "provenance": "Old stock",
     "condition": "Bagged, real fossil teeth",
-    "description": "Real fossil shark teeth, roughly 50 million years old, bagged. A great impulse piece. Photo coming soon."
+    "description": "Real fossil shark teeth, roughly 50 million years old, bagged. A great impulse piece. Photo coming soon.",
+    "fossilKey": "shark-teeth",
+    "period": "Paleogene",
+    "epoch": "Early Eocene",
+    "ageLabel": "48 to 56 million years",
+    "ageMin": 48,
+    "ageMax": 56,
+    "formation": "Ouled Abdoun Basin phosphate beds",
+    "localityConfidence": "confirmed",
+    "localityNote": "Khouribga phosphate mines are the world premier source of affordable Eocene shark teeth, led by the big triangular Otodus obliquus collectors want.",
+    "coords": {
+      "lat": 32.88,
+      "lng": -6.91
+    }
   },
   {
     "slug": "retro-rocket-lava-lamp",
