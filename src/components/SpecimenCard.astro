@@ -1,12 +1,13 @@
 ---
+import { u } from "../consts";
 const { item } = Astro.props;
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status] || "";
 const showBadge = item.status !== "available";
 ---
-<a class={`card${item.status === "sold" ? " soldout" : ""}`} href={`/specimen/${item.slug}`} data-size={item.sizeClass} data-price={item.price} data-species={item.species} data-locality={item.locality}>
+<a class={`card${item.status === "sold" ? " soldout" : ""}`} href={u(`specimen/${item.slug}`)} data-size={item.sizeClass} data-price={item.price} data-species={item.species} data-locality={item.locality}>
   <div class="imgwrap">
     {showBadge && <span class={`badge ${item.status}`}>{statusLabel}</span>}
-    <img src={item.image} alt={item.name} loading="lazy" />
+    <img src={u(item.image)} alt={item.name} loading="lazy" />
   </div>
   <div class="meta">
     <div class="sp">{item.name}</div>

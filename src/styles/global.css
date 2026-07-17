@@ -4,10 +4,10 @@
    trust/detail architecture. Playfair Display + Catamaran.
    ============================================================ */
 
-@font-face { font-family:"Playfair Display"; font-weight:600; font-display:swap; src:url("/fonts/playfair-600.woff2") format("woff2"); }
-@font-face { font-family:"Playfair Display"; font-weight:700; font-display:swap; src:url("/fonts/playfair-700.woff2") format("woff2"); }
-@font-face { font-family:"Catamaran"; font-weight:400; font-display:swap; src:url("/fonts/catamaran-400.woff2") format("woff2"); }
-@font-face { font-family:"Catamaran"; font-weight:600; font-display:swap; src:url("/fonts/catamaran-600.woff2") format("woff2"); }
+@font-face { font-family:"Playfair Display"; font-weight:600; font-display:swap; src:url("../fonts/playfair-600.woff2") format("woff2"); }
+@font-face { font-family:"Playfair Display"; font-weight:700; font-display:swap; src:url("../fonts/playfair-700.woff2") format("woff2"); }
+@font-face { font-family:"Catamaran"; font-weight:400; font-display:swap; src:url("../fonts/catamaran-400.woff2") format("woff2"); }
+@font-face { font-family:"Catamaran"; font-weight:600; font-display:swap; src:url("../fonts/catamaran-600.woff2") format("woff2"); }
 
 :root{
   color-scheme: light;

@@ -1,10 +1,11 @@
 ---
 import Base from "../layouts/Base.astro";
+import { u } from "../consts";
 ---
 <Base title="Shipping & Returns — Grimsley Mineral Co." active="">
   <div class="pagehead">
     <div class="inner">
-      <div class="crumb"><a href="/">Home</a> / Shipping &amp; Returns</div>
+      <div class="crumb"><a href={u("")}>Home</a> / Shipping &amp; Returns</div>
       <h1>Shipping &amp; Returns</h1>
       <p>How we pack, ship, and stand behind every piece.</p>
     </div>
@@ -18,6 +19,6 @@ import Base from "../layouts/Base.astro";
     <p>If a specimen arrives damaged in transit, contact us right away with photos and we will make it right. Because every piece is one of a kind and described honestly with its condition, we ask that you read the listing and reach out with any questions before you buy. If a piece is not as described, we will accept a return.</p>
     <h2>Local pickup at the 127</h2>
     <p>During the Highway 127 Yard Sale, August 6 through 9, 2026, you can buy and carry pieces home in person. No shipping needed. Come find us on US-127 in Grimsley, between the Dollar General and Taco Bros.</p>
-    <p style="margin-top:26px;"><a class="btn btn-dark" href="/contact">Ask a shipping question</a></p>
+    <p style="margin-top:26px;"><a class="btn btn-dark" href={u("contact")}>Ask a shipping question</a></p>
   </div>
 </Base>

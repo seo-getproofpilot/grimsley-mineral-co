@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { u } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "fossils");
@@ -7,7 +8,7 @@ const items = specimens.filter((s) => s.line === "fossils");
 <Base title="Fossils & Shells — Grimsley Mineral Co." active="fossils">
   <div class="pagehead">
     <div class="inner">
-      <div class="crumb"><a href="/">Home</a> / Fossils &amp; Shells</div>
+      <div class="crumb"><a href={u("")}>Home</a> / Fossils &amp; Shells</div>
       <h1>Fossils &amp; Shells</h1>
       <p>These are records of living things, kept the way they were found. Fish plates, blister pearl shells, coral, and more, selected for clear detail and solid preservation. We note the species, the geologic age, and the formation or origin where we know it, since that context is part of what you are collecting.</p>
     </div>

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { u } from "../consts";
 const faqs = [
   ["Are your specimens natural?", "Yes. Every piece is a genuine, correctly identified specimen. When something is treated, like heat set citrine, we say so plainly on the listing. We never pass a treated stone off as natural."],
   ["What does the locality mean?", "It is where the specimen came from, listed as specifically as we can, down to the mine or region when the source is known. Locality is part of a specimen's value and its story. When we are not certain of the exact source, we tell you that instead of guessing."],
@@ -12,7 +13,7 @@ const faqs = [
 <Base title="FAQ — Grimsley Mineral Co." active="">
   <div class="pagehead">
     <div class="inner">
-      <div class="crumb"><a href="/">Home</a> / FAQ</div>
+      <div class="crumb"><a href={u("")}>Home</a> / FAQ</div>
       <h1>Common Questions</h1>
     </div>
   </div>
@@ -23,6 +24,6 @@ const faqs = [
         <p style="margin:0;">{a}</p>
       </div>
     ))}
-    <p style="margin-top:30px;"><a class="btn btn-dark" href="/contact">Ask us anything else</a></p>
+    <p style="margin-top:30px;"><a class="btn btn-dark" href={u("contact")}>Ask us anything else</a></p>
   </div>
 </Base>

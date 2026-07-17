@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import { u } from "../../consts";
 import specimens from "../../data/specimens.json";
 
 export function getStaticPaths() {
@@ -13,14 +14,14 @@ const lineLabel = {
   lava: "Lava Lamps",
   coins: "Coins & Currency",
 }[item.line] || "Collection";
-const lineHref = { minerals: "/minerals", fossils: "/fossils", lava: "/lava-lamps", coins: "/coins" }[item.line] || "/";
+const lineHref = u({ minerals: "minerals", fossils: "fossils", lava: "lava-lamps", coins: "coins" }[item.line] || "");
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status];
 const active = item.line === "lava" ? "lava" : item.line;
 ---
 <Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active}>
   <div class="detail">
     <div class="gallery">
-      <div class="main"><img src={item.image} alt={item.name} /></div>
+      <div class="main"><img src={u(item.image)} alt={item.name} /></div>
     </div>
     <div class="buy">
       <div class="crumb"><a href={lineHref}>{lineLabel}</a> / {item.species}</div>
@@ -30,10 +31,10 @@ const active = item.line === "lava" ? "lava" : item.line;
       <p class="desc">{item.description}</p>
       <div class="cta">
         {item.status === "available" && item.line !== "lava" && <a class="btn btn-dark" href="#">Buy now</a>}
-        {item.status === "available" && item.line === "lava" && <a class="btn btn-dark" href="/visit">Inquire / commission</a>}
-        {item.status === "reserved" && <a class="btn btn-ghost" href="/visit">Ask about this piece</a>}
+        {item.status === "available" && item.line === "lava" && <a class="btn btn-dark" href={u("visit")}>Inquire / commission</a>}
+        {item.status === "reserved" && <a class="btn btn-ghost" href={u("visit")}>Ask about this piece</a>}
         {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
-        <a class="btn btn-ghost" href="/visit">Ask a question</a>
+        <a class="btn btn-ghost" href={u("visit")}>Ask a question</a>
       </div>
 
       <dl class="spec">

@@ -1,11 +1,13 @@
 import { defineConfig } from 'astro/config';
 
-// GitHub Pages notes:
-// - Custom domain OR user page (username.github.io): keep base '/'.
-// - Project page (username.github.io/grimsley-mineral-co): set base to '/grimsley-mineral-co/'
-//   and update `site` to your username.github.io URL.
+// Local dev/preview serves at root ('/'). GitHub Pages builds with
+// PAGES_BASE set (see .github/workflows/deploy.yml) so assets and links
+// resolve under /grimsley-mineral-co/. Use the u() helper in src/consts.ts
+// for every internal link and image so both work.
+const base = process.env.PAGES_BASE || '/';
+
 export default defineConfig({
-  site: 'https://grimsleymineralco.com',
-  base: '/',
+  site: 'https://seo-getproofpilot.github.io',
+  base,
   trailingSlash: 'ignore',
 });

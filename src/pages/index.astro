@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
+import { u } from "../consts";
 
 const featuredMinerals = specimens.filter((s) => s.line === "minerals" && s.featured).slice(0, 6);
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
@@ -9,15 +10,15 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
 <Base>
   <!-- HERO -->
   <div class="hero">
-    <div class="bg" style="background-image:url('/img/lifestyle/cabinet.jpg');background-position:center 30%;"></div>
+    <div class="bg" style={`background-image:url('${u("img/lifestyle/cabinet.jpg")}');background-position:center 30%;`}></div>
     <div class="scrim"></div>
     <div class="inner">
       <div class="kicker">A family collection · Grimsley, Tennessee</div>
       <h1>Natural history, one specimen at a time.</h1>
       <p>Display-grade minerals, fossils, and one-of-a-kind pieces, chosen for quality and described honestly. Grand opening at the Highway 127 Yard Sale, then online.</p>
       <div class="btns">
-        <a class="btn btn-gold" href="/minerals">Browse the collection</a>
-        <a class="btn btn-line" href="/standard">How we grade</a>
+        <a class="btn btn-gold" href={u("minerals")}>Browse the collection</a>
+        <a class="btn btn-line" href={u("standard")}>How we grade</a>
       </div>
     </div>
   </div>
@@ -41,11 +42,11 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
         <p>From a two-dollar fossil for a kid to a cabinet-grade centerpiece, and a wall of lava lamps besides.</p>
       </div>
       <div class="cats">
-        <a class="cat" href="/minerals"><img src="/img/lifestyle/cabinet.jpg" alt="Mineral specimens" /><div class="lab"><div class="n">Minerals</div><div class="m">Amethyst · Fluorite · Rutile</div></div></a>
-        <a class="cat solid" href="/fossils"><div class="lab"><div class="n">Fossils &amp; Shells</div><div class="m">Fish plates · Pearls · Coral</div></div></a>
-        <a class="cat" href="/lava-lamps"><img src="/img/lifestyle/lava-collection.jpg" alt="Lava lamp collection" /><div class="lab"><div class="n">Lava Lamps</div><div class="m">Hand-built · One of one</div></div></a>
-        <a class="cat" href="/nails"><img src="/img/lifestyle/nails.jpg" alt="Bugged Out Nails" /><div class="lab"><div class="n">Bugged Out Nails</div><div class="m">Hand-painted press-ons</div></div></a>
-        <a class="cat solid" href="/coins"><div class="lab"><div class="n">Coins &amp; Currency</div><div class="m">Silver · Gold · Old money</div></div></a>
+        <a class="cat" href={u("minerals")}><img src={u("img/lifestyle/cabinet.jpg")} alt="Mineral specimens" /><div class="lab"><div class="n">Minerals</div><div class="m">Amethyst · Fluorite · Rutile</div></div></a>
+        <a class="cat solid" href={u("fossils")}><div class="lab"><div class="n">Fossils &amp; Shells</div><div class="m">Fish plates · Pearls · Coral</div></div></a>
+        <a class="cat" href={u("lava-lamps")}><img src={u("img/lifestyle/lava-collection.jpg")} alt="Lava lamp collection" /><div class="lab"><div class="n">Lava Lamps</div><div class="m">Hand-built · One of one</div></div></a>
+        <a class="cat" href={u("nails")}><img src={u("img/lifestyle/nails.jpg")} alt="Bugged Out Nails" /><div class="lab"><div class="n">Bugged Out Nails</div><div class="m">Hand-painted press-ons</div></div></a>
+        <a class="cat solid" href={u("coins")}><div class="lab"><div class="n">Coins &amp; Currency</div><div class="m">Silver · Gold · Old money</div></div></a>
       </div>
     </div>
   </section>
@@ -61,7 +62,7 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
       <div class="grid">
         {featuredMinerals.map((item) => <SpecimenCard item={item} />)}
       </div>
-      <div class="center-cta"><a class="btn btn-dark" href="/minerals">View all minerals</a></div>
+      <div class="center-cta"><a class="btn btn-dark" href={u("minerals")}>View all minerals</a></div>
     </div>
   </section>
 
@@ -73,9 +74,9 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
         <h2>Shop by price</h2>
       </div>
       <div class="bands">
-        <a class="bandcard" href="/minerals"><div class="p">Under $25</div><div class="l">Tumbles, small clusters, and bulk fossils. Great starters and gifts.</div><div class="g">Shop the bin →</div></a>
-        <a class="bandcard" href="/minerals"><div class="p">$25 – $150</div><div class="l">Display-grade minerals and fossils with real localities, sized and documented.</div><div class="g">Shop collector →</div></a>
-        <a class="bandcard" href="/minerals"><div class="p">The Vault · $150+</div><div class="l">Standout specimens and one-of-a-kind lamps. The best of what we've cataloged.</div><div class="g">Enter the vault →</div></a>
+        <a class="bandcard" href={u("minerals")}><div class="p">Under $25</div><div class="l">Tumbles, small clusters, and bulk fossils. Great starters and gifts.</div><div class="g">Shop the bin →</div></a>
+        <a class="bandcard" href={u("minerals")}><div class="p">$25 – $150</div><div class="l">Display-grade minerals and fossils with real localities, sized and documented.</div><div class="g">Shop collector →</div></a>
+        <a class="bandcard" href={u("minerals")}><div class="p">The Vault · $150+</div><div class="l">Standout specimens and one-of-a-kind lamps. The best of what we've cataloged.</div><div class="g">Enter the vault →</div></a>
       </div>
     </div>
   </section>
@@ -100,21 +101,21 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
         <div class="k">Light · Hand-built</div>
         <h2>Functional art, one of one.</h2>
         <p>Alongside our collection, we hand-sculpt custom lava lamps from Apoxie clay, like our Venom-inspired symbiote lamp. Own the piece that exists, or commission a new one in your colors and form.</p>
-        <div class="btns"><a class="btn btn-gold" href="/lava-lamps">See the lamps</a><a class="btn btn-line" href="/lava-lamps">Commission a piece</a></div>
+        <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a><a class="btn btn-line" href={u("lava-lamps")}>Commission a piece</a></div>
       </div>
-      <div class="pic"><img src="/img/lifestyle/lava-collection.jpg" alt="Lava lamp collection" /></div>
+      <div class="pic"><img src={u("img/lifestyle/lava-collection.jpg")} alt="Lava lamp collection" /></div>
     </div>
   </div>
 
   <!-- NAILS -->
   <div class="feature pink" id="nails">
     <div class="split">
-      <div class="pic"><img src="/img/lifestyle/nails-gothic.jpg" alt="Hand-painted press-on nails" /></div>
+      <div class="pic"><img src={u("img/lifestyle/nails-gothic.jpg")} alt="Hand-painted press-on nails" /></div>
       <div class="txt">
         <div class="k">Bugged Out Nails</div>
         <h2>Hand-painted press-ons.</h2>
         <p>Taylor's side of the shop. Custom sets, pick-and-press singles, and ready-to-ship art nails, all made to order. Browse the looks here, then order on Instagram or Facebook.</p>
-        <div class="btns"><a class="btn btn-pink" href="/nails">See the nails</a><a class="btn btn-pinkline" href="/nails">Order on Instagram</a></div>
+        <div class="btns"><a class="btn btn-pink" href={u("nails")}>See the nails</a><a class="btn btn-pinkline" href={u("nails")}>Order on Instagram</a></div>
       </div>
     </div>
   </div>
@@ -124,9 +125,9 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
     <div class="wrap">
       <div class="sec-top"><div class="k">Field Notes</div><h2>Know what you're buying</h2><p>A little context makes a specimen worth more to you, and to the next person you show it to.</p></div>
       <div class="learn-grid">
-        <a class="t" href="/standard"><div class="num">Guide 01</div><h3>How a specimen earns its grade</h3><p>The things that decide a piece's quality, in plain terms, from a collector's checklist.</p><span class="r">Read →</span></a>
-        <a class="t" href="/standard"><div class="num">Guide 02</div><h3>What a locality tells you</h3><p>Why the mine a piece came from is part of the science, and part of the price.</p><span class="r">Read →</span></a>
-        <a class="t" href="/standard"><div class="num">Guide 03</div><h3>What fades and what dissolves</h3><p>Which pieces fade in the sun, which dissolve in water, and how to keep a specimen at its best.</p><span class="r">Read →</span></a>
+        <a class="t" href={u("standard")}><div class="num">Guide 01</div><h3>How a specimen earns its grade</h3><p>The things that decide a piece's quality, in plain terms, from a collector's checklist.</p><span class="r">Read →</span></a>
+        <a class="t" href={u("standard")}><div class="num">Guide 02</div><h3>What a locality tells you</h3><p>Why the mine a piece came from is part of the science, and part of the price.</p><span class="r">Read →</span></a>
+        <a class="t" href={u("standard")}><div class="num">Guide 03</div><h3>What fades and what dissolves</h3><p>Which pieces fade in the sun, which dissolve in water, and how to keep a specimen at its best.</p><span class="r">Read →</span></a>
       </div>
     </div>
   </section>
@@ -144,7 +145,7 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
         </div>
         <div class="btns">
           <a class="btn btn-gold" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>
-          <a class="btn btn-line" href="/visit">Plan your visit</a>
+          <a class="btn btn-line" href={u("visit")}>Plan your visit</a>
         </div>
       </div>
       <div class="mapbox live">
