@@ -168,8 +168,20 @@ const productSchema = {
         {care.length > 0 && <div class="r"><dt>Care</dt><dd>{care.join(" · ")}</dd></div>}
         {item.fluorescent && <div class="r"><dt>Fluorescence</dt><dd>Reacts under UV</dd></div>}
         {item.worksStatus && <div class="r"><dt>Working status</dt><dd>{item.worksStatus}</dd></div>}
-        <div class="r"><dt>Catalog</dt><dd>{item.slug.toUpperCase().replace(/-/g, " ")}</dd></div>
+        <div class="r"><dt>Catalog no.</dt><dd>{item.ref || item.slug.toUpperCase().replace(/-/g, " ")}</dd></div>
       </dl>
+
+      <div class="disclosure">
+        <h4>Condition &amp; disclosure</h4>
+        <p class="dl-lead">We tell you exactly what a piece is, in plain terms, before you buy.</p>
+        <div class="dl-rows">
+          <div class="dl-r"><span class="dl-l">Condition</span><span class="dl-v">{item.condition}</span></div>
+          <div class="dl-r"><span class="dl-l">Treatment</span><span class="dl-v">{item.treatment}{item.treatment === "None" ? " · natural, untreated" : " · disclosed, not passed off as natural"}</span></div>
+          {care.length > 0 && <div class="dl-r"><span class="dl-l">Handling</span><span class="dl-v">{care.join(" · ")}</span></div>}
+          {item.asIdentified && <div class="dl-r"><span class="dl-l">Identification</span><span class="dl-v">Identified from research and inspection, not lab-confirmed. Held below full price until we verify it.</span></div>}
+        </div>
+        <p class="dl-foot">A <b>repair</b> means broken pieces were reattached. <b>Restoration</b> means material was added that was not originally there. Where either applies to a piece, we say so above and in the description. <a href={u("authenticity")}>How we grade and guarantee →</a></p>
+      </div>
 
       {item.localityNote && (
         <div class="locnote">

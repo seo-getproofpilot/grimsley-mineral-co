@@ -24,7 +24,8 @@
     "coords": {
       "lat": -12,
       "lng": -41.7
-    }
+    },
+    "ref": "GMC-M001"
   },
   {
     "slug": "rutile-stars-in-quartz",
@@ -51,7 +52,8 @@
     "coords": {
       "lat": -10.76,
       "lng": -42.2
-    }
+    },
+    "ref": "GMC-M002"
   },
   {
     "slug": "vanadinite-mibladen",
@@ -78,7 +80,8 @@
     "coords": {
       "lat": 32.87,
       "lng": -4.62
-    }
+    },
+    "ref": "GMC-M003"
   },
   {
     "slug": "cobaltoan-calcite",
@@ -105,7 +108,8 @@
     "coords": {
       "lat": -10.72,
       "lng": 25.47
-    }
+    },
+    "ref": "GMC-M004"
   },
   {
     "slug": "mongolian-purple-fluorite-a",
@@ -134,7 +138,8 @@
     "coords": {
       "lat": 43,
       "lng": 112
-    }
+    },
+    "ref": "GMC-M005"
   },
   {
     "slug": "mongolian-purple-fluorite-b",
@@ -163,7 +168,8 @@
     "coords": {
       "lat": 43,
       "lng": 112
-    }
+    },
+    "ref": "GMC-M006"
   },
   {
     "slug": "gem-green-fluorite",
@@ -192,7 +198,8 @@
     "coords": {
       "lat": 27.6,
       "lng": 111.7
-    }
+    },
+    "ref": "GMC-M007"
   },
   {
     "slug": "epidote-on-quartz",
@@ -219,7 +226,8 @@
     "coords": {
       "lat": 28.55,
       "lng": 65.42
-    }
+    },
+    "ref": "GMC-M008"
   },
   {
     "slug": "chrysocolla-katanga",
@@ -246,7 +254,8 @@
     "coords": {
       "lat": -10.72,
       "lng": 25.47
-    }
+    },
+    "ref": "GMC-M009"
   },
   {
     "slug": "citrine-heat-treated",
@@ -276,7 +285,8 @@
     "coords": {
       "lat": -29.5,
       "lng": -53
-    }
+    },
+    "ref": "GMC-M010"
   },
   {
     "slug": "pink-halite",
@@ -305,7 +315,8 @@
     "coords": {
       "lat": 35.76,
       "lng": -117.37
-    }
+    },
+    "ref": "GMC-M011"
   },
   {
     "slug": "blue-celestite",
@@ -334,7 +345,8 @@
     "coords": {
       "lat": -15.8,
       "lng": 46
-    }
+    },
+    "ref": "GMC-M012"
   },
   {
     "slug": "malachite-botryoidal",
@@ -362,7 +374,8 @@
     "coords": {
       "lat": -10.72,
       "lng": 25.47
-    }
+    },
+    "ref": "GMC-M013"
   },
   {
     "slug": "muscovite-with-pyrite",
@@ -389,7 +402,8 @@
     "coords": {
       "lat": 40.17,
       "lng": -7.76
-    }
+    },
+    "ref": "GMC-M014"
   },
   {
     "slug": "pyrite-cluster",
@@ -416,7 +430,8 @@
     "coords": {
       "lat": -9.65,
       "lng": -77.05
-    }
+    },
+    "ref": "GMC-M015"
   },
   {
     "slug": "aragonite-sputnik",
@@ -443,7 +458,8 @@
     "coords": {
       "lat": 33.8,
       "lng": -4.4
-    }
+    },
+    "ref": "GMC-M016"
   },
   {
     "slug": "green-river-fish-plate",
@@ -478,7 +494,8 @@
     "coords": {
       "lat": 41.79,
       "lng": -110.54
-    }
+    },
+    "ref": "GMC-F001"
   },
   {
     "slug": "favosite-coral",
@@ -508,7 +525,8 @@
     "ageMax": 445,
     "formation": "Paleozoic marine limestone (no single formation)",
     "localityConfidence": "assorted",
-    "localityNote": "A classic Paleozoic reef-builder, but trade specimens like this rarely carry a reliable source, so we do not put a city on it."
+    "localityNote": "A classic Paleozoic reef-builder, but trade specimens like this rarely carry a reliable source, so we do not put a city on it.",
+    "ref": "GMC-F002"
   },
   {
     "slug": "tektites",
@@ -543,7 +561,8 @@
     "coords": {
       "lat": 15.1,
       "lng": 106.5
-    }
+    },
+    "ref": "GMC-F003"
   },
   {
     "slug": "abalone-pearl-shell",
@@ -578,7 +597,8 @@
     "coords": {
       "lat": 36.6,
       "lng": -121.9
-    }
+    },
+    "ref": "GMC-F004"
   },
   {
     "slug": "quartz-cluster",
@@ -606,7 +626,8 @@
     "coords": {
       "lat": -18.5,
       "lng": -44
-    }
+    },
+    "ref": "GMC-M017"
   },
   {
     "slug": "amethyst-in-matrix",
@@ -636,7 +657,8 @@
     "coords": {
       "lat": -29.5,
       "lng": -53
-    }
+    },
+    "ref": "GMC-M018"
   },
   {
     "slug": "moroccan-geodes",
@@ -664,7 +686,8 @@
     "coords": {
       "lat": 31.8,
       "lng": -6.5
-    }
+    },
+    "ref": "GMC-M019"
   },
   {
     "slug": "shark-teeth-bag",
@@ -699,7 +722,8 @@
     "coords": {
       "lat": 32.88,
       "lng": -6.91
-    }
+    },
+    "ref": "GMC-F005"
   },
   {
     "slug": "retro-rocket-lava-lamp",
@@ -721,6 +745,7 @@
     "worksStatus": "Tested and working",
     "provenance": "Made by hand in Grimsley, TN",
     "condition": "One of one, signed, tested and working",
-    "description": "A hand-sculpted rocket and ray-gun lava lamp, shaped from Apoxie clay and hand painted, with a blue flow like a jet trail. One of one, signed and working. The kind of piece we build on commission."
+    "description": "A hand-sculpted rocket and ray-gun lava lamp, shaped from Apoxie clay and hand painted, with a blue flow like a jet trail. One of one, signed and working. The kind of piece we build on commission.",
+    "ref": "GMC-L001"
   }
 ]
