@@ -1,0 +1,28 @@
+---
+import Base from "../../layouts/Base.astro";
+import { u } from "../../consts";
+import articles from "../../data/articles.json";
+---
+<Base title="Field Notes — Grimsley Mineral Co." active="">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / Field Notes</div>
+      <h1>Field Notes</h1>
+      <p>Short pieces on how to read a specimen, what makes one worth more than another, and how to care for what you collect. A little context makes a piece worth more to you, and to the next person you show it to.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap">
+      <div class="learn-grid">
+        {articles.map((a, i) => (
+          <a class="t" href={u(`field-notes/${a.slug}`)}>
+            <div class="num">Guide 0{i + 1}</div>
+            <h3>{a.title}</h3>
+            <p>{a.excerpt}</p>
+            <span class="r">Read →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

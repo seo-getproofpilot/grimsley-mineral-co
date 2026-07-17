@@ -1,0 +1,39 @@
+---
+import Base from "../../layouts/Base.astro";
+import { u } from "../../consts";
+import articles from "../../data/articles.json";
+
+export function getStaticPaths() {
+  return articles.map((a, i) => ({ params: { slug: a.slug }, props: { article: a, index: i } }));
+}
+const { article, index } = Astro.props;
+const others = articles.filter((a) => a.slug !== article.slug);
+---
+<Base title={`${article.title} — Field Notes — Grimsley Mineral Co.`} description={article.excerpt}>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / <a href={u("field-notes")}>Field Notes</a></div>
+      <h1>{article.title}</h1>
+    </div>
+  </div>
+  <article class="prose">
+    <p class="lead">{article.body[0]}</p>
+    {article.body.slice(1).map((p) => <p>{p}</p>)}
+    <p style="margin-top:30px;"><a class="btn btn-dark" href={u("field-notes")}>All field notes</a></p>
+  </article>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="sec-top"><div class="k">Keep reading</div><h2>More field notes</h2></div>
+      <div class="learn-grid">
+        {others.map((a) => (
+          <a class="t" href={u(`field-notes/${a.slug}`)}>
+            <h3>{a.title}</h3>
+            <p>{a.excerpt}</p>
+            <span class="r">Read →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

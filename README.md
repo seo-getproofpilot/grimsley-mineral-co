@@ -2,6 +2,13 @@
 
 Static store for minerals, fossils, lava lamps, coins, and Bugged Out Nails. Built with Astro, deploys free to GitHub Pages.
 
+**Live:** https://seo-getproofpilot.github.io/grimsley-mineral-co/ (auto-deploys on every push to `main`)
+
+## Current state
+- **Built:** home, minerals (with size/price/species/locality filters), fossils, lava-lamps, coins (bullion/graded/banknotes + grading scale), nails, coins/fossils honest "cataloged for launch" states, about, our standard, field notes (index + 3 articles), visit (live Google Map), contact, shipping, faq. Per-specimen pages generated from `src/data/specimens.json`.
+- **Real inventory in:** 9 minerals (background-cut photos) + the rocket lava lamp.
+- **Next / to wire up:** Stripe buy links, the contact/commission form (Formspree), real Bugged Out Nails social links, lava-lamp "working status" field, and adding fossils + coins + more minerals as they get photographed. Field schemas for those live in `docs/STORE-BUILD-SPEC.md`.
+
 ## Run it locally
 ```bash
 npm install
