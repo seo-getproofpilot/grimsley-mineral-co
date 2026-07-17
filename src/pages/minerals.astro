@@ -1,44 +1,39 @@
 ---
 import Base from "../layouts/Base.astro";
-import { u } from "../consts";
+import { u, TIERS } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "minerals");
-const sizes = ["Miniature", "Small Cabinet", "Cabinet"];
-// Facets derived from live inventory (don't hardcode a master list).
+const sizes = [...new Set(items.map((s) => s.sizeClass))].filter((s) => s !== "Assorted").sort();
 const species = [...new Set(items.map((s) => s.species))].sort();
 const country = (loc) => (loc || "").split(",").pop().trim();
 const countries = [...new Set(items.map((s) => country(s.locality)).filter((c) => c && c !== "request"))].sort();
+const byTier = (t) => items.filter((s) => s.tier === t);
 ---
 <Base title="Minerals — Grimsley Mineral Co." active="minerals">
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Minerals</div>
       <h1>Minerals</h1>
-      <p>Display and collector grade specimens, chosen for crystal quality and clean form rather than raw size. Each is photographed as it really is and described with its locality and any condition notes. If a piece has a bruise or a repair, we tell you.</p>
+      <p>From a two-dollar bin rock to a documented cabinet specimen, sorted so you know which is which. The bin is fun and affordable. The collector and vault pieces carry real localities, honest condition, and where we know it, where they came from.</p>
+      <div class="boothnote" style="margin-top:22px;"><b>Aug 6–9 at the 127:</b> cash and in person at the booth. Reserve a piece here to hold it for pickup, or buy online after the sale.</div>
     </div>
   </div>
   <section>
     <div class="wrap">
       <div class="filters">
         <div class="grp">
+          <span class="lbl">Tier</span>
+          <button class="chip on" data-filter="tier" data-value="all">All</button>
+          <button class="chip" data-filter="tier" data-value="vault">Vault</button>
+          <button class="chip" data-filter="tier" data-value="collector">Collector</button>
+          <button class="chip" data-filter="tier" data-value="bin">Bin</button>
+        </div>
+        <span class="sep"></span>
+        <div class="grp">
           <span class="lbl">Size</span>
           <button class="chip on" data-filter="size" data-value="all">All</button>
           {sizes.map((s) => <button class="chip" data-filter="size" data-value={s}>{s}</button>)}
-        </div>
-        <span class="sep"></span>
-        <div class="grp">
-          <span class="lbl">Price</span>
-          <button class="chip on" data-filter="price" data-value="all">All</button>
-          <button class="chip" data-filter="price" data-value="0-100">Under $100</button>
-          <button class="chip" data-filter="price" data-value="100-250">$100 – $250</button>
-          <button class="chip" data-filter="price" data-value="250-99999">$250+</button>
-        </div>
-        <span class="sep"></span>
-        <div class="grp">
-          <span class="lbl">Species</span>
-          <button class="chip on" data-filter="species" data-value="all">All</button>
-          {species.map((sp) => <button class="chip" data-filter="species" data-value={sp}>{sp}</button>)}
         </div>
         <span class="sep"></span>
         <div class="grp">
@@ -49,34 +44,40 @@ const countries = [...new Set(items.map((s) => country(s.locality)).filter((c) =
         <span class="count" id="count"></span>
       </div>
 
-      <div class="grid" id="grid">
-        {items.map((item) => <SpecimenCard item={item} />)}
-      </div>
+      {TIERS.map((t) => (
+        <div class="tier" data-tier-section={t.key}>
+          <div class="th">
+            <h2>{t.label}</h2>
+            <span class="n">{t.note}</span>
+          </div>
+          <div class="grid">
+            {byTier(t.key).map((item) => <SpecimenCard item={item} />)}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
   <script is:inline>
     (function () {
-      const grid = document.getElementById("grid");
-      const cards = Array.from(grid.querySelectorAll(".card"));
+      const cards = Array.from(document.querySelectorAll(".card"));
+      const sections = Array.from(document.querySelectorAll(".tier"));
       const countEl = document.getElementById("count");
-      const state = { size: "all", price: "all", species: "all", locality: "all" };
+      const state = { size: "all", tier: "all", locality: "all" };
 
       function apply() {
         let shown = 0;
         cards.forEach((c) => {
           const okSize = state.size === "all" || c.dataset.size === state.size;
-          const price = parseInt(c.dataset.price, 10);
-          let okPrice = true;
-          if (state.price !== "all") {
-            const [lo, hi] = state.price.split("-").map(Number);
-            okPrice = price >= lo && price <= hi;
-          }
-          const okSpecies = state.species === "all" || c.dataset.species === state.species;
-          const okLocality = state.locality === "all" || (c.dataset.locality || "").includes(state.locality);
-          const show = okSize && okPrice && okSpecies && okLocality;
+          const okTier = state.tier === "all" || c.dataset.tier === state.tier;
+          const okLoc = state.locality === "all" || (c.dataset.locality || "").includes(state.locality);
+          const show = okSize && okTier && okLoc;
           c.classList.toggle("hide", !show);
           if (show) shown++;
+        });
+        sections.forEach((sec) => {
+          const visible = sec.querySelectorAll(".card:not(.hide)").length;
+          sec.classList.toggle("hide", visible === 0);
         });
         countEl.textContent = shown + " of " + cards.length + " specimens";
       }

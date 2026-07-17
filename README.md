@@ -6,8 +6,9 @@ Static store for minerals, fossils, lava lamps, coins, and Bugged Out Nails. Bui
 
 ## Current state
 - **Built:** home, minerals (with size/price/species/locality filters), fossils, lava-lamps, coins (bullion/graded/banknotes + grading scale), nails, coins/fossils honest "cataloged for launch" states, about, our standard, field notes (index + 3 articles), visit (live Google Map), contact, shipping, faq. Per-specimen pages generated from `src/data/specimens.json`.
-- **Real inventory in:** 9 minerals (background-cut photos) + the rocket lava lamp.
-- **Next / to wire up:** Stripe buy links, the contact/commission form (Formspree), real Bugged Out Nails social links, lava-lamp "working status" field, and adding fossils + coins + more minerals as they get photographed. Field schemas for those live in `docs/STORE-BUILD-SPEC.md`.
+- **Real inventory in:** ~25 pieces (minerals + fossils + the rocket lamp), sorted into three tiers (Vault / Collector / Bin). Each carries locality, provenance, care/disclosure flags (water-soluble, fades-in-sun, treated, fragile), a `fluorescent` flag (data only, no UV toggle yet), and an `asIdentified` flag for uncertain IDs (green fluorite, chrysocolla, citrine treatment) shown with a "verify before full price" note. Real cut-out photos on the pieces we have; `/img/placeholder.svg` on the rest until shot.
+- **Weekend model:** the 127 (Aug 6–9) is cash + in person. Specimen pages use Reserve-for-pickup + Inquire (route to /contact), not live checkout. A booth note runs across minerals and detail pages.
+- **Next / to wire up:** Stripe buy links (for after the sale), the contact form (Formspree), real Bugged Out Nails social links, coins inventory, the auction-lot pieces (stibnite, zeolite) once won, the UV toggle UI, and real photos to replace placeholders. Confirm the `asIdentified` pieces before listing at full price. Field schemas in `docs/STORE-BUILD-SPEC.md`.
 
 ## Run it locally
 ```bash

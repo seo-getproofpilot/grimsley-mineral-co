@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { u } from "../../consts";
+import { u, CARE_LABELS } from "../../consts";
 import specimens from "../../data/specimens.json";
 
 export function getStaticPaths() {
@@ -17,6 +17,7 @@ const lineLabel = {
 const lineHref = u({ minerals: "minerals", fossils: "fossils", lava: "lava-lamps", coins: "coins" }[item.line] || "");
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status];
 const active = item.line === "lava" ? "lava" : item.line;
+const care = (item.care || []).map((c) => CARE_LABELS[c] || c);
 ---
 <Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active}>
   <div class="detail">
@@ -27,29 +28,40 @@ const active = item.line === "lava" ? "lava" : item.line;
       <div class="crumb"><a href={lineHref}>{lineLabel}</a> / {item.species}</div>
       <h1>{item.name}</h1>
       <span class={`status ${item.status}`}>{statusLabel}</span>
-      <div class="price">${item.price}.00</div>
+      <div class="price">${item.price}.00{item.priceNote && <span style="font-size:15px;color:var(--muted);"> {item.priceNote}</span>}</div>
       <p class="desc">{item.description}</p>
+
+      {item.asIdentified && (
+        <p class="desc" style="font-size:14px;color:var(--gold);border-left:2px solid var(--gold);padding-left:12px;">Identified from research and inspection, not lab-confirmed. We are verifying this one before it lists at full price, in keeping with our honest-grading promise.</p>
+      )}
+
       <div class="cta">
-        {item.status === "available" && item.line !== "lava" && <a class="btn btn-dark" href="#">Buy now</a>}
-        {item.status === "available" && item.line === "lava" && <a class="btn btn-dark" href={u("visit")}>Inquire / commission</a>}
-        {item.status === "reserved" && <a class="btn btn-ghost" href={u("visit")}>Ask about this piece</a>}
+        {item.status === "available" && item.line !== "lava" && <a class="btn btn-dark" href={u("contact")}>Reserve for pickup</a>}
+        {item.status === "available" && item.line === "lava" && <a class="btn btn-dark" href={u("contact")}>Inquire / commission</a>}
+        {item.status === "reserved" && <a class="btn btn-ghost" href={u("contact")}>Ask about this piece</a>}
         {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
-        <a class="btn btn-ghost" href={u("visit")}>Ask a question</a>
+        {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Inquire</a>}
       </div>
+
+      <div class="boothnote"><b>Aug 6–9 at the 127:</b> cash and in person at the booth. Reserve here to hold this piece for pickup, or buy online after the sale.</div>
 
       <dl class="spec">
         <div class="r"><dt>Species</dt><dd>{item.species}</dd></div>
         <div class="r"><dt>Locality</dt><dd>{item.locality}</dd></div>
         <div class="r"><dt>Size class</dt><dd>{item.sizeClass}</dd></div>
         <div class="r"><dt>Dimensions</dt><dd>{item.dimensions}</dd></div>
+        {item.provenance && <div class="r"><dt>Provenance</dt><dd>{item.provenance}</dd></div>}
         <div class="r"><dt>Condition</dt><dd>{item.condition}</dd></div>
         <div class="r"><dt>Treatment</dt><dd>{item.treatment}</dd></div>
+        {care.length > 0 && <div class="r"><dt>Care</dt><dd>{care.join(" · ")}</dd></div>}
+        {item.fluorescent && <div class="r"><dt>Fluorescence</dt><dd>Reacts under UV</dd></div>}
+        {item.worksStatus && <div class="r"><dt>Working status</dt><dd>{item.worksStatus}</dd></div>}
         <div class="r"><dt>Catalog</dt><dd>{item.slug.toUpperCase().replace(/-/g, " ")}</dd></div>
       </dl>
 
       <div class="guarantee">
         <h4>Authenticity guaranteed</h4>
-        <p>Every specimen is genuine and correctly identified, with condition and any treatment disclosed on this page. Shipped insured. Questions before you buy? Just ask.</p>
+        <p>Every piece is genuine and described honestly, with condition, treatment, and any care needs disclosed right here. Where an ID is not yet lab-confirmed, we say so. Shipped insured. Questions before you reserve? Just ask.</p>
       </div>
     </div>
   </div>

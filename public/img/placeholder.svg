@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Photo coming">
+  <g fill="none" stroke="#b9b3a6" stroke-width="6" stroke-linejoin="round">
+    <path d="M200 84 L286 150 L256 286 L144 286 L114 150 Z" />
+    <path d="M114 150 L200 190 L286 150" />
+    <path d="M200 190 L200 286" />
+    <path d="M200 84 L200 190" opacity="0.6" />
+  </g>
+  <text x="200" y="336" text-anchor="middle" font-family="Catamaran, Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#9c9689">PHOTO COMING</text>
+</svg>

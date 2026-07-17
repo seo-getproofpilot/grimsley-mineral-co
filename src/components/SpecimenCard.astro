@@ -1,10 +1,11 @@
 ---
-import { u } from "../consts";
+import { u, CARE_LABELS } from "../consts";
 const { item } = Astro.props;
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status] || "";
 const showBadge = item.status !== "available";
+const care = item.care || [];
 ---
-<a class={`card${item.status === "sold" ? " soldout" : ""}`} href={u(`specimen/${item.slug}`)} data-size={item.sizeClass} data-price={item.price} data-species={item.species} data-locality={item.locality}>
+<a class={`card${item.status === "sold" ? " soldout" : ""}`} href={u(`specimen/${item.slug}`)} data-size={item.sizeClass} data-price={item.price} data-species={item.species} data-locality={item.locality} data-tier={item.tier}>
   <div class="imgwrap">
     {showBadge && <span class={`badge ${item.status}`}>{statusLabel}</span>}
     <img src={u(item.image)} alt={item.name} loading="lazy" />
@@ -12,9 +13,15 @@ const showBadge = item.status !== "available";
   <div class="meta">
     <div class="sp">{item.name}</div>
     <div class="loc">{item.locality}</div>
+    {item.provenance && <div class="prov">{item.provenance}</div>}
+    {care.length > 0 && (
+      <div class="flags">
+        {care.map((c) => <span class="flag">{CARE_LABELS[c] || c}</span>)}
+      </div>
+    )}
     <div class="dims">{item.sizeClass} · {item.dimensions}</div>
     <div class="row">
-      <span class="price"><span class="cur">$</span>{item.price}.00</span>
+      <span class="price"><span class="cur">$</span>{item.price}.00{item.priceNote && <span class="pn"> {item.priceNote}</span>}</span>
     </div>
   </div>
 </a>
