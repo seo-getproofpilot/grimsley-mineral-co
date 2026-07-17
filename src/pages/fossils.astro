@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import SpecimenCard from "../components/SpecimenCard.astro";
+import specimens from "../data/specimens.json";
+const items = specimens.filter((s) => s.line === "fossils");
+---
+<Base title="Fossils & Shells — Grimsley Mineral Co." active="fossils">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href="/">Home</a> / Fossils &amp; Shells</div>
+      <h1>Fossils &amp; Shells</h1>
+      <p>These are records of living things, kept the way they were found. Fish plates, blister pearl shells, and coral, selected for clear detail and solid preservation. We note the formation or origin where we know it, since that context is part of what you are collecting.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap">
+      {items.length > 0 ? (
+        <div class="grid">{items.map((item) => <SpecimenCard item={item} />)}</div>
+      ) : (
+        <div class="empty">
+          <div class="sec-top"><div class="k">Being cataloged</div><h2>Photographed for launch</h2></div>
+          <p>Our fossils and shells are being measured and photographed for the grand opening at the Highway 127 Yard Sale. See the full spread in person Aug 6–9, then shop them here.</p>
+          <p style="margin-top:22px;"><a class="btn btn-dark" href="/visit">See us at the 127</a></p>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

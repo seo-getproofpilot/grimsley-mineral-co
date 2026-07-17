@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+const faqs = [
+  ["Are your specimens natural?", "Yes. Every piece is a genuine, correctly identified specimen. When something is treated, like heat set citrine, we say so plainly on the listing. We never pass a treated stone off as natural."],
+  ["What does the locality mean?", "It is where the specimen came from, listed as specifically as we can, down to the mine or region when the source is known. Locality is part of a specimen's value and its story. When we are not certain of the exact source, we tell you that instead of guessing."],
+  ["How do you handle condition?", "We look each piece over for chips, contacts, and repairs, and we note what we find on the listing. Natural imperfections are part of collecting. We would rather point them out than hide them in a good camera angle."],
+  ["Can I commission a custom lava lamp?", "Yes. We hand sculpt one of a kind art lamps from Apoxie clay. Tell us the theme, colors, or character you have in mind, and we will talk through what is possible, give you a price and timeline, and build it. Start on our contact page."],
+  ["How do I order Bugged Out Nails?", "Taylor takes nail orders over on Instagram and Facebook, where she posts new designs and handles custom requests. The nails page here is a showcase with links to her accounts."],
+  ["When and where is your grand opening?", "The Highway 127 Yard Sale, August 6 through 9, 2026, on US-127 in Grimsley, Tennessee, between the Dollar General and Taco Bros. After the sale, we move online only."],
+];
+---
+<Base title="FAQ — Grimsley Mineral Co." active="">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href="/">Home</a> / FAQ</div>
+      <h1>Common Questions</h1>
+    </div>
+  </div>
+  <div class="prose">
+    {faqs.map(([q, a]) => (
+      <div style="border-top:1px solid var(--line);padding:22px 0;">
+        <h3 style="margin:0 0 8px;">{q}</h3>
+        <p style="margin:0;">{a}</p>
+      </div>
+    ))}
+    <p style="margin-top:30px;"><a class="btn btn-dark" href="/contact">Ask us anything else</a></p>
+  </div>
+</Base>

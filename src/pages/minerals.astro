@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import SpecimenCard from "../components/SpecimenCard.astro";
+import specimens from "../data/specimens.json";
+const items = specimens.filter((s) => s.line === "minerals");
+---
+<Base title="Minerals — Grimsley Mineral Co." active="minerals">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href="/">Home</a> / Minerals</div>
+      <h1>Minerals</h1>
+      <p>Display and collector grade specimens, chosen for crystal quality and clean form rather than raw size. Amethyst, fluorite, cobalt calcite, vanadinite, epidote, rutilated quartz, chrysocolla, and more, each photographed as it really is and described with its locality and any condition notes. If a piece has a bruise or a repair, we tell you.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap">
+      <div class="grid">
+        {items.map((item) => <SpecimenCard item={item} />)}
+      </div>
+    </div>
+  </section>
+</Base>

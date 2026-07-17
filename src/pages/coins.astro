@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import SpecimenCard from "../components/SpecimenCard.astro";
+import specimens from "../data/specimens.json";
+const items = specimens.filter((s) => s.line === "coins");
+---
+<Base title="Coins & Currency — Grimsley Mineral Co." active="coins">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href="/">Home</a> / Coins &amp; Currency</div>
+      <h1>Coins &amp; Currency</h1>
+      <p>Our smallest line, and a favorite of the family. Collector coins, silver and gold, old money, and foreign currency drawn from a personal collection built over many years. Pieces come and go as the collection changes, so it is worth checking back. If you are curious about a specific coin or note, ask and we will tell you what we know about it.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap">
+      {items.length > 0 ? (
+        <div class="grid">{items.map((item) => <SpecimenCard item={item} />)}</div>
+      ) : (
+        <div class="empty">
+          <div class="sec-top"><div class="k">The collection rotates</div><h2>Coins are cataloged as they come out</h2></div>
+          <p>We are still deciding which pieces from the coin and currency collection go up for the launch. Silver, gold, old money, and foreign notes will be on the table at the 127, and listed here after.</p>
+          <p style="margin-top:22px;"><a class="btn btn-dark" href="/visit">See us at the 127</a></p>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

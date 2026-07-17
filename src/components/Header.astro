@@ -1,0 +1,39 @@
+---
+const { active = "" } = Astro.props;
+const nav = [
+  { href: "/minerals", label: "Minerals", key: "minerals" },
+  { href: "/fossils", label: "Fossils", key: "fossils" },
+  { href: "/lava-lamps", label: "Lava Lamps", key: "lava" },
+  { href: "/nails", label: "Nails", key: "nails" },
+  { href: "/coins", label: "Coins", key: "coins" },
+  { href: "/standard", label: "Our Standard", key: "standard" },
+  { href: "/visit", label: "Visit", key: "visit" },
+];
+---
+<div class="promo">Grand opening at the <b>Highway 127 Yard Sale</b> &nbsp;·&nbsp; Aug 6–9, 2026 &nbsp;·&nbsp; Grimsley, TN</div>
+<header class="site">
+  <div class="head">
+    <div class="left">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
+      <span>Search specimens</span>
+    </div>
+    <a class="wordmark" href="/">
+      <div class="name">Grimsley Mineral Co.</div>
+      <div class="tag">Minerals · Fossils · Light</div>
+    </a>
+    <div class="right">
+      <a href="/about">About</a>
+      <a href="/visit" class="cart">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.65-7 10-7 10z"></path></svg>
+        Visit
+      </a>
+    </div>
+  </div>
+  <nav class="mega">
+    <ul>
+      {nav.map((n) => (
+        <li><a href={n.href} class={active === n.key ? "active" : ""}>{n.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>

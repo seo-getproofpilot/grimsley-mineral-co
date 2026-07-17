@@ -1,0 +1,55 @@
+---
+import Base from "../../layouts/Base.astro";
+import specimens from "../../data/specimens.json";
+
+export function getStaticPaths() {
+  return specimens.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const lineLabel = {
+  minerals: "Minerals",
+  fossils: "Fossils & Shells",
+  lava: "Lava Lamps",
+  coins: "Coins & Currency",
+}[item.line] || "Collection";
+const lineHref = { minerals: "/minerals", fossils: "/fossils", lava: "/lava-lamps", coins: "/coins" }[item.line] || "/";
+const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status];
+const active = item.line === "lava" ? "lava" : item.line;
+---
+<Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active}>
+  <div class="detail">
+    <div class="gallery">
+      <div class="main"><img src={item.image} alt={item.name} /></div>
+    </div>
+    <div class="buy">
+      <div class="crumb"><a href={lineHref}>{lineLabel}</a> / {item.species}</div>
+      <h1>{item.name}</h1>
+      <span class={`status ${item.status}`}>{statusLabel}</span>
+      <div class="price">${item.price}.00</div>
+      <p class="desc">{item.description}</p>
+      <div class="cta">
+        {item.status === "available" && item.line !== "lava" && <a class="btn btn-dark" href="#">Buy now</a>}
+        {item.status === "available" && item.line === "lava" && <a class="btn btn-dark" href="/visit">Inquire / commission</a>}
+        {item.status === "reserved" && <a class="btn btn-ghost" href="/visit">Ask about this piece</a>}
+        {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
+        <a class="btn btn-ghost" href="/visit">Ask a question</a>
+      </div>
+
+      <dl class="spec">
+        <div class="r"><dt>Species</dt><dd>{item.species}</dd></div>
+        <div class="r"><dt>Locality</dt><dd>{item.locality}</dd></div>
+        <div class="r"><dt>Size class</dt><dd>{item.sizeClass}</dd></div>
+        <div class="r"><dt>Dimensions</dt><dd>{item.dimensions}</dd></div>
+        <div class="r"><dt>Condition</dt><dd>{item.condition}</dd></div>
+        <div class="r"><dt>Treatment</dt><dd>{item.treatment}</dd></div>
+        <div class="r"><dt>Catalog</dt><dd>{item.slug.toUpperCase().replace(/-/g, " ")}</dd></div>
+      </dl>
+
+      <div class="guarantee">
+        <h4>Authenticity guaranteed</h4>
+        <p>Every specimen is genuine and correctly identified, with condition and any treatment disclosed on this page. Shipped insured. Questions before you buy? Just ask.</p>
+      </div>
+    </div>
+  </div>
+</Base>

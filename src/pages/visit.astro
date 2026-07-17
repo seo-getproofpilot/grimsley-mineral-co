@@ -1,0 +1,47 @@
+---
+import Base from "../layouts/Base.astro";
+const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
+---
+<Base title="Visit — The 127 Yard Sale — Grimsley Mineral Co." active="visit">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href="/">Home</a> / Visit</div>
+      <h1>See Us at the 127</h1>
+      <p>The Highway 127 Yard Sale is the largest yard sale in the country, and it is where Grimsley Mineral Co. opens its doors for the first time. Our whole collection comes out for it, minerals and fossils, the lava lamps, coins and currency, and Taylor's Bugged Out Nails. It is the one chance to see everything in person, hold the pieces, and talk with the family behind them.</p>
+    </div>
+  </div>
+
+  <div class="visit">
+    <div class="split">
+      <div class="info">
+        <div class="k">Grand opening</div>
+        <h2>Aug 6–9, 2026</h2>
+        <div class="addr">
+          <b>Thursday through Sunday</b><br />
+          5521 South York Hwy, Grimsley, TN 38565<br />
+          On US-127, between Dollar General &amp; Taco Bros
+        </div>
+        <div class="btns">
+          <a class="btn btn-gold" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>
+          <a class="btn btn-line" href={`https://www.google.com/maps/search/?api=1&query=${mapDest}`} target="_blank" rel="noopener">Open in maps</a>
+        </div>
+      </div>
+      <div class="mapbox live">
+        <iframe
+          title="Map to 5521 South York Highway, Grimsley TN"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=5521+South+York+Highway,+Grimsley,+TN+38565&output=embed"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h2>What to expect</h2>
+    <p>Display and collector grade mineral specimens laid out to browse. Fossils and shells. The lava lamp showcase, including custom sculpted pieces and a look at what we can build on commission. A table of coins, silver and gold, old money, and foreign currency. And the chance to ask us anything about where a piece came from or how it was made.</p>
+    <h2>Plan your visit</h2>
+    <p>We are on US-127, so it is an easy stop along the route. Look for us between the Dollar General and Taco Bros in Grimsley. If you are driving in for it, browse the site first so you know what is on the tables before you make the trip.</p>
+    <p>After the 127, we move online only. The specimens you see at the booth become the inventory you can shop from home, so this site is the best way to keep up with what is available once the sale wraps.</p>
+  </div>
+</Base>

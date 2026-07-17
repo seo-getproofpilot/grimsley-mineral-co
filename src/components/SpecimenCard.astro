@@ -1,0 +1,19 @@
+---
+const { item } = Astro.props;
+const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status] || "";
+const showBadge = item.status !== "available";
+---
+<a class={`card${item.status === "sold" ? " soldout" : ""}`} href={`/specimen/${item.slug}`}>
+  <div class="imgwrap">
+    {showBadge && <span class={`badge ${item.status}`}>{statusLabel}</span>}
+    <img src={item.image} alt={item.name} loading="lazy" />
+  </div>
+  <div class="meta">
+    <div class="sp">{item.name}</div>
+    <div class="loc">{item.locality}</div>
+    <div class="dims">{item.sizeClass} · {item.dimensions}</div>
+    <div class="row">
+      <span class="price"><span class="cur">$</span>{item.price}.00</span>
+    </div>
+  </div>
+</a>

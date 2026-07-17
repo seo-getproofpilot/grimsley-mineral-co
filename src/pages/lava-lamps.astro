@@ -1,0 +1,49 @@
+---
+import Base from "../layouts/Base.astro";
+import SpecimenCard from "../components/SpecimenCard.astro";
+import specimens from "../data/specimens.json";
+const lamps = specimens.filter((s) => s.line === "lava");
+---
+<Base title="Lava Lamps — Grimsley Mineral Co." active="lava">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href="/">Home</a> / Lava Lamps</div>
+      <h1>Custom Lava Lamps</h1>
+      <p>Most of what we do with lava lamps is not on a shelf waiting for a buyer. It is built for one person, from scratch. Alongside our collection of classic and vintage lamps, we hand-sculpt one-of-a-kind art lamps, shaping the base and cap by hand with Apoxie Sculpt clay, like our Venom-inspired symbiote lamp. Only select finished lamps are offered for sale at any given time. The rest of our energy goes into commissions.</p>
+    </div>
+  </div>
+
+  <div class="feature dark">
+    <div class="split">
+      <div class="txt">
+        <div class="k">The craft</div>
+        <h2>No two are ever the same.</h2>
+        <p>Each lamp is sculpted, painted, and finished by hand, then paired with a working lava element. This is real work, and it takes time. Comparable custom and vintage art lamps sell in the hundreds and up, and our pieces are built to that standard.</p>
+      </div>
+      <div class="pic"><img src="/img/lifestyle/lava-collection.jpg" alt="Lava lamp collection" /></div>
+    </div>
+  </div>
+
+  {lamps.length > 0 && (
+    <section>
+      <div class="wrap">
+        <div class="sec-top"><div class="k">Available now</div><h2>Finished pieces</h2><p>A few of our lamps are offered for sale. Everything else is a showcase for what we can build.</p></div>
+        <div class="grid">{lamps.map((item) => <SpecimenCard item={item} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <section class="trust">
+    <div class="wrap">
+      <div class="sec-top"><div class="k">Commissions</div><h2>How a commission works</h2></div>
+      <div class="prose" style="padding:0;">
+        <ol>
+          <li><b>Tell us the idea.</b>Reach out with the theme, colors, or character you have in mind. We talk through what is possible, agree on a direction, and give you a price and a timeline before any work begins.</li>
+          <li><b>We build it by hand.</b>We sculpt the base and cap, paint and finish the details, and pair it with a working lava lamp element. We share progress along the way so there are no surprises.</li>
+          <li><b>It ships to you.</b>Once it is finished and tested, we pack it carefully and send it out. You end up with a working piece of art that exists nowhere else.</li>
+        </ol>
+        <p style="text-align:center;margin-top:30px;"><a class="btn btn-dark" href="/visit">Start a commission</a></p>
+      </div>
+    </div>
+  </section>
+</Base>
