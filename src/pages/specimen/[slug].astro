@@ -122,6 +122,9 @@ const productSchema = {
       <h1>{item.name}</h1>
       <span class={`status ${item.status}`}>{statusLabel}</span>
       <div class="price">${item.price}.00{item.priceNote && <span style="font-size:15px;color:var(--muted);"> {item.priceNote}</span>}</div>
+      {item.status === "available" && item.line !== "lava" && (
+        <div class="oneofone"><span class="dot"></span>One of one. This exact piece is the only one, and when it sells it is gone.</div>
+      )}
       <p class="desc">{item.description}</p>
 
       {item.asIdentified && (
@@ -181,9 +184,14 @@ const productSchema = {
         </div>
       )}
 
-      <div class="guarantee">
-        <h4>Authenticity guaranteed</h4>
-        <p>Every piece is genuine and described honestly, with condition, treatment, and any care needs disclosed right here. Where an ID is not yet lab-confirmed, we say so. Shipped insured. Questions before you reserve? Just ask.</p>
+      <div class="confidence">
+        <h4>With every piece</h4>
+        <ul>
+          <li><b>An ID card.</b> Species, locality, and any disclosures, written on a card that ships with the piece.</li>
+          <li><b>Honest grading.</b> Chips, repairs, and treatments are disclosed here. Where an ID is not lab-confirmed, we say so.</li>
+          <li><b>Packed and insured.</b> Wrapped by hand and shipped insured, or held for booth pickup at the 127.</li>
+          <li><b>As described, or your money back.</b> If a piece is not what this page says, send it back for a full refund.</li>
+        </ul>
       </div>
     </div>
   </div>
