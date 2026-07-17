@@ -1,0 +1,108 @@
+---
+import Base from "../../layouts/Base.astro";
+import { u } from "../../consts";
+import SpecimenCard from "../../components/SpecimenCard.astro";
+import { MINERALS, resolveMineral } from "../../data/minerals";
+import specimens from "../../data/specimens.json";
+
+export function getStaticPaths() {
+  return Object.values(MINERALS).map((mineral) => ({
+    params: { key: mineral.key },
+    props: { mineral },
+  }));
+}
+
+const { mineral } = Astro.props;
+
+// Pieces in the catalog that resolve to this mineral.
+const inStock = specimens.filter((s) => {
+  const r = s.line === "minerals" ? resolveMineral(s.species) : null;
+  return r?.mineral.key === mineral.key;
+});
+
+const MOHS_REF = [
+  { n: 1, m: "Talc" },
+  { n: 2.5, m: "Fingernail" },
+  { n: 3, m: "Calcite" },
+  { n: 5.5, m: "Knife blade" },
+  { n: 7, m: "Quartz" },
+  { n: 10, m: "Diamond" },
+];
+const nums = (mineral.hardness.match(/[\d.]+/g) || []).map(Number);
+const hardnessNum = nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
+
+const isFluor = mineral.fluorescence && !/^not/i.test(mineral.fluorescence);
+
+// DefinedTerm-ish schema for the reference page.
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": `${mineral.name} — mineral reference`,
+  "about": mineral.name,
+  "description": mineral.about,
+  "author": { "@type": "Organization", "name": "Grimsley Mineral Co." },
+};
+---
+<Base
+  title={`${mineral.name} — Mineral Reference — Grimsley Mineral Co.`}
+  description={`${mineral.name}: ${mineral.about.slice(0, 150)}`}
+  active="minerals"
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / <a href={u("minerals")}>Minerals</a> / {mineral.name}</div>
+      <h1>{mineral.name}</h1>
+      <p>{mineral.about}</p>
+    </div>
+  </div>
+
+  <section class="mineralpanel refpage">
+    <div class="wrap">
+      <div class="mp-grid">
+        <div class="mp-facts">
+          <div class="f"><span class="l">Chemical formula</span><span class="v" set:html={mineral.formulaHtml} /></div>
+          <div class="f"><span class="l">Mineral class</span><span class="v">{mineral.mineralClass}</span></div>
+          <div class="f"><span class="l">Crystal system</span><span class="v">{mineral.crystalSystem}</span></div>
+          <div class="f"><span class="l">Luster</span><span class="v">{mineral.luster}</span></div>
+          <div class="f"><span class="l">Streak</span><span class="v">{mineral.streak}</span></div>
+        </div>
+
+        <div class="mp-hardness">
+          <span class="l">Hardness · Mohs {mineral.hardness}</span>
+          <div class="bar">
+            {hardnessNum && <span class="fill" style={`width:${(hardnessNum / 10) * 100}%`}></span>}
+            {hardnessNum && <span class="dot" style={`left:${(hardnessNum / 10) * 100}%`}></span>}
+            {MOHS_REF.map((r) => (
+              <span class="tick" style={`left:${(r.n / 10) * 100}%`} title={`${r.n} — ${r.m}`}></span>
+            ))}
+          </div>
+          <div class="scaleref">
+            {MOHS_REF.map((r) => (
+              <span style={`left:${(r.n / 10) * 100}%`}>{r.n} {r.m}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {isFluor && <div class="mp-fluor"><b>Under UV.</b> {mineral.fluorescence}</div>}
+      <div class="mp-foot"><p><b>Handling:</b> {mineral.care}</p></div>
+    </div>
+  </section>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">In the collection</div>
+        <h2>{inStock.length > 0 ? `${mineral.name} we have now` : `No ${mineral.name} in stock right now`}</h2>
+        {inStock.length === 0 && <p>We rotate stock constantly, especially heading into the 127. Check the full minerals page for what is available today.</p>}
+      </div>
+      {inStock.length > 0 && (
+        <div class="grid">
+          {inStock.map((item) => <SpecimenCard item={item} />)}
+        </div>
+      )}
+      <div class="center-cta"><a class="btn btn-dark" href={u("minerals")}>Browse all minerals</a></div>
+    </div>
+  </section>
+</Base>

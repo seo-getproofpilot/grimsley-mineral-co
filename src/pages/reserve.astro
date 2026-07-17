@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+import { u, SITE } from "../consts";
+---
+<Base title="Your Reserve List — Grimsley Mineral Co." active="">
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / Reserve List</div>
+      <h1>Your Reserve List</h1>
+      <p>The pieces you are holding for pickup at the Highway 127 Yard Sale, Aug 6 through 9. Send the list and we will set them aside under your name. Nothing is charged online. Cash and in person at the booth.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div id="reserve-list" data-email={SITE.email}></div>
+    </div>
+  </section>
+</Base>

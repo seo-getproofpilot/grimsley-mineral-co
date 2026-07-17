@@ -2,6 +2,17 @@
 import Base from "../../layouts/Base.astro";
 import { u, CARE_LABELS } from "../../consts";
 import specimens from "../../data/specimens.json";
+import { resolveMineral } from "../../data/minerals";
+
+// Mohs positions for the hardness bar reference marks.
+const MOHS_REF = [
+  { n: 1, m: "Talc" },
+  { n: 2.5, m: "Fingernail" },
+  { n: 3, m: "Calcite" },
+  { n: 5.5, m: "Knife blade" },
+  { n: 7, m: "Quartz" },
+  { n: 10, m: "Diamond" },
+];
 
 export function getStaticPaths() {
   return specimens.map((item) => ({ params: { slug: item.slug }, props: { item } }));
@@ -18,6 +29,18 @@ const lineHref = u({ minerals: "minerals", fossils: "fossils", lava: "lava-lamps
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status];
 const active = item.line === "lava" ? "lava" : item.line;
 const care = (item.care || []).map((c) => CARE_LABELS[c] || c);
+
+// Resolve real mineralogy for the piece (minerals only). Drives the data panel
+// and the "hardness on the Mohs scale" bar.
+const resolved = item.line === "minerals" ? resolveMineral(item.species) : null;
+const mineral = resolved?.mineral || null;
+// Parse a hardness like "3.5–4" to a midpoint for the bar position.
+const hardnessNum = mineral
+  ? (() => {
+      const nums = (mineral.hardness.match(/[\d.]+/g) || []).map(Number);
+      return nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
+    })()
+  : null;
 
 // Product schema: price, availability, and image so each piece is eligible for
 // product rich results and readable by AI shopping answers.
@@ -61,17 +84,23 @@ const productSchema = {
       )}
 
       <div class="cta">
-        {item.status === "available" && item.line !== "lava" && <a class="btn btn-dark" href={u("contact")}>Reserve for pickup</a>}
-        {item.status === "available" && item.line === "lava" && <a class="btn btn-dark" href={u("contact")}>Inquire / commission</a>}
+        {item.status === "available" && (
+          <button
+            class="btn btn-dark js-reserve"
+            data-slug={item.slug}
+            data-name={item.name}
+            data-price={item.price}
+          >{item.line === "lava" ? "Add to inquiry list" : "Reserve this piece"}</button>
+        )}
         {item.status === "reserved" && <a class="btn btn-ghost" href={u("contact")}>Ask about this piece</a>}
         {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
-        {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Inquire</a>}
+        {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Ask a question</a>}
       </div>
 
       <div class="boothnote"><b>Aug 6–9 at the 127:</b> cash and in person at the booth. Reserve here to hold this piece for pickup, or buy online after the sale.</div>
 
       <dl class="spec">
-        <div class="r"><dt>Species</dt><dd>{item.species}</dd></div>
+        <div class="r"><dt>Species</dt><dd>{mineral ? <a href={u(`mineral/${mineral.key}`)}>{item.species}</a> : item.species}</dd></div>
         <div class="r"><dt>Locality</dt><dd>{item.locality}</dd></div>
         <div class="r"><dt>Size class</dt><dd>{item.sizeClass}</dd></div>
         <div class="r"><dt>Dimensions</dt><dd>{item.dimensions}</dd></div>
@@ -90,4 +119,51 @@ const productSchema = {
       </div>
     </div>
   </div>
+
+  {mineral && (
+    <section class="mineralpanel">
+      <div class="wrap">
+        <div class="mp-head">
+          <div class="k">Mineral data</div>
+          <h2>{mineral.name}{resolved?.variety && <span class="var"> · {resolved.variety}</span>}</h2>
+          <p>{mineral.about}</p>
+        </div>
+
+        <div class="mp-grid">
+          <div class="mp-facts">
+            <div class="f"><span class="l">Chemical formula</span><span class="v" set:html={mineral.formulaHtml} /></div>
+            <div class="f"><span class="l">Mineral class</span><span class="v">{mineral.mineralClass}</span></div>
+            <div class="f"><span class="l">Crystal system</span><span class="v">{mineral.crystalSystem}</span></div>
+            <div class="f"><span class="l">Luster</span><span class="v">{mineral.luster}</span></div>
+            <div class="f"><span class="l">Streak</span><span class="v">{mineral.streak}</span></div>
+          </div>
+
+          <div class="mp-hardness">
+            <span class="l">Hardness · Mohs {mineral.hardness}</span>
+            <div class="bar">
+              {hardnessNum && <span class="fill" style={`width:${(hardnessNum / 10) * 100}%`}></span>}
+              {hardnessNum && <span class="dot" style={`left:${(hardnessNum / 10) * 100}%`}></span>}
+              {MOHS_REF.map((r) => (
+                <span class="tick" style={`left:${(r.n / 10) * 100}%`} title={`${r.n} — ${r.m}`}></span>
+              ))}
+            </div>
+            <div class="scaleref">
+              {MOHS_REF.map((r) => (
+                <span style={`left:${(r.n / 10) * 100}%`}>{r.n} {r.m}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {mineral.fluorescence && mineral.fluorescence !== "Not fluorescent." && mineral.fluorescence !== "Not notably fluorescent." && (
+          <div class="mp-fluor"><b>Under UV.</b> {mineral.fluorescence}</div>
+        )}
+
+        <div class="mp-foot">
+          <p><b>Handling:</b> {mineral.care}</p>
+          <a class="mp-link" href={u(`mineral/${mineral.key}`)}>Full {mineral.name} reference and pieces in stock →</a>
+        </div>
+      </div>
+    </section>
+  )}
 </Base>
