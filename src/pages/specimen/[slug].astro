@@ -32,6 +32,19 @@ const LOC_QUALIFIER = {
 };
 const locQualifier = LOC_QUALIFIER[item.localityConfidence] ?? "";
 
+// Size-in-hand scale: pull the largest cm figure from the dimensions string and
+// draw it against a US quarter (2.4 cm) for real-world scale. Skips vague
+// dimensions ("small", "varies") where there is no number.
+const dimCm = (() => {
+  const nums = (String(item.dimensions || "").match(/[\d.]+/g) || []).map(Number).filter((n) => n > 0);
+  return nums.length ? Math.max(...nums) : null;
+})();
+const QUARTER_CM = 2.4;
+// Scale so the larger of (piece, quarter) fills most of the track; cap huge pieces.
+const scaleMax = Math.max(dimCm || 0, QUARTER_CM);
+const piecePct = dimCm ? Math.min(100, (dimCm / scaleMax) * 100) : 0;
+const quarterPct = Math.min(100, (QUARTER_CM / scaleMax) * 100);
+
 // Similar pieces: same mineral species first, then same line, excluding self and
 // sold pieces. Up to 3.
 const sameKey = (s) => s.slug !== item.slug && s.status !== "sold";
@@ -128,6 +141,16 @@ const productSchema = {
         {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
         {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Ask a question</a>}
       </div>
+
+      {dimCm && (
+        <div class="sizescale">
+          <div class="ss-head"><span>Size in hand</span><span class="ss-dim">{item.dimensions}</span></div>
+          <div class="ss-track">
+            <div class="ss-piece" style={`width:${piecePct}%`}><span>this piece · {dimCm} cm</span></div>
+            <div class="ss-quarter" style={`width:${quarterPct}%`}><span>US quarter</span></div>
+          </div>
+        </div>
+      )}
 
       <div class="boothnote"><b>Aug 6–9 at the 127:</b> cash and in person at the booth. Reserve here to hold this piece for pickup, or buy online after the sale.</div>
 
