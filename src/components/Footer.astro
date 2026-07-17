@@ -1,5 +1,5 @@
 ---
-import { u } from "../consts";
+import { u, SITE, FULL_ADDRESS } from "../consts";
 ---
 <footer class="site">
   <div class="fgrid">
@@ -32,7 +32,7 @@ import { u } from "../consts";
     </div>
   </div>
   <div class="colo">
-    <span>Working name — placeholder until we land it</span>
+    <span>{FULL_ADDRESS} · <a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
     <span>© 2026 Grimsley Mineral Co.</span>
   </div>
 </footer>

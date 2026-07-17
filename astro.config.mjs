@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // Local dev/preview serves at root ('/'). GitHub Pages builds with
 // PAGES_BASE set (see .github/workflows/deploy.yml) so assets and links
@@ -10,4 +11,5 @@ export default defineConfig({
   site: 'https://seo-getproofpilot.github.io',
   base,
   trailingSlash: 'ignore',
+  integrations: [sitemap()],
 });

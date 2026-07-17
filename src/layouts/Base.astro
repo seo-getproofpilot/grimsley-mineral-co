@@ -2,11 +2,48 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { SITE, FULL_ADDRESS, u } from "../consts";
+
 const {
   title = "Grimsley Mineral Co.",
   description = "Display-grade minerals, fossils, hand-built lava lamps, and collector coins from a family collection in Grimsley, Tennessee. Grand opening at the Highway 127 Yard Sale, then online.",
   active = "",
+  // Per-page structured data (an object or array of objects). Rendered as
+  // JSON-LD alongside the site-wide LocalBusiness graph below.
+  schema = null,
 } = Astro.props;
+
+// Canonical + OG url resolve against the configured `site` in astro.config.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(u("img/lifestyle/hero.jpg"), Astro.site).href;
+
+// Site-wide LocalBusiness. This is what Google reads for the map pack / rich
+// results and what AI answer engines cite for "who/where/when".
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": SITE.name,
+  "description": SITE.tagline,
+  "url": SITE.url,
+  "email": SITE.email,
+  "image": ogImage,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": SITE.address.street,
+    "addressLocality": SITE.address.city,
+    "addressRegion": SITE.address.state,
+    "postalCode": SITE.address.zip,
+    "addressCountry": "US",
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": SITE.address.lat,
+    "longitude": SITE.address.lng,
+  },
+  "sameAs": [SITE.social.instagram, SITE.social.facebook],
+};
+
+const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 ---
 <!doctype html>
 <html lang="en">
@@ -15,10 +52,26 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪨</text></svg>" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+    {pageSchemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
   <body>
     <Header active={active} />

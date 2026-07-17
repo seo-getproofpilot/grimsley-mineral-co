@@ -18,8 +18,33 @@ const lineHref = u({ minerals: "minerals", fossils: "fossils", lava: "lava-lamps
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status];
 const active = item.line === "lava" ? "lava" : item.line;
 const care = (item.care || []).map((c) => CARE_LABELS[c] || c);
+
+// Product schema: price, availability, and image so each piece is eligible for
+// product rich results and readable by AI shopping answers.
+const availability = {
+  available: "https://schema.org/InStock",
+  reserved: "https://schema.org/PreOrder",
+  sold: "https://schema.org/SoldOut",
+}[item.status] || "https://schema.org/InStock";
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": item.name,
+  "description": item.description,
+  "image": new URL(u(item.image), Astro.site).href,
+  "category": lineLabel,
+  "offers": {
+    "@type": "Offer",
+    "price": item.price,
+    "priceCurrency": "USD",
+    "availability": availability,
+    "url": new URL(Astro.url.pathname, Astro.site).href,
+    "seller": { "@type": "Store", "name": "Grimsley Mineral Co." },
+  },
+};
 ---
-<Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active}>
+<Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active} schema={productSchema}>
   <div class="detail">
     <div class="gallery">
       <div class="main"><img src={u(item.image)} alt={item.name} /></div>

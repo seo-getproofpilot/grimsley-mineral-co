@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { u } from "../consts";
+import { u, SITE } from "../consts";
 ---
 <Base title="Contact & Commissions — Grimsley Mineral Co." active="">
   <div class="pagehead">
@@ -11,7 +11,7 @@ import { u } from "../consts";
     </div>
   </div>
   <div class="prose">
-    <form action="https://formspree.io/f/your-form-id" method="POST" style="display:grid;gap:16px;">
+    <form id="contact-form" data-to={SITE.email} style="display:grid;gap:16px;">
       <label style="display:grid;gap:6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Your name
         <input name="name" required style="border:1px solid var(--line-2);padding:13px 14px;font-family:var(--sans);font-size:16px;color:var(--ink);text-transform:none;letter-spacing:normal;" />
       </label>
@@ -30,7 +30,37 @@ import { u } from "../consts";
         <textarea name="message" rows="6" required style="border:1px solid var(--line-2);padding:13px 14px;font-family:var(--sans);font-size:16px;color:var(--ink);text-transform:none;letter-spacing:normal;"></textarea>
       </label>
       <div><button class="btn btn-dark" type="submit">Send message</button></div>
+      <p id="contact-status" style="margin:0;font-size:14px;color:var(--muted);" hidden></p>
     </form>
-    <p style="margin-top:24px;font-size:14px;color:var(--muted);">Prefer to see it in person? Find us at the <a href={u("visit")} style="color:var(--gold);">Highway 127 Yard Sale</a>, Aug 6 through 9, 2026.</p>
+    <p style="margin-top:24px;font-size:14px;color:var(--muted);">Prefer to email directly? Reach us at <a href={`mailto:${SITE.email}`} style="color:var(--gold);">{SITE.email}</a>. Or see it in person at the <a href={u("visit")} style="color:var(--gold);">Highway 127 Yard Sale</a>, Aug 6 through 9, 2026.</p>
   </div>
+
+  <script>
+    // Progressive-enhancement contact form. Composes an email in the visitor's
+    // mail client with all fields filled, so it works with zero backend. To move
+    // to inbox-direct submission later, swap this for a Formspree/Web3Forms POST.
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const status = document.getElementById("contact-status");
+    if (form && status) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const to = form.dataset.to || "";
+        const data = new FormData(form);
+        const name = String(data.get("name") || "");
+        const email = String(data.get("email") || "");
+        const topic = String(data.get("topic") || "");
+        const message = String(data.get("message") || "");
+        const subject = `Grimsley Mineral Co. — ${topic} (from ${name})`;
+        const body =
+          `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `About: ${topic}\n\n` +
+          `${message}\n`;
+        window.location.href =
+          `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        status.textContent = "Opening your email app with the message ready to send. If nothing opens, email us directly at " + to + ".";
+        status.hidden = false;
+      });
+    }
+  </script>
 </Base>

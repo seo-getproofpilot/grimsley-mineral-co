@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { u } from "../consts";
+import { u, SITE } from "../consts";
 ---
 <Base title="Bugged Out Nails — Grimsley Mineral Co." active="nails">
   <div class="pagehead">
@@ -20,8 +20,8 @@ import { u } from "../consts";
         <p>Custom sets, pick-and-press singles, and ready-to-ship art nails. Send Taylor your idea and your sizes, pick a shape and length, and she paints it. Sets ship in about a week.</p>
         <p>These are reusable, so a good set works out to pennies a wear. Wear them for a night out, a trip, or a photoshoot, take them off, and put them back on. Salon-level art without the salon price or the two-hour appointment.</p>
         <div class="btns">
-          <a class="btn btn-pink" href="#">Follow on Instagram</a>
-          <a class="btn btn-pinkline" href="#">Message on Facebook</a>
+          <a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
+          <a class="btn btn-pinkline" href={SITE.social.facebook} target="_blank" rel="noopener">Message on Facebook</a>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@ import { u } from "../consts";
         <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails.jpg")} alt="Floral press-on set" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Floral &amp; Ladybug</div><div class="dims">Hand-painted · custom</div></div></div>
         <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails-gothic.jpg")} alt="Gothic press-on set" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Gothic &amp; Holiday</div><div class="dims">Hand-painted · custom</div></div></div>
       </div>
-      <div class="center-cta"><a class="btn btn-pink" href="#">See the full gallery on Instagram</a></div>
+      <div class="center-cta"><a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">See the full gallery on Instagram</a></div>
     </div>
   </section>
 </Base>
