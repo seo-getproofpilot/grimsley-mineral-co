@@ -18,7 +18,13 @@
     "asIdentified": false,
     "provenance": "From a retired collector's cabinet",
     "condition": "Clean, glassy, dense golden rutile",
-    "description": "A polished quartz shot through with fine golden rutile needles that catch the light from every angle. Bahia is the classic source, prized for the brightness and density of its rutile. Clean throughout, no repairs."
+    "description": "A polished quartz shot through with fine golden rutile needles that catch the light from every angle. Bahia is the classic source, prized for the brightness and density of its rutile. Clean throughout, no repairs.",
+    "localityConfidence": "confirmed",
+    "localityNote": "Bahia is the dominant world source of golden rutilated quartz; nearly all polished rutile spheres in the trade are cut from Bahian rough.",
+    "coords": {
+      "lat": -12,
+      "lng": -41.7
+    }
   },
   {
     "slug": "rutile-stars-in-quartz",
@@ -39,7 +45,13 @@
     "asIdentified": false,
     "provenance": "Estate-sourced, locality documented",
     "condition": "Well centered star, minor edge wear from polishing",
-    "description": "Radiating sprays of reddish rutile in the star pattern that made Novo Horizonte famous. Good stars are harder to find than the rough suggests. Well centered with strong contrast."
+    "description": "Radiating sprays of reddish rutile in the star pattern that made Novo Horizonte famous. Good stars are harder to find than the rough suggests. Well centered with strong contrast.",
+    "localityConfidence": "confirmed",
+    "localityNote": "Novo Horizonte is essentially the only source of these six-rayed epitaxial rutile stars grown on hematite inside clear quartz.",
+    "coords": {
+      "lat": -10.76,
+      "lng": -42.2
+    }
   },
   {
     "slug": "vanadinite-mibladen",
@@ -60,7 +72,13 @@
     "asIdentified": false,
     "provenance": "From a retired collector's cabinet",
     "condition": "Strong even red, a few small contacts on the back",
-    "description": "Bright red-orange hexagonal vanadinite with a waxy luster on matrix. Mibladen is the benchmark locality, known for saturated color and crisp crystal edges."
+    "description": "Bright red-orange hexagonal vanadinite with a waxy luster on matrix. Mibladen is the benchmark locality, known for saturated color and crisp crystal edges.",
+    "localityConfidence": "confirmed",
+    "localityNote": "Mibladen is the world signature source for bright red-orange vanadinite on barite and dolomite matrix, exactly this look.",
+    "coords": {
+      "lat": 32.87,
+      "lng": -4.62
+    }
   },
   {
     "slug": "cobaltoan-calcite",
@@ -81,7 +99,13 @@
     "asIdentified": false,
     "provenance": "Old stock, locality documented",
     "condition": "Rich even magenta druze, normal pocket contacts",
-    "description": "A crust of tiny sparkling calcite crystals in the vivid pink that cobalt gives this material. The Congo is the signature source, and this color is what collectors chase. Photo coming soon."
+    "description": "A crust of tiny sparkling calcite crystals in the vivid pink that cobalt gives this material. The Congo is the signature source, and this color is what collectors chase. Photo coming soon.",
+    "localityConfidence": "confirmed",
+    "localityNote": "The intense pink botryoidal cobaltoan calcite of the Katanga Copperbelt (Kolwezi area) is the worldwide benchmark for this material.",
+    "coords": {
+      "lat": -10.72,
+      "lng": 25.47
+    }
   },
   {
     "slug": "mongolian-purple-fluorite-a",
@@ -97,12 +121,20 @@
     "featured": true,
     "image": "/img/specimens/fluorite.jpg",
     "treatment": "None",
-    "care": ["fades-in-sun"],
+    "care": [
+      "fades-in-sun"
+    ],
     "fluorescent": true,
     "asIdentified": false,
     "provenance": "Old stock, locality documented",
     "condition": "Smoky lavender cubes on sparkling quartz, undamaged face",
-    "description": "Soft smoky-purple fluorite cubes stepping across a bed of druzy quartz. Inner Mongolia produces this distinctive muted purple. Keep it out of long direct sun so the color holds."
+    "description": "Soft smoky-purple fluorite cubes stepping across a bed of druzy quartz. Inner Mongolia produces this distinctive muted purple. Keep it out of long direct sun so the color holds.",
+    "localityConfidence": "confirmed",
+    "localityNote": "Inner Mongolia is the classic modern source of smoky purple fluorite cubes perched on druzy quartz.",
+    "coords": {
+      "lat": 43,
+      "lng": 112
+    }
   },
   {
     "slug": "mongolian-purple-fluorite-b",
@@ -118,12 +150,20 @@
     "featured": false,
     "image": "/img/placeholder.svg",
     "treatment": "None",
-    "care": ["fades-in-sun"],
+    "care": [
+      "fades-in-sun"
+    ],
     "fluorescent": true,
     "asIdentified": false,
     "provenance": "Old stock, locality documented",
     "condition": "Matched to the first piece, smaller",
-    "description": "The second of a matched pair of Inner Mongolia smoky-purple fluorites on druzy quartz. Photo coming soon."
+    "description": "The second of a matched pair of Inner Mongolia smoky-purple fluorites on druzy quartz. Photo coming soon.",
+    "localityConfidence": "confirmed",
+    "localityNote": "Inner Mongolia is the classic modern source of smoky purple fluorite cubes perched on druzy quartz.",
+    "coords": {
+      "lat": 43,
+      "lng": 112
+    }
   },
   {
     "slug": "gem-green-fluorite",
@@ -131,7 +171,7 @@
     "line": "minerals",
     "tier": "collector",
     "species": "Fluorite (as identified)",
-    "locality": "Locality on request",
+    "locality": "Hunan Province, China",
     "sizeClass": "Miniature",
     "dimensions": "5 × 4 cm",
     "price": 22,
@@ -139,12 +179,20 @@
     "featured": false,
     "image": "/img/placeholder.svg",
     "treatment": "None",
-    "care": ["fades-in-sun"],
+    "care": [
+      "fades-in-sun"
+    ],
     "fluorescent": true,
     "asIdentified": true,
     "provenance": "Family collection, Grimsley TN",
     "condition": "Translucent green, being confirmed before final listing",
-    "description": "A translucent green piece we have identified as fluorite. We are confirming fluorite versus calcite by hardness and UV before it goes live at full price. Photo coming soon."
+    "description": "A translucent green piece we have identified as fluorite. We are confirming fluorite versus calcite by hardness and UV before it goes live at full price. Photo coming soon.",
+    "localityConfidence": "tentative",
+    "localityNote": "Translucent gem-green fluorite at this price is consistent with Hunan (China) material, but the call stays tentative since the ID is not lab-confirmed and green calcite or other sources can look similar.",
+    "coords": {
+      "lat": 27.6,
+      "lng": 111.7
+    }
   },
   {
     "slug": "epidote-on-quartz",
@@ -152,7 +200,7 @@
     "line": "minerals",
     "tier": "collector",
     "species": "Epidote",
-    "locality": "Balochistan, Pakistan",
+    "locality": "Zard Mountain, Kharan, Balochistan, Pakistan",
     "sizeClass": "Small Cabinet",
     "dimensions": "9.4 × 7 cm",
     "price": 145,
@@ -165,7 +213,13 @@
     "asIdentified": false,
     "provenance": "Estate-sourced, locality documented",
     "condition": "Excellent luster, clean terminations, one minor contact",
-    "description": "Lustrous dark green epidote in sharp bladed sprays against clear quartz. Balochistan is a leading modern source for well terminated epidote with this contrast."
+    "description": "Lustrous dark green epidote in sharp bladed sprays against clear quartz. Balochistan is a leading modern source for well terminated epidote with this contrast.",
+    "localityConfidence": "confirmed",
+    "localityNote": "The Zard Mountain / Ras Koh area of Kharan produces the lustrous dark-green chisel-terminated epidote on white quartz that defines modern Pakistani epidote.",
+    "coords": {
+      "lat": 28.55,
+      "lng": 65.42
+    }
   },
   {
     "slug": "chrysocolla-katanga",
@@ -186,7 +240,13 @@
     "asIdentified": true,
     "provenance": "Old stock",
     "condition": "Solid teal-blue, being confirmed before final listing",
-    "description": "Smooth botryoidal chrysocolla in a deep teal-blue. We are confirming natural chrysocolla versus dyed material before it goes live at full price, in keeping with our honest-grading promise."
+    "description": "Smooth botryoidal chrysocolla in a deep teal-blue. We are confirming natural chrysocolla versus dyed material before it goes live at full price, in keeping with our honest-grading promise.",
+    "localityConfidence": "likely",
+    "localityNote": "Katanga Copperbelt copper deposits are a common source of botryoidal chrysocolla, though the ID here is noted as not lab-confirmed.",
+    "coords": {
+      "lat": -10.72,
+      "lng": 25.47
+    }
   },
   {
     "slug": "citrine-heat-treated",
@@ -202,12 +262,21 @@
     "featured": false,
     "image": "/img/specimens/citrine.webp",
     "treatment": "Heat-treated amethyst (color only)",
-    "care": ["treated", "fades-in-sun"],
+    "care": [
+      "treated",
+      "fades-in-sun"
+    ],
     "fluorescent": false,
     "asIdentified": false,
     "provenance": "Old stock",
     "condition": "Fully natural crystal form, color is heat-set",
-    "description": "A warm amber citrine cluster. This is heat-treated amethyst, the standard and openly disclosed process behind most commercial citrine of this color. We label it as treated, not natural."
+    "description": "A warm amber citrine cluster. This is heat-treated amethyst, the standard and openly disclosed process behind most commercial citrine of this color. We label it as treated, not natural.",
+    "localityConfidence": "confirmed",
+    "localityNote": "Most heat-treated citrine in the trade is amethyst from Rio Grande do Sul, Brazil, turned golden by heating.",
+    "coords": {
+      "lat": -29.5,
+      "lng": -53
+    }
   },
   {
     "slug": "pink-halite",
@@ -223,12 +292,20 @@
     "featured": true,
     "image": "/img/placeholder.svg",
     "treatment": "None",
-    "care": ["water-soluble"],
+    "care": [
+      "water-soluble"
+    ],
     "fluorescent": false,
     "asIdentified": false,
     "provenance": "Estate-sourced",
     "condition": "Bladed pink crystals, keep dry",
-    "description": "Bladed pink halite from the Searles Lake beds. Halite is water-soluble, so keep it dry and out of humidity. Photo coming soon."
+    "description": "Bladed pink halite from the Searles Lake beds. Halite is water-soluble, so keep it dry and out of humidity. Photo coming soon.",
+    "localityConfidence": "confirmed",
+    "localityNote": "The pink bladed halite of Searles Lake at Trona, California is the signature source of this water-soluble collector salt.",
+    "coords": {
+      "lat": 35.76,
+      "lng": -117.37
+    }
   },
   {
     "slug": "blue-celestite",
@@ -236,7 +313,7 @@
     "line": "minerals",
     "tier": "collector",
     "species": "Celestite",
-    "locality": "Madagascar",
+    "locality": "Sakoany, Madagascar",
     "sizeClass": "Small Cabinet",
     "dimensions": "8 × 6 cm",
     "price": 50,
@@ -244,12 +321,20 @@
     "featured": false,
     "image": "/img/placeholder.svg",
     "treatment": "None",
-    "care": ["fades-in-sun"],
+    "care": [
+      "fades-in-sun"
+    ],
     "fluorescent": false,
     "asIdentified": false,
     "provenance": "Old stock, locality documented",
     "condition": "Soft blue, glassy crystals",
-    "description": "A geode section lined with soft blue celestite crystals from Madagascar, the classic source. Blue celestite fades in strong sun, so keep it out of a bright window. Photo coming soon."
+    "description": "A geode section lined with soft blue celestite crystals from Madagascar, the classic source. Blue celestite fades in strong sun, so keep it out of a bright window. Photo coming soon.",
+    "localityConfidence": "confirmed",
+    "localityNote": "The soft blue celestite geodes of Sakoany, Madagascar are the best-known source of this pale-blue crystal material.",
+    "coords": {
+      "lat": -15.8,
+      "lng": 46
+    }
   },
   {
     "slug": "malachite-botryoidal",
@@ -271,7 +356,13 @@
     "asIdentified": false,
     "provenance": "Old stock, locality documented",
     "condition": "Banded green botryoidal surfaces",
-    "description": "Rounded botryoidal malachite with the banded green surface collectors look for, from the Congo copper belt. Two pieces available. Photo coming soon."
+    "description": "Rounded botryoidal malachite with the banded green surface collectors look for, from the Congo copper belt. Two pieces available. Photo coming soon.",
+    "localityConfidence": "confirmed",
+    "localityNote": "The Katanga Copperbelt of the D.R. Congo is the classic source of banded and botryoidal malachite.",
+    "coords": {
+      "lat": -10.72,
+      "lng": 25.47
+    }
   },
   {
     "slug": "muscovite-with-pyrite",
@@ -279,7 +370,7 @@
     "line": "minerals",
     "tier": "collector",
     "species": "Muscovite, Pyrite",
-    "locality": "Locality on request",
+    "locality": "Panasqueira Mines, Portugal",
     "sizeClass": "Small Cabinet",
     "dimensions": "8 × 6 cm",
     "price": 75,
@@ -292,7 +383,13 @@
     "asIdentified": false,
     "provenance": "From a retired collector's cabinet",
     "condition": "Bladed mica fans with brassy pyrite, solid matrix",
-    "description": "Olive-gold blades of muscovite mica fanning across a brassy pyrite-bearing matrix. Chosen for the interplay of the mica fans against the metallic pyrite."
+    "description": "Olive-gold blades of muscovite mica fanning across a brassy pyrite-bearing matrix. Chosen for the interplay of the mica fans against the metallic pyrite.",
+    "localityConfidence": "likely",
+    "localityNote": "The muscovite-plus-pyrite-on-quartz association is a signature of the Panasqueira tin-tungsten mine, whose pyrite and silvery muscovite combos are well documented.",
+    "coords": {
+      "lat": 40.17,
+      "lng": -7.76
+    }
   },
   {
     "slug": "pyrite-cluster",
@@ -300,7 +397,7 @@
     "line": "minerals",
     "tier": "collector",
     "species": "Pyrite",
-    "locality": "Locality on request",
+    "locality": "Huanzala Mine, Ancash, Peru",
     "sizeClass": "Miniature",
     "dimensions": "5 × 5 cm",
     "price": 25,
@@ -313,7 +410,13 @@
     "asIdentified": false,
     "provenance": "Old stock",
     "condition": "Bright metallic cubes",
-    "description": "A cluster of bright metallic pyrite cubes. Stable in normal display conditions. Photo coming soon."
+    "description": "A cluster of bright metallic pyrite cubes. Stable in normal display conditions. Photo coming soon.",
+    "localityConfidence": "likely",
+    "localityNote": "Affordable pyrite clusters (versus the pricier perfect Spanish cubes) most commonly come from the Huanzala Mine in Peru.",
+    "coords": {
+      "lat": -9.65,
+      "lng": -77.05
+    }
   },
   {
     "slug": "aragonite-sputnik",
@@ -334,7 +437,13 @@
     "asIdentified": false,
     "provenance": "Old stock, locality documented",
     "condition": "Full symmetrical spray, minor natural tip wear",
-    "description": "An interlocking spray of reddish-brown aragonite crystals in the shape collectors call a sputnik. Moroccan aragonite is known for these bold clusters."
+    "description": "An interlocking spray of reddish-brown aragonite crystals in the shape collectors call a sputnik. Moroccan aragonite is known for these bold clusters.",
+    "localityConfidence": "confirmed",
+    "localityNote": "The radiating star-burst aragonite sputniks come from the Tazouta area of Morocco.",
+    "coords": {
+      "lat": 33.8,
+      "lng": -4.4
+    }
   },
   {
     "slug": "green-river-fish-plate",
@@ -429,7 +538,7 @@
     "line": "minerals",
     "tier": "bin",
     "species": "Quartz",
-    "locality": "Assorted",
+    "locality": "Assorted (likely Minas Gerais, Brazil)",
     "sizeClass": "Assorted",
     "dimensions": "varies",
     "price": 5,
@@ -443,7 +552,13 @@
     "asIdentified": false,
     "provenance": "Family collection",
     "condition": "Bin material, fun and affordable",
-    "description": "Common quartz clusters and single points, great starters and gifts. Zone-priced at the booth. Photo coming soon."
+    "description": "Common quartz clusters and single points, great starters and gifts. Zone-priced at the booth. Photo coming soon.",
+    "localityConfidence": "assorted",
+    "localityNote": "Common clear quartz clusters at bin pricing are typically Brazilian (Minas Gerais) rough, though at this grade material is genuinely mixed.",
+    "coords": {
+      "lat": -18.5,
+      "lng": -44
+    }
   },
   {
     "slug": "amethyst-in-matrix",
@@ -451,7 +566,7 @@
     "line": "minerals",
     "tier": "bin",
     "species": "Amethyst (Quartz)",
-    "locality": "Assorted",
+    "locality": "Rio Grande do Sul, Brazil",
     "sizeClass": "Assorted",
     "dimensions": "varies",
     "price": 8,
@@ -460,12 +575,20 @@
     "featured": false,
     "image": "/img/placeholder.svg",
     "treatment": "None",
-    "care": ["fades-in-sun"],
+    "care": [
+      "fades-in-sun"
+    ],
     "fluorescent": false,
     "asIdentified": false,
     "provenance": "Family collection",
     "condition": "Bin material",
-    "description": "Amethyst crystals in matrix, affordable decor pieces. Amethyst fades in strong sun. Photo coming soon."
+    "description": "Amethyst crystals in matrix, affordable decor pieces. Amethyst fades in strong sun. Photo coming soon.",
+    "localityConfidence": "likely",
+    "localityNote": "Inexpensive amethyst on matrix is typical of the basalt-hosted deposits of Rio Grande do Sul, the dominant global source of low-cost amethyst.",
+    "coords": {
+      "lat": -29.5,
+      "lng": -53
+    }
   },
   {
     "slug": "moroccan-geodes",
@@ -487,7 +610,13 @@
     "asIdentified": false,
     "provenance": "Old stock",
     "condition": "Crack-your-own crystal pockets",
-    "description": "Small Moroccan geodes with crystal pockets inside. Fun for kids. Photo coming soon."
+    "description": "Small Moroccan geodes with crystal pockets inside. Fun for kids. Photo coming soon.",
+    "localityConfidence": "likely",
+    "localityNote": "Small quartz-lined geodes sold by the bag are typically Moroccan.",
+    "coords": {
+      "lat": 31.8,
+      "lng": -6.5
+    }
   },
   {
     "slug": "shark-teeth-bag",

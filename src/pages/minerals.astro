@@ -9,6 +9,22 @@ const species = [...new Set(items.map((s) => s.species))].sort();
 const country = (loc) => (loc || "").split(",").pop().trim();
 const countries = [...new Set(items.map((s) => country(s.locality)).filter((c) => c && c !== "request"))].sort();
 const byTier = (t) => items.filter((s) => s.tier === t);
+
+// Origins: group pieces by country (last segment of the locality), ordered
+// west-to-east by average longitude so the strip reads like a world line.
+const countryOf = (loc) =>
+  (loc || "").replace(/\)/g, "").split(/,|\(/).map((s) => s.trim()).filter(Boolean).pop() || "Unknown";
+const originMap = {};
+for (const s of items) {
+  const c = countryOf(s.locality);
+  (originMap[c] ||= { country: c, pieces: [], lng: [] });
+  originMap[c].pieces.push(s);
+  if (s.coords) originMap[c].lng.push(s.coords.lng);
+}
+const origins = Object.values(originMap)
+  .map((o) => ({ ...o, avgLng: o.lng.length ? o.lng.reduce((a, b) => a + b, 0) / o.lng.length : 0 }))
+  .sort((a, b) => a.avgLng - b.avgLng);
+const originCount = origins.length;
 ---
 <Base title="Minerals — Grimsley Mineral Co." active="minerals">
   <div class="pagehead">
@@ -55,6 +71,29 @@ const byTier = (t) => items.filter((s) => s.tier === t);
           </div>
         </div>
       ))}
+    </div>
+  </section>
+
+  <section class="origins">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Sourced from around the world</div>
+        <h2>Where these pieces came from</h2>
+        <p>We trace each piece to its most likely source by comparing it against documented localities. {originCount} countries are represented in the minerals here, from the Americas east to Asia. Where we are not certain of the exact source, we say so on the piece.</p>
+      </div>
+      <div class="worldline">
+        {origins.map((o) => (
+          <div class="origin">
+            <div class="oc">{o.country}</div>
+            <div class="on">{o.pieces.length} piece{o.pieces.length > 1 ? "s" : ""}</div>
+            <div class="op">
+              {o.pieces.map((p) => (
+                <a href={u(`specimen/${p.slug}`)}>{p.name}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import { u, CARE_LABELS } from "../../consts";
 import specimens from "../../data/specimens.json";
 import { resolveMineral } from "../../data/minerals";
+import SpecimenCard from "../../components/SpecimenCard.astro";
 
 // Mohs positions for the hardness bar reference marks.
 const MOHS_REF = [
@@ -19,6 +20,24 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props;
+
+// Locality confidence -> honest qualifier shown next to the locality.
+const LOC_QUALIFIER = {
+  confirmed: "",
+  likely: "Most likely source",
+  tentative: "Best estimate",
+  assorted: "Assorted rough",
+};
+const locQualifier = LOC_QUALIFIER[item.localityConfidence] ?? "";
+
+// Similar pieces: same mineral species first, then same line, excluding self and
+// sold pieces. Up to 3.
+const sameKey = (s) => s.slug !== item.slug && s.status !== "sold";
+const similar = [
+  ...specimens.filter((s) => sameKey(s) && s.line === item.line && s.species === item.species),
+  ...specimens.filter((s) => sameKey(s) && s.line === item.line && s.species !== item.species),
+].filter((s, i, arr) => arr.findIndex((x) => x.slug === s.slug) === i).slice(0, 3);
+
 const lineLabel = {
   minerals: "Minerals",
   fossils: "Fossils & Shells",
@@ -101,7 +120,7 @@ const productSchema = {
 
       <dl class="spec">
         <div class="r"><dt>Species</dt><dd>{mineral ? <a href={u(`mineral/${mineral.key}`)}>{item.species}</a> : item.species}</dd></div>
-        <div class="r"><dt>Locality</dt><dd>{item.locality}</dd></div>
+        <div class="r"><dt>Locality</dt><dd>{item.locality}{locQualifier && <span class="loc-q">{locQualifier}</span>}</dd></div>
         <div class="r"><dt>Size class</dt><dd>{item.sizeClass}</dd></div>
         <div class="r"><dt>Dimensions</dt><dd>{item.dimensions}</dd></div>
         {item.provenance && <div class="r"><dt>Provenance</dt><dd>{item.provenance}</dd></div>}
@@ -112,6 +131,19 @@ const productSchema = {
         {item.worksStatus && <div class="r"><dt>Working status</dt><dd>{item.worksStatus}</dd></div>}
         <div class="r"><dt>Catalog</dt><dd>{item.slug.toUpperCase().replace(/-/g, " ")}</dd></div>
       </dl>
+
+      {item.localityNote && (
+        <div class="locnote">
+          <span class="pin">◈</span>
+          <div>
+            <span class="lh">On the locality</span>
+            <p>{item.localityNote}</p>
+            {item.localityConfidence && item.localityConfidence !== "confirmed" && (
+              <p class="hedge">We compare our pieces against documented localities to place a likely source. On this one we are not calling it as certain, just our best read from the material.</p>
+            )}
+          </div>
+        </div>
+      )}
 
       <div class="guarantee">
         <h4>Authenticity guaranteed</h4>
@@ -162,6 +194,20 @@ const productSchema = {
         <div class="mp-foot">
           <p><b>Handling:</b> {mineral.care}</p>
           <a class="mp-link" href={u(`mineral/${mineral.key}`)}>Full {mineral.name} reference and pieces in stock →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {similar.length > 0 && (
+    <section class="learn">
+      <div class="wrap">
+        <div class="sec-top">
+          <div class="k">More from the collection</div>
+          <h2>Pieces you might pair with this</h2>
+        </div>
+        <div class="grid">
+          {similar.map((s) => <SpecimenCard item={s} />)}
         </div>
       </div>
     </section>
