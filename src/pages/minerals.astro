@@ -4,6 +4,10 @@ import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "minerals");
 const sizes = ["Miniature", "Small Cabinet", "Cabinet"];
+// Facets derived from live inventory (don't hardcode a master list).
+const species = [...new Set(items.map((s) => s.species))].sort();
+const country = (loc) => (loc || "").split(",").pop().trim();
+const countries = [...new Set(items.map((s) => country(s.locality)).filter((c) => c && c !== "request"))].sort();
 ---
 <Base title="Minerals — Grimsley Mineral Co." active="minerals">
   <div class="pagehead">
@@ -29,6 +33,18 @@ const sizes = ["Miniature", "Small Cabinet", "Cabinet"];
           <button class="chip" data-filter="price" data-value="100-250">$100 – $250</button>
           <button class="chip" data-filter="price" data-value="250-99999">$250+</button>
         </div>
+        <span class="sep"></span>
+        <div class="grp">
+          <span class="lbl">Species</span>
+          <button class="chip on" data-filter="species" data-value="all">All</button>
+          {species.map((sp) => <button class="chip" data-filter="species" data-value={sp}>{sp}</button>)}
+        </div>
+        <span class="sep"></span>
+        <div class="grp">
+          <span class="lbl">Locality</span>
+          <button class="chip on" data-filter="locality" data-value="all">All</button>
+          {countries.map((c) => <button class="chip" data-filter="locality" data-value={c}>{c}</button>)}
+        </div>
         <span class="count" id="count"></span>
       </div>
 
@@ -43,7 +59,7 @@ const sizes = ["Miniature", "Small Cabinet", "Cabinet"];
       const grid = document.getElementById("grid");
       const cards = Array.from(grid.querySelectorAll(".card"));
       const countEl = document.getElementById("count");
-      const state = { size: "all", price: "all" };
+      const state = { size: "all", price: "all", species: "all", locality: "all" };
 
       function apply() {
         let shown = 0;
@@ -55,7 +71,9 @@ const sizes = ["Miniature", "Small Cabinet", "Cabinet"];
             const [lo, hi] = state.price.split("-").map(Number);
             okPrice = price >= lo && price <= hi;
           }
-          const show = okSize && okPrice;
+          const okSpecies = state.species === "all" || c.dataset.species === state.species;
+          const okLocality = state.locality === "all" || (c.dataset.locality || "").includes(state.locality);
+          const show = okSize && okPrice && okSpecies && okLocality;
           c.classList.toggle("hide", !show);
           if (show) shown++;
         });

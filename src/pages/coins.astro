@@ -6,6 +6,16 @@ const all = specimens.filter((s) => s.line === "coins");
 const bullion = all.filter((s) => s.coinType === "bullion");
 const coins = all.filter((s) => s.coinType === "numismatic");
 const notes = all.filter((s) => s.coinType === "banknote");
+
+// The Sheldon grading ladder (1–70), in plain English.
+const grades = [
+  { g: "P–1 to AG–3", band: "1–3", d: "Poor to About Good — heavily worn, but identifiable." },
+  { g: "G–4 to VG–10", band: "4–10", d: "Good to Very Good — worn but whole, major detail visible." },
+  { g: "F–12 to VF–35", band: "12–35", d: "Fine to Very Fine — moderate, even wear; a solid collector coin." },
+  { g: "XF–40 / AU–58", band: "40–58", d: "Extremely Fine to About Uncirculated — light wear on the high points only." },
+  { g: "MS–60 to MS–70", band: "60–70", d: "Mint State — never circulated, from lightly marked (60) to flawless (70)." },
+  { g: "PR / PF–60 to 70", band: "60–70", d: "Proof — struck from special dies and planchets, sharper and mirror-like." },
+];
 ---
 <Base title="Coins & Currency — Grimsley Mineral Co." active="coins">
   <div class="pagehead">
@@ -45,6 +55,29 @@ const notes = all.filter((s) => s.coinType === "banknote");
 
     </div>
   </section>
+
+  <!-- GRADING EXPLAINER -->
+  <div class="prose">
+    <h2>How coins are graded</h2>
+    <p class="lead">Coins are graded on the Sheldon scale, a 1&ndash;70 ladder where a higher number means less wear and a sharper strike &mdash; from a barely-readable coin at the bottom to a flawless one at the top.</p>
+    <div class="tablewrap">
+      <table class="gradescale">
+        <thead><tr><th>Grade</th><th>Number</th><th>What it means</th></tr></thead>
+        <tbody>
+          {grades.map((r) => <tr><td class="g">{r.g}</td><td class="band">{r.band}</td><td>{r.d}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Raw vs. slabbed</h3>
+    <p>A <b>raw</b> coin is ungraded and not in a holder &mdash; we describe its grade honestly, but the judgment is ours. A <b>slabbed</b> (certified) coin has been graded and sealed by an independent service with a serial number on the label. When we sell a certified coin, we name the service and give you the number so you can confirm it yourself.</p>
+
+    <h3>The grading services</h3>
+    <p>The names to know are <b>PCGS</b> and <b>NGC</b>, the two major third-party graders, plus <b>ANACS</b> and the green <b>CAC</b> sticker that marks a coin as strong for its grade. A coin certified by one of these is easier to trust and to resell than a raw coin, because a neutral expert has already vouched for it.</p>
+
+    <h3>What a listing tells you</h3>
+    <p>Every coin carries the facts that decide its value: the <b>year</b> and <b>mint mark</b> (P, D, S, O, CC, or W &mdash; the letter for the mint that struck it), the <b>denomination</b> and <b>series</b>, the <b>grade</b>, and, if certified, the <b>service and certification number</b>. Bullion also lists <b>metal</b>, <b>weight</b>, and <b>purity</b>, since those set the price. Paper money adds the <b>series year</b>, <b>seal color</b>, and whether it is a <b>star note</b>.</p>
+  </div>
 
   <section class="trust">
     <div class="wrap">
