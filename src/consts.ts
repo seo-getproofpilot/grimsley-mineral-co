@@ -24,6 +24,11 @@ export const SITE = {
   // CONFIRM: the inbox that contact-form messages should land in.
   email: "grimsleymineralco@gmail.com",
 
+  // Where the footer email signup POSTs. Paste the Google Apps Script web-app
+  // URL here (see docs/EMAIL-LIST-SETUP.md). Leave it empty and the form falls
+  // back to opening a pre-filled email instead, so it is never a dead end.
+  newsletterEndpoint: "",
+
   address: {
     street: "5521 South York Hwy",
     city: "Grimsley",

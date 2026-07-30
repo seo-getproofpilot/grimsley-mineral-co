@@ -23,6 +23,12 @@ export function getStaticPaths() {
 
 const { item } = Astro.props;
 
+// Optional Stripe Payment Link for this exact piece. Add "buyUrl" to a specimen
+// in specimens.json and this page grows a Buy button; leave it off and the page
+// behaves exactly as before (reserve for booth pickup). Every piece is one of
+// one, so set the Stripe link's quantity to 1 and it sells out by itself.
+const buyUrl: string = (item as Record<string, any>).buyUrl ?? "";
+
 // Locality confidence -> honest qualifier shown next to the locality.
 const LOC_QUALIFIER = {
   confirmed: "",
@@ -132,13 +138,16 @@ const productSchema = {
       )}
 
       <div class="cta">
+        {item.status === "available" && buyUrl && (
+          <a class="btn btn-gold" href={buyUrl} rel="nofollow">Buy now — ${item.price}.00</a>
+        )}
         {item.status === "available" && (
           <button
-            class="btn btn-dark js-reserve"
+            class={`btn js-reserve ${buyUrl ? "btn-ghost" : "btn-dark"}`}
             data-slug={item.slug}
             data-name={item.name}
             data-price={item.price}
-          >{item.line === "lava" ? "Add to inquiry list" : "Reserve this piece"}</button>
+          >{item.line === "lava" ? "Add to inquiry list" : (buyUrl ? "Or reserve for the booth" : "Reserve this piece")}</button>
         )}
         {item.status === "reserved" && <a class="btn btn-ghost" href={u("contact")}>Ask about this piece</a>}
         {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
