@@ -27,7 +27,8 @@ export const SITE = {
   // Where the footer email signup POSTs. Paste the Google Apps Script web-app
   // URL here (see docs/EMAIL-LIST-SETUP.md). Leave it empty and the form falls
   // back to opening a pre-filled email instead, so it is never a dead end.
-  newsletterEndpoint: "",
+  newsletterEndpoint:
+    "https://script.google.com/macros/s/AKfycbx4Ly9N_ZzjuT9cnR2vXyLMoT_AHrKhR1z-j_Eaq6lW3PzbECQLapl0PkMzfjDdCD1fAw/exec",
 
   address: {
     street: "5521 South York Hwy",
