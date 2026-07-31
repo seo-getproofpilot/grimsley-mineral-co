@@ -68,6 +68,6 @@ export const CARE_LABELS: Record<string, string> = {
 // Tier metadata for the minerals page split (decor vs collector).
 export const TIERS = [
   { key: "vault", label: "The Vault", note: "Standout specimens, $150 and up. The best of what we've cataloged." },
-  { key: "collector", label: "Collector Specimens", note: "Documented pieces with real localities, $25 to $150. Sized and honestly described." },
+  { key: "collector", label: "Collector Specimens", note: "Documented pieces with real localities. Sized, sourced, and honestly described." },
   { key: "bin", label: "The Bin", note: "Fun, affordable material under $25. Great starters, gifts, and grab-and-go." },
 ];
