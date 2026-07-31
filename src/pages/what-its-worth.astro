@@ -1,0 +1,231 @@
+---
+// The pillar page: how mineral specimen pricing actually works.
+//
+// This is the question every beginner has and the one the internet answers
+// worst. It is deliberately NOT a price list — we do not have that data and
+// neither does anybody else. It is the reasoning system, which is evergreen and
+// true, plus real numbers from our own catalog rather than invented ones.
+import Base from "../layouts/Base.astro";
+import { u } from "../consts";
+import { VALUE_FACTORS } from "../data/value";
+import { MINERALS } from "../data/minerals";
+import specimens from "../data/specimens.json";
+import { TIERS } from "../consts";
+
+// Real numbers, computed from our own catalog. Never hardcoded — if inventory
+// changes, this page stays true without anyone editing it.
+const priced = specimens.filter((s) => Number(s.price) > 0);
+const byTier = TIERS.map((t) => {
+  const inTier = priced.filter((s) => s.tier === t.key);
+  const prices = inTier.map((s) => Number(s.price)).sort((a, b) => a - b);
+  return {
+    ...t,
+    count: inTier.length,
+    low: prices[0] ?? null,
+    high: prices[prices.length - 1] ?? null,
+  };
+}).filter((t) => t.count > 0);
+
+// The real trade size classes, smallest to largest. Filtered against a known
+// list on purpose — the sizeClass field also legitimately carries "Assorted"
+// for bulk lots and a literal measurement for the lava lamps, and neither of
+// those is a size class you'd compare a specimen against.
+const SIZE_ORDER = ["Thumbnail", "Miniature", "Small Cabinet", "Cabinet"];
+const sizeClasses = SIZE_ORDER.filter((c) => priced.some((s) => s.sizeClass === c));
+
+// Species we can actually speak to, for the deep-dive links at the bottom.
+const covered = [...new Set(priced.map((s) => s.species))]
+  .map((sp) => {
+    const key = Object.values(MINERALS).find((m) => sp.toLowerCase().includes(m.name.toLowerCase()));
+    return key ? { name: key.name, key: key.key } : null;
+  })
+  .filter((x): x is { name: string; key: string } => x !== null)
+  .filter((x, i, arr) => arr.findIndex((y) => y.key === x.key) === i)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What a mineral specimen is actually worth",
+  "description":
+    "Minerals have no price guide. This is the system collectors actually use to judge what a specimen is worth — damage, crystal quality, color, size class, locality, and composition — explained in plain English.",
+  "author": { "@type": "Organization", "name": "Grimsley Mineral Co." },
+  "publisher": { "@type": "Organization", "name": "Grimsley Mineral Co." },
+};
+---
+<Base
+  title="What a Mineral Specimen Is Actually Worth — Grimsley Mineral Co."
+  description="There is no price guide for minerals. There is a system. Damage, crystal quality, color, size class, locality, and composition — what actually moves a specimen's price, in plain English."
+  active=""
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / What it's worth</div>
+      <h1>What a specimen is actually worth</h1>
+      <p>
+        Coins have PCGS. Baseball cards have population reports and sales databases going back
+        decades. Watches have Chrono24. If you want to know what a 1955 quarter is worth, thirty
+        seconds gets you a defensible number.
+      </p>
+      <p>
+        Minerals have almost nothing. The best reference on the internet is a scientific database
+        that deliberately does not discuss price. eBay shows you some sold listings, but only some,
+        only for a while, and with no way to tell a fine specimen from a damaged one in a flattering
+        photo. Everything else is a dealer's asking price, and asking prices are not sale prices.
+      </p>
+      <p>
+        So people guess. And because they know they are guessing, most of them don't buy at all —
+        the thing standing between someone and their first good specimen is almost never the price.
+        It's not knowing whether the price is fair.
+      </p>
+      <p>
+        We can't fix that with a price list. Nobody has that data, and anyone who publishes one for
+        minerals is making it up. What we can do is explain the system, which is real, consistent,
+        and learnable in about ten minutes.
+      </p>
+    </div>
+  </div>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">The system</div>
+        <h2>Six things move the price</h2>
+        <p>
+          Roughly in order of how much they matter. Get the first one right and you will avoid the
+          expensive mistake almost everyone makes early.
+        </p>
+      </div>
+
+      <ol class="vfactors">
+        {VALUE_FACTORS.map((f, i) => (
+          <li class="vf">
+            <div class="vf-head">
+              <span class="vf-n">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{f.name}</h3>
+                <span class={`vf-w w-${f.weight.toLowerCase()}`}>{f.weight} factor</span>
+              </div>
+            </div>
+            <p>{f.detail}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="learn alt">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Honest numbers</div>
+        <h2>What we actually charge, and why</h2>
+        <p>
+          Rather than invent market averages, here is our own catalog. These are real asking prices
+          for real pieces you can go look at right now, sorted the way we sort them.
+        </p>
+      </div>
+
+      <div class="vbands">
+        {byTier.map((t) => (
+          <div class="vb">
+            <div class="vb-name">{t.label}</div>
+            <div class="vb-range">
+              {t.low === t.high ? `$${t.low}` : `$${t.low} – $${t.high}`}
+            </div>
+            <div class="vb-count">{t.count} {t.count === 1 ? "piece" : "pieces"}</div>
+            <p>{t.note}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="vnote">
+        The tiers are about quality and documentation, not size. A small, perfectly formed,
+        confidently attributed piece sits in a higher tier than a large one with a chipped face and
+        a vague locality — which is the whole point of the six factors above.
+        {sizeClasses.length > 0 && (
+          <> We publish a size class on every piece ({sizeClasses.join(", ")}) so you are comparing
+          like with like.</>
+        )}
+      </p>
+
+      <div class="center-cta">
+        <a class="btn btn-dark" href={u("sold")}>See what pieces actually sold for</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Before you pay</div>
+        <h2>Four questions worth asking any seller</h2>
+      </div>
+
+      <div class="vasks">
+        <div class="va">
+          <h4>"Is there any damage, and where?"</h4>
+          <p>
+            A good seller answers this specifically and without hedging, because they have already
+            looked. A vague answer to a direct question about damage is the answer.
+          </p>
+        </div>
+        <div class="va">
+          <h4>"Has it been treated or repaired?"</h4>
+          <p>
+            Heating, dyeing, and repair are normal and legitimate when disclosed. The disclosure is
+            what you are testing for, not the treatment.
+          </p>
+        </div>
+        <div class="va">
+          <h4>"How confident are you in the locality?"</h4>
+          <p>
+            "Probably Moroccan" is a fine and honest answer. A suspiciously precise mine name on a
+            cheap piece is worth more scrutiny than a shrug.
+          </p>
+        </div>
+        <div class="va">
+          <h4>"Can I see the back?"</h4>
+          <p>
+            Most damage lives where the camera wasn't. Any seller who will not photograph the other
+            side has told you something.
+          </p>
+        </div>
+      </div>
+
+      <div class="vpromise">
+        <h4>What we do about it</h4>
+        <p>
+          Every piece we list carries its condition, its treatment status, its size class, and an
+          honest confidence level on its locality — including "we don't know" when we don't. When a
+          piece sells we leave the page up permanently with what it sold for, because the
+          <a href={u("sold")}> record of real sale prices</a> is the thing this hobby is missing and
+          it only exists if somebody keeps it.
+        </p>
+        <p>
+          <a href={u("standard")}>Our full standard</a> · <a href={u("authenticity")}>How we handle authenticity</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {covered.length > 0 && (
+    <section class="learn alt">
+      <div class="wrap">
+        <div class="sec-top">
+          <div class="k">By species</div>
+          <h2>What drives the price for a specific mineral</h2>
+          <p>The six factors apply to everything. What they mean in practice changes by species.</p>
+        </div>
+        <div class="vspecies">
+          {covered.map((c) => (
+            <a class="vs" href={u(`mineral/${c.key}`)}>{c.name}</a>
+          ))}
+        </div>
+        <div class="center-cta">
+          <a class="btn btn-dark" href={u("localities")}>Or browse by locality</a>
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

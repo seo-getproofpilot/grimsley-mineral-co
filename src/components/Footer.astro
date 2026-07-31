@@ -1,7 +1,9 @@
 ---
 import { u, SITE, FULL_ADDRESS } from "../consts";
+import EmailCapture from "./EmailCapture.astro";
 ---
 <footer class="site">
+  <EmailCapture />
   <div class="fgrid">
     <div>
       <div class="name">Grimsley Mineral Co.</div>
@@ -15,9 +17,12 @@ import { u, SITE, FULL_ADDRESS } from "../consts";
       <a href={u("lava-lamps")}>Lava Lamps</a>
       <a href={u("coins")}>Coins &amp; Currency</a>
       <a href={u("nails")}>Bugged Out Nails</a>
+      <a href={u("localities")}>Browse by Locality</a>
+      <a href={u("sold")}>Sold Archive</a>
     </div>
     <div class="col">
       <h5>Learn</h5>
+      <a href={u("what-its-worth")}>What a Specimen Is Worth</a>
       <a href={u("standard")}>Our Standard</a>
       <a href={u("authenticity")}>Authenticity &amp; Honesty</a>
       <a href={u("field-notes")}>Field Notes</a>

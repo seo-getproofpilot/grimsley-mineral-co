@@ -1,0 +1,117 @@
+---
+// Locality hub. The "where is it from" axis of the catalog, parallel to the
+// "what species is it" axis at /mineral/[key]/.
+//
+// These pages are built to get deeper over time without anyone writing more
+// copy: live pieces rotate through and out, but the sold list below them only
+// grows. A locality hub with two live specimens today is a locality hub with
+// two live and twenty sold in two years — which is the version worth reading.
+import Base from "../../layouts/Base.astro";
+import { u } from "../../consts";
+import SpecimenCard from "../../components/SpecimenCard.astro";
+import { LOCALITIES } from "../../data/localities";
+import specimens from "../../data/specimens.json";
+
+export function getStaticPaths() {
+  return LOCALITIES.map((loc) => ({ params: { slug: loc.slug }, props: { loc } }));
+}
+
+const { loc } = Astro.props;
+
+const here = specimens.filter((s) => loc.matches.includes(s.locality));
+const live = here.filter((s) => s.status !== "sold");
+const sold = here.filter((s) => s.status === "sold");
+
+// Species represented here, for the at-a-glance strip.
+const species = [...new Set(here.map((s) => s.species))];
+
+// Other localities, for lateral browsing. Prefer ones sharing a species.
+const related = LOCALITIES.filter((l) => l.slug !== loc.slug)
+  .map((l) => {
+    const theirs = specimens.filter((s) => l.matches.includes(s.locality));
+    const overlap = theirs.filter((s) => species.includes(s.species)).length;
+    return { l, overlap, count: theirs.length };
+  })
+  .sort((a, b) => b.overlap - a.overlap || b.count - a.count)
+  .slice(0, 4);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": `${loc.name}, ${loc.region}`,
+  "description": loc.about,
+  "geo": { "@type": "GeoCoordinates", "latitude": loc.lat, "longitude": loc.lng },
+};
+---
+<Base
+  title={`${loc.name}, ${loc.region} — Specimen Locality — Grimsley Mineral Co.`}
+  description={`${loc.name}, ${loc.region} — ${loc.known}. Cataloged specimens from this locality, with what we have now and what has sold.`}
+  active="minerals"
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb">
+        <a href={u("")}>Home</a> / <a href={u("localities")}>Localities</a> / {loc.name}
+      </div>
+      <h1>{loc.name}</h1>
+      <p class="loc-region">{loc.region} &nbsp;·&nbsp; Known for {loc.known}</p>
+      <p>{loc.about}</p>
+    </div>
+  </div>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="loc-facts">
+        <div class="f"><span class="l">Region</span><span class="v">{loc.region}</span></div>
+        <div class="f"><span class="l">Cataloged from here</span><span class="v">{here.length} {here.length === 1 ? "piece" : "pieces"}</span></div>
+        <div class="f"><span class="l">Species</span><span class="v">{species.join(", ")}</span></div>
+        <div class="f"><span class="l">Coordinates</span><span class="v">{loc.lat.toFixed(1)}, {loc.lng.toFixed(1)}</span></div>
+      </div>
+
+      <div class="sec-top">
+        <div class="k">Available now</div>
+        <h2>{live.length > 0 ? `${loc.name} pieces in the catalog` : `Nothing from ${loc.name} in stock right now`}</h2>
+        {live.length === 0 && (
+          <p>Stock from any one locality rotates. The sold record below stays put, so you can still see what this locality has produced for us and what it went for.</p>
+        )}
+      </div>
+      {live.length > 0 && (
+        <div class="grid">
+          {live.map((item) => <SpecimenCard item={item} />)}
+        </div>
+      )}
+
+      {sold.length > 0 && (
+        <>
+          <div class="sec-top" style="margin-top:56px;">
+            <div class="k">Sold record</div>
+            <h2>Previously sold from {loc.name}</h2>
+            <p>We leave sold pieces up permanently. There is no public price record for mineral specimens the way coins have one, so ours is the only record of what these pieces actually went for.</p>
+          </div>
+          <div class="grid">
+            {sold.map((item) => <SpecimenCard item={item} />)}
+          </div>
+        </>
+      )}
+
+      <div class="sec-top" style="margin-top:56px;">
+        <div class="k">Elsewhere</div>
+        <h2>Other localities we catalog</h2>
+      </div>
+      <div class="loc-related">
+        {related.map(({ l, count }) => (
+          <a class="lr" href={u(`locality/${l.slug}`)}>
+            <span class="n">{l.name}</span>
+            <span class="r">{l.region}</span>
+            <span class="c">{count} {count === 1 ? "piece" : "pieces"}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="center-cta">
+        <a class="btn btn-dark" href={u("localities")}>Browse all localities</a>
+      </div>
+    </div>
+  </section>
+</Base>

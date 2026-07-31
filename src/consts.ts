@@ -24,6 +24,11 @@ export const SITE = {
   // CONFIRM: the inbox that contact-form messages should land in.
   email: "grimsleymineralco@gmail.com",
 
+  // Where the footer email signup POSTs. Paste the Google Apps Script web-app
+  // URL here (see docs/EMAIL-LIST-SETUP.md). Leave it empty and the form falls
+  // back to opening a pre-filled email instead, so it is never a dead end.
+  newsletterEndpoint: "",
+
   address: {
     street: "5521 South York Hwy",
     city: "Grimsley",
@@ -63,6 +68,6 @@ export const CARE_LABELS: Record<string, string> = {
 // Tier metadata for the minerals page split (decor vs collector).
 export const TIERS = [
   { key: "vault", label: "The Vault", note: "Standout specimens, $150 and up. The best of what we've cataloged." },
-  { key: "collector", label: "Collector Specimens", note: "Documented pieces with real localities, $25 to $150. Sized and honestly described." },
+  { key: "collector", label: "Collector Specimens", note: "Documented pieces with real localities. Sized, sourced, and honestly described." },
   { key: "bin", label: "The Bin", note: "Fun, affordable material under $25. Great starters, gifts, and grab-and-go." },
 ];
