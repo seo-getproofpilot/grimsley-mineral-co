@@ -3,6 +3,8 @@ import Base from "../../layouts/Base.astro";
 import { u } from "../../consts";
 import SpecimenCard from "../../components/SpecimenCard.astro";
 import { MINERALS, resolveMineral } from "../../data/minerals";
+import { MINERAL_VALUE, VALUE_FACTORS } from "../../data/value";
+import { LOCALITIES } from "../../data/localities";
 import specimens from "../../data/specimens.json";
 
 export function getStaticPaths() {
@@ -32,6 +34,21 @@ const nums = (mineral.hardness.match(/[\d.]+/g) || []).map(Number);
 const hardnessNum = nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
 
 const isFluor = mineral.fluorescence && !/^not/i.test(mineral.fluorescence);
+
+// Pricing guidance for this species, if we have written it. See value.ts.
+const value = MINERAL_VALUE[mineral.key] ?? null;
+
+// Real price range from our own catalog for this species — computed, never
+// hardcoded, so it cannot drift out of date.
+const prices = inStock.map((s) => Number(s.price)).filter((n) => n > 0).sort((a, b) => a - b);
+const priceLow = prices[0] ?? null;
+const priceHigh = prices[prices.length - 1] ?? null;
+
+// Localities in the catalog that have produced this species — ties the value
+// discussion to the "locality matters" factor with real internal links.
+const localHubs = LOCALITIES.filter((l) =>
+  inStock.some((s) => l.matches.includes(s.locality))
+);
 
 // DefinedTerm-ish schema for the reference page.
 const schema = {
@@ -90,7 +107,66 @@ const schema = {
     </div>
   </section>
 
-  <section class="learn">
+  {value && (
+    <section class="learn">
+      <div class="wrap">
+        <div class="sec-top">
+          <div class="k">What it's worth</div>
+          <h2>What drives the price of {mineral.name.toLowerCase()}</h2>
+          <p>
+            There is no price guide for minerals the way there is for coins. There is a
+            <a href={u("what-its-worth")}> system for judging value</a>, and this is what it means
+            for this species specifically.
+          </p>
+        </div>
+
+        <div class="valgrid">
+          <div class="val v-drive">
+            <h4>What you're paying for</h4>
+            <p>{value.drivers}</p>
+          </div>
+          <div class="val v-watch">
+            <h4>What to watch for</h4>
+            <p>{value.watchFor}</p>
+          </div>
+          <div class="val v-buy">
+            <h4>If you're buying your first one</h4>
+            <p>{value.buying}</p>
+          </div>
+        </div>
+
+        {priceLow !== null && (
+          <div class="valband">
+            <span class="l">What we currently ask for {mineral.name.toLowerCase()}</span>
+            <span class="v">{priceLow === priceHigh ? `$${priceLow}` : `$${priceLow} – $${priceHigh}`}</span>
+            <span class="n">
+              Across {inStock.length} {inStock.length === 1 ? "piece" : "pieces"} in the catalog right now. Real asking
+              prices for pieces you can look at, not a market average — nobody has that data for minerals.
+            </span>
+          </div>
+        )}
+
+        {localHubs.length > 0 && (
+          <p class="valloc">
+            Locality is one of the six factors. Ours currently comes from{" "}
+            {localHubs.map((l, i) => (<>{i > 0 && (i === localHubs.length - 1 ? " and " : ", ")}<a href={u(`locality/${l.slug}`)}>{l.name}</a>{i === localHubs.length - 1 ? "." : ""}</>))}
+          </p>
+        )}
+
+        <div class="valfactors">
+          <span class="vfl">The six factors:</span>
+          {VALUE_FACTORS.map((f, i) => (
+            <>
+              {i > 0 && <span class="sep">·</span>}
+              <a href={u("what-its-worth")} title={f.short}>{f.name}</a>
+            </>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="learn alt">
     <div class="wrap">
       <div class="sec-top">
         <div class="k">In the collection</div>

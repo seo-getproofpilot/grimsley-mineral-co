@@ -354,6 +354,70 @@ footer .col a:hover{color:var(--gold-bright);}
 .soldtable .date{color:var(--muted);}
 .soldnote{font-size:13.5px;color:var(--muted);max-width:70ch;margin:18px 0 0;}
 
+/* ── What it's worth ──────────────────────────────────────────
+   Pricing guidance. Reads as reference material rather than
+   sales copy — this section's job is to be trusted, so it stays
+   quiet and lets the type do the work. */
+.learn.alt{background:var(--cream);}
+
+/* Capped rather than full-bleed: these are long paragraphs, and a 1290px
+   container with a 78ch measure leaves a third of the row empty. */
+.vfactors{list-style:none;margin:0 auto;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);max-width:1020px;}
+.vf{background:var(--bg);padding:30px 32px;}
+.vf-head{display:flex;gap:20px;align-items:baseline;margin-bottom:12px;}
+.vf-n{font-family:var(--serif);font-size:30px;color:var(--line-2);line-height:1;font-variant-numeric:tabular-nums;}
+.vf h3{font-size:23px;font-weight:600;line-height:1.15;}
+.vf-w{display:inline-block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.vf-w.w-biggest{color:var(--gold);}
+.vf-w.w-major{color:var(--ink-2);}
+.vf p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.72;max-width:78ch;}
+
+.vbands{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.vb{background:var(--bg);border:1px solid var(--line-2);padding:26px 28px;}
+.vb-name{font-family:var(--serif);font-size:21px;color:var(--ink);}
+.vb-range{font-family:var(--serif);font-size:31px;color:var(--gold);margin-top:8px;font-variant-numeric:tabular-nums;line-height:1.1;}
+.vb-count{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.vb p{font-size:14px;color:var(--ink-2);margin:14px 0 0;line-height:1.6;}
+.vnote{font-size:15px;color:var(--ink-2);max-width:80ch;margin:26px 0 0;line-height:1.7;}
+
+.vasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.va{border-left:2px solid var(--gold);padding:2px 0 2px 20px;}
+.va h4{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.3;}
+.va p{font-size:14.5px;color:var(--ink-2);margin:9px 0 0;line-height:1.65;}
+
+.vpromise{margin-top:44px;background:var(--cream);border:1px solid var(--line-2);padding:30px 32px;}
+.vpromise h4{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.vpromise p{font-size:15.5px;color:var(--ink-2);margin:14px 0 0;line-height:1.72;max-width:80ch;}
+.vpromise a{color:var(--gold);border-bottom:1px solid currentColor;}
+
+.vspecies{display:flex;flex-wrap:wrap;gap:10px;}
+.vspecies .vs{border:1px solid var(--line-2);background:var(--bg);padding:11px 20px;font-size:14.5px;color:var(--ink);transition:border-color .18s,color .18s;}
+.vspecies .vs:hover{border-color:var(--gold);color:var(--gold);}
+
+/* Per-species value block on /mineral/[key]/ */
+.valgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+.val{background:var(--bg);padding:26px 28px;}
+.val h4{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);}
+.val.v-drive h4{color:var(--gold);}
+.val p{font-size:15px;color:var(--ink-2);margin:12px 0 0;line-height:1.7;}
+
+.valband{margin-top:26px;border:1px solid var(--line-2);background:var(--cream);padding:24px 28px;display:flex;flex-direction:column;gap:5px;}
+.valband .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.valband .v{font-family:var(--serif);font-size:30px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1;}
+.valband .n{font-size:13.5px;color:var(--muted);max-width:74ch;line-height:1.6;margin-top:4px;}
+
+.worthlink{font-size:14px;color:var(--muted);border-top:1px solid var(--line);margin:20px 0 0;padding-top:16px;line-height:1.6;}
+.worthlink a{color:var(--gold);border-bottom:1px solid currentColor;}
+
+.valloc{font-size:15px;color:var(--ink-2);margin:22px 0 0;}
+.valloc a{color:var(--gold);border-bottom:1px solid currentColor;}
+
+.valfactors{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.valfactors .vfl{letter-spacing:.14em;text-transform:uppercase;font-size:11px;}
+.valfactors a{color:var(--ink-2);border-bottom:1px solid var(--line-2);}
+.valfactors a:hover{color:var(--gold);border-color:var(--gold);}
+.valfactors .sep{color:var(--line-2);}
+
 /* Sold banner on an individual specimen page. */
 .soldbanner{border:1px solid var(--line-2);background:var(--cream);padding:20px 22px;margin:4px 0 22px;}
 .soldbanner .sb-top{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
