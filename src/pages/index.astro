@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
+import BoothBar from "../components/BoothBar.astro";
 import specimens from "../data/specimens.json";
 import { u } from "../consts";
 
@@ -77,6 +78,7 @@ const heroCss =
         <h2>Newly cataloged specimens</h2>
         <p>Each piece is photographed as it is, with its locality and size on the label.</p>
       </div>
+      <BoothBar />
       <div class="grid">
         {featuredMinerals.map((item) => <SpecimenCard item={item} />)}
       </div>

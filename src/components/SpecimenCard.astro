@@ -1,6 +1,7 @@
 ---
-import { u, CARE_LABELS } from "../consts";
+import { u, CARE_LABELS, boothPrice } from "../consts";
 const { item } = Astro.props;
+const booth = boothPrice(item);
 const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status] || "";
 const showBadge = item.status !== "available";
 const care = item.care || [];
@@ -23,5 +24,12 @@ const care = item.care || [];
     <div class="row">
       <span class="price"><span class="cur">$</span>{item.price}.00{item.priceNote && <span class="pn"> {item.priceNote}</span>}</span>
     </div>
+    {booth && (
+      <div class="booth-price">
+        <span class="was">${item.price}.00</span>
+        <span class="now">${booth}.00</span>
+        <span class="tag">127 booth price</span>
+      </div>
+    )}
   </div>
 </a>

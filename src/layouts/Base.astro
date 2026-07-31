@@ -4,6 +4,14 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE, FULL_ADDRESS, u } from "../consts";
 
+// Booth-sale window. Rendered from the build date so the page is correct with
+// JavaScript off, then corrected in the browser by the inline script below.
+// Without that correction a static site with no deploy after Aug 9 would go on
+// advertising a discount that has ended.
+const today = new Date().toISOString().slice(0, 10);
+const boothPhase =
+  today > SITE.event.endDate ? "" : today < SITE.event.startDate ? "before" : "live";
+
 const {
   title = "Grimsley Mineral Co.",
   description = "Display-grade minerals, fossils, hand-built lava lamps, and collector coins from a family collection in Grimsley, Tennessee. Grand opening at the Highway 127 Yard Sale, then online.",
@@ -75,10 +83,12 @@ const fontCss = FONTS.map(
 ).join("");
 ---
 <!doctype html>
-<html lang="en" data-base={import.meta.env.BASE_URL}>
+<html lang="en" data-base={import.meta.env.BASE_URL} data-booth={boothPhase || undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script is:inline set:html={`(function(){var s=${JSON.stringify(SITE.event.startDate)},e=${JSON.stringify(SITE.event.endDate)},d=new Date(),p=function(n){return(n<10?'0':'')+n},t=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()),r=document.documentElement;if(t>e){r.removeAttribute('data-booth')}else{r.setAttribute('data-booth',t<s?'before':'live')}})();`} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

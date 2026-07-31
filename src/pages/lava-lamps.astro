@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import BoothBar from "../components/BoothBar.astro";
 import { u } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
@@ -32,6 +33,7 @@ const lamps = specimens.filter((s) => s.line === "lava");
   {lamps.length > 0 && (
     <section>
       <div class="wrap">
+      <BoothBar />
         <div class="sec-top"><div class="k">Available now</div><h2>Finished pieces</h2><p>A few of our lamps are offered for sale. Everything else is a showcase for what we can build.</p></div>
         <div class="grid">{lamps.map((item) => <SpecimenCard item={item} />)}</div>
       </div>

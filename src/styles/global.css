@@ -132,6 +132,46 @@ section{padding:74px 0;}
 .card .price{font-size:15px;color:var(--ink);}
 .card .price .cur{color:var(--muted);margin-right:2px;}
 .card.soldout .sp,.card.soldout .price{color:var(--muted);}
+/* ---- 127 booth pricing -------------------------------------------------
+   Everything here is hidden by default and revealed only when <html> carries
+   data-booth. That attribute is set from the build date and then corrected in
+   the browser, so the discount disappears on its own after the sale ends
+   without needing a deploy. Default-hidden is the safe direction: a missed
+   deploy shows the normal price rather than an expired offer. */
+.booth-price,.booth-note,.boothbar,.promo .booth-live{display:none;}
+
+[data-booth] .card .row{display:none;}
+[data-booth] .card .booth-price{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:12px;}
+.card .booth-price .was{font-size:14px;color:var(--muted);text-decoration:line-through;}
+.card .booth-price .now{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);}
+.card .booth-price .tag{flex-basis:100%;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
+[data-booth] .card.soldout .booth-price{display:none;}
+[data-booth] .card.soldout .row{display:flex;}
+
+[data-booth] .booth-note{display:block;}
+[data-booth] .detail .buy .booth-price{display:block;margin-top:14px;}
+.detail .buy .booth-price .was{font-size:17px;color:var(--muted);text-decoration:line-through;margin-right:10px;}
+.detail .buy .booth-price .now{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--ink);}
+.detail .buy .booth-price .tag{display:block;margin-top:6px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);}
+[data-booth] .detail .buy .price{font-size:19px;color:var(--muted);font-weight:400;}
+
+/* Standing callout used on the collection pages and /visit. */
+[data-booth] .boothbar{display:block;border:1px solid var(--gold);background:var(--cream);
+  padding:22px 26px;margin:0 0 34px;}
+.boothbar .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+.boothbar h3{font-family:var(--serif);font-size:23px;font-weight:700;margin:8px 0 0;}
+.boothbar p{margin:9px 0 0;font-size:15px;color:var(--ink-2);max-width:62ch;}
+.boothbar .tiers{display:flex;gap:14px 30px;flex-wrap:wrap;margin-top:16px;}
+.boothbar .tiers div{display:flex;align-items:baseline;gap:8px;font-size:14px;}
+.boothbar .tiers b{font-family:var(--serif);font-size:21px;color:var(--gold);font-weight:700;}
+.boothbar .tiers .lbl{color:var(--ink-2);}
+.boothbar a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;}
+[data-booth="live"] .boothbar{background:#fbf6e8;}
+
+.promo .booth-was{text-decoration:line-through;opacity:.6;}
+[data-booth] .promo .booth-live{display:inline;}
+
 .center-cta{text-align:center;margin-top:48px;}
 
 /* faceted filters */

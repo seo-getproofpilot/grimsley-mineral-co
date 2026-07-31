@@ -65,6 +65,43 @@ export const CARE_LABELS: Record<string, string> = {
   "fragile": "Fragile",
 };
 
+// ---------------------------------------------------------------------------
+// Booth pricing for the Highway 127 Yard Sale.
+//
+// Cash, in person, at the booth, for the run of the sale only. Discount is by
+// tier, not by a raw price cutoff, because tier is the taxonomy the site
+// already shows and sorts by. Worth knowing where the two diverge: three
+// Collector pieces are priced under $25 (tektites $10, favosite coral $15,
+// gem green fluorite $22), so they take the Collector 20% rather than the
+// Bin 30% a price-band reading would give them.
+//
+// The Vault is deliberately excluded. Those pieces hold their value and are
+// negotiated in person as they always were.
+// ---------------------------------------------------------------------------
+export const BOOTH_SALE = {
+  discounts: { bin: 0.3, collector: 0.2, vault: 0 } as Record<string, number>,
+  terms: "Cash, in person, at the booth. Online prices are unchanged.",
+};
+
+/**
+ * Booth price for a piece, or null when it isn't discounted.
+ * Rounded to a whole dollar so there is no coin-counting at a cash table.
+ */
+export function boothPrice(item: { tier?: string; price?: number; status?: string }) {
+  const rate = BOOTH_SALE.discounts[item.tier ?? ""] ?? 0;
+  if (!rate || !item.price || item.status !== "available") return null;
+  const p = Math.round(item.price * (1 - rate));
+  return p < item.price ? p : null;
+}
+
+/** The tiers that are actually discounted, as "The Bin 30%" style labels. */
+export function boothTierLabels(tiers: readonly { key: string; label: string }[]) {
+  return tiers
+    .filter((t) => (BOOTH_SALE.discounts[t.key] ?? 0) > 0)
+    .map((t) => ({ ...t, pct: Math.round(BOOTH_SALE.discounts[t.key] * 100) }))
+    .sort((a, b) => b.pct - a.pct); // deepest discount reads first
+}
+
 // Tier metadata for the minerals page split (decor vs collector).
 export const TIERS = [
   { key: "vault", label: "The Vault", note: "Standout specimens, $150 and up. The best of what we've cataloged." },

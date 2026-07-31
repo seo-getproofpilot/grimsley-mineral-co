@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import BoothBar from "../components/BoothBar.astro";
 import { u } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
@@ -33,6 +34,7 @@ const grades = [
 
   <section>
     <div class="wrap">
+      <BoothBar />
 
       <div class="subcol">
         <div class="sh"><h2>Silver &amp; Gold</h2><span class="tag">Bullion · by weight</span></div>

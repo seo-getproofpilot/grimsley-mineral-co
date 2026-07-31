@@ -1,6 +1,9 @@
 ---
-import { u } from "../consts";
+import { u, SITE, BOOTH_SALE } from "../consts";
 const { active = "" } = Astro.props;
+// Deepest discount on offer, computed rather than typed, so the bar can never
+// advertise a number the pricing rule does not actually give.
+const topPct = Math.round(Math.max(...Object.values(BOOTH_SALE.discounts)) * 100);
 const nav = [
   { href: "minerals", label: "Minerals", key: "minerals" },
   { href: "fossils", label: "Fossils", key: "fossils" },
@@ -13,7 +16,11 @@ const nav = [
   { href: "visit", label: "Visit", key: "visit" },
 ];
 ---
-<div class="promo">Grand opening at the <b>Highway 127 Yard Sale</b> &nbsp;·&nbsp; Aug 6–9, 2026 &nbsp;·&nbsp; Grimsley, TN</div>
+<div class="promo">
+  Grand opening at the <b>Highway 127 Yard Sale</b> &nbsp;·&nbsp; {SITE.event.dates}
+  <span class="booth-live">&nbsp;·&nbsp; <b>Booth pricing: up to {topPct}% off</b></span>
+  &nbsp;·&nbsp; Grimsley, TN
+</div>
 <header class="site">
   <div class="head">
     <div class="left">

@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { u, CARE_LABELS } from "../../consts";
+import { u, CARE_LABELS, boothPrice, BOOTH_SALE, SITE } from "../../consts";
 import specimens from "../../data/specimens.json";
 import { resolveMineral } from "../../data/minerals";
 import { resolveFossil } from "../../data/fossils";
@@ -49,6 +49,9 @@ const locHub = localityFor(item.locality);
 // backfilling a date we did not record would be inventing one.
 const isSold = item.status === "sold";
 const soldPrice = (item as Record<string, any>).soldPrice ?? item.price;
+
+// Booth price for the 127 sale. Null for Vault pieces and anything not available.
+const booth = boothPrice(item as any);
 const soldDate: string = (item as Record<string, any>).soldDate ?? "";
 const soldDateLabel = soldDate
   ? new Date(soldDate + "T12:00:00Z").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
@@ -148,6 +151,13 @@ const productSchema = {
       <h1>{item.name}</h1>
       <span class={`status ${item.status}`}>{statusLabel}</span>
       <div class="price">${item.price}.00{item.priceNote && <span style="font-size:15px;color:var(--muted);"> {item.priceNote}</span>}</div>
+      {booth && (
+        <div class="booth-price">
+          <span class="was">${item.price}.00</span><span class="now">${booth}.00</span>
+          <span class="tag">127 booth price · {SITE.event.dates}</span>
+        </div>
+      )}
+      {booth && <p class="booth-note" style="font-size:13px;color:var(--muted);margin-top:10px;">{BOOTH_SALE.terms}</p>}
       {item.status === "available" && item.line !== "lava" && (
         <div class="oneofone"><span class="dot"></span>One of one. This exact piece is the only one, and when it sells it is gone.</div>
       )}
