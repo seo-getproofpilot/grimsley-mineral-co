@@ -1,0 +1,75 @@
+---
+// Browse-by-locality index. The entry point to the locality axis, and the page
+// that internally links every hub so they all get crawled from one place.
+import Base from "../layouts/Base.astro";
+import { u } from "../consts";
+import { LOCALITIES } from "../data/localities";
+import specimens from "../data/specimens.json";
+
+const rows = LOCALITIES.map((l) => {
+  const here = specimens.filter((s) => l.matches.includes(s.locality));
+  return {
+    l,
+    live: here.filter((s) => s.status !== "sold").length,
+    sold: here.filter((s) => s.status === "sold").length,
+    total: here.length,
+  };
+}).sort((a, b) => b.total - a.total || a.l.name.localeCompare(b.l.name));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Specimen localities",
+  "description":
+    "The places our minerals and fossils actually come from, with what each locality is known for and what we have cataloged from it.",
+};
+---
+<Base
+  title="Specimen Localities — Where Our Minerals Come From — Grimsley Mineral Co."
+  description="Every locality in our catalog, from Mibladen vanadinite to Green River fossil fish. What each place is known for, what we have in stock, and what has sold."
+  active="minerals"
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / Localities</div>
+      <h1>Localities</h1>
+      <p>
+        Where a specimen came out of the ground matters as much as what it is. A vanadinite from
+        Mibladen and a vanadinite from anywhere else are not the same object to a collector, and the
+        difference is worth being specific about. These are the places our material actually comes
+        from, with an honest note on each about how confident we are in the attribution.
+      </p>
+      <p style="margin-top:14px;">
+        <a href={u("field-notes/what-a-locality-tells-you")} style="color:var(--gold);border-bottom:1px solid currentColor;">
+          Field note: what a locality actually tells you
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <section class="learn">
+    <div class="wrap">
+      <div class="loc-index">
+        {rows.map(({ l, live, sold }) => (
+          <a class="li" href={u(`locality/${l.slug}`)}>
+            <div class="li-head">
+              <span class="n">{l.name}</span>
+              <span class="r">{l.region}</span>
+            </div>
+            <p class="k">Known for {l.known}</p>
+            <div class="li-foot">
+              {live > 0 && <span class="tag av">{live} available</span>}
+              {sold > 0 && <span class="tag so">{sold} sold</span>}
+              {live === 0 && sold === 0 && <span class="tag">Catalog rotating</span>}
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="center-cta">
+        <a class="btn btn-dark" href={u("minerals")}>Browse by mineral instead</a>
+      </div>
+    </div>
+  </section>
+</Base>

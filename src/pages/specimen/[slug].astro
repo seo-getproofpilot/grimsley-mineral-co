@@ -5,6 +5,7 @@ import specimens from "../../data/specimens.json";
 import { resolveMineral } from "../../data/minerals";
 import { resolveFossil } from "../../data/fossils";
 import { PERIODS, ageToPct, ageMidpoint } from "../../data/geotime";
+import { localityFor } from "../../data/localities";
 import SpecimenCard from "../../components/SpecimenCard.astro";
 
 // Mohs positions for the hardness bar reference marks.
@@ -37,6 +38,21 @@ const LOC_QUALIFIER = {
   assorted: "Assorted rough",
 };
 const locQualifier = LOC_QUALIFIER[item.localityConfidence] ?? "";
+
+// The locality hub this piece belongs to, when its locality is a real named
+// place we've written up. Vague ones ("Locality on request") resolve to null
+// and the field just renders as plain text, same as before.
+const locHub = localityFor(item.locality);
+
+// Sold pieces keep their page forever — see /sold. soldPrice falls back to the
+// asking price when the piece went for list, and soldDate is optional because
+// backfilling a date we did not record would be inventing one.
+const isSold = item.status === "sold";
+const soldPrice = (item as Record<string, any>).soldPrice ?? item.price;
+const soldDate: string = (item as Record<string, any>).soldDate ?? "";
+const soldDateLabel = soldDate
+  ? new Date(soldDate + "T12:00:00Z").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+  : "";
 
 // Size-in-hand scale: pull the largest cm figure from the dimensions string and
 // draw it against a US quarter (2.4 cm) for real-world scale. Skips vague
@@ -107,7 +123,11 @@ const productSchema = {
   "category": lineLabel,
   "offers": {
     "@type": "Offer",
-    "price": item.price,
+    // A sold piece carries the price it ACTUALLY sold for, not its old asking
+    // price. Leaving stale list-price markup on a sold item misrepresents it to
+    // search engines; the final price is a historical fact and is the honest
+    // thing to publish alongside SoldOut.
+    "price": isSold ? soldPrice : item.price,
     "priceCurrency": "USD",
     "availability": availability,
     "url": new URL(Astro.url.pathname, Astro.site).href,
@@ -131,6 +151,18 @@ const productSchema = {
       {item.status === "available" && item.line !== "lava" && (
         <div class="oneofone"><span class="dot"></span>One of one. This exact piece is the only one, and when it sells it is gone.</div>
       )}
+      {isSold && (
+        <div class="soldbanner">
+          <div class="sb-top">Sold{soldDateLabel && ` · ${soldDateLabel}`}</div>
+          <div class="sb-price">Final price ${Number(soldPrice).toLocaleString()}</div>
+          <p>
+            This piece is gone, but its page stays up for good. We keep a public
+            <a href={u("sold")}> record of what pieces actually sold for</a> because nothing like it
+            exists for mineral specimens.
+          </p>
+        </div>
+      )}
+
       <p class="desc">{item.description}</p>
 
       {item.asIdentified && (
@@ -150,7 +182,8 @@ const productSchema = {
           >{item.line === "lava" ? "Add to inquiry list" : (buyUrl ? "Or reserve for the booth" : "Reserve this piece")}</button>
         )}
         {item.status === "reserved" && <a class="btn btn-ghost" href={u("contact")}>Ask about this piece</a>}
-        {item.status === "sold" && <a class="btn btn-ghost" href={lineHref}>See similar pieces</a>}
+        {isSold && <a class="btn btn-dark" href={lineHref}>See similar pieces</a>}
+        {isSold && <a class="btn btn-ghost" href={u("sold")}>Sold archive</a>}
         {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Ask a question</a>}
       </div>
 
@@ -168,7 +201,7 @@ const productSchema = {
 
       <dl class="spec">
         <div class="r"><dt>Species</dt><dd>{mineral ? <a href={u(`mineral/${mineral.key}`)}>{item.species}</a> : item.species}</dd></div>
-        <div class="r"><dt>Locality</dt><dd>{item.locality}{locQualifier && <span class="loc-q">{locQualifier}</span>}</dd></div>
+        <div class="r"><dt>Locality</dt><dd>{locHub ? <a href={u(`locality/${locHub.slug}`)}>{item.locality}</a> : item.locality}{locQualifier && <span class="loc-q">{locQualifier}</span>}</dd></div>
         <div class="r"><dt>Size class</dt><dd>{item.sizeClass}</dd></div>
         <div class="r"><dt>Dimensions</dt><dd>{item.dimensions}</dd></div>
         {item.provenance && <div class="r"><dt>Provenance</dt><dd>{item.provenance}</dd></div>}

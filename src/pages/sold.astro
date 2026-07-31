@@ -1,0 +1,130 @@
+---
+// The sold archive.
+//
+// This is the one piece of the site designed to be worth more in five years
+// than it is today. Coins have PCGS. Trading cards have half a dozen sales
+// databases. Mineral specimens have essentially nothing public — prices live in
+// dealer heads and closed auction records. Every sold piece we leave up is a
+// row in a record nobody else is keeping.
+//
+// The rule that makes it work: a sold specimen page is never deleted, never
+// redirected, and never noindexed. Its state changes; its existence does not.
+import Base from "../layouts/Base.astro";
+import { u } from "../consts";
+import specimens from "../data/specimens.json";
+import { localityFor } from "../data/localities";
+
+const sold = specimens
+  .filter((s) => s.status === "sold")
+  .sort((a, b) => String(b.soldDate || "").localeCompare(String(a.soldDate || "")) || a.name.localeCompare(b.name));
+
+const total = sold.reduce((sum, s) => sum + (Number(s.soldPrice ?? s.price) || 0), 0);
+const lines = [...new Set(sold.map((s) => s.line))].length;
+
+// Human date from an ISO soldDate, when one has been recorded.
+const fmt = (iso?: string) =>
+  iso
+    ? new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+    : "—";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Sold specimen archive",
+  "description":
+    "A permanent record of every specimen Grimsley Mineral Co. has sold, with the price it sold for. Kept public because no open price record exists for mineral specimens.",
+};
+---
+<Base
+  title="Sold Archive — What Pieces Actually Sold For — Grimsley Mineral Co."
+  description="A permanent, public record of every specimen we have sold and what it went for. Minerals have no PCGS. This is our attempt at keeping the record anyway."
+  active=""
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / Sold archive</div>
+      <h1>Sold archive</h1>
+      <p>
+        Coins have PCGS. Trading cards have sales databases going back decades. Mineral specimens
+        have almost nothing — prices live in dealers' heads, and when a listing sells it usually
+        disappears from the internet entirely, taking the only public evidence of what it was worth
+        with it.
+      </p>
+      <p>
+        So we keep ours. Every piece we sell stays up permanently at its own page, with its photos,
+        its measurements, its locality, and what it actually sold for. It is a small record today.
+        It gets more useful every month, and it costs nothing to keep.
+      </p>
+    </div>
+  </div>
+
+  <section class="learn">
+    <div class="wrap">
+      {sold.length === 0 ? (
+        <div class="sec-top">
+          <h2>Nothing sold yet</h2>
+          <p>
+            The archive fills itself. The first piece that sells shows up here and never comes down.
+          </p>
+        </div>
+      ) : (
+        <>
+          <div class="loc-facts">
+            <div class="f"><span class="l">Pieces sold</span><span class="v">{sold.length}</span></div>
+            <div class="f"><span class="l">Recorded total</span><span class="v">${total.toLocaleString()}</span></div>
+            <div class="f"><span class="l">Collections</span><span class="v">{lines}</span></div>
+          </div>
+
+          <div class="sec-top">
+            <div class="k">The record</div>
+            <h2>Every piece we have sold</h2>
+          </div>
+
+          <div class="soldwrap">
+            <table class="soldtable">
+              <thead>
+                <tr>
+                  <th>Piece</th>
+                  <th>Species</th>
+                  <th>Locality</th>
+                  <th class="num">Sold for</th>
+                  <th class="num">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sold.map((s) => {
+                  const loc = localityFor(s.locality);
+                  return (
+                    <tr>
+                      <td class="pc">
+                        <a href={u(`specimen/${s.slug}`)}>{s.name}</a>
+                        <span class="ref">{s.ref}</span>
+                      </td>
+                      <td>{s.species}</td>
+                      <td>
+                        {loc ? <a href={u(`locality/${loc.slug}`)}>{loc.name}</a> : s.locality}
+                      </td>
+                      <td class="num price">${Number(s.soldPrice ?? s.price).toLocaleString()}</td>
+                      <td class="num date">{fmt(s.soldDate)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <p class="soldnote">
+            Prices are what the piece actually sold for, not what it was listed at. Where a date is
+            missing it simply was not recorded at the time. A sold price is one data point about one
+            specimen on one day — it is a reference, not an appraisal.
+          </p>
+        </>
+      )}
+
+      <div class="center-cta">
+        <a class="btn btn-dark" href={u("minerals")}>See what is available now</a>
+      </div>
+    </div>
+  </section>
+</Base>
