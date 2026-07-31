@@ -9,8 +9,26 @@ const faqs = [
   ["How do I order Bugged Out Nails?", "Taylor takes nail orders over on Instagram and Facebook, where she posts new designs and handles custom requests. The nails page here is a showcase with links to her accounts."],
   ["When and where is your grand opening?", "The Highway 127 Yard Sale, August 6 through 9, 2026, on US-127 in Grimsley, Tennessee, between the Dollar General and Taco Bros. After the sale, we move online only."],
 ];
+
+// FAQPage schema, built from the same array the page renders, so the markup
+// and the visible answers can never drift apart. Google requires the answer
+// text to match what a visitor actually sees.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(([q, a]) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
 ---
-<Base title="FAQ — Grimsley Mineral Co." active="">
+<Base
+  title="Common Questions About Buying Minerals & Fossils"
+  description="Answers on how we identify and grade specimens, what locality means, condition, custom lava lamp commissions, and our grand opening at the 127 sale."
+  schema={faqSchema}
+  active=""
+>
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / FAQ</div>

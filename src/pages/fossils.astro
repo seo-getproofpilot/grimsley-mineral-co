@@ -6,7 +6,11 @@ import Origins from "../components/Origins.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "fossils");
 ---
-<Base title="Fossils & Shells — Grimsley Mineral Co." active="fossils">
+<Base
+  title="Fossils & Shells for Sale — Grimsley Mineral Co."
+  description="Fish plates, blister pearl shells, coral and more, selected for clear detail and solid preservation. Species, formation and age noted on every piece."
+  active="fossils"
+>
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Fossils &amp; Shells</div>

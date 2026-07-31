@@ -6,11 +6,29 @@ import { u } from "../consts";
 
 const featuredMinerals = specimens.filter((s) => s.line === "minerals" && s.featured).slice(0, 6);
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
+
+// The hero photo is the largest paint on the page, so a phone should not be
+// made to download the desktop file. Two sizes, picked by media query, and
+// preloaded to match. Written here rather than in global.css because the URLs
+// have to run through u() to survive the GitHub Pages base path.
+const HERO_MOBILE = "img/lifestyle/cabinet-hero-mobile.webp";
+const HERO_DESKTOP = "img/lifestyle/cabinet-hero.webp";
+const heroCss =
+  `.hero .bg{background-image:url("${u(HERO_MOBILE)}");background-position:center 30%;}` +
+  `@media (min-width:900px){.hero .bg{background-image:url("${u(HERO_DESKTOP)}");}}`;
 ---
-<Base>
+<Base
+  title="Grimsley Mineral Co. — Minerals, Fossils & Lava Lamps"
+  description="Display-grade minerals, fossils, hand-built lava lamps and collector coins from a family collection in Grimsley, Tennessee. Every piece honestly graded."
+  headCss={heroCss}
+  preloadImage={[
+    { file: HERO_MOBILE, media: "(max-width:899px)" },
+    { file: HERO_DESKTOP, media: "(min-width:900px)" },
+  ]}
+>
   <!-- HERO -->
   <div class="hero">
-    <div class="bg" style={`background-image:url('${u("img/lifestyle/cabinet.jpg")}');background-position:center 30%;`}></div>
+    <div class="bg"></div>
     <div class="scrim"></div>
     <div class="inner">
       <div class="kicker">A family collection · Grimsley, Tennessee</div>
@@ -42,10 +60,10 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
         <p>From a two-dollar fossil for a kid to a cabinet-grade centerpiece, and a wall of lava lamps besides.</p>
       </div>
       <div class="cats">
-        <a class="cat" href={u("minerals")}><img src={u("img/lifestyle/cabinet.jpg")} alt="Mineral specimens" /><div class="lab"><div class="n">Minerals</div><div class="m">Amethyst · Fluorite · Rutile</div></div></a>
+        <a class="cat" href={u("minerals")}><img src={u("img/lifestyle/cabinet-card-800.webp")} srcset={`${u("img/lifestyle/cabinet-card-400.webp")} 400w, ${u("img/lifestyle/cabinet-card-800.webp")} 800w`} sizes="(max-width:1024px) 46vw, 31vw" alt="Mineral specimens" width="800" height="1067" loading="lazy" decoding="async" /><div class="lab"><div class="n">Minerals</div><div class="m">Amethyst · Fluorite · Rutile</div></div></a>
         <a class="cat solid" href={u("fossils")}><div class="lab"><div class="n">Fossils &amp; Shells</div><div class="m">Fish plates · Pearls · Coral</div></div></a>
-        <a class="cat" href={u("lava-lamps")}><img src={u("img/lifestyle/lava-collection.jpg")} alt="Lava lamp collection" /><div class="lab"><div class="n">Lava Lamps</div><div class="m">Hand-built · One of one</div></div></a>
-        <a class="cat" href={u("nails")}><img src={u("img/lifestyle/nails.jpg")} alt="Bugged Out Nails" /><div class="lab"><div class="n">Bugged Out Nails</div><div class="m">Hand-painted press-ons</div></div></a>
+        <a class="cat" href={u("lava-lamps")}><img src={u("img/lifestyle/lava-collection-card-800.webp")} srcset={`${u("img/lifestyle/lava-collection-card-400.webp")} 400w, ${u("img/lifestyle/lava-collection-card-800.webp")} 800w`} sizes="(max-width:1024px) 46vw, 31vw" alt="Lava lamp collection" width="800" height="1067" loading="lazy" decoding="async" /><div class="lab"><div class="n">Lava Lamps</div><div class="m">Hand-built · One of one</div></div></a>
+        <a class="cat" href={u("nails")}><img src={u("img/lifestyle/nails-card-800.webp")} srcset={`${u("img/lifestyle/nails-card-400.webp")} 400w, ${u("img/lifestyle/nails-card-800.webp")} 800w`} sizes="(max-width:1024px) 46vw, 31vw" alt="Bugged Out Nails" width="800" height="1067" loading="lazy" decoding="async" /><div class="lab"><div class="n">Bugged Out Nails</div><div class="m">Hand-painted press-ons</div></div></a>
         <a class="cat solid" href={u("coins")}><div class="lab"><div class="n">Coins &amp; Currency</div><div class="m">Silver · Gold · Old money</div></div></a>
       </div>
     </div>
@@ -103,14 +121,14 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
         <p>Alongside our collection, we hand-sculpt custom lava lamps from Apoxie clay, like our Venom-inspired symbiote lamp. Own the piece that exists, or commission a new one in your colors and form.</p>
         <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a><a class="btn btn-line" href={u("lava-lamps")}>Commission a piece</a></div>
       </div>
-      <div class="pic"><img src={u("img/lifestyle/lava-collection.jpg")} alt="Lava lamp collection" /></div>
+      <div class="pic"><img src={u("img/lifestyle/lava-collection.webp")} alt="Lava lamp collection" width="1200" height="1600" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 
   <!-- NAILS -->
   <div class="feature pink" id="nails">
     <div class="split">
-      <div class="pic"><img src={u("img/lifestyle/nails-gothic.jpg")} alt="Hand-painted press-on nails" /></div>
+      <div class="pic"><img src={u("img/lifestyle/nails-gothic.webp")} alt="Hand-painted press-on nails" width="789" height="1400" loading="lazy" decoding="async" /></div>
       <div class="txt">
         <div class="k">Bugged Out Nails</div>
         <h2>Hand-painted press-ons.</h2>

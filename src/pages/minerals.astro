@@ -10,7 +10,11 @@ const country = (loc) => (loc || "").split(",").pop().trim();
 const countries = [...new Set(items.map((s) => country(s.locality)).filter((c) => c && c !== "request"))].sort();
 const byTier = (t) => items.filter((s) => s.tier === t);
 ---
-<Base title="Minerals — Grimsley Mineral Co." active="minerals">
+<Base
+  title="Mineral Specimens for Sale — Grimsley Mineral Co."
+  description="From two-dollar bin rocks to documented cabinet specimens, sorted so you know which is which. Real localities, honest condition, size on every listing."
+  active="minerals"
+>
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Minerals</div>

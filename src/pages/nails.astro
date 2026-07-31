@@ -2,7 +2,11 @@
 import Base from "../layouts/Base.astro";
 import { u, SITE } from "../consts";
 ---
-<Base title="Bugged Out Nails — Grimsley Mineral Co." active="nails">
+<Base
+  title="Bugged Out Nails — Hand-Painted Press-On Nail Art"
+  description="Taylor's hand-painted press-on nail sets, from soft floral and ladybug designs to gothic and holiday. Every set painted by hand, so no two match."
+  active="nails"
+>
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Bugged Out Nails</div>
@@ -13,7 +17,7 @@ import { u, SITE } from "../consts";
 
   <div class="feature pink">
     <div class="split">
-      <div class="pic"><img src={u("img/lifestyle/nails-gothic.jpg")} alt="Hand-painted press-on nails" /></div>
+      <div class="pic"><img src={u("img/lifestyle/nails-gothic.webp")} alt="Hand-painted press-on nails" width="789" height="1400" decoding="async" /></div>
       <div class="txt">
         <div class="k">Made to order</div>
         <h2>Painted by hand, one set at a time.</h2>
@@ -31,8 +35,8 @@ import { u, SITE } from "../consts";
     <div class="wrap">
       <div class="sec-top"><div class="k">The looks</div><h2>A few recent sets</h2></div>
       <div class="grid g4">
-        <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails.jpg")} alt="Floral press-on set" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Floral &amp; Ladybug</div><div class="dims">Hand-painted · custom</div></div></div>
-        <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails-gothic.jpg")} alt="Gothic press-on set" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Gothic &amp; Holiday</div><div class="dims">Hand-painted · custom</div></div></div>
+        <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails-card-800.webp")} alt="Floral press-on set" width="800" height="1067" loading="lazy" decoding="async" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Floral &amp; Ladybug</div><div class="dims">Hand-painted · custom</div></div></div>
+        <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails-gothic.webp")} alt="Gothic press-on set" width="789" height="1400" loading="lazy" decoding="async" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Gothic &amp; Holiday</div><div class="dims">Hand-painted · custom</div></div></div>
       </div>
       <div class="center-cta"><a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">See the full gallery on Instagram</a></div>
     </div>

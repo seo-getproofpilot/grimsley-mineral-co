@@ -11,6 +11,19 @@ const {
   // Per-page structured data (an object or array of objects). Rendered as
   // JSON-LD alongside the site-wide LocalBusiness graph below.
   schema = null,
+  // The page's largest above-the-fold image, relative to /public. Pass this on
+  // any page whose hero is a CSS background-image: the browser can't find those
+  // until it has parsed the CSS, which delays the largest paint. Preloading
+  // hands it to the network straight away.
+  // Either a string, or [{ file, media }] when the hero is served at more than
+  // one size — the media attribute keeps a phone from fetching the desktop file.
+  preloadImage = null,
+  // Extra CSS for this page, injected into <head>. For rules whose URLs must
+  // run through u() and therefore cannot live in a static stylesheet.
+  headCss = null,
+  // Keep a page out of the index. Used only for pages whose content is
+  // per-visitor and therefore useless in search results.
+  noindex = false,
 } = Astro.props;
 
 // Canonical + OG url resolve against the configured `site` in astro.config.
@@ -44,6 +57,22 @@ const localBusiness = {
 };
 
 const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+
+// Fonts. Declared here rather than in global.css so the URLs are stable and
+// preloadable. `block` (not `swap`) on the two faces used above the fold:
+// they are preloaded, so they arrive with the stylesheet and the brief block
+// costs nothing, where a swap would visibly reflow the headline.
+const FONTS = [
+  { family: "Playfair Display", weight: 700, file: "fonts/playfair-700.woff2", preload: true },
+  { family: "Catamaran", weight: 400, file: "fonts/catamaran-400.woff2", preload: true },
+  { family: "Playfair Display", weight: 600, file: "fonts/playfair-600.woff2", preload: false },
+  { family: "Catamaran", weight: 600, file: "fonts/catamaran-600.woff2", preload: false },
+];
+const fontCss = FONTS.map(
+  (f) =>
+    `@font-face{font-family:"${f.family}";font-weight:${f.weight};font-style:normal;` +
+    `font-display:${f.preload ? "block" : "swap"};src:url("${u(f.file)}") format("woff2");}`
+).join("");
 ---
 <!doctype html>
 <html lang="en" data-base={import.meta.env.BASE_URL}>
@@ -53,6 +82,18 @@ const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+
+    {FONTS.filter((f) => f.preload).map((f) => (
+      <link rel="preload" as="font" type="font/woff2" href={u(f.file)} crossorigin />
+    ))}
+    <style is:global set:html={fontCss} />
+
+    {preloadImage &&
+      (Array.isArray(preloadImage) ? preloadImage : [{ file: preloadImage }]).map((p) => (
+        <link rel="preload" as="image" href={u(p.file)} media={p.media} fetchpriority="high" />
+      ))}
+    {headCss && <style is:global set:html={headCss} />}
 
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />

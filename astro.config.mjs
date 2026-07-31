@@ -11,5 +11,7 @@ export default defineConfig({
   site: 'https://seo-getproofpilot.github.io',
   base,
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  // /reserve is a per-visitor localStorage list. It carries noindex, so it
+  // has no business in the sitemap either — the two signals should agree.
+  integrations: [sitemap({ filter: (page) => !page.includes('/reserve') })],
 });

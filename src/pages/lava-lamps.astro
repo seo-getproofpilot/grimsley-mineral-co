@@ -5,7 +5,11 @@ import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
 const lamps = specimens.filter((s) => s.line === "lava");
 ---
-<Base title="Lava Lamps — Grimsley Mineral Co." active="lava">
+<Base
+  title="Custom Hand-Built Lava Lamps — Grimsley Mineral Co."
+  description="Hand-sculpted one-of-a-kind lava lamps built to order, alongside our collection of classic and vintage lamps. Commissions welcome."
+  active="lava"
+>
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Lava Lamps</div>
@@ -21,7 +25,7 @@ const lamps = specimens.filter((s) => s.line === "lava");
         <h2>No two are ever the same.</h2>
         <p>Each lamp is sculpted, painted, and finished by hand, then paired with a working lava element. This is real work, and it takes time. Comparable custom and vintage art lamps sell in the hundreds and up, and our pieces are built to that standard.</p>
       </div>
-      <div class="pic"><img src={u("img/lifestyle/lava-collection.jpg")} alt="Lava lamp collection" /></div>
+      <div class="pic"><img src={u("img/lifestyle/lava-collection.webp")} alt="Lava lamp collection" width="1200" height="1600" decoding="async" /></div>
     </div>
   </div>
 

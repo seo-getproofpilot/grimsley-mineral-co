@@ -4,10 +4,12 @@
    trust/detail architecture. Playfair Display + Catamaran.
    ============================================================ */
 
-@font-face { font-family:"Playfair Display"; font-weight:600; font-display:swap; src:url("../fonts/playfair-600.woff2") format("woff2"); }
-@font-face { font-family:"Playfair Display"; font-weight:700; font-display:swap; src:url("../fonts/playfair-700.woff2") format("woff2"); }
-@font-face { font-family:"Catamaran"; font-weight:400; font-display:swap; src:url("../fonts/catamaran-400.woff2") format("woff2"); }
-@font-face { font-family:"Catamaran"; font-weight:600; font-display:swap; src:url("../fonts/catamaran-600.woff2") format("woff2"); }
+/* @font-face lives in src/layouts/Base.astro, not here.
+   The fonts moved to public/fonts so their URLs are predictable and can be
+   preloaded in <head>. When they were bundled here, Astro hashed the
+   filenames, the browser could not discover them until it had parsed this
+   stylesheet, and the late swap reflowed every page (measured CLS 0.09-0.16).
+   Preloading them removes that shift. */
 
 :root{
   color-scheme: light;
