@@ -1,8 +1,19 @@
 # Email list setup
 
+**Done and live as of 2026-07-31.** The sheet exists, the script is deployed,
+and `newsletterEndpoint` in `src/consts.ts` points at it. Signups write straight
+to the sheet. Nothing below needs doing again — it is kept as the record of how
+it was built and what to do if it ever breaks.
+
+- Sheet: **Grimsley Email List**, owned by `marcos@getproofpilot.com`
+- Script project: **Grimsley Email List** (bound to that sheet, Extensions → Apps Script)
+- Deployment: Web app, execute as `marcos@getproofpilot.com`, access **Anyone**
+- Verified 2026-07-31: POST returns `ok`, a row lands, and a repeat address is
+  skipped rather than duplicated
+
 Ten minutes, no monthly cost. Addresses land in a Google Sheet you own.
 
-Until you finish this, the footer form still works — it just opens a pre-filled
+Until this is set, the footer form still works — it just opens a pre-filled
 email to `grimsleymineralco@gmail.com` instead of writing to the sheet. Nothing
 is broken while it's unset.
 
