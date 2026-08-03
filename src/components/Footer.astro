@@ -8,7 +8,10 @@ import EmailCapture from "./EmailCapture.astro";
     <div>
       <div class="name">Grimsley Mineral Co.</div>
       <div class="blurb">Cataloged minerals, fossils, hand-built lava lamps, and collector coins out of Grimsley, Tennessee.</div>
-      <div class="pay"><span>Stripe</span><span>Square</span><span>PayPal</span><span>Zelle</span><span>Cash</span></div>
+      <!-- Only list what we actually accept. Square runs Tap to Pay at the
+           booth, which is what covers Apple Pay and contactless cards. No
+           Stripe account exists, so no Stripe. -->
+      <div class="pay"><span>Square</span><span>Apple Pay</span><span>Zelle</span><span>Cash App</span><span>Cash</span></div>
     </div>
     <div class="col">
       <h5>Shop</h5>
