@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import BoothBar from "../components/BoothBar.astro";
 import { u, TIERS } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import Origins from "../components/Origins.astro";
@@ -20,13 +19,12 @@ const byTier = (t) => items.filter((s) => s.tier === t);
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Minerals</div>
       <h1>Minerals</h1>
-      <p>From a two-dollar bin rock to a documented cabinet specimen, sorted so you know which is which. The bin is fun and affordable. The collector and vault pieces carry real localities, honest condition, and where we know it, where they came from.</p>
-      <div class="boothnote" style="margin-top:22px;"><b>Aug 6–9 at the 127:</b> cash and in person at the booth. Reserve a piece here to hold it for pickup, or buy online after the sale.</div>
+      <p>Some are five-dollar rocks we picked up because we liked them. Some came out of collections older than we are. The photo is the exact piece.</p>
+      <div class="buynote" style="margin-top:22px;"><b>No checkout here.</b> Reserve a piece and we email you back with a shipping quote to your address, then take payment by Square, Zelle, Cash App or cash.</div>
     </div>
   </div>
   <section>
     <div class="wrap">
-      <BoothBar />
       <div class="filters">
         <div class="grp">
           <span class="lbl">Tier</span>

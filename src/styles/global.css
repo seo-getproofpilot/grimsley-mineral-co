@@ -132,47 +132,71 @@ section{padding:74px 0;}
 .card .price{font-size:15px;color:var(--ink);}
 .card .price .cur{color:var(--muted);margin-right:2px;}
 .card.soldout .sp,.card.soldout .price{color:var(--muted);}
-/* ---- 127 booth pricing -------------------------------------------------
-   Everything here is hidden by default and revealed only when <html> carries
-   data-booth. That attribute is set from the build date and then corrected in
-   the browser, so the discount disappears on its own after the sale ends
-   without needing a deploy. Default-hidden is the safe direction: a missed
-   deploy shows the normal price rather than an expired offer. */
-.booth-price,.booth-note,.boothbar,.promo .booth-live{display:none;}
+.card .statusline{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--gold);}
 
-[data-booth] .card .row{display:none;}
-[data-booth] .card .booth-price{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:12px;}
-.card .booth-price .was{font-size:14px;color:var(--muted);text-decoration:line-through;}
-.card .booth-price .now{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);}
-.card .booth-price .tag{flex-basis:100%;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
-[data-booth] .card.soldout .booth-price{display:none;}
-[data-booth] .card.soldout .row{display:flex;}
+/* ---- collection vs inventory ------------------------------------------
+   Not everything with a page is for sale. A permanent-collection piece gets
+   this where the price would go, so it reads as deliberately not for sale
+   rather than as a listing someone forgot to price. */
+.notforsale{border-left:2px solid var(--gold);padding:2px 0 2px 14px;margin:18px 0 0;}
+.notforsale .nfs-label{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);line-height:1.2;}
+.notforsale p{margin:7px 0 0;font-size:14.5px;color:var(--ink-2);max-width:46ch;}
 
-[data-booth] .booth-note{display:block;}
-[data-booth] .detail .buy .booth-price{display:block;margin-top:14px;}
-.detail .buy .booth-price .was{font-size:17px;color:var(--muted);text-decoration:line-through;margin-right:10px;}
-.detail .buy .booth-price .now{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--ink);}
-.detail .buy .booth-price .tag{display:block;margin-top:6px;font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);}
-[data-booth] .detail .buy .price{font-size:19px;color:var(--muted);font-weight:400;}
-
-/* Standing callout used on the collection pages and /visit. */
-[data-booth] .boothbar{display:block;border:1px solid var(--gold);background:var(--cream);
-  padding:22px 26px;margin:0 0 34px;}
-.boothbar .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
-.boothbar h3{font-family:var(--serif);font-size:23px;font-weight:700;margin:8px 0 0;}
-.boothbar p{margin:9px 0 0;font-size:15px;color:var(--ink-2);max-width:62ch;}
-.boothbar .tiers{display:flex;gap:14px 30px;flex-wrap:wrap;margin-top:16px;}
-.boothbar .tiers div{display:flex;align-items:baseline;gap:8px;font-size:14px;}
-.boothbar .tiers b{font-family:var(--serif);font-size:21px;color:var(--gold);font-weight:700;}
-.boothbar .tiers .lbl{color:var(--ink-2);}
-.boothbar a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;}
-[data-booth="live"] .boothbar{background:#fbf6e8;}
-
-.promo .booth-was{text-decoration:line-through;opacity:.6;}
-[data-booth] .promo .booth-live{display:inline;}
+/* Plain-language note about how a purchase actually happens. There is no
+   checkout, so saying so up front beats letting someone hunt for a cart. */
+.buynote{background:var(--cream);border:1px solid var(--line);padding:16px 18px;font-size:13.5px;color:var(--ink-2);}
+.buynote b{color:var(--ink);}
+.detail .buy .buynote{margin-top:22px;}
 
 .center-cta{text-align:center;margin-top:48px;}
+
+/* ---- journal ------------------------------------------------------------
+   Dated entries, newest first. Deliberately not a "right now" ticker: a card
+   stamped August 8 is still true in December, where "what we're doing today"
+   would be a lie the moment publishing slows down. */
+.jlist{display:grid;gap:20px;max-width:920px;margin:0 auto;}
+.jcard{display:grid;grid-template-columns:220px 1fr;gap:0;border:1px solid var(--line-2);background:#fff;transition:border-color .18s,transform .18s;}
+.jcard:only-child,.jcard:not(:has(.jc-img)){grid-template-columns:1fr;}
+.jcard:hover{border-color:var(--gold);transform:translateY(-2px);}
+.jc-img{overflow:hidden;background:var(--photo-bg);}
+.jc-img img{width:100%;height:100%;object-fit:cover;}
+.jc-body{padding:26px 30px;}
+.jc-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.jc-top time{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.jc-status{font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--gold);color:var(--gold);}
+.jc-status.open{border-color:var(--pink-deep);color:var(--pink-deep);}
+.jc-body h2{font-size:25px;margin-top:11px;font-weight:600;line-height:1.22;}
+.jc-body p{font-size:15px;color:var(--ink-2);margin:10px 0 0;max-width:60ch;}
+.jc-body .r{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:15px;display:inline-block;}
+.jfilters{justify-content:center;}
+.emptyjournal{text-align:center;max-width:52ch;margin:0 auto;padding:40px 0 20px;}
+.emptyjournal h2{font-size:30px;}
+.emptyjournal p{color:var(--ink-2);margin:14px 0 26px;}
+
+/* Unknowns. The point of publishing a question is that it stays a question
+   until it isn't, so this is styled as an open thread, not a footnote. */
+.unknowns{border:1px solid var(--gold);background:#fdfaf1;padding:24px 26px;margin:34px 0;}
+.unknowns h3{font-size:19px;font-weight:700;}
+.unknowns ul{margin:12px 0 0;padding-left:20px;}
+.unknowns li{font-size:15px;color:var(--ink-2);margin-top:7px;}
+
+/* Workbench. Renders only when something is genuinely in progress, and
+   disappears entirely when nothing is — so it can never go stale. */
+.bench{background:var(--dark);color:#efe9dd;}
+.bench .sec-top h2{color:#fbf8f2;}
+.bench .sec-top .k{color:var(--gold-bright);}
+.bench-list{display:grid;gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);max-width:880px;margin:0 auto;}
+.bench-row{display:flex;gap:20px;align-items:baseline;padding:20px 26px;background:var(--dark);transition:background .18s;}
+.bench-row:hover{background:var(--dark-2);}
+.bench-row .bd{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-bright);flex:none;width:104px;}
+.bench-row .bt{font-family:var(--serif);font-size:19px;color:#fbf8f2;}
+.bench-row .bx{font-size:14px;color:#b6afa2;margin-top:5px;}
+@media (max-width:700px){
+  .jcard,.jcard:not(:has(.jc-img)){grid-template-columns:1fr;}
+  .jc-img{aspect-ratio:16/9;}
+  .bench-row{display:block;}
+  .bench-row .bd{width:auto;margin-bottom:6px;}
+}
 
 /* faceted filters */
 .filters{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center;margin-bottom:34px;padding-bottom:24px;border-bottom:1px solid var(--line);}
@@ -197,10 +221,6 @@ section{padding:74px 0;}
 .tier .th .cnt{font-family:var(--sans);font-size:12px;color:var(--gold);white-space:nowrap;}
 .tier.hide{display:none;}
 
-/* booth capture note */
-.boothnote{background:var(--cream);border:1px solid var(--line);padding:16px 18px;font-size:13.5px;color:var(--ink-2);}
-.boothnote b{color:var(--ink);}
-.detail .buy .boothnote{margin-top:22px;}
 .card .flag.treated,.card .flag.fragile{border-color:color-mix(in srgb, var(--gold) 40%, transparent);color:var(--gold);}
 
 /* sub-collection sections (coins, fossils) */
@@ -636,3 +656,13 @@ footer .col a:hover{color:var(--gold-bright);}
   .mp-grid{grid-template-columns:1fr;gap:34px;}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+
+/* ---- Taylor's gallery -------------------------------------------------
+   A plain photo grid with no captions under it. The nails are the content;
+   a label reading "Hand-painted · custom" under every tile adds nothing a
+   person can't already see. */
+.nailgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.nailshot{margin:0;overflow:hidden;background:var(--pink-bg);border-radius:2px;}
+.nailshot img{display:block;width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;}
+@media (max-width:1000px){.nailgrid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:700px){.nailgrid{grid-template-columns:repeat(2,1fr);gap:10px;}}

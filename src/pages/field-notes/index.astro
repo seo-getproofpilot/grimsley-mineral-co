@@ -3,12 +3,16 @@ import Base from "../../layouts/Base.astro";
 import { u } from "../../consts";
 import articles from "../../data/articles.json";
 ---
-<Base title="Field Notes — Grimsley Mineral Co." active="">
+<Base
+  title="Guides — How to read a specimen — Grimsley Mineral Co."
+  description="Plain-English guides to grading, localities, hardness, fluorescence and care. Reference material, separate from the dated journal."
+  active="guides"
+>
   <div class="pagehead">
     <div class="inner">
-      <div class="crumb"><a href={u("")}>Home</a> / Field Notes</div>
-      <h1>Field Notes</h1>
-      <p>Short pieces on how to read a specimen, what makes one worth more than another, and how to care for what you collect. A little context makes a piece worth more to you, and to the next person you show it to.</p>
+      <div class="crumb"><a href={u("")}>Home</a> / Guides</div>
+      <h1>Guides</h1>
+      <p>How to read a specimen, what makes one worth more than another, and how to keep what you collect from wrecking itself. Reference, written once and kept current. For what we are actually doing week to week, that is the <a href={u("journal")} style="color:var(--gold);">journal</a>.</p>
     </div>
   </div>
   <section>

@@ -1,0 +1,99 @@
+---
+import Base from "../../layouts/Base.astro";
+import SpecimenCard from "../../components/SpecimenCard.astro";
+import { u, SITE, JOURNAL_STATUS, journalSorted, journalDate } from "../../consts";
+import entries from "../../data/journal.json";
+import specimens from "../../data/specimens.json";
+
+export function getStaticPaths() {
+  const all = journalSorted(entries as any[]);
+  return all.map((e: any, i: number) => ({
+    params: { slug: e.slug },
+    props: { entry: e, next: all[i + 1] ?? null, prev: all[i - 1] ?? null },
+  }));
+}
+
+const { entry, next, prev } = Astro.props;
+
+// Pieces this story is about. This is the whole point of the journal sitting
+// in the same site as the catalog: someone arrives from a video, reads why a
+// thing is interesting, and the actual thing is right there. Sold and
+// permanent-collection pieces are included on purpose — the story is the
+// reason they are here, not the sale.
+const linked = (entry.specimens || [])
+  .map((slug: string) => specimens.find((s: any) => s.slug === slug))
+  .filter(Boolean);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: entry.title,
+  description: entry.excerpt,
+  datePublished: entry.date,
+  author: { "@type": "Organization", name: SITE.name },
+  publisher: { "@type": "Organization", name: SITE.name },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  ...(entry.image ? { image: new URL(u(entry.image), Astro.site).href } : {}),
+};
+---
+<Base
+  title={`${entry.title} — Journal — Grimsley Mineral Co.`}
+  description={entry.excerpt}
+  active="journal"
+  schema={schema}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / <a href={u("journal")}>Journal</a></div>
+      <h1>{entry.title}</h1>
+      <div class="jc-top" style="margin-top:18px;">
+        <time datetime={entry.date}>{journalDate(entry.date)}</time>
+        {entry.status && entry.status !== "done" && (
+          <span class={`jc-status ${entry.status}`}>{JOURNAL_STATUS[entry.status]}</span>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    {entry.image && (
+      <img src={u(entry.image)} alt={entry.imageAlt || entry.title} style="width:100%;margin:0 0 34px;" />
+    )}
+    <p class="lead">{entry.body[0]}</p>
+    {entry.body.slice(1).map((p: string) => <p>{p}</p>)}
+
+    {entry.unknowns && entry.unknowns.length > 0 && (
+      <div class="unknowns">
+        <h3>What we still don't know</h3>
+        <ul>{entry.unknowns.map((q: string) => <li>{q}</li>)}</ul>
+      </div>
+    )}
+  </article>
+
+  {linked.length > 0 && (
+    <section class="learn">
+      <div class="wrap">
+        <div class="sec-top">
+          <div class="k">From this story</div>
+          <h2>The pieces themselves</h2>
+        </div>
+        <div class="grid">{linked.map((s: any) => <SpecimenCard item={s} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <section>
+    <div class="wrap">
+      <div class="jnext">
+        {/* Story-specific next step where the entry defines one, because "read
+            more articles" is not what someone wants at the end of a lamp build. */}
+        {entry.cta && <a class="btn btn-gold" href={entry.cta.href.startsWith("http") ? entry.cta.href : u(entry.cta.href)}>{entry.cta.label}</a>}
+        <a class="btn btn-ghost" href={u("journal")}>All journal entries</a>
+      </div>
+      <div class="jpager">
+        {prev && <a href={u(`journal/${prev.slug}`)}>← {prev.title}</a>}
+        {next && <a href={u(`journal/${next.slug}`)} style="text-align:right;">{next.title} →</a>}
+      </div>
+    </div>
+  </section>
+</Base>

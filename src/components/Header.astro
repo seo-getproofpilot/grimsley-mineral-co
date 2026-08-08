@@ -1,30 +1,25 @@
 ---
-import { u, SITE, BOOTH_SALE } from "../consts";
+import { u } from "../consts";
 const { active = "" } = Astro.props;
-// Deepest discount on offer, computed rather than typed, so the bar can never
-// advertise a number the pricing rule does not actually give.
-const topPct = Math.round(Math.max(...Object.values(BOOTH_SALE.discounts)) * 100);
+
+// Six items. The nav is not the sitemap — it does not have to expose our
+// internal taxonomy. Minerals stands in for the shop because minerals are
+// overwhelmingly what sells. Fossils, Coins, Localities, Sold and Our
+// Standard all still exist, still get linked from the footer and from the
+// pages they belong to, and don't need to compete here.
 const nav = [
   { href: "minerals", label: "Minerals", key: "minerals" },
-  { href: "fossils", label: "Fossils", key: "fossils" },
-  { href: "lava-lamps", label: "Lava Lamps", key: "lava" },
-  { href: "nails", label: "Nails", key: "nails" },
-  { href: "coins", label: "Coins", key: "coins" },
-  { href: "localities", label: "Localities", key: "localities" },
-  { href: "sold", label: "Sold", key: "sold" },
-  { href: "standard", label: "Our Standard", key: "standard" },
-  { href: "visit", label: "Visit", key: "visit" },
+  { href: "lava-lamps", label: "Lava Lab", key: "lava" },
+  { href: "nails", label: "Taylor's Nails", key: "nails" },
+  { href: "collection", label: "Collection", key: "collection" },
+  { href: "journal", label: "Journal", key: "journal" },
+  { href: "field-notes", label: "Guides", key: "guides" },
 ];
 ---
-<div class="promo">
-  Grand opening at the <b>Highway 127 Yard Sale</b> &nbsp;·&nbsp; {SITE.event.dates}
-  <span class="booth-live">&nbsp;·&nbsp; <b>Booth pricing: up to {topPct}% off</b></span>
-  &nbsp;·&nbsp; Grimsley, TN
-</div>
 <header class="site">
   <div class="head">
     <div class="left">
-      <span>Family-owned · Grimsley, TN</span>
+      <span>Grimsley, Tennessee</span>
     </div>
     <a class="wordmark" href={u("")}>
       <div class="name">Grimsley Mineral Co.</div>
@@ -32,9 +27,9 @@ const nav = [
     </a>
     <div class="right">
       <a href={u("about")}>About</a>
-      <a href={u("visit")} class="cart">
+      <a href={u("contact")} class="cart">
         <svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.65-7 10-7 10z"></path></svg>
-        Visit
+        Contact
       </a>
     </div>
   </div>

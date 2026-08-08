@@ -1,39 +1,33 @@
 ---
 import Base from "../layouts/Base.astro";
-import BoothBar from "../components/BoothBar.astro";
 import { u } from "../consts";
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
 ---
 <Base
-  title="Visit Us at the 127 Yard Sale, Aug 6-9 — Grimsley, TN"
-  description="Grimsley Mineral Co. opens at the Highway 127 Yard Sale, August 6 to 9, 2026. The whole collection comes out. Cash and in person at 5521 South York Hwy."
-  active="visit"
+  title="Where We Are — Grimsley, Tennessee — Grimsley Mineral Co."
+  description="Grimsley Mineral Co. is on US-127 in Grimsley, Tennessee. It is where the collection, the lamps and the workbench all live."
+  active=""
 >
   <div class="pagehead">
     <div class="inner">
-      <div class="crumb"><a href={u("")}>Home</a> / Visit</div>
-      <h1>See Us at the 127</h1>
-      <p>The Highway 127 Yard Sale is the largest yard sale in the country, and it is where Grimsley Mineral Co. opens its doors for the first time. Our whole collection comes out for it, minerals and fossils, the lava lamps, coins and currency, and Taylor's Bugged Out Nails. It is the one chance to see everything in person, hold the pieces, and talk with the family behind them.</p>
+      <div class="crumb"><a href={u("")}>Home</a> / Where We Are</div>
+      <h1>Grimsley, Tennessee</h1>
+      <p>This is where everything currently lives. Not a regular storefront with posted hours, but it's where we work, keep the collection, photograph pieces and build things.</p>
     </div>
   </div>
-
-  <section style="padding-bottom:0;">
-    <div class="wrap"><BoothBar /></div>
-  </section>
 
   <div class="visit">
     <div class="split">
       <div class="info">
-        <div class="k">Grand opening</div>
-        <h2>Aug 6–9, 2026</h2>
+        <div class="k">The address</div>
+        <h2>5521 South York Hwy</h2>
         <div class="addr">
-          <b>Thursday through Sunday</b><br />
-          5521 South York Hwy, Grimsley, TN 38565<br />
+          Grimsley, TN 38565<br />
           On US-127, between Dollar General &amp; Taco Bros
         </div>
         <div class="btns">
           <a class="btn btn-gold" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>
-          <a class="btn btn-line" href={`https://www.google.com/maps/search/?api=1&query=${mapDest}`} target="_blank" rel="noopener">Open in maps</a>
+          <a class="btn btn-line" href={u("contact")}>Send a message</a>
         </div>
       </div>
       <div class="mapbox live">
@@ -48,10 +42,7 @@ const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
   </div>
 
   <div class="prose">
-    <h2>What to expect</h2>
-    <p>Display and collector grade mineral specimens laid out to browse. Fossils and shells. The lava lamp showcase, including custom sculpted pieces and a look at what we can build on commission. A table of coins, silver and gold, old money, and foreign currency. And the chance to ask us anything about where a piece came from or how it was made.</p>
-    <h2>Plan your visit</h2>
-    <p>We are on US-127, so it is an easy stop along the route. Look for us between the Dollar General and Taco Bros in Grimsley. If you are driving in for it, browse the site first so you know what is on the tables before you make the trip.</p>
-    <p>After the 127, we move online only. The specimens you see at the booth become the inventory you can shop from home, so this site is the best way to keep up with what is available once the sale wraps.</p>
+    <p>If you're nearby and trying to see something specific, <a href={u("contact")}>message us</a>. Most of the collection isn't sitting out.</p>
+    <p>There's no checkout on this site, which is deliberate. Reserve a piece and we come back to you with a shipping quote to your address, then take payment by Square, Zelle, Cash App or cash.</p>
   </div>
 </Base>

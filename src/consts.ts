@@ -67,40 +67,113 @@ export const CARE_LABELS: Record<string, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// Booth pricing for the Highway 127 Yard Sale.
+// SPECIMEN STATUS — collection vs inventory.
 //
-// Cash, in person, at the booth, for the run of the sale only. Discount is by
-// tier, not by a raw price cutoff, because tier is the taxonomy the site
-// already shows and sorts by. Worth knowing where the two diverge: three
-// Collector pieces are priced under $25 (tektites $10, favosite coral $15,
-// gem green fluorite $22), so they take the Collector 20% rather than the
-// Bin 30% a price-band reading would give them.
+// A retail site assumes that if a thing has a page, it is for sale. That is
+// too small for what this actually is. Some pieces are ours and always will
+// be; some we are still trying to identify. Both are worth publishing, and
+// neither should show a price.
 //
-// The Vault is deliberately excluded. Those pieces hold their value and are
-// negotiated in person as they always were.
+// `available` is kept as the for-sale value rather than renamed to `for_sale`
+// because 24 records and several filters use that exact string. The rename is
+// cosmetic and can happen any time; the states below are what actually matter.
+//
+//   sellable  -> shows a price, an Offer in schema, and a reserve button
+//   label     -> what the badge says when it is not simply for sale
 // ---------------------------------------------------------------------------
-export const BOOTH_SALE = {
-  discounts: { bin: 0.3, collector: 0.2, vault: 0 } as Record<string, number>,
-  terms: "Cash, in person, at the booth. Online prices are unchanged.",
+export const SPECIMEN_STATUS: Record<
+  string,
+  { label: string; sellable: boolean; note?: string }
+> = {
+  available: { label: "Available", sellable: true },
+  reserved: {
+    label: "Reserved",
+    sellable: true,
+    note: "Being held for someone. Ask and we will tell you if it frees up.",
+  },
+  sold: { label: "Sold", sellable: false, note: "This one is gone. The page stays up." },
+  collection: {
+    label: "Permanent Collection",
+    sellable: false,
+    note: "Ours, and staying ours. Here because it is worth looking at, not because it is for sale.",
+  },
+  researching: {
+    label: "Still Researching",
+    sellable: false,
+    note: "We have it, we are not done working out what it is, and we will not sell it until we are.",
+  },
+  coming_soon: {
+    label: "Coming Soon",
+    sellable: false,
+    note: "Cataloged but not listed yet. Photography or measurements still to come.",
+  },
 };
 
-/**
- * Booth price for a piece, or null when it isn't discounted.
- * Rounded to a whole dollar so there is no coin-counting at a cash table.
- */
-export function boothPrice(item: { tier?: string; price?: number; status?: string }) {
-  const rate = BOOTH_SALE.discounts[item.tier ?? ""] ?? 0;
-  if (!rate || !item.price || item.status !== "available") return null;
-  const p = Math.round(item.price * (1 - rate));
-  return p < item.price ? p : null;
+/** Status metadata, falling back to Available for anything unrecognized. */
+export function statusOf(item: { status?: string }) {
+  return SPECIMEN_STATUS[item.status ?? "available"] ?? SPECIMEN_STATUS.available;
 }
 
-/** The tiers that are actually discounted, as "The Bin 30%" style labels. */
-export function boothTierLabels(tiers: readonly { key: string; label: string }[]) {
-  return tiers
-    .filter((t) => (BOOTH_SALE.discounts[t.key] ?? 0) > 0)
-    .map((t) => ({ ...t, pct: Math.round(BOOTH_SALE.discounts[t.key] * 100) }))
-    .sort((a, b) => b.pct - a.pct); // deepest discount reads first
+/** Does this piece show a dollar figure at all? */
+export function showsPrice(item: { status?: string; price?: number }) {
+  return statusOf(item).sellable && !!item.price;
+}
+
+// Booth pricing for the 127 lived here. The sale ran Aug 6-9 2026 and is over,
+// so the discount machinery (BOOTH_SALE, boothPrice, boothTierLabels, the
+// BoothBar component and the data-booth CSS) was deleted rather than left
+// dormant. SITE.event stays: the 127 is now history worth telling, not an
+// upcoming thing to advertise.
+
+// ---------------------------------------------------------------------------
+// JOURNAL — the running log of what we are actually doing.
+//
+// Separate from Field Notes on purpose. Field Notes are evergreen guides
+// written for someone searching "how do I clean a fluorite specimen". The
+// journal is dated, first person, and often unfinished. Mixing the two ruins
+// both: the guides stop reading as reference, and the stories start reading
+// as marketing.
+//
+// Nothing goes in journal.json that did not happen. This site has its own
+// Authenticity page, so an invented story here costs more than it would
+// anywhere else.
+// ---------------------------------------------------------------------------
+
+// Status is the honest label on an entry. "open" is the valuable one — it is
+// how a question we have not answered yet stays on the site instead of waiting
+// for a tidy ending that may never come.
+export const JOURNAL_STATUS: Record<string, string> = {
+  done: "Finished",
+  working: "In progress",
+  open: "Still figuring it out",
+};
+
+// Journal sections. A filter, not a nav: the journal is one feed and these
+// let someone who only cares about lamps read only the lamps. "Building the
+// business" is deliberately in the list — figuring out who actually buys this
+// stuff is part of the story, not an admission against interest.
+export const JOURNAL_SECTIONS = [
+  { key: "finds", label: "Finds" },
+  { key: "lava", label: "Lava Lab" },
+  { key: "taylor", label: "Taylor Makes" },
+  { key: "trips", label: "Field Trips" },
+  { key: "research", label: "Research" },
+  { key: "business", label: "Building the Business" },
+];
+
+/** Newest first. Entries carry ISO dates, so a string sort is the date sort. */
+export function journalSorted<T extends { date: string }>(entries: readonly T[]): T[] {
+  return [...entries].sort((a, b) => (a.date === b.date ? 0 : a.date > b.date ? -1 : 1));
+}
+
+/** "August 8, 2026" from "2026-08-08", without dragging in a date library. */
+export function journalDate(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+  return `${months[m - 1]} ${d}, ${y}`;
 }
 
 // Tier metadata for the minerals page split (decor vs collector).

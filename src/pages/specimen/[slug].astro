@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { u, CARE_LABELS, boothPrice, BOOTH_SALE, SITE } from "../../consts";
+import { u, CARE_LABELS, SITE, statusOf, showsPrice } from "../../consts";
 import specimens from "../../data/specimens.json";
 import { resolveMineral } from "../../data/minerals";
 import { resolveFossil } from "../../data/fossils";
@@ -50,8 +50,6 @@ const locHub = localityFor(item.locality);
 const isSold = item.status === "sold";
 const soldPrice = (item as Record<string, any>).soldPrice ?? item.price;
 
-// Booth price for the 127 sale. Null for Vault pieces and anything not available.
-const booth = boothPrice(item as any);
 const soldDate: string = (item as Record<string, any>).soldDate ?? "";
 const soldDateLabel = soldDate
   ? new Date(soldDate + "T12:00:00Z").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
@@ -70,9 +68,16 @@ const scaleMax = Math.max(dimCm || 0, QUARTER_CM);
 const piecePct = dimCm ? Math.min(100, (dimCm / scaleMax) * 100) : 0;
 const quarterPct = Math.min(100, (QUARTER_CM / scaleMax) * 100);
 
-// Similar pieces: same mineral species first, then same line, excluding self and
-// sold pieces. Up to 3.
-const sameKey = (s) => s.slug !== item.slug && s.status !== "sold";
+// Status vocabulary. Some pieces are ours and are not for sale; some we are
+// still identifying. Both get a page and neither gets a price.
+const st = statusOf(item);
+const priced = showsPrice(item);
+
+// Similar pieces: same mineral species first, then same line, excluding self
+// and anything not actually purchasable. A permanent-collection piece under
+// "pieces you might pair with this" is a dead end, so it stays out of here —
+// it belongs on /collection instead.
+const sameKey = (s) => s.slug !== item.slug && statusOf(s).sellable;
 const similar = [
   ...specimens.filter((s) => sameKey(s) && s.line === item.line && s.species === item.species),
   ...specimens.filter((s) => sameKey(s) && s.line === item.line && s.species !== item.species),
@@ -85,7 +90,6 @@ const lineLabel = {
   coins: "Coins & Currency",
 }[item.line] || "Collection";
 const lineHref = u({ minerals: "minerals", fossils: "fossils", lava: "lava-lamps", coins: "coins" }[item.line] || "");
-const statusLabel = { available: "Available", reserved: "Reserved", sold: "Sold" }[item.status];
 const active = item.line === "lava" ? "lava" : item.line;
 const care = (item.care || []).map((c) => CARE_LABELS[c] || c);
 
@@ -117,6 +121,13 @@ const availability = {
   sold: "https://schema.org/SoldOut",
 }[item.status] || "https://schema.org/InStock";
 
+// An Offer is a claim that a thing is or was purchasable. Pieces in the
+// permanent collection, or ones we are still identifying, were never on the
+// market, so they get a Product with no Offer at all rather than an Offer
+// dressed up as OutOfStock. Sold keeps its Offer because the sale is a real
+// historical fact worth publishing.
+const hasOffer = priced || isSold;
+
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -124,18 +135,23 @@ const productSchema = {
   "description": item.description,
   "image": new URL(u(item.image), Astro.site).href,
   "category": lineLabel,
-  "offers": {
-    "@type": "Offer",
-    // A sold piece carries the price it ACTUALLY sold for, not its old asking
-    // price. Leaving stale list-price markup on a sold item misrepresents it to
-    // search engines; the final price is a historical fact and is the honest
-    // thing to publish alongside SoldOut.
-    "price": isSold ? soldPrice : item.price,
-    "priceCurrency": "USD",
-    "availability": availability,
-    "url": new URL(Astro.url.pathname, Astro.site).href,
-    "seller": { "@type": "Store", "name": "Grimsley Mineral Co." },
-  },
+  ...(hasOffer
+    ? {
+        offers: {
+          "@type": "Offer",
+          // A sold piece carries the price it ACTUALLY sold for, not its old
+          // asking price. Leaving stale list-price markup on a sold item
+          // misrepresents it to search engines; the final price is a
+          // historical fact and is the honest thing to publish alongside
+          // SoldOut.
+          price: isSold ? soldPrice : item.price,
+          priceCurrency: "USD",
+          availability,
+          url: new URL(Astro.url.pathname, Astro.site).href,
+          seller: { "@type": "Store", name: "Grimsley Mineral Co." },
+        },
+      }
+    : {}),
 };
 ---
 <Base title={`${item.name} — Grimsley Mineral Co.`} description={item.description} active={active} schema={productSchema}>
@@ -149,15 +165,15 @@ const productSchema = {
     <div class="buy">
       <div class="crumb"><a href={lineHref}>{lineLabel}</a> / {item.species}</div>
       <h1>{item.name}</h1>
-      <span class={`status ${item.status}`}>{statusLabel}</span>
-      <div class="price">${item.price}.00{item.priceNote && <span style="font-size:15px;color:var(--muted);"> {item.priceNote}</span>}</div>
-      {booth && (
-        <div class="booth-price">
-          <span class="was">${item.price}.00</span><span class="now">${booth}.00</span>
-          <span class="tag">127 booth price · {SITE.event.dates}</span>
+      <span class={`status ${item.status}`}>{st.label}</span>
+      {priced ? (
+        <div class="price">${item.price}.00{item.priceNote && <span style="font-size:15px;color:var(--muted);"> {item.priceNote}</span>}</div>
+      ) : !isSold && (
+        <div class="notforsale">
+          <div class="nfs-label">{st.label}</div>
+          {st.note && <p>{st.note}</p>}
         </div>
       )}
-      {booth && <p class="booth-note" style="font-size:13px;color:var(--muted);margin-top:10px;">{BOOTH_SALE.terms}</p>}
       {item.status === "available" && item.line !== "lava" && (
         <div class="oneofone"><span class="dot"></span>One of one. This exact piece is the only one, and when it sells it is gone.</div>
       )}
@@ -195,6 +211,14 @@ const productSchema = {
         {isSold && <a class="btn btn-dark" href={lineHref}>See similar pieces</a>}
         {isSold && <a class="btn btn-ghost" href={u("sold")}>Sold archive</a>}
         {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Ask a question</a>}
+        {item.status === "collection" && <a class="btn btn-dark" href={u("collection")}>See the rest of the collection</a>}
+        {item.status === "researching" && (
+          <a class="btn btn-dark" href={u("contact")}>Know what this is? Tell us</a>
+        )}
+        {item.status === "coming_soon" && <a class="btn btn-dark" href={lineHref}>See what is listed now</a>}
+        {(item.status === "collection" || item.status === "researching" || item.status === "coming_soon") && (
+          <a class="btn btn-ghost" href={u("contact")}>Ask about this piece</a>
+        )}
       </div>
 
       {dimCm && (
@@ -207,7 +231,9 @@ const productSchema = {
         </div>
       )}
 
-      <div class="boothnote"><b>Aug 6–9 at the 127:</b> cash and in person at the booth. Reserve here to hold this piece for pickup, or buy online after the sale.</div>
+      {priced && (
+        <div class="buynote"><b>How buying works.</b> There is no checkout on this site. Reserve a piece and we email you back the same day with a shipping quote to your address. Payment is Square, Zelle, Cash App or cash.</div>
+      )}
 
       <dl class="spec">
         <div class="r"><dt>Species</dt><dd>{mineral ? <a href={u(`mineral/${mineral.key}`)}>{item.species}</a> : item.species}</dd></div>

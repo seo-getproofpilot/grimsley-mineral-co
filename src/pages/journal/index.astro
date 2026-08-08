@@ -1,0 +1,95 @@
+---
+import Base from "../../layouts/Base.astro";
+import { u, JOURNAL_SECTIONS, JOURNAL_STATUS, journalSorted, journalDate } from "../../consts";
+import entries from "../../data/journal.json";
+
+const posts = journalSorted(entries as any[]);
+
+// Only offer a filter chip for a section that actually has something in it.
+// A chip that filters to nothing is a worse experience than no chip.
+const used = JOURNAL_SECTIONS.filter((s) => posts.some((p: any) => p.section === s.key));
+
+// With nothing published, this page has no reason to be in the index. It still
+// builds, so the route never 404s if something links to it early.
+const empty = posts.length === 0;
+---
+<Base
+  title="Journal — What we're finding, building and figuring out"
+  description="A running log from Grimsley Mineral Co. Collections we buy, lamps we build, specimens we cannot identify yet, and what we are learning about running this thing."
+  active="journal"
+  noindex={empty}
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / Journal</div>
+      <h1>Journal</h1>
+      <p>What we are actually doing, dated and in order. Things we bought, things we built, things we got wrong, and the ones we still have not worked out. For how-to reference instead, that lives in <a href={u("field-notes")} style="color:var(--gold);">Field Notes</a>.</p>
+    </div>
+  </div>
+
+  {empty ? (
+    <section>
+      <div class="wrap">
+        <div class="emptyjournal">
+          <h2>Nothing here yet.</h2>
+          <p>The first entries go up after the 127. Rather than backfill a history we did not write down, we are starting from where we actually are.</p>
+          <a class="btn btn-dark" href={u("field-notes")}>Read the field notes instead</a>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section>
+      <div class="wrap">
+        {used.length > 1 && (
+          <div class="filters jfilters">
+            <div class="grp">
+              <span class="lbl">Show</span>
+              <button class="chip on" data-jfilter="all">Everything</button>
+              {used.map((s) => <button class="chip" data-jfilter={s.key}>{s.label}</button>)}
+            </div>
+          </div>
+        )}
+
+        <div class="jlist">
+          {posts.map((p: any) => (
+            <a class="jcard" href={u(`journal/${p.slug}`)} data-section={p.section}>
+              {p.image && (
+                <div class="jc-img"><img src={u(p.image)} alt={p.imageAlt || p.title} loading="lazy" decoding="async" /></div>
+              )}
+              <div class="jc-body">
+                <div class="jc-top">
+                  <time datetime={p.date}>{journalDate(p.date)}</time>
+                  {p.status && p.status !== "done" && (
+                    <span class={`jc-status ${p.status}`}>{JOURNAL_STATUS[p.status]}</span>
+                  )}
+                </div>
+                <h2>{p.title}</h2>
+                <p>{p.excerpt}</p>
+                <span class="r">Read →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {!empty && (
+    <script is:inline>
+      (function () {
+        var chips = document.querySelectorAll("[data-jfilter]");
+        var cards = document.querySelectorAll(".jcard");
+        chips.forEach(function (c) {
+          c.addEventListener("click", function () {
+            var want = c.getAttribute("data-jfilter");
+            chips.forEach(function (o) { o.classList.toggle("on", o === c); });
+            cards.forEach(function (card) {
+              var show = want === "all" || card.getAttribute("data-section") === want;
+              card.style.display = show ? "" : "none";
+            });
+          });
+        });
+      })();
+    </script>
+  )}
+</Base>

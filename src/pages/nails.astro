@@ -1,28 +1,41 @@
 ---
 import Base from "../layouts/Base.astro";
 import { u, SITE } from "../consts";
+
+// Taylor's real work, pulled from her own Instagram and Facebook posts.
+// Captions describe only what is visibly in the photo. Nothing here claims a
+// turnaround time, a price or a material that has not been confirmed.
+const GALLERY = [
+  { file: "set-red-checkerboard.webp", alt: "Red, black and white press-on set with checkerboard, stars and sparkle detail, in its case" },
+  { file: "set-blue-bows.webp", alt: "Blue press-on set with sculpted white bows and painted flowers, in its case" },
+  { file: "fall-set.webp", alt: "Hand wearing a fall set with sculpted 3D pie, turkey leg and plaid nails" },
+  { file: "set-black-smoke.webp", alt: "Black, smoke and pink marbled press-on set in its case" },
+  { file: "easter-set.webp", alt: "Pastel Easter set with a sculpted 3D bunny and painted eggs" },
+  { file: "red-black.webp", alt: "Long red and white stiletto set with black tribal linework and hand-lettering" },
+  { file: "pastel-hearts.webp", alt: "Pink set with hand-painted candy-heart designs" },
+  { file: "display-stand.webp", alt: "Single press-on nails on a display stand, showing cow print, polka dot and swirl designs" },
+];
 ---
 <Base
-  title="Bugged Out Nails — Hand-Painted Press-On Nail Art"
-  description="Taylor's hand-painted press-on nail sets, from soft floral and ladybug designs to gothic and holiday. Every set painted by hand, so no two match."
+  title="Bugged Out Nails — Hand-Painted Press-On Nails by Taylor"
+  description="Taylor's hand-painted, hand-sculpted press-on nails. Custom sets built one nail at a time, out of Grimsley, Tennessee."
   active="nails"
 >
   <div class="pagehead">
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Bugged Out Nails</div>
       <h1>Bugged Out Nails</h1>
-      <p>Taylor's hand-painted press-on nail art, from soft pink ladybug and floral sets to gothic and holiday designs. Every set is painted by hand, so no two are exactly alike. This page is here to show the work. Ordering happens over on Instagram and Facebook, where Taylor takes requests and posts new designs.</p>
+      <p>Taylor paints and sculpts every nail herself. Orders and custom sets happen through <a href={SITE.social.instagram} target="_blank" rel="noopener" style="color:var(--pink-deep);">Instagram</a> or <a href={SITE.social.facebook} target="_blank" rel="noopener" style="color:var(--pink-deep);">Facebook</a>.</p>
     </div>
   </div>
 
   <div class="feature pink">
     <div class="split">
-      <div class="pic"><img src={u("img/lifestyle/nails-gothic.webp")} alt="Hand-painted press-on nails" width="789" height="1400" decoding="async" /></div>
+      <div class="pic"><img src={u("img/nails/booth-table.webp")} alt="The Bugged Out Nails table: display board of single nails, cased sets, chalkboard sign and a lava lamp" width="666" height="888" decoding="async" /></div>
       <div class="txt">
-        <div class="k">Made to order</div>
-        <h2>Painted by hand, one set at a time.</h2>
-        <p>Custom sets, pick-and-press singles, and ready-to-ship art nails. Send Taylor your idea and your sizes, pick a shape and length, and she paints it. Sets ship in about a week.</p>
-        <p>These are reusable, so a good set works out to pennies a wear. Wear them for a night out, a trip, or a photoshoot, take them off, and put them back on. Salon-level art without the salon price or the two-hour appointment.</p>
+        <div class="k">Pick and press</div>
+        <h2>Find your size, pick your case.</h2>
+        <p>The board holds singles you can mix into a set. Or describe what you want and she paints it from scratch.</p>
         <div class="btns">
           <a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
           <a class="btn btn-pinkline" href={SITE.social.facebook} target="_blank" rel="noopener">Message on Facebook</a>
@@ -33,12 +46,15 @@ import { u, SITE } from "../consts";
 
   <section>
     <div class="wrap">
-      <div class="sec-top"><div class="k">The looks</div><h2>A few recent sets</h2></div>
-      <div class="grid g4">
-        <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails-card-800.webp")} alt="Floral press-on set" width="800" height="1067" loading="lazy" decoding="async" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Floral &amp; Ladybug</div><div class="dims">Hand-painted · custom</div></div></div>
-        <div class="card"><div class="imgwrap" style="background:var(--pink-bg);"><img src={u("img/lifestyle/nails-gothic.webp")} alt="Gothic press-on set" width="789" height="1400" loading="lazy" decoding="async" style="object-fit:cover;padding:0;" /></div><div class="meta"><div class="sp">Gothic &amp; Holiday</div><div class="dims">Hand-painted · custom</div></div></div>
+      <div class="sec-top"><div class="k">Her work</div><h2>Sets she has made</h2></div>
+      <div class="nailgrid">
+        {GALLERY.map((g) => (
+          <figure class="nailshot">
+            <img src={u(`img/nails/${g.file}`)} alt={g.alt} width="666" height="888" loading="lazy" decoding="async" />
+          </figure>
+        ))}
       </div>
-      <div class="center-cta"><a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">See the full gallery on Instagram</a></div>
+      <div class="center-cta"><a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">More on Instagram</a></div>
     </div>
   </section>
 </Base>

@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import BoothBar from "../components/BoothBar.astro";
 import { u } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import specimens from "../data/specimens.json";
@@ -34,14 +33,13 @@ const grades = [
 
   <section>
     <div class="wrap">
-      <BoothBar />
 
       <div class="subcol">
         <div class="sh"><h2>Silver &amp; Gold</h2><span class="tag">Bullion · by weight</span></div>
         <p>Bars and rounds priced off metal content: the weight, the purity, and the spot price. Straightforward stores of value, not graded rarities.</p>
         {bullion.length > 0
           ? <div class="grid">{bullion.map((item) => <SpecimenCard item={item} />)}</div>
-          : <div class="soon">Cataloged for the 127. Our silver and gold come out for the grand opening Aug 6–9, then get listed here with weight and purity on each piece.</div>}
+          : <div class="soon">Cataloged but not listed yet. Each piece gets weighed and its purity recorded before it goes up, and that takes longer than photographing a rock.</div>}
       </div>
 
       <div class="subcol">
@@ -49,7 +47,7 @@ const grades = [
         <p>US and world coins listed with the year, mint mark, denomination, and condition. Where a coin is certified by PCGS or NGC, we show the grade and the certification number so you can look it up on their own database before you buy.</p>
         {coins.length > 0
           ? <div class="grid">{coins.map((item) => <SpecimenCard item={item} />)}</div>
-          : <div class="soon">Being sorted and graded for the grand opening. We are deciding which pieces from the collection go up first. Ask about a specific coin any time.</div>}
+          : <div class="soon">Being sorted and graded. We are still deciding which pieces from the collection go up first. Ask about a specific coin any time.</div>}
       </div>
 
       <div class="subcol">
@@ -57,7 +55,7 @@ const grades = [
         <p>Old US notes and foreign currency, listed with the country, series, denomination, and condition. The interesting ones, star notes, unusual seals, and older large-size notes, get called out.</p>
         {notes.length > 0
           ? <div class="grid">{notes.map((item) => <SpecimenCard item={item} />)}</div>
-          : <div class="soon">Old money and foreign notes will be on the table at the 127, and listed here after. Have something you collect? Ask and we will tell you what we have.</div>}
+          : <div class="soon">Old money and foreign notes, not listed here yet. Have something you collect? Ask and we will tell you what we have.</div>}
       </div>
 
     </div>

@@ -8,37 +8,39 @@ import EmailCapture from "./EmailCapture.astro";
     <div>
       <div class="name">Grimsley Mineral Co.</div>
       <div class="blurb">Cataloged minerals, fossils, hand-built lava lamps, and collector coins out of Grimsley, Tennessee.</div>
-      <!-- Only list what we actually accept. Square runs Tap to Pay at the
-           booth, which is what covers Apple Pay and contactless cards. No
-           Stripe account exists, so no Stripe. -->
+      <!-- Only list what we actually accept. Square runs Tap to Pay, which is
+           what covers Apple Pay and contactless cards. No Stripe account
+           exists, so no Stripe. -->
       <div class="pay"><span>Square</span><span>Apple Pay</span><span>Zelle</span><span>Cash App</span><span>Cash</span></div>
     </div>
     <div class="col">
       <h5>Shop</h5>
       <a href={u("minerals")}>Minerals</a>
       <a href={u("fossils")}>Fossils &amp; Shells</a>
-      <a href={u("lava-lamps")}>Lava Lamps</a>
+      <a href={u("lava-lamps")}>Lava Lab</a>
       <a href={u("coins")}>Coins &amp; Currency</a>
       <a href={u("nails")}>Bugged Out Nails</a>
       <a href={u("localities")}>Browse by Locality</a>
       <a href={u("sold")}>Sold Archive</a>
     </div>
     <div class="col">
-      <h5>Learn</h5>
+      <h5>Read</h5>
+      <a href={u("journal")}>Journal</a>
+      <a href={u("collection")}>The Collection</a>
+      <a href={u("field-notes")}>Guides</a>
       <a href={u("what-its-worth")}>What a Specimen Is Worth</a>
       <a href={u("standard")}>Our Standard</a>
       <a href={u("authenticity")}>Authenticity &amp; Honesty</a>
-      <a href={u("field-notes")}>Field Notes</a>
       <a href={u("fluorescent")}>Under the UV</a>
       <a href={u("about")}>Our Story</a>
-      <a href={u("faq")}>FAQ</a>
-      <a href={u("shipping")}>Shipping &amp; Returns</a>
     </div>
     <div class="col">
       <h5>Contact</h5>
       <a href={u("contact")}>Get in Touch</a>
       <a href={u("contact")}>Commission a Lamp</a>
-      <a href={u("visit")}>Find the Booth</a>
+      <a href={u("shipping")}>Shipping &amp; Returns</a>
+      <a href={u("faq")}>FAQ</a>
+      <a href={u("visit")}>Where We Are</a>
     </div>
   </div>
   <div class="colo">

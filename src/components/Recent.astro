@@ -1,0 +1,46 @@
+---
+// The homepage's journal module. Dated cards, newest first.
+//
+// Deliberately NOT a "right now" ticker. "Today we're doing X" becomes a lie
+// the moment publishing slows down, and a homepage that lies about being busy
+// is worse than one that never claimed to be. A card stamped August 8 is still
+// true in December — it just says August 8. Nothing decays.
+//
+// Renders nothing at all when the journal is empty.
+import { u, journalSorted, journalDate, JOURNAL_STATUS } from "../consts";
+import entries from "../data/journal.json";
+
+const { limit = 3 } = Astro.props;
+const posts = journalSorted(entries as any[]).slice(0, limit);
+---
+{posts.length > 0 && (
+  <section>
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Journal</div>
+        <h2>What we've been up to</h2>
+      </div>
+      <div class="jlist">
+        {posts.map((p: any) => (
+          <a class="jcard" href={u(`journal/${p.slug}`)}>
+            {p.image && (
+              <div class="jc-img"><img src={u(p.image)} alt={p.imageAlt || p.title} loading="lazy" decoding="async" /></div>
+            )}
+            <div class="jc-body">
+              <div class="jc-top">
+                <time datetime={p.date}>{journalDate(p.date)}</time>
+                {p.status && p.status !== "done" && (
+                  <span class={`jc-status ${p.status}`}>{JOURNAL_STATUS[p.status]}</span>
+                )}
+              </div>
+              <h2>{p.title}</h2>
+              <p>{p.excerpt}</p>
+              <span class="r">Read →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="center-cta"><a class="btn btn-dark" href={u("journal")}>Read the journal</a></div>
+    </div>
+  </section>
+)}

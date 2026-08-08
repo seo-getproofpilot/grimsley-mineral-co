@@ -1,0 +1,41 @@
+---
+// What is genuinely in progress right now.
+//
+// This is the one module on the site that claims to be current, so it is
+// driven entirely by data rather than by copy: it lists journal entries whose
+// status is "working" or "open" and renders nothing when there are none.
+// Finish everything and the section disappears on the next build rather than
+// sitting there insisting we're busy.
+//
+// "open" earns its place here as much as "working" does. A question we haven't
+// answered is a real state of the business, and publishing it is what makes
+// the eventual answer worth reading.
+import { u, journalSorted, journalDate, JOURNAL_STATUS } from "../consts";
+import entries from "../data/journal.json";
+
+const active = journalSorted(entries as any[]).filter(
+  (e: any) => e.status === "working" || e.status === "open"
+);
+---
+{active.length > 0 && (
+  <section class="bench">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">On the workbench</div>
+        <h2>Currently unfinished</h2>
+        <p style="color:#b6afa2;">Things we're in the middle of, and things we haven't worked out yet.</p>
+      </div>
+      <div class="bench-list">
+        {active.map((e: any) => (
+          <a class="bench-row" href={u(`journal/${e.slug}`)}>
+            <span class="bd">{JOURNAL_STATUS[e.status]}</span>
+            <span>
+              <span class="bt">{e.title}</span>
+              <span class="bx">{e.excerpt}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,12 +1,20 @@
 ---
 import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
-import BoothBar from "../components/BoothBar.astro";
+import Recent from "../components/Recent.astro";
+import Workbench from "../components/Workbench.astro";
 import specimens from "../data/specimens.json";
-import { u } from "../consts";
+import journal from "../data/journal.json";
+import { u, statusOf } from "../consts";
 
 const featuredMinerals = specimens.filter((s) => s.line === "minerals" && s.featured).slice(0, 6);
+const collectionCount = specimens.filter((s) => !statusOf(s).sellable && s.status !== "sold").length;
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
+
+// The hero's first button points at the journal once there is a journal to
+// point at, and at the catalog until then. A "see what we're working on" link
+// into an empty page is a worse first impression than no link at all.
+const hasJournal = (journal as any[]).length > 0;
 
 // The hero photo is the largest paint on the page, so a phone should not be
 // made to download the desktop file. Two sizes, picked by media query, and
@@ -20,152 +28,123 @@ const heroCss =
 ---
 <Base
   title="Grimsley Mineral Co. — Minerals, Fossils & Lava Lamps"
-  description="Display-grade minerals, fossils, hand-built lava lamps and collector coins from a family collection in Grimsley, Tennessee. Every piece honestly graded."
+  description="We collect minerals, fossils, old lava lamps and coins out of Grimsley, Tennessee. Some of it we sell, some of it we keep, and some we are still trying to identify."
   headCss={heroCss}
   preloadImage={[
     { file: HERO_MOBILE, media: "(max-width:899px)" },
     { file: HERO_DESKTOP, media: "(min-width:900px)" },
   ]}
 >
-  <!-- HERO -->
+  <!-- HERO
+       One line. The photograph behind it is doing the explaining, and a
+       paragraph here would only be describing what you can already see. -->
   <div class="hero">
     <div class="bg"></div>
     <div class="scrim"></div>
     <div class="inner">
-      <div class="kicker">A family collection · Grimsley, Tennessee</div>
-      <h1>Natural history, one specimen at a time.</h1>
-      <p>Display-grade minerals, fossils, and one-of-a-kind pieces, chosen for quality and described honestly. Grand opening at the Highway 127 Yard Sale, then online.</p>
+      <div class="kicker">Grimsley, Tennessee</div>
+      <h1>We collect weird stuff.</h1>
+      <p>Some of it is for sale. Some of it isn't going anywhere.</p>
       <div class="btns">
-        <a class="btn btn-gold" href={u("minerals")}>Browse the collection</a>
-        <a class="btn btn-line" href={u("standard")}>How we grade</a>
+        {hasJournal
+          ? <a class="btn btn-gold" href={u("journal")}>See what we're working on</a>
+          : <a class="btn btn-gold" href={u("minerals")}>Browse the minerals</a>}
+        <a class="btn btn-line" href={u("lava-lamps")}>Into the Lava Lab</a>
       </div>
     </div>
   </div>
 
-  <!-- TRUST BAR -->
-  <div class="trustbar">
-    <div class="row">
-      <span>Authenticity guaranteed</span>
-      <span>Honest condition on every piece</span>
-      <span>Size &amp; scale on every listing</span>
-      <span>Ships insured</span>
-    </div>
-  </div>
+  <Workbench />
+  <Recent limit={3} />
 
-  <!-- CATEGORIES -->
-  <section>
-    <div class="wrap">
-      <div class="sec-top">
-        <div class="k">The Collection</div>
-        <h2>Five lines, one shelf</h2>
-        <p>From a two-dollar fossil for a kid to a cabinet-grade centerpiece, and a wall of lava lamps besides.</p>
-      </div>
-      <div class="cats">
-        <a class="cat" href={u("minerals")}><img src={u("img/lifestyle/cabinet-card-800.webp")} srcset={`${u("img/lifestyle/cabinet-card-400.webp")} 400w, ${u("img/lifestyle/cabinet-card-800.webp")} 800w`} sizes="(max-width:1024px) 46vw, 31vw" alt="Mineral specimens" width="800" height="1067" loading="lazy" decoding="async" /><div class="lab"><div class="n">Minerals</div><div class="m">Amethyst · Fluorite · Rutile</div></div></a>
-        <a class="cat solid" href={u("fossils")}><div class="lab"><div class="n">Fossils &amp; Shells</div><div class="m">Fish plates · Pearls · Coral</div></div></a>
-        <a class="cat" href={u("lava-lamps")}><img src={u("img/lifestyle/lava-collection-card-800.webp")} srcset={`${u("img/lifestyle/lava-collection-card-400.webp")} 400w, ${u("img/lifestyle/lava-collection-card-800.webp")} 800w`} sizes="(max-width:1024px) 46vw, 31vw" alt="Lava lamp collection" width="800" height="1067" loading="lazy" decoding="async" /><div class="lab"><div class="n">Lava Lamps</div><div class="m">Hand-built · One of one</div></div></a>
-        <a class="cat" href={u("nails")}><img src={u("img/lifestyle/nails-card-800.webp")} srcset={`${u("img/lifestyle/nails-card-400.webp")} 400w, ${u("img/lifestyle/nails-card-800.webp")} 800w`} sizes="(max-width:1024px) 46vw, 31vw" alt="Bugged Out Nails" width="800" height="1067" loading="lazy" decoding="async" /><div class="lab"><div class="n">Bugged Out Nails</div><div class="m">Hand-painted press-ons</div></div></a>
-        <a class="cat solid" href={u("coins")}><div class="lab"><div class="n">Coins &amp; Currency</div><div class="m">Silver · Gold · Old money</div></div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="sec-top">
-        <div class="k">Just added</div>
-        <h2>Newly cataloged specimens</h2>
-        <p>Each piece is photographed as it is, with its locality and size on the label.</p>
-      </div>
-      <BoothBar />
-      <div class="grid">
-        {featuredMinerals.map((item) => <SpecimenCard item={item} />)}
-      </div>
-      <div class="center-cta"><a class="btn btn-dark" href={u("minerals")}>View all minerals</a></div>
-    </div>
-  </section>
-
-  <!-- PRICE BANDS -->
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="sec-top">
-        <div class="k">Every budget</div>
-        <h2>Shop by price</h2>
-      </div>
-      <div class="bands">
-        <a class="bandcard" href={u("minerals")}><div class="p">Under $25</div><div class="l">Tumbles, small clusters, and bulk fossils. Great starters and gifts.</div><div class="g">Shop the bin →</div></a>
-        <a class="bandcard" href={u("minerals")}><div class="p">$25 – $150</div><div class="l">Display-grade minerals and fossils with real localities, sized and documented.</div><div class="g">Shop collector →</div></a>
-        <a class="bandcard" href={u("minerals")}><div class="p">The Vault · $150+</div><div class="l">Standout specimens and one-of-a-kind lamps. The best of what we've cataloged.</div><div class="g">Enter the vault →</div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- STANDARD -->
-  <section class="trust">
-    <div class="wrap">
-      <div class="sec-top"><div class="k">Our Standard</div><h2>How we grade, and what we promise</h2></div>
-      <div class="cols">
-        <div class="c"><div class="n"><span class="b"></span>Genuine &amp; identified</div><p>Every piece is a real, correctly identified specimen. Treated stones, like heat-set citrine, are labeled as treated, never passed off as natural.</p></div>
-        <div class="c"><div class="n"><span class="b"></span>Honest condition</div><p>If a piece has a chip or a repair, we tell you exactly what and where. No surprises when it arrives.</p></div>
-        <div class="c"><div class="n"><span class="b"></span>Documented locality</div><p>Real localities on every label, from the mine to the country, as specific as the piece allows.</p></div>
-        <div class="c"><div class="n"><span class="b"></span>True photography</div><p>Photos are lit to show real color and luster, with size and scale on every listing.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LAVA -->
+  <!-- LAVA — leads the categories because it is the most unusual thing we do. -->
   <div class="feature dark" id="lava">
     <div class="split">
       <div class="txt">
-        <div class="k">Light · Hand-built</div>
-        <h2>Functional art, one of one.</h2>
-        <p>Alongside our collection, we hand-sculpt custom lava lamps from Apoxie clay, like our Venom-inspired symbiote lamp. Own the piece that exists, or commission a new one in your colors and form.</p>
-        <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a><a class="btn btn-line" href={u("lava-lamps")}>Commission a piece</a></div>
+        <div class="k">The Lava Lab</div>
+        <h2>Lava lamps.</h2>
+        <p>We collect them, fix them, change the wax and fluid, and sometimes rebuild one from the base up.</p>
+        <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a></div>
       </div>
-      <div class="pic"><img src={u("img/lifestyle/lava-collection.webp")} alt="Lava lamp collection" width="1200" height="1600" loading="lazy" decoding="async" /></div>
+      <div class="pic"><img src={u("img/lifestyle/lava-collection.webp")} alt="Part of our lava lamp collection, lit" width="1200" height="1600" loading="lazy" decoding="async" /></div>
     </div>
   </div>
+
+  <!-- MINERALS — the specimen photos are the section. -->
+  <section>
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Minerals</div>
+        <h2>Minerals</h2>
+        <p>Some are for sale. Some aren't going anywhere.</p>
+      </div>
+      <div class="grid">
+        {featuredMinerals.map((item) => <SpecimenCard item={item} />)}
+      </div>
+      <div class="center-cta"><a class="btn btn-dark" href={u("minerals")}>See all of them</a></div>
+    </div>
+  </section>
 
   <!-- NAILS -->
   <div class="feature pink" id="nails">
     <div class="split">
-      <div class="pic"><img src={u("img/lifestyle/nails-gothic.webp")} alt="Hand-painted press-on nails" width="789" height="1400" loading="lazy" decoding="async" /></div>
+      <div class="pic"><img src={u("img/nails/press-board.webp")} alt="Rows of hand-painted press-on nails on Taylor's pick and press board" width="666" height="888" loading="lazy" decoding="async" /></div>
       <div class="txt">
         <div class="k">Bugged Out Nails</div>
-        <h2>Hand-painted press-ons.</h2>
-        <p>Taylor's side of the shop. Custom sets, pick-and-press singles, and ready-to-ship art nails, all made to order. Browse the looks here, then order on Instagram or Facebook.</p>
-        <div class="btns"><a class="btn btn-pink" href={u("nails")}>See the nails</a><a class="btn btn-pinkline" href={u("nails")}>Order on Instagram</a></div>
+        <h2>Taylor makes tiny things that get out of hand.</h2>
+        <p>Custom press-ons, hand-painted and sculpted one nail at a time.</p>
+        <div class="btns"><a class="btn btn-pink" href={u("nails")}>See what she makes</a></div>
       </div>
     </div>
   </div>
 
-  <!-- FIELD NOTES -->
-  <section class="learn">
+  <!-- SECONDARY LINES
+       Fossils, coins and the rest are real parts of the shelf but do not need
+       to compete with the three things above for the same attention. -->
+  <section style="padding-top:0;">
     <div class="wrap">
-      <div class="sec-top"><div class="k">Field Notes</div><h2>Know what you're buying</h2><p>A little context makes a specimen worth more to you, and to the next person you show it to.</p></div>
-      <div class="learn-grid">
-        <a class="t" href={u("field-notes/how-a-specimen-earns-its-grade")}><div class="num">Guide 01</div><h3>How a specimen earns its grade</h3><p>The things that decide a piece's quality, in plain terms, from a collector's checklist.</p><span class="r">Read →</span></a>
-        <a class="t" href={u("field-notes/what-a-locality-tells-you")}><div class="num">Guide 02</div><h3>What a locality tells you</h3><p>Why the mine a piece came from is part of the science, and part of the price.</p><span class="r">Read →</span></a>
-        <a class="t" href={u("field-notes/what-fades-and-what-dissolves")}><div class="num">Guide 03</div><h3>What fades and what dissolves</h3><p>Which pieces fade in the sun, which dissolve in water, and how to keep a specimen at its best.</p><span class="r">Read →</span></a>
+      <div class="sec-top">
+        <div class="k">Also on the shelf</div>
+        <h2>The rest of it</h2>
+      </div>
+      <div class="bands">
+        <a class="bandcard" href={u("fossils")}><div class="p">Fossils &amp; Shells</div><div class="l">Fish plates, coral, pearls.</div><div class="g">See the fossils →</div></a>
+        <a class="bandcard" href={u("coins")}><div class="p">Coins &amp; Currency</div><div class="l">Silver, gold and old money.</div><div class="g">See the coins →</div></a>
+        {collectionCount > 0
+          ? <a class="bandcard" href={u("collection")}><div class="p">The Collection</div><div class="l">Ours, and staying ours.</div><div class="g">Not for sale →</div></a>
+          : <a class="bandcard" href={u("localities")}><div class="p">Localities</div><div class="l">Where these came from, mine by mine.</div><div class="g">Browse by place →</div></a>}
       </div>
     </div>
   </section>
 
-  <!-- VISIT -->
+  <!-- STANDARD — four promises, one line each. The long version has its own page. -->
+  <section class="trust">
+    <div class="wrap">
+      <div class="sec-top"><div class="k">Our Standard</div><h2>How we describe things</h2></div>
+      <div class="cols">
+        <div class="c"><div class="n"><span class="b"></span>Treated says treated</div><p>Heat-treated citrine gets labeled heat-treated citrine.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Damage in writing</div><p>Chips and repairs go in the listing, not in the box as a surprise.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>Locality, or an admission</div><p>Down to the mine where we know it. A guess gets labeled a guess.</p></div>
+        <div class="c"><div class="n"><span class="b"></span>The photo is the piece</div><p>Shot as it is, with size on every listing. No flattering light.</p></div>
+      </div>
+      <div class="center-cta"><a class="btn btn-ghost" href={u("standard")}>Read the whole standard</a></div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
   <div class="visit" id="visit">
     <div class="split">
       <div class="info">
-        <div class="k">Find us in person</div>
-        <h2>The 127 Yard Sale</h2>
+        <div class="k">Where we are</div>
+        <h2>Grimsley, Tennessee</h2>
         <div class="addr">
-          <b>August 6–9, 2026</b> · Thursday through Sunday<br />
           5521 South York Hwy, Grimsley, TN 38565<br />
           On US-127, between Dollar General &amp; Taco Bros
         </div>
+        <p style="color:var(--muted);font-size:15px;margin:18px 0 0;max-width:46ch;">This is where the collection, the lamps, the workbench and the photography all live. Not a storefront with posted hours.</p>
         <div class="btns">
-          <a class="btn btn-gold" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>
-          <a class="btn btn-line" href={u("visit")}>Plan your visit</a>
+          <a class="btn btn-gold" href={u("contact")}>Get in touch</a>
+          <a class="btn btn-line" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>
         </div>
       </div>
       <div class="mapbox live">
