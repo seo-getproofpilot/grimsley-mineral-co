@@ -1,0 +1,57 @@
+---
+import { u } from "../consts";
+
+// A wall of what is actually here. No names, no prices, no localities — this
+// block makes no claims at all, which is exactly why it can carry every
+// photograph without needing a fact checked. It answers "do these two people
+// really have this stuff" before anyone reads a sentence.
+//
+// Curated, not dumped. Left out on purpose: the shelf shots with handwritten
+// prices on them (internal pricing), anything shot inside a plastic bag, the
+// duplicate near-identical frames, and the blurry ones. Alt text describes
+// only what is visibly in the frame.
+const ALL = [
+  { f: "room/mineral-shelves-closeup-early.webp", a: "Three white shelves packed with amethyst, quartz, geodes and mixed specimens" },
+  { f: "shelf/amethyst-point-chevron-phantom.webp", a: "A chevron amethyst point held up to daylight" },
+  { f: "shelf/cobaltoan-calcite-magenta-on-matrix.webp", a: "Magenta cobaltoan calcite crust on gray matrix" },
+  { f: "shelf/amethyst-spread-30-pieces.webp", a: "Around thirty amethyst pieces spread across a wood floor" },
+  { f: "shelf/barite-rosettes-golden-tan-on-gray.webp", a: "Golden tan barite rosettes on gray rock" },
+  { f: "shelf/green-fluorite-cleaved.webp", a: "A cleaved green fluorite fragment" },
+  { f: "shelf/pearl-oyster-shell-with-blister-pearl.webp", a: "A pearl oyster shell held in one hand, blister pearl still in the nacre" },
+  { f: "shelf/vanadinite-and-quartz-calcite.webp", a: "Orange vanadinite crystals beside quartz and calcite pieces" },
+  { f: "shelf/spirit-quartz-and-red-hematoid-druzy.webp", a: "Spirit quartz next to a red hematoid druzy piece" },
+  { f: "shelf/gem-cases-rough-stones-and-lapis.webp", a: "Four black display cases holding thumbnail specimens including lapis and pink rough" },
+  { f: "shelf/desert-rose-selenite-large-wrapped.webp", a: "A large desert rose selenite cluster" },
+  { f: "shelf/green-river-fish-plate-in-hand.webp", a: "A Green River fish fossil plate held in one hand" },
+  { f: "shelf/barite-rosettes-peach-pink.webp", a: "Peach and pink barite rosettes" },
+  { f: "shelf/gray-blue-drusy-quartz-nodule.webp", a: "A gray-blue drusy quartz nodule" },
+  { f: "shelf/tan-calcite-points-and-pink-halite.webp", a: "Tan calcite points beside pink halite" },
+  { f: "shelf/shark-teeth-and-arrowhead-case.webp", a: "Fossil shark teeth and an arrowhead in a display case" },
+  { f: "shelf/peach-stilbite-bowtie.webp", a: "A peach stilbite bowtie formation" },
+  { f: "shelf/amber-dogtooth-calcite-spray.webp", a: "A spray of amber dogtooth calcite over purple and gray matrix" },
+  { f: "shelf/sand-dollar-large-white.webp", a: "A large white sand dollar held in one hand" },
+  { f: "shelf/gray-botryoidal-chalcedony-and-cobaltoan.webp", a: "Gray botryoidal chalcedony beside a cobaltoan calcite piece" },
+  { f: "shelf/black-matrix-white-needle-sprays-unidentified.webp", a: "White needle sprays on black matrix, species not yet identified" },
+  { f: "shelf/tar-pit-bird-bone-fragment.webp", a: "A fragment of asphalt matrix with fossil bird bones set into it, held in one hand" },
+  { f: "shelf/pink-halite-x-twins.webp", a: "Pink halite showing X-shaped twinning" },
+  { f: "shelf/rutilated-quartz-tumbles-pair.webp", a: "A pair of golden rutilated quartz tumbles in a case" },
+  { f: "shelf/fossil-coral-and-vesicular-piece.webp", a: "A fossil coral piece beside a vesicular rock" },
+  { f: "room/built-in-niche-wall-early.webp", a: "The built-in lit niche: minerals on the left bays, vintage lava lamps on the right" },
+  { f: "shelf/flashlight-scale-shot-rose-quartz-barite-smoky.webp", a: "Rose quartz, barite and smoky quartz laid out with a flashlight for scale" },
+  { f: "fluorite/fluorite-gem-bicolor-purple-yellow-b.webp", a: "A bicolor purple and yellow fluorite held up against the sky" },
+  { f: "fluorite/fluorite-rough-purple-and-yellow-group.webp", a: "A group of rough purple and yellow fluorite pieces on a wood floor" },
+  { f: "fluorite/fluorite-gray-blue-stepped-cube-plate-b.webp", a: "A gray-blue fluorite showing stepped cube faces, held in one hand" },
+];
+
+// Every tile is one square cell, so keep the count a multiple of six or the
+// last row runs short. 30 = five rows, 18 = three.
+const { limit = 0, class: cls = "" } = Astro.props;
+const items = limit ? ALL.slice(0, limit) : ALL;
+---
+<div class:list={["shelfwall", cls]}>
+  {items.map((it) => (
+    <figure class={it.size}>
+      <img src={u(`img/${it.f}`)} alt={it.a} loading="lazy" decoding="async" />
+    </figure>
+  ))}
+</div>

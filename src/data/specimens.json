@@ -123,7 +123,7 @@
     "price": 55,
     "status": "available",
     "featured": true,
-    "image": "/img/specimens/fluorite.webp",
+    "image": "/img/placeholder.svg",
     "treatment": "None",
     "care": [
       "fades-in-sun"
@@ -183,7 +183,7 @@
     "price": 22,
     "status": "available",
     "featured": false,
-    "image": "/img/placeholder.svg",
+    "image": "/img/shelf/green-fluorite-cleaved.webp",
     "treatment": "None",
     "care": [
       "fades-in-sun"
@@ -474,7 +474,7 @@
     "priceNote": "each",
     "status": "available",
     "featured": true,
-    "image": "/img/placeholder.svg",
+    "image": "/img/shelf/green-river-fish-plate-in-hand.webp",
     "treatment": "None",
     "care": [],
     "fluorescent": false,

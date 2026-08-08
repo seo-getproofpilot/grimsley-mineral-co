@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import Recent from "../components/Recent.astro";
 import Workbench from "../components/Workbench.astro";
+import ShelfWall from "../components/ShelfWall.astro";
 import specimens from "../data/specimens.json";
 import journal from "../data/journal.json";
 import { u, statusOf } from "../consts";
@@ -58,7 +59,7 @@ const heroCss =
   <Recent limit={3} />
 
   <!-- LAVA — leads the categories because it is the most unusual thing we do. -->
-  <div class="feature dark" id="lava">
+  <div class="feature dark" id="lava" data-line="lava">
     <div class="split">
       <div class="txt">
         <div class="k">The Lava Lab</div>
@@ -86,7 +87,7 @@ const heroCss =
   </section>
 
   <!-- NAILS -->
-  <div class="feature pink" id="nails">
+  <div class="feature pink" id="nails" data-line="nails">
     <div class="split">
       <div class="pic"><img src={u("img/nails/press-board.webp")} alt="Rows of hand-painted press-on nails on Taylor's pick and press board" width="666" height="888" loading="lazy" decoding="async" /></div>
       <div class="txt">
@@ -99,22 +100,50 @@ const heroCss =
   </div>
 
   <!-- SECONDARY LINES
-       Fossils, coins and the rest are real parts of the shelf but do not need
-       to compete with the three things above for the same attention. -->
+       Was three text-only cards asking you to read a taxonomy. Now each one
+       leads with a photograph of the actual thing, because that is what both
+       Arkenstone and FossilEra do and it is the difference between a category
+       list and visible inventory. -->
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="sec-top">
         <div class="k">Also on the shelf</div>
         <h2>The rest of it</h2>
       </div>
-      <div class="bands">
-        <a class="bandcard" href={u("fossils")}><div class="p">Fossils &amp; Shells</div><div class="l">Fish plates, coral, pearls.</div><div class="g">See the fossils →</div></a>
-        <a class="bandcard" href={u("coins")}><div class="p">Coins &amp; Currency</div><div class="l">Silver, gold and old money.</div><div class="g">See the coins →</div></a>
-        {collectionCount > 0
-          ? <a class="bandcard" href={u("collection")}><div class="p">The Collection</div><div class="l">Ours, and staying ours.</div><div class="g">Not for sale →</div></a>
-          : <a class="bandcard" href={u("localities")}><div class="p">Localities</div><div class="l">Where these came from, mine by mine.</div><div class="g">Browse by place →</div></a>}
+      <!-- Coins is deliberately not a tile. There are no coins in the catalog
+           yet and no photograph of one, so a tile here would be a picture of
+           minerals under a coins label. It stays in the nav until there is
+           something real to show. -->
+      <div class="cats">
+        <a class="cattile" href={u("fossils")}>
+          <img src={u("img/shelf/green-river-fish-plate-in-hand.webp")} alt="A Green River fish fossil plate held in one hand" style="object-position:50% 62%;" loading="lazy" decoding="async" />
+          <div class="cap"><div class="p">Fossils &amp; Shells</div><div class="l">Fish plates, coral, shark teeth, pearls.</div><div class="g">See the fossils →</div></div>
+        </a>
+        <a class="cattile" href={u("localities")}>
+          <img src={u("img/shelf/vanadinite-and-quartz-calcite.webp")} alt="Orange vanadinite crystals beside quartz and calcite" loading="lazy" decoding="async" />
+          <div class="cap"><div class="p">Localities</div><div class="l">Where these came from, mine by mine.</div><div class="g">Browse by place →</div></div>
+        </a>
+        <a class="cattile" href={u(collectionCount > 0 ? "collection" : "about")}>
+          <img src={u("img/room/built-in-niche-wall-early.webp")} alt="The built-in lit niche holding minerals and vintage lava lamps" style="object-position:50% 40%;" loading="lazy" decoding="async" />
+          {collectionCount > 0
+            ? <div class="cap"><div class="p">The Collection</div><div class="l">Ours, and staying ours.</div><div class="g">Not for sale →</div></div>
+            : <div class="cap"><div class="p">The Room</div><div class="l">Where all of it actually lives.</div><div class="g">About us →</div></div>}
+        </a>
       </div>
     </div>
+  </section>
+
+  <!-- THE SHELF
+       Makes no claims, so it needs no facts checked. It is here purely to
+       show the volume of real material before anyone reads another sentence. -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Grimsley, Tennessee</div>
+        <h2>What's actually here</h2>
+      </div>
+    </div>
+    <div style="padding:0 8px;"><ShelfWall limit={18} /></div>
   </section>
 
   <!-- STANDARD — four promises, one line each. The long version has its own page. -->

@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import { u, TIERS } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import Origins from "../components/Origins.astro";
+import ShelfWall from "../components/ShelfWall.astro";
 import specimens from "../data/specimens.json";
 const items = specimens.filter((s) => s.line === "minerals");
 const sizes = [...new Set(items.map((s) => s.sizeClass))].filter((s) => s !== "Assorted").sort();
@@ -60,6 +61,20 @@ const byTier = (t) => items.filter((s) => s.tier === t);
         </div>
       ))}
     </div>
+  </section>
+
+  <!-- Everything above is catalogued and priced. This is the rest of the room:
+       real material, no claims attached, so nothing here needs a locality or a
+       price confirmed before it can be shown. -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Not catalogued yet</div>
+        <h2>The rest of the shelf</h2>
+        <p>Photographed, not written up. Ask about anything you see.</p>
+      </div>
+    </div>
+    <div style="padding:0 8px;"><ShelfWall /></div>
   </section>
 
   <Origins items={items} />

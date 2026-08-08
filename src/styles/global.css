@@ -1,7 +1,20 @@
 /* ============================================================
    Grimsley Mineral Co. — design system
-   Cloned from the Astro Gallery template, wrapped in FossilEra's
-   trust/detail architecture. Playfair Display + Catamaran.
+   "Two houses, one roof."
+
+   This is two businesses sharing one site: Grimsley Mineral Co. and
+   Bugged Out Nails. Rather than pretend that away, the system makes it
+   the structure. ONE chassis — same grid, same type, same neutral, on
+   every page — and each line owns a temperature.
+
+   Any element can declare which house it is in with data-line:
+
+     <html data-line="lava">        the whole page
+     <div class="feature" data-line="nails">   one block on a shared page
+
+   Everything downstream reads --accent, so a single attribute recolors
+   buttons, rules, links and hover states without a single new class.
+   Only the accent moves. Grid, type and neutral stay locked.
    ============================================================ */
 
 /* @font-face lives in src/layouts/Base.astro, not here.
@@ -13,30 +26,82 @@
 
 :root{
   color-scheme: light;
-  --bg:#ffffff;
-  --ink:#1b2120;
-  --ink-2:#3c4340;
-  --muted:#7a7f7c;
-  --line:#e8e7e3;
-  --line-2:#dedcd6;
-  --gold:#9c7a1e;
-  --gold-bright:#c8992f;
-  --dark:#181511;
-  --dark-2:#221e18;
-  --cream:#f7f5f0;
+
+  /* ---------- THE CHASSIS. Identical on every page, every house. ---------- */
+  --bg:#faf9f6;
+  --paper:#ffffff;
+  --ink:#191a1c;
+  --ink-2:#3d4045;
+  --muted:#7c8087;
+  --line:#e6e3dc;
+  --line-2:#dedbd2;
+  --maxw:1290px;
+
+  /* Type. Instrument Serif ships one weight, which is the point — headings
+     get their emphasis from size and space, never from faux-bold. Plex Mono
+     carries every hard fact: locality, size, treatment, reference number. */
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* ---------- THE HOUSE. Minerals is the default. ----------
+     The photographs are warm — honey oak floor, daylight, a hand in frame.
+     A cool accent is the complement, so the specimens read warmer against
+     it than they would against gold. */
+  --accent:#2f5d6b;
+  --accent-hi:#3d7787;
+  --accent-ink:#1d3b45;
+  --accent-bg:#eef3f4;
+  --dark:#131a1d;
+  --dark-2:#1b262b;
+
+  /* Aliases. ~100 existing rules were written against --gold; pointing them
+     at --accent means the whole site re-houses from one attribute instead of
+     a hundred edits. var() in a custom property resolves where it is USED,
+     so these follow [data-line] down the tree correctly. */
+  --gold:var(--accent);
+  --gold-bright:var(--accent-hi);
+
+  --cream:#f4f2ec;
   --pink-bg:#fbeef1;
   --pink-deep:#c25a78;
-  --photo-bg: radial-gradient(120% 100% at 50% 34%, #ffffff 0%, #f1efe9 62%, #e4e1d9 100%);
-  --serif:"Playfair Display","Didot","Bodoni MT",Georgia,serif;
-  --sans:"Catamaran","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --maxw:1290px;
+  --photo-bg: radial-gradient(120% 100% at 50% 34%, #ffffff 0%, #f2f0ea 62%, #e6e3da 100%);
+}
+
+/* ---------- THE OTHER HOUSES ---------- */
+[data-line="lava"]{
+  --accent:#e0562a;
+  --accent-hi:#f26a3c;
+  --accent-ink:#8f2f11;
+  --accent-bg:#fdf0ea;
+  --dark:#1a1410;      /* the only genuinely dark room on the site */
+  --dark-2:#241c16;
+}
+[data-line="nails"]{
+  --accent:#c25a78;
+  --accent-hi:#d46e8b;
+  --accent-ink:#8a3350;
+  --accent-bg:#fbeef1;
+  --dark:#2a1620;
+  --dark-2:#361d29;
+}
+[data-line="coins"]{
+  --accent:#8a7b4a;
+  --accent-hi:#a3925a;
+  --accent-ink:#5b512f;
+  --accent-bg:#f5f2e8;
 }
 *{box-sizing:border-box;}
 html,body{margin:0;}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
 a{color:inherit;text-decoration:none;}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:-0.005em;text-wrap:balance;}
+/* Instrument Serif has exactly one weight. Rather than chase down every
+   font-weight:600/700 written for Playfair, switch synthesis off: the browser
+   renders them at 400 instead of smearing a fake bold across a high-contrast
+   face. Archivo is variable, so its real weights are untouched. */
+h1,h2,h3,h4,.serif{font-synthesis-weight:none;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-0.012em;text-wrap:balance;}
 img{display:block;max-width:100%;}
 .serif{font-family:var(--serif);}
 
@@ -65,13 +130,20 @@ header.site{background:var(--bg);border-bottom:1px solid var(--line);position:st
 .head .right{display:flex;align-items:center;justify-content:flex-end;gap:20px;color:var(--ink-2);font-size:13px;}
 .head .right a{display:flex;align-items:center;gap:6px;}
 .wordmark{text-align:center;}
-.wordmark .name{font-family:var(--serif);font-weight:700;font-size:26px;letter-spacing:.02em;line-height:1;color:var(--ink);}
+.wordmark .name{font-family:var(--serif);font-synthesis-weight:none;font-weight:400;font-size:29px;letter-spacing:0;line-height:1;color:var(--ink);}
 .wordmark .tag{font-size:10px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-top:7px;}
 .ico{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6;}
 nav.mega{border-top:1px solid var(--line);}
 nav.mega ul{list-style:none;display:flex;justify-content:center;gap:34px;margin:0 auto;padding:15px 0;max-width:var(--maxw);flex-wrap:wrap;}
-nav.mega a{font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);transition:color .18s;}
-nav.mega a:hover,nav.mega a.active{color:var(--gold);}
+nav.mega a{position:relative;display:block;padding-bottom:5px;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);transition:color .18s;}
+nav.mega a:hover,nav.mega a.active{color:var(--accent);}
+/* The rule under each item is that item's own house colour, because each li
+   carries its own data-line. This is the whole idea made visible: one bar,
+   three temperatures, and you can see which room you are standing in. */
+nav.mega a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .22s ease;}
+nav.mega a:hover::after{transform:scaleX(1);}
+nav.mega a.active::after{transform:scaleX(1);}
 
 /* hero */
 .hero{position:relative;background:var(--dark);color:#fff;min-height:560px;display:flex;align-items:center;overflow:hidden;}
@@ -126,8 +198,11 @@ section{padding:74px 0;}
 .card .badge.sold{background:rgba(24,21,17,.86);color:#efe9dd;border-color:transparent;}
 .card .meta{padding:16px 2px 0;}
 .card .sp{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.2;color:var(--ink);}
-.card .loc{font-size:12.5px;color:var(--muted);margin-top:6px;}
-.card .dims{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:7px;}
+/* Hard facts get the monospace face. Locality, size, reference number and
+   treatment are the things a collector actually checks, and setting them apart
+   from the marketing voice is the honesty policy expressed as typography. */
+.card .loc{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;letter-spacing:-.01em;}
+.card .dims{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 .card .row{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;}
 .card .price{font-size:15px;color:var(--ink);}
 .card .price .cur{color:var(--muted);margin-right:2px;}
@@ -666,3 +741,72 @@ footer .col a:hover{color:var(--gold-bright);}
 .nailshot img{display:block;width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;}
 @media (max-width:1000px){.nailgrid{grid-template-columns:repeat(3,1fr);}}
 @media (max-width:700px){.nailgrid{grid-template-columns:repeat(2,1fr);gap:10px;}}
+
+/* ============================================================
+   PHOTO-LED COMPONENTS
+   Added once there were real photographs to lead with. The old
+   text-only category cards asked people to read a taxonomy; both
+   FossilEra and Arkenstone show a picture and a name instead,
+   because density of real objects is what reads as real inventory.
+   ============================================================ */
+
+/* Category tiles. Same grid as .bands, but the photo is the tile and the
+   label sits on it. Each tile can carry its own data-line, so the Lava Lab
+   tile glows orange and Taylor's tile goes pink inside one shared grid. */
+/* align-items:start, or the grid stretches every tile to the tallest row and
+   object-fit:cover then crops a 4:3 photo into an extreme close-up. */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;}
+.cattile{position:relative;display:block;overflow:hidden;background:var(--dark);
+  border:1px solid var(--line-2);transition:border-color .2s,transform .2s;}
+.cattile:hover{border-color:var(--accent);transform:translateY(-2px);}
+/* height:auto, or the img width/height HTML attributes set a literal
+   1200px height as a presentational hint and aspect-ratio never applies. */
+.cattile img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transition:transform .6s ease,filter .3s;}
+.cattile:hover img{transform:scale(1.04);}
+.cattile .cap{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;
+  background:linear-gradient(to top,rgba(10,10,12,.93),rgba(10,10,12,.6) 46%,rgba(10,10,12,.08) 88%,transparent);color:#fff;}
+.cattile .cap .p{font-family:var(--serif);font-size:27px;line-height:1.08;}
+.cattile .cap .l{font-size:13px;color:rgba(255,255,255,.82);margin-top:4px;}
+.cattile .cap .g{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-hi);margin-top:11px;}
+
+/* The shelf. A deliberately dense, unlabelled wall of what is actually here.
+   No names, no prices, no claims — it exists to answer "do these people
+   really have this stuff" before anyone reads a word. */
+/* Uniform square cells, no spans. A feature tile inside this grid overflowed
+   the rows it spanned and knocked holes in the wall; the density is the point,
+   not the composition. */
+.shelfwall{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.shelfwall figure{margin:0;overflow:hidden;background:var(--cream);}
+.shelfwall img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.shelfwall figure{aspect-ratio:1/1;}
+.shelfwall figure:hover img{transform:scale(1.05);}
+
+/* Caption strip under a photo band, in the data voice. */
+.shelfnote{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--muted);
+  margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 22px;}
+
+@media (max-width:1000px){
+  .cats{grid-template-columns:repeat(2,1fr);}
+  .shelfwall{grid-template-columns:repeat(4,1fr);}
+}
+@media (max-width:640px){
+  .cats{grid-template-columns:1fr;}
+  .shelfwall{grid-template-columns:repeat(3,1fr);gap:6px;}
+}
+
+/* Full-bleed photo bands. Used where a photograph explains the place better
+   than a paragraph does: the room, the table, the floor mid-sort. Captions
+   describe only what is in the frame — no dates, no events, no localities. */
+.photoband{margin:0;background:var(--cream);}
+.photoband img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
+.photoband figcaption{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;
+  color:var(--muted);max-width:var(--maxw);margin:12px auto 0;padding:0 26px;}
+.photopair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.photopair figure{margin:0;overflow:hidden;background:var(--cream);}
+.photopair img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
+@media (max-width:760px){
+  .photoband img{aspect-ratio:4/3;}
+  .photopair{grid-template-columns:1fr;}
+  .photopair img{aspect-ratio:4/3;}
+}

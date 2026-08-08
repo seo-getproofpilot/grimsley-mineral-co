@@ -7,10 +7,14 @@ const { active = "" } = Astro.props;
 // overwhelmingly what sells. Fossils, Coins, Localities, Sold and Our
 // Standard all still exist, still get linked from the footer and from the
 // pages they belong to, and don't need to compete here.
+// `line` is which house the item belongs to. It colours the item's own rule,
+// so the navigation itself shows you that Lava Lab and Taylor's Nails are
+// different rooms in the same building. Items with no line inherit whatever
+// the page is set to.
 const nav = [
   { href: "minerals", label: "Minerals", key: "minerals" },
-  { href: "lava-lamps", label: "Lava Lab", key: "lava" },
-  { href: "nails", label: "Taylor's Nails", key: "nails" },
+  { href: "lava-lamps", label: "Lava Lab", key: "lava", line: "lava" },
+  { href: "nails", label: "Taylor's Nails", key: "nails", line: "nails" },
   { href: "collection", label: "Collection", key: "collection" },
   { href: "journal", label: "Journal", key: "journal" },
   { href: "field-notes", label: "Guides", key: "guides" },
@@ -36,7 +40,7 @@ const nav = [
   <nav class="mega">
     <ul>
       {nav.map((n) => (
-        <li><a href={u(n.href)} class={active === n.key ? "active" : ""}>{n.label}</a></li>
+        <li data-line={n.line || undefined}><a href={u(n.href)} class={active === n.key ? "active" : ""}>{n.label}</a></li>
       ))}
     </ul>
   </nav>

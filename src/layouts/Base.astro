@@ -14,7 +14,7 @@ const boothPhase =
 
 const {
   title = "Grimsley Mineral Co.",
-  description = "Display-grade minerals, fossils, hand-built lava lamps, and collector coins from a family collection in Grimsley, Tennessee. Grand opening at the Highway 127 Yard Sale, then online.",
+  description = "Minerals, fossils, vintage lava lamps and collector coins out of Grimsley, Tennessee. Some of it is for sale. Some of it isn't going anywhere.",
   active = "",
   // Per-page structured data (an object or array of objects). Rendered as
   // JSON-LD alongside the site-wide LocalBusiness graph below.
@@ -33,6 +33,13 @@ const {
   // per-visitor and therefore useless in search results.
   noindex = false,
 } = Astro.props;
+
+// Which house this page belongs to. Sets --accent for the whole document;
+// individual blocks can still override it with their own data-line. Pages
+// that aren't specific to one line (home, about, contact) get the default,
+// which is the mineral house.
+const LINE_OF = { lava: "lava", nails: "nails", coins: "coins" };
+const line = LINE_OF[active] || null;
 
 // Canonical + OG url resolve against the configured `site` in astro.config.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -70,11 +77,15 @@ const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 // preloadable. `block` (not `swap`) on the two faces used above the fold:
 // they are preloaded, so they arrive with the stylesheet and the brief block
 // costs nothing, where a swap would visibly reflow the headline.
+// Archivo is a variable font, so one file covers 100-900 and the weight
+// descriptor is a range, not a number. Instrument Serif ships a single
+// weight on purpose. Plex Mono is static and only carries specimen data,
+// so it never needs to block.
 const FONTS = [
-  { family: "Playfair Display", weight: 700, file: "fonts/playfair-700.woff2", preload: true },
-  { family: "Catamaran", weight: 400, file: "fonts/catamaran-400.woff2", preload: true },
-  { family: "Playfair Display", weight: 600, file: "fonts/playfair-600.woff2", preload: false },
-  { family: "Catamaran", weight: 600, file: "fonts/catamaran-600.woff2", preload: false },
+  { family: "Instrument Serif", weight: "400", file: "fonts/instrument-400.woff2", preload: true },
+  { family: "Archivo", weight: "100 900", file: "fonts/archivo-var.woff2", preload: true },
+  { family: "IBM Plex Mono", weight: "400", file: "fonts/plexmono-400.woff2", preload: false },
+  { family: "IBM Plex Mono", weight: "500", file: "fonts/plexmono-500.woff2", preload: false },
 ];
 const fontCss = FONTS.map(
   (f) =>
@@ -83,7 +94,7 @@ const fontCss = FONTS.map(
 ).join("");
 ---
 <!doctype html>
-<html lang="en" data-base={import.meta.env.BASE_URL} data-booth={boothPhase || undefined}>
+<html lang="en" data-base={import.meta.env.BASE_URL} data-booth={boothPhase || undefined} data-line={line || undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
