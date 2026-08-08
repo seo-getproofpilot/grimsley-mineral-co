@@ -211,7 +211,6 @@ const productSchema = {
         {isSold && <a class="btn btn-dark" href={lineHref}>See similar pieces</a>}
         {isSold && <a class="btn btn-ghost" href={u("sold")}>Sold archive</a>}
         {item.status === "available" && <a class="btn btn-ghost" href={u("contact")}>Ask a question</a>}
-        {item.status === "collection" && <a class="btn btn-dark" href={u("collection")}>See the rest of the collection</a>}
         {item.status === "researching" && (
           <a class="btn btn-dark" href={u("contact")}>Know what this is? Tell us</a>
         )}

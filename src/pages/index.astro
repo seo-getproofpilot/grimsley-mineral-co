@@ -6,10 +6,9 @@ import Workbench from "../components/Workbench.astro";
 import ShelfWall from "../components/ShelfWall.astro";
 import specimens from "../data/specimens.json";
 import journal from "../data/journal.json";
-import { u, statusOf } from "../consts";
+import { u } from "../consts";
 
 const featuredMinerals = specimens.filter((s) => s.line === "minerals" && s.featured).slice(0, 6);
-const collectionCount = specimens.filter((s) => !statusOf(s).sellable && s.status !== "sold").length;
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
 
 // The hero's first button points at the journal once there is a journal to
@@ -28,8 +27,8 @@ const heroCss =
   `@media (min-width:900px){.hero .bg{background-image:url("${u(HERO_DESKTOP)}");}}`;
 ---
 <Base
-  title="Grimsley Mineral Co. — Minerals, Fossils & Lava Lamps"
-  description="We collect minerals, fossils, old lava lamps and coins out of Grimsley, Tennessee. Some of it we sell, some of it we keep, and some we are still trying to identify."
+  title="Minerals, Fossils &amp; Hand-Built Lava Lamps — Grimsley Mineral Co."
+  description="One-of-one mineral and fossil specimens, hand-built lava lamps and collector coins. Documented, measured, priced and shipped from Grimsley, Tennessee."
   headCss={heroCss}
   preloadImage={[
     { file: HERO_MOBILE, media: "(max-width:899px)" },
@@ -44,12 +43,12 @@ const heroCss =
     <div class="scrim"></div>
     <div class="inner">
       <div class="kicker">Grimsley, Tennessee</div>
-      <h1>We collect weird stuff.</h1>
-      <p>Some of it is for sale. Some of it isn't going anywhere.</p>
+      <h1>Minerals, fossils and hand-built lava lamps.</h1>
+      <p>Documented, measured, priced. Shipped from Grimsley, Tennessee.</p>
       <div class="btns">
         {hasJournal
           ? <a class="btn btn-gold" href={u("journal")}>See what we're working on</a>
-          : <a class="btn btn-gold" href={u("minerals")}>Browse the minerals</a>}
+          : <a class="btn btn-gold" href={u("minerals")}>Shop the minerals</a>}
         <a class="btn btn-line" href={u("lava-lamps")}>Into the Lava Lab</a>
       </div>
     </div>
@@ -63,7 +62,7 @@ const heroCss =
     <div class="split">
       <div class="txt">
         <div class="k">The Lava Lab</div>
-        <h2>Lava lamps.</h2>
+        <h2>Lava lamps, built here.</h2>
         <p>We collect them, fix them, change the wax and fluid, and sometimes rebuild one from the base up.</p>
         <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a></div>
       </div>
@@ -75,9 +74,9 @@ const heroCss =
   <section>
     <div class="wrap">
       <div class="sec-top">
-        <div class="k">Minerals</div>
+        <div class="k">For sale</div>
         <h2>Minerals</h2>
-        <p>Some are for sale. Some aren't going anywhere.</p>
+        <p>Every piece photographed as it is.</p>
       </div>
       <div class="grid">
         {featuredMinerals.map((item) => <SpecimenCard item={item} />)}
@@ -107,8 +106,8 @@ const heroCss =
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="sec-top">
-        <div class="k">Also on the shelf</div>
-        <h2>The rest of it</h2>
+        <div class="k">Also for sale</div>
+        <h2>More to buy</h2>
       </div>
       <!-- Coins is deliberately not a tile. There are no coins in the catalog
            yet and no photograph of one, so a tile here would be a picture of
@@ -123,11 +122,9 @@ const heroCss =
           <img src={u("img/shelf/vanadinite-and-quartz-calcite.webp")} alt="Orange vanadinite crystals beside quartz and calcite" loading="lazy" decoding="async" />
           <div class="cap"><div class="p">Localities</div><div class="l">Where these came from, mine by mine.</div><div class="g">Browse by place →</div></div>
         </a>
-        <a class="cattile" href={u(collectionCount > 0 ? "collection" : "about")}>
+        <a class="cattile" href={u("visit")}>
           <img src={u("img/room/built-in-niche-wall-early.webp")} alt="The built-in lit niche holding minerals and vintage lava lamps" style="object-position:50% 40%;" loading="lazy" decoding="async" />
-          {collectionCount > 0
-            ? <div class="cap"><div class="p">The Collection</div><div class="l">Ours, and staying ours.</div><div class="g">Not for sale →</div></div>
-            : <div class="cap"><div class="p">The Room</div><div class="l">Where all of it actually lives.</div><div class="g">About us →</div></div>}
+          <div class="cap"><div class="p">The Room</div><div class="l">Where all of it is packed, shot and shipped from.</div><div class="g">Where we are →</div></div>
         </a>
       </div>
     </div>
@@ -140,7 +137,7 @@ const heroCss =
     <div class="wrap">
       <div class="sec-top">
         <div class="k">Grimsley, Tennessee</div>
-        <h2>What's actually here</h2>
+        <h2>In the room right now</h2>
       </div>
     </div>
     <div style="padding:0 8px;"><ShelfWall limit={18} /></div>
