@@ -123,7 +123,7 @@
     "price": 55,
     "status": "available",
     "featured": true,
-    "image": "/img/placeholder.svg",
+    "image": "/img/fluorite/fluorite-dark-purple-cube-matrix-plate-a.webp",
     "treatment": "None",
     "care": [
       "fades-in-sun"
@@ -153,7 +153,7 @@
     "price": 45,
     "status": "available",
     "featured": false,
-    "image": "/img/placeholder.svg",
+    "image": "/img/fluorite/fluorite-dark-purple-cube-matrix-plate-b.webp",
     "treatment": "None",
     "care": [
       "fades-in-sun"
@@ -509,7 +509,7 @@
     "price": 15,
     "status": "available",
     "featured": false,
-    "image": "/img/placeholder.svg",
+    "image": "/img/shelf/fossil-coral-and-vesicular-piece.webp",
     "treatment": "None",
     "care": [],
     "fluorescent": false,
@@ -613,7 +613,7 @@
     "priceNote": "and up",
     "status": "available",
     "featured": false,
-    "image": "/img/placeholder.svg",
+    "image": "/img/shelf/clear-quartz-in-divided-tray.webp",
     "treatment": "None",
     "care": [],
     "fluorescent": false,
@@ -642,7 +642,7 @@
     "priceNote": "and up",
     "status": "available",
     "featured": false,
-    "image": "/img/placeholder.svg",
+    "image": "/img/shelf/amethyst-clusters-on-counter.webp",
     "treatment": "None",
     "care": [
       "fades-in-sun"
@@ -702,7 +702,7 @@
     "priceNote": "per bag",
     "status": "available",
     "featured": false,
-    "image": "/img/placeholder.svg",
+    "image": "/img/shelf/shark-teeth-and-arrowhead-case.webp",
     "treatment": "None",
     "care": [],
     "fluorescent": false,
