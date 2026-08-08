@@ -6,3 +6,7 @@ dist/
 *.log
 .env
 .firecrawl/
+
+# Local design-review screenshots. The repo is public and these are build
+# artifacts, not source.
+.screens/

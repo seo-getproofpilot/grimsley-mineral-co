@@ -1,0 +1,429 @@
+---
+// ============================================================================
+// V1 — THE SHELF
+//
+// Information hierarchy: EVERYTHING AT ONCE, AT HONEST SIZES.
+// First you see a real worktable photograph and one short line of type. Then
+// you see ten actual objects sitting on two shelf lines at wildly different
+// sizes, a $5 tray of quartz standing next to a $275 vanadinite. Size here
+// means "how much there is to look at", never "how expensive it is", and the
+// two are deliberately uncorrelated. That is the whole argument of this page.
+//
+// The page is ONE ground. No full-width colour band, no dark section, no
+// alternating stripe anywhere. Structure comes only from object size, the
+// shelf rule, and unequal columns. Black appears only inside a photograph.
+//
+// Note for whoever picks this up: nine of the ten files in public/img/specimens
+// carry an alpha channel and the tenth is on white. They are NOT shot on black,
+// so they sit correctly on warm paper and there is no reason to build a dark
+// room for them. The two that still carry a white plate are handled with
+// mix-blend-mode:multiply, which drops the white into the ground.
+//
+// Class names are all g- prefixed. global.css already owns .head, .card,
+// .grid, .split, .btn and a dozen other generic names, and an unprefixed
+// .head here silently inherits the site header's three-column grid.
+// ============================================================================
+import Base from "../layouts/Base.astro";
+import ShelfWall from "../components/ShelfWall.astro";
+import specimens from "../data/specimens.json";
+import { u } from "../consts";
+
+const bySlug = Object.fromEntries(specimens.map((s) => [s.slug, s]));
+
+// Two shelves. `w` is the flex basis and `h` is the height of the object box,
+// both set per piece by how much there is to look at. Nothing here is a grid
+// of equal cards, which is the entire point.
+const shelfA = [
+  { slug: "vanadinite-mibladen", w: 30, h: 430 },
+  { slug: "rutile-stars-in-quartz", w: 25, h: 340 },
+  { slug: "quartz-cluster", w: 15, h: 175, fit: "cover" },
+  { slug: "cobaltoan-calcite", w: 26, h: 390 },
+];
+const shelfB = [
+  { slug: "citrine-heat-treated", w: 22, h: 305 },
+  { slug: "epidote-on-quartz", w: 19, h: 255 },
+  { slug: "gem-green-fluorite", w: 12, h: 150, fit: "cover" },
+  // Deliberately NOT golden-rutilated-quartz here: the file wired to that
+  // record (specimens/rutilated-quartz.webp) holds three loose pieces, one of
+  // which is a teal chrysocolla, so it cannot carry a slot labelled "Golden
+  // Rutilated Quartz Sphere". Flagged for a reshoot.
+  { slug: "green-river-fish-plate", w: 18, h: 245, fit: "cover" },
+  { slug: "muscovite-with-pyrite", w: 16, h: 205 },
+  { slug: "amethyst-in-matrix", w: 11, h: 135, fit: "cover" },
+];
+
+const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
+---
+<Base
+  title="Minerals, Fossils &amp; Hand-Built Lava Lamps — Grimsley Mineral Co."
+  description="One-of-one mineral and fossil specimens and hand-built lava lamps. Documented, measured, priced and shipped from Grimsley, Tennessee."
+>
+<div class="g1">
+
+  <!-- OPENING ------------------------------------------------------------
+       Type top-left with a small piece of evidence under it, one big overhead
+       worktable photograph on the right. No scrim, no headline sitting on a
+       dimmed picture, and no empty half-screen: the left column carries a
+       second real photograph instead of whitespace. -->
+  <div class="g-open">
+    <div class="g-open-txt">
+      <h1>Minerals, fossils and hand-built lava lamps.</h1>
+      <p class="g-deck">Documented, measured, priced. Shipped from Grimsley, Tennessee.</p>
+      <div class="g-acts">
+        <a class="g-btn g-solid" href={u("minerals")}>Shop the minerals</a>
+        <a class="g-btn g-quiet" href={u("lava-lamps")}>Into the Lava Lab</a>
+      </div>
+      <figure class="g-open-small">
+        <img src={u("img/shelf/amethyst-spread-30-pieces.webp")} alt="Around thirty amethyst pieces spread across a wood floor mid sort" loading="eager" decoding="async" />
+        <figcaption>Amethyst on the floor, mid sort.</figcaption>
+      </figure>
+    </div>
+    <figure class="g-open-pic">
+      <img src={u("img/shelf/flashlight-scale-shot-rose-quartz-barite-smoky.webp")} alt="Barite, smoky quartz, a drusy plate and rose quartz laid out on the floor with a flashlight in frame for scale" loading="eager" fetchpriority="high" decoding="async" />
+      <figcaption>Barite, smoky quartz, drusy and rose quartz, with a flashlight in the frame for scale.</figcaption>
+    </figure>
+  </div>
+
+  <!-- THE SHELVES --------------------------------------------------------
+       Objects bottom-align onto one continuous hairline, the way things sit
+       on a shelf. Every label block is exactly the same height, which is the
+       only reason that rule stays unbroken across a row of objects at six
+       different sizes. -->
+  <div class="g-shelves">
+    <div class="g-sechead">
+      <h2>What is cataloged so far</h2>
+      <p>Measured, described as it is, and priced. The ones with more to look at are simply bigger here.</p>
+    </div>
+
+    {[shelfA, shelfB].map((row) => (
+      <div class="g-shelf">
+        {row.map((slot) => {
+          const s = bySlug[slot.slug];
+          return (
+            <a class="g-obj" href={u(`specimen/${s.slug}`)} style={`--w:${slot.w}%;--h:${slot.h}px;`}>
+              <div class:list={["g-box", slot.fit === "cover" && "g-crop"]}>
+                <img src={u(s.image)} alt={s.name} loading="lazy" decoding="async" />
+              </div>
+              <div class="g-tag">
+                <span class="g-nm">{s.name}</span>
+                <span class="g-dat">{s.dimensions}</span>
+                <span class="g-fig">{s.status === "sold" ? "Sold" : `$${s.price}`}</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    ))}
+
+    <div class="g-shelf-foot">
+      <a class="g-btn g-quiet" href={u("minerals")}>See all of them</a>
+      <a class="g-txtlink" href={u("fossils")}>Fossils and shells</a>
+    </div>
+  </div>
+
+  <!-- THE LAMP -----------------------------------------------------------
+       One object big, next to two small photographs of where it lives.
+       Unequal on purpose. Three equal tiles would claim these are three
+       comparable things, and they are not. -->
+  <div class="g-lamp">
+    <figure class="g-lamp-big">
+      <img src={u("img/lifestyle/lava-rocket.webp")} alt="A hand-sculpted rocket and ray-gun lava lamp with a blue flow, lit, on a granite counter" loading="lazy" decoding="async" />
+    </figure>
+    <div class="g-lamp-side">
+      <div class="g-lamp-txt">
+        <h2>Lava lamps, built here.</h2>
+        <p>We collect them, fix them, change the wax and fluid, and sometimes rebuild one from the base up.</p>
+        <p class="g-cap">Left: the ray-gun rocket. Hand sculpted, hand painted, blue flow, tested and working. One of one, $380.</p>
+        <div class="g-acts"><a class="g-btn g-quiet" href={u("lava-lamps")}>See the lamps</a></div>
+      </div>
+      <div class="g-lamp-pair">
+        <figure>
+          <img src={u("img/lifestyle/lava-collection.webp")} alt="Part of the lava lamp collection, lit, on a shelf" loading="lazy" decoding="async" />
+        </figure>
+        <figure>
+          <img src={u("img/room/mixed-table-full-spread.webp")} alt="The table laid out with minerals, spheres and tumbled stones, the lava lamp shelf on the wall behind it" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAYLOR -------------------------------------------------------------
+       Same asymmetry, mirrored, and no pink band. The press board is loud
+       enough on its own that a background colour would only fight it. -->
+  <div class="g-taylor">
+    <div class="g-taylor-txt">
+      <h2>Taylor makes tiny things that get out of hand.</h2>
+      <p>Custom press-ons, hand-painted and sculpted one nail at a time.</p>
+      <div class="g-acts"><a class="g-btn g-quiet" href={u("nails")}>See what she makes</a></div>
+    </div>
+    <figure class="g-taylor-big">
+      <img src={u("img/nails/press-board.webp")} alt="Rows of hand-painted press-on nails on Taylor's pick and press board" loading="lazy" decoding="async" />
+    </figure>
+    <figure class="g-taylor-small">
+      <img src={u("img/nails/display-stand.webp")} alt="Finished press-on nail sets on a display stand" loading="lazy" decoding="async" />
+    </figure>
+  </div>
+
+  <!-- THE WALL -----------------------------------------------------------
+       Eighteen photographs at 8px gutters. It makes no claims, so it needs no
+       facts checked, and it answers "do these two people actually have this
+       stuff" before anyone reads another sentence. -->
+  <div class="g-wall">
+    <div class="g-sechead">
+      <h2>In the room right now</h2>
+      <p>Shelves, cases, trays, and a lot of it still on the floor.</p>
+    </div>
+    <ShelfWall limit={18} />
+    <p class="g-wallnote">Photographed where it sits. Nothing here is a stock image.</p>
+  </div>
+
+  <!-- THE STANDARD -------------------------------------------------------
+       Four short lines. No cards, no icons, no band. -->
+  <div class="g-standard">
+    <h2>How we describe things</h2>
+    <div class="g-four">
+      <div><b>Treated says treated</b><p>Heat-treated citrine gets labeled heat-treated citrine.</p></div>
+      <div><b>Damage in writing</b><p>Chips and repairs go in the listing, not in the box as a surprise.</p></div>
+      <div><b>Size on every piece</b><p>Measured and printed next to the name, every time.</p></div>
+      <div><b>The photo is the piece</b><p>Shot as it is. No flattering light, no borrowed stock.</p></div>
+    </div>
+    <a class="g-txtlink" href={u("standard")}>Read the whole standard</a>
+  </div>
+
+  <!-- WHERE WE ARE -------------------------------------------------------
+       Same ground as everything above it. The map is the only rectangle. -->
+  <div class="g-where">
+    <div class="g-where-txt">
+      <h2>Grimsley, Tennessee</h2>
+      <address>
+        5521 South York Hwy<br />
+        Grimsley, TN 38565<br />
+        On US-127, between Dollar General and Taco Bros
+      </address>
+      <p>This is where the minerals, the lamps, the workbench and the photography all live. Not a storefront with posted hours.</p>
+      <div class="g-acts">
+        <a class="g-btn g-solid" href={u("contact")}>Get in touch</a>
+        <a class="g-btn g-quiet" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>
+      </div>
+    </div>
+    <div class="g-where-map">
+      <iframe
+        title="Map to 5521 South York Highway, Grimsley TN"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=5521+South+York+Highway,+Grimsley,+TN+38565&output=embed"
+      ></iframe>
+    </div>
+  </div>
+
+</div>
+</Base>
+
+<style>
+/* --------------------------------------------------------------------------
+   V1 — warm manila ground, one temperature, one surface.
+   Headings stay moderate on purpose. The objects are supposed to carry the
+   hierarchy, so the type does not need to shout over them.
+   -------------------------------------------------------------------------- */
+.g1{
+  --ground:#efe9dd;
+  --card:#f7f3ea;
+  --ink:#23211c;
+  --ink-2:#57534a;
+  --dim:#8b8578;
+  --hair:#d4cdbc;
+  --hair-2:#c2b9a4;
+  --oxide:#a34a2a;
+  --pad:clamp(20px,4vw,56px);
+  --mw:1440px;
+  --step:clamp(48px,6vw,96px);
+  --tag:100px;
+
+  background:var(--ground);
+  color:var(--ink);
+  padding-bottom:clamp(56px,7vw,104px);
+}
+.g1 h1,.g1 h2{font-family:var(--serif);font-weight:400;font-synthesis-weight:none;letter-spacing:-.012em;margin:0;}
+.g1 h1{font-size:clamp(31px,3.4vw,44px);line-height:1.1;max-width:15ch;}
+.g1 h2{font-size:clamp(25px,2.6vw,34px);line-height:1.14;max-width:22ch;}
+.g1 p{margin:0;}
+.g1 .g-deck{margin-top:16px;max-width:40ch;font-size:16.5px;line-height:1.6;color:var(--ink-2);}
+
+.g1 .g-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;}
+.g1 .g-btn{
+  font-family:var(--sans);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  padding:14px 24px;border:1px solid transparent;display:inline-block;
+  transition:background .16s,color .16s,border-color .16s;
+}
+.g1 .g-solid{background:var(--ink);color:var(--card);}
+.g1 .g-solid:hover{background:#000;}
+.g1 .g-quiet{color:var(--ink);border-color:var(--hair-2);}
+.g1 .g-quiet:hover{border-color:var(--ink);background:rgba(0,0,0,.03);}
+.g1 a:focus-visible{outline:2px solid var(--oxide);outline-offset:3px;}
+.g1 .g-txtlink{
+  font-family:var(--sans);font-size:13px;color:var(--oxide);
+  border-bottom:1px solid currentColor;padding-bottom:2px;display:inline-block;
+}
+.g1 .g-txtlink:hover{color:var(--ink);}
+
+.g1 figure{margin:0;}
+.g1 figcaption{
+  font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--dim);
+  margin-top:10px;max-width:56ch;
+}
+.g1 .g-sechead p{margin-top:12px;max-width:52ch;font-size:15.5px;line-height:1.6;color:var(--ink-2);}
+
+/* opening ---------------------------------------------------------------- */
+.g1 .g-open{
+  max-width:var(--mw);margin-inline:auto;padding:clamp(30px,4vw,56px) var(--pad) 0;
+  display:grid;grid-template-columns:36fr 64fr;gap:clamp(24px,4vw,54px);align-items:start;
+}
+.g1 .g-open-small{margin-top:clamp(28px,4vw,58px);}
+.g1 .g-open-small img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover;object-position:50% 40%;}
+.g1 .g-open-pic img{width:100%;aspect-ratio:5/4;height:auto;object-fit:cover;object-position:50% 62%;}
+
+/* shelves ---------------------------------------------------------------- */
+.g1 .g-shelves{max-width:var(--mw);margin-inline:auto;padding:var(--step) var(--pad) 0;}
+.g1 .g-shelves .g-sechead{margin-bottom:clamp(34px,4vw,58px);}
+
+.g1 .g-shelf{
+  display:flex;align-items:stretch;gap:clamp(14px,2vw,28px);
+  margin-bottom:clamp(34px,4vw,58px);position:relative;
+}
+/* One unbroken shelf rule across the whole row, drawn at exactly the height
+   of the label block so it lands under every object at once. Per-object
+   borders would leave a gap in every gutter. */
+.g1 .g-shelf::after{
+  content:"";position:absolute;left:0;right:0;bottom:var(--tag);
+  border-top:1px solid var(--hair-2);pointer-events:none;
+}
+.g1 .g-obj{
+  flex:0 1 var(--w);min-width:0;color:inherit;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.g1 .g-box{height:var(--h);display:flex;align-items:flex-end;justify-content:center;}
+.g1 .g-box img{
+  max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  transition:transform .4s ease;transform-origin:bottom center;
+  /* Two of the ten cutouts still carry a white plate. Multiply drops it into
+     the warm ground instead of leaving a white rectangle on the shelf. */
+  mix-blend-mode:multiply;
+}
+/* Pieces photographed in a tray or on a counter are real photographs, not
+   cutouts, so they get cropped to a block rather than floated. */
+.g1 .g-crop{align-items:stretch;}
+.g1 .g-crop img{width:100%;height:100%;max-height:none;object-fit:cover;mix-blend-mode:normal;}
+.g1 .g-obj:hover .g-box img{transform:translateY(-4px);}
+
+.g1 .g-tag{margin-top:16px;padding-top:12px;height:var(--tag);display:flex;flex-direction:column;}
+.g1 .g-nm{
+  font-family:var(--serif);font-size:17px;line-height:1.2;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em;
+}
+.g1 .g-dat{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:5px;}
+.g1 .g-fig{font-family:var(--mono);font-size:13px;color:var(--ink);margin-top:auto;}
+
+.g1 .g-shelf-foot{display:flex;align-items:center;gap:26px;flex-wrap:wrap;}
+
+/* the lamp --------------------------------------------------------------- */
+.g1 .g-lamp{
+  max-width:var(--mw);margin-inline:auto;padding:var(--step) var(--pad) 0;
+  display:grid;grid-template-columns:44fr 56fr;gap:clamp(24px,3.5vw,48px);align-items:start;
+}
+.g1 .g-lamp-big{background:var(--card);}
+.g1 .g-lamp-big img{width:100%;aspect-ratio:3/4;height:auto;object-fit:cover;object-position:50% 45%;}
+.g1 .g-lamp-side{display:flex;flex-direction:column;gap:clamp(24px,3vw,40px);padding-top:clamp(8px,2vw,30px);}
+.g1 .g-lamp-txt p{margin-top:16px;max-width:40ch;font-size:16px;line-height:1.6;color:var(--ink-2);}
+.g1 .g-cap{font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--dim);max-width:46ch;}
+.g1 .g-lamp-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.g1 .g-lamp-pair figure{background:var(--card);}
+.g1 .g-lamp-pair img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover;}
+
+/* taylor ----------------------------------------------------------------- */
+.g1 .g-taylor{
+  max-width:var(--mw);margin-inline:auto;padding:var(--step) var(--pad) 0;
+  display:grid;grid-template-columns:30fr 44fr 26fr;gap:clamp(18px,2.5vw,32px);align-items:end;
+}
+.g1 .g-taylor-txt{padding-bottom:6px;}
+.g1 .g-taylor-txt p{margin-top:16px;max-width:34ch;font-size:16px;line-height:1.6;color:var(--ink-2);}
+.g1 .g-taylor-big,.g1 .g-taylor-small{background:var(--card);}
+.g1 .g-taylor-big img{width:100%;aspect-ratio:3/4;height:auto;object-fit:cover;}
+.g1 .g-taylor-small img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;}
+
+/* the wall --------------------------------------------------------------- */
+.g1 .g-wall{max-width:var(--mw);margin-inline:auto;padding:var(--step) var(--pad) 0;}
+.g1 .g-wall .g-sechead{margin-bottom:clamp(24px,3vw,38px);}
+.g1 .g-wall :global(.shelfwall){gap:8px;}
+.g1 .g-wall :global(.shelfwall figure){background:var(--card);}
+.g1 .g-wallnote{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:14px;}
+
+/* the standard ----------------------------------------------------------- */
+.g1 .g-standard{max-width:var(--mw);margin-inline:auto;padding:var(--step) var(--pad) 0;}
+.g1 .g-four{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.5vw,36px);
+  margin:clamp(26px,3vw,42px) 0 30px;
+}
+.g1 .g-four > div{border-top:1px solid var(--hair-2);padding-top:15px;}
+.g1 .g-four b{font-family:var(--serif);font-weight:400;font-size:18px;display:block;line-height:1.25;}
+.g1 .g-four p{margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--ink-2);}
+
+/* where we are ----------------------------------------------------------- */
+.g1 .g-where{
+  max-width:var(--mw);margin-inline:auto;padding:var(--step) var(--pad) 0;
+  display:grid;grid-template-columns:42fr 58fr;gap:clamp(24px,4vw,54px);align-items:center;
+}
+.g1 .g-where address{
+  font-style:normal;font-family:var(--mono);font-size:13.5px;line-height:1.85;
+  color:var(--ink-2);margin-top:20px;
+}
+.g1 .g-where-txt p{margin-top:16px;max-width:38ch;font-size:15.5px;line-height:1.6;color:var(--ink-2);}
+.g1 .g-where-map{aspect-ratio:16/9;background:var(--card);border:1px solid var(--hair);}
+.g1 .g-where-map iframe{width:100%;height:100%;border:0;display:block;filter:saturate(.72);}
+
+/* --------------------------------------------------------------------------
+   Phone. Every unequal split collapses, but the shelves stay unequal: two
+   objects per row at different heights, still bottom-aligned onto one rule.
+   That is the identity of this page and it survives to 390px.
+   -------------------------------------------------------------------------- */
+@media (max-width:1000px){
+  .g1 .g-open{grid-template-columns:1fr;gap:26px;}
+  .g1 .g-open-small{display:none;}
+  .g1 .g-open-pic img{aspect-ratio:4/3;}
+  .g1 .g-lamp{grid-template-columns:1fr;}
+  .g1 .g-lamp-big img{aspect-ratio:4/5;}
+  .g1 .g-lamp-side{padding-top:0;}
+  .g1 .g-taylor{grid-template-columns:1fr 1fr;}
+  .g1 .g-taylor-txt{grid-column:1 / -1;padding-bottom:0;}
+  .g1 .g-where{grid-template-columns:1fr;}
+}
+@media (max-width:720px){
+  /* Rows wrap to two-up, so the single row rule would land in the wrong
+     place. Switch it off and give each label its own line instead. */
+  .g1 .g-shelf{flex-wrap:wrap;gap:18px 14px;}
+  .g1 .g-shelf::after{display:none;}
+  .g1 .g-obj{flex:0 1 calc(50% - 7px);--h:auto;}
+  .g1 .g-box{height:auto;aspect-ratio:1/1;}
+  /* Rescaled, not dropped: a big piece is still visibly bigger on a phone. */
+  .g1 .g-obj:nth-child(1) .g-box{aspect-ratio:3/4;}
+  .g1 .g-obj:nth-child(4) .g-box{aspect-ratio:4/5;}
+  .g1 .g-tag{height:auto;min-height:74px;margin-top:12px;border-top:1px solid var(--hair-2);}
+  .g1 .g-fig{margin-top:8px;}
+  .g1 .g-four{grid-template-columns:1fr 1fr;gap:20px 18px;}
+  .g1 .g-lamp-pair{gap:8px;}
+}
+@media (max-width:460px){
+  .g1 .g-four{grid-template-columns:1fr;}
+  .g1 .g-taylor{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  .g1 *{transition:none !important;}
+}
+</style>
+
+<style is:global>
+/* The header and the page share one ground on this variant. Without this the
+   sticky bar sits in a different colour and reintroduces exactly the banded
+   look this redesign is trying to kill. */
+body:has(.g1){background:#efe9dd;}
+body:has(.g1) header.site{background:#efe9dd;border-bottom-color:#d4cdbc;}
+</style>
