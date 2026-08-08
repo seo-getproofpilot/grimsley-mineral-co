@@ -14,7 +14,7 @@ const boothPhase =
 
 const {
   title = "Grimsley Mineral Co.",
-  description = "Minerals, fossils, hand-built lava lamps and collector coins out of Grimsley, Tennessee. Documented, measured and priced.",
+  description = "Minerals, fossils and hand-built lava lamps out of Grimsley, Tennessee. Documented, measured and priced.",
   active = "",
   // Per-page structured data (an object or array of objects). Rendered as
   // JSON-LD alongside the site-wide LocalBusiness graph below.
@@ -38,7 +38,7 @@ const {
 // individual blocks can still override it with their own data-line. Pages
 // that aren't specific to one line (home, about, contact) get the default,
 // which is the mineral house.
-const LINE_OF = { lava: "lava", nails: "nails", coins: "coins" };
+const LINE_OF = { lava: "lava", nails: "nails" };
 const line = LINE_OF[active] || null;
 
 // Canonical + OG url resolve against the configured `site` in astro.config.

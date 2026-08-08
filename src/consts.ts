@@ -18,7 +18,7 @@ export function u(path = ""): string {
 // ---------------------------------------------------------------------------
 export const SITE = {
   name: "Grimsley Mineral Co.",
-  tagline: "Cataloged minerals, fossils, hand-built lava lamps, and collector coins.",
+  tagline: "Cataloged minerals, fossils and hand-built lava lamps.",
   url: "https://seo-getproofpilot.github.io/grimsley-mineral-co",
 
   // CONFIRM: the inbox that contact-form messages should land in.
