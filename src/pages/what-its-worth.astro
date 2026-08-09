@@ -33,14 +33,19 @@ const byTier = TIERS.map((t) => {
 const SIZE_ORDER = ["Thumbnail", "Miniature", "Small Cabinet", "Cabinet"];
 const sizeClasses = SIZE_ORDER.filter((c) => priced.some((s) => s.sizeClass === c));
 
-// Species we can actually speak to, for the deep-dive links at the bottom.
-const covered = [...new Set(priced.map((s) => s.species))]
-  .map((sp) => {
-    const key = Object.values(MINERALS).find((m) => sp.toLowerCase().includes(m.name.toLowerCase()));
-    return key ? { name: key.name, key: key.key } : null;
-  })
-  .filter((x): x is { name: string; key: string } => x !== null)
-  .filter((x, i, arr) => arr.findIndex((y) => y.key === x.key) === i)
+// Deep-dive links at the bottom: every mineral reference page that exists.
+//
+// This used to be derived from the species of currently PRICED specimens, which
+// quietly coupled a reference page's reachability to inventory. When the seven
+// unphotographed records were hidden on 2026-08-08, /mineral/pyrite and
+// /mineral/malachite became orphans: still built, still in the sitemap, and
+// linked from nowhere on the site.
+//
+// A species reference page does not depend on having one in stock. It is written
+// about the mineral, not about a piece. Deriving from MINERALS means selling out,
+// hiding a record, or adding one can never orphan a page again.
+const covered = Object.values(MINERALS)
+  .map((m) => ({ name: m.name, key: m.key }))
   .sort((a, b) => a.name.localeCompare(b.name));
 
 const schema = {
