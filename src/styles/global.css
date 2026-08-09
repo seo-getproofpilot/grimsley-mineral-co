@@ -885,6 +885,9 @@ footer .col a:hover{color:var(--gold-bright);}
 .photoband figcaption{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;
   color:var(--muted);max-width:var(--maxw);margin:12px auto 0;padding:0 26px;}
 .photopair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+/* One-up variant, for when a pair loses a photo and the survivor should not be
+   cropped to 16/9 by .photoband. Keeps the 4/5 frame the pair already uses. */
+.photopair.one{grid-template-columns:1fr;}
 .photopair figure{margin:0;overflow:hidden;background:var(--cream);}
 .photopair img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
 @media (max-width:760px){
