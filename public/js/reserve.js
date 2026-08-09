@@ -1,5 +1,5 @@
 /* Grimsley Mineral Co. — reserve list.
-   A local hold list for the Aug 6-9 booth. A visitor marks the pieces they want
+   A local hold list for booth pickup. A visitor marks the pieces they want
    to hold, then sends the whole list in one message. Everything lives in
    localStorage; there is no account and no server. Base-aware so it works both
    in local dev ('/') and on GitHub Pages ('/grimsley-mineral-co/'). */
@@ -85,8 +85,8 @@
       '<div class="rl-actions">' +
       '<button class="btn btn-dark" id="rl-send">Send this list to hold the pieces</button>' +
       '<button class="btn btn-ghost" id="rl-clear">Clear list</button></div>' +
-      '<p class="rl-note">This holds the pieces for booth pickup at the Highway 127 Yard Sale, ' +
-      "Aug 6 through 9. Prices are confirmed in person; cash at the booth.</p>";
+      '<p class="rl-note">This holds the pieces for pickup at the booth. ' +
+      "Prices are confirmed in person.</p>";
 
     box.querySelectorAll("[data-remove]").forEach(function (b) {
       b.addEventListener("click", function () { remove(b.dataset.remove); });
@@ -96,7 +96,7 @@
     var send = document.getElementById("rl-send");
     if (send) send.addEventListener("click", function () {
       var lines = list.map(function (i) { return "• " + i.name + " ($" + (i.price || 0) + ")"; }).join("\n");
-      var subject = "Reserve list — " + list.length + " piece" + (list.length > 1 ? "s" : "") + " for the 127";
+      var subject = "Reserve list, " + list.length + " piece" + (list.length > 1 ? "s" : "");
       var body = "I would like to hold these pieces for pickup at the booth:\n\n" + lines +
         "\n\nEstimated total: $" + total + "\n\nName:\nBest way to reach me:\n";
       window.location.href = "mailto:" + email +

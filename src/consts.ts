@@ -60,13 +60,7 @@ export const SITE = {
     facebook: null as string | null,
   },
 
-  // The grand-opening event. Booth is cash + in person.
-  event: {
-    name: "Highway 127 Yard Sale",
-    startDate: "2026-08-06",
-    endDate: "2026-08-09",
-    dates: "August 6–9, 2026",
-  },
+  // There is deliberately no `event` here. See THE 127 below.
 } as const;
 
 // Full one-line address for display + schema.
@@ -133,11 +127,24 @@ export function showsPrice(item: { status?: string; price?: number }) {
   return statusOf(item).sellable && !!item.price;
 }
 
-// Booth pricing for the 127 lived here. The sale ran Aug 6-9 2026 and is over,
-// so the discount machinery (BOOTH_SALE, boothPrice, boothTierLabels, the
-// BoothBar component and the data-booth CSS) was deleted rather than left
-// dormant. SITE.event stays: the 127 is now history worth telling, not an
-// upcoming thing to advertise.
+// ---------------------------------------------------------------------------
+// THE 127
+//
+// The Highway 127 Yard Sale is off this site completely, and nothing about it
+// comes back. Marcos, on what the site is for:
+//
+//   "Stop designing the website around our current activities, current
+//    projects, the 127, or what happened this week. The website needs a stable
+//    commercial identity that still makes sense two years from now."
+//
+// So: no SITE.event, no dates, no "we opened at", no "heading into the 127", no
+// countdown, no booth-sale discount machinery, and no data-booth attribute. A
+// visitor in 2028 should not be able to tell which weekend this was built for.
+//
+// US-127 the ROAD is different and stays. The business is physically on it, and
+// "on US-127, between Dollar General and Taco Bros" is a permanent address fact,
+// not an event. Keep that; drop anything that dates the site.
+// ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
 // JOURNAL — the running log of what we are actually doing.
