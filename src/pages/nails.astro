@@ -25,11 +25,11 @@ const GALLERY = [
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Bugged Out Nails</div>
       <h1>Bugged Out Nails</h1>
-      <p>Taylor paints and sculpts every nail herself. Orders and custom sets happen through <a href={SITE.social.instagram} target="_blank" rel="noopener" style="color:var(--pink-deep);">Instagram</a>{SITE.social.facebook && <> or <a href={SITE.social.facebook} target="_blank" rel="noopener" style="color:var(--pink-deep);">Facebook</a></>}.</p>
+      <p>Taylor paints and sculpts every nail herself. Orders and custom sets happen through <a href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a>{SITE.social.facebook && <> or <a href={SITE.social.facebook} target="_blank" rel="noopener">Facebook</a></>}.</p>
     </div>
   </div>
 
-  <div class="feature pink" data-line="nails">
+  <div class="feature quiet">
     <div class="split">
       <div class="pic"><img src={u("img/nails/booth-table.webp")} alt="The Bugged Out Nails table: display board of single nails, cased sets, chalkboard sign and a lava lamp" width="666" height="888" decoding="async" /></div>
       <div class="txt">
@@ -37,8 +37,8 @@ const GALLERY = [
         <h2>Find your size, pick your case.</h2>
         <p>The board holds singles you can mix into a set. Or describe what you want and she paints it from scratch.</p>
         <div class="btns">
-          <a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
-          {SITE.social.facebook && <a class="btn btn-pinkline" href={SITE.social.facebook} target="_blank" rel="noopener">Message on Facebook</a>}
+          <a class="btn btn-gold" href={SITE.social.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
+          {SITE.social.facebook && <a class="btn btn-ghost" href={SITE.social.facebook} target="_blank" rel="noopener">Message on Facebook</a>}
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@ const GALLERY = [
           </figure>
         ))}
       </div>
-      <div class="center-cta"><a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">More on Instagram</a></div>
+      <div class="center-cta"><a class="btn btn-gold" href={SITE.social.instagram} target="_blank" rel="noopener">More on Instagram</a></div>
     </div>
   </section>
 </Base>

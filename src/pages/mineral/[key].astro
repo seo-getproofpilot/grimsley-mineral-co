@@ -5,7 +5,7 @@ import SpecimenCard from "../../components/SpecimenCard.astro";
 import { MINERALS, resolveMineral } from "../../data/minerals";
 import { MINERAL_VALUE, VALUE_FACTORS } from "../../data/value";
 import { LOCALITIES } from "../../data/localities";
-import specimens from "../../data/specimens.json";
+import specimens from "../../data/catalog";
 
 export function getStaticPaths() {
   return Object.values(MINERALS).map((mineral) => ({

@@ -11,12 +11,18 @@ const { active = "" } = Astro.props;
 // so the navigation itself shows you that the Lava Lab and Taylor's Nails are
 // different rooms in the same building. Items with no line inherit whatever
 // the page is set to.
+// There is no tagline under the wordmark. It used to read "Minerals, Fossils,
+// Light", which predates the six departments and left out gemstones, nails and
+// currency. The nav directly below names all six, so a strapline there was both
+// inaccurate and redundant, and dropping it takes height off a header that was
+// already too tall on a phone. Note for future edits: HTML comments in .astro
+// markup ship to the browser, frontmatter comments like this one do not.
 const nav = [
   { href: "minerals", label: "Minerals", key: "minerals" },
   { href: "fossils", label: "Fossils", key: "fossils" },
   { href: "gemstones", label: "Gemstones", key: "gemstones" },
-  { href: "lava-lamps", label: "Lava Lamps", key: "lava", line: "lava" },
-  { href: "nails", label: "Nails", key: "nails", line: "nails" },
+  { href: "lava-lamps", label: "Lava Lamps", key: "lava" },
+  { href: "nails", label: "Nails", key: "nails" },
   { href: "currency", label: "Coins & Currency", key: "currency" },
 ];
 ---
@@ -27,7 +33,6 @@ const nav = [
     </div>
     <a class="wordmark" href={u("")}>
       <div class="name">Grimsley Mineral Co.</div>
-      <div class="tag">Minerals · Fossils · Light</div>
     </a>
     <div class="right">
       <a href={u("about")}>About</a>
@@ -40,7 +45,7 @@ const nav = [
   <nav class="mega">
     <ul>
       {nav.map((n) => (
-        <li data-line={n.line || undefined}><a href={u(n.href)} class={active === n.key ? "active" : ""}>{n.label}</a></li>
+        <li><a href={u(n.href)} class={active === n.key ? "active" : ""}>{n.label}</a></li>
       ))}
     </ul>
   </nav>

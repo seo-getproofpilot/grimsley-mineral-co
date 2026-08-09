@@ -1,20 +1,15 @@
 /* ============================================================
    Grimsley Mineral Co. — design system
-   "Two houses, one roof."
+   One brand, one palette.
 
-   This is two businesses sharing one site: Grimsley Mineral Co. and
-   Bugged Out Nails. Rather than pretend that away, the system makes it
-   the structure. ONE chassis — same grid, same type, same neutral, on
-   every page — and each line owns a temperature.
+   Six departments, one business. The chassis is identical everywhere: same
+   grid, same type, same neutral, same accent. Departments specialize through
+   PHOTOGRAPHY and their own field sets, never through brand colour.
 
-   Any element can declare which house it is in with data-line:
-
-     <html data-line="lava">        the whole page
-     <div class="feature" data-line="nails">   one block on a shared page
-
-   Everything downstream reads --accent, so a single attribute recolors
-   buttons, rules, links and hover states without a single new class.
-   Only the accent moves. Grid, type and neutral stay locked.
+   This replaced a "two houses, one roof" system that gave lava, nails and
+   coins their own accents via a data-line attribute. It made the homepage
+   change colour three times mid-scroll and it encoded exactly what Marcos
+   rejected: nails as "Taylor's little side thing". Do not bring it back.
    ============================================================ */
 
 /* @font-face lives in src/layouts/Base.astro, not here.
@@ -56,41 +51,37 @@
   --dark-2:#1b262b;
 
   /* Aliases. ~100 existing rules were written against --gold; pointing them
-     at --accent means the whole site re-houses from one attribute instead of
-     a hundred edits. var() in a custom property resolves where it is USED,
-     so these follow [data-line] down the tree correctly. */
+     at --accent means the accent moves from one place instead of a hundred
+     edits. */
   --gold:var(--accent);
   --gold-bright:var(--accent-hi);
 
   --cream:#f4f2ec;
-  --pink-bg:#fbeef1;
-  --pink-deep:#c25a78;
   --photo-bg: radial-gradient(120% 100% at 50% 34%, #ffffff 0%, #f2f0ea 62%, #e6e3da 100%);
 }
 
-/* ---------- THE OTHER HOUSES ---------- */
-[data-line="lava"]{
-  --accent:#e0562a;
-  --accent-hi:#f26a3c;
-  --accent-ink:#8f2f11;
-  --accent-bg:#fdf0ea;
-  --dark:#1a1410;      /* the only genuinely dark room on the site */
-  --dark-2:#241c16;
-}
-[data-line="nails"]{
-  --accent:#c25a78;
-  --accent-hi:#d46e8b;
-  --accent-ink:#8a3350;
-  --accent-bg:#fbeef1;
-  --dark:#2a1620;
-  --dark-2:#361d29;
-}
-[data-line="coins"]{
-  --accent:#8a7b4a;
-  --accent-hi:#a3925a;
-  --accent-ink:#5b512f;
-  --accent-bg:#f5f2e8;
-}
+/* ---------- ONE BRAND, ONE PALETTE ----------
+   There used to be four palettes here, swapped by a [data-line] attribute:
+   teal for minerals, orange for lava, pink for nails, olive for coins. The
+   homepage changed accent three times as you scrolled and each department card
+   carried its own colour.
+
+   That is the thing Marcos explicitly rejected:
+
+     "I don't want: Minerals 'the serious part', Lava 'the fun experimental
+      part', Nails 'Taylor's little side thing'. That weakens the whole
+      business. The brand level is unified. The department level is
+      specialized."
+
+     "Taylor's $250 handmade nail set should be presented with the same visual
+      respect as a $1,500 mineral."
+
+   A dedicated pink palette for nails is the opposite of the same visual
+   respect. The copy got fixed and the CSS never did. Departments specialize
+   through PHOTOGRAPHY and their own field sets, never through brand colour.
+
+   Do not reintroduce per-department accents. --pink-bg and --pink-deep are
+   gone with them. */
 *{box-sizing:border-box;}
 html,body{margin:0;}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
@@ -129,10 +120,8 @@ img{display:block;max-width:100%;}
    on hover instead of briefly outranking the solid one next to it. */
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2);}
 .btn-ghost:hover{border-color:var(--ink);background:rgba(0,0,0,.03);}
-.btn-pink{background:var(--pink-deep);color:#fff;}
-.btn-pink:hover{background:#b04566;}
-.btn-pinkline{background:transparent;color:#8a3350;border:1px solid #d99cae;}
-.btn-pinkline:hover{border-color:var(--pink-deep);background:rgba(194,90,120,.06);}
+/* .btn-pink / .btn-pinkline are gone. Nails uses .btn-gold and .btn-ghost like
+   every other department, which is the point. See ONE BRAND, ONE PALETTE. */
 
 /* promo bar */
 .promo{background:var(--dark);color:#efe9dd;text-align:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;}
@@ -159,9 +148,8 @@ nav.mega ul::-webkit-scrollbar{display:none;}
 nav.mega li{flex:0 0 auto;}
 nav.mega a{position:relative;display:block;padding-bottom:5px;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);transition:color .18s;}
 nav.mega a:hover,nav.mega a.active{color:var(--accent);}
-/* The rule under each item is that item's own house colour, because each li
-   carries its own data-line. This is the whole idea made visible: one bar,
-   three temperatures, and you can see which room you are standing in. */
+/* One accent under every nav item. The rule used to take each item's own house
+   colour, so the bar itself advertised the departments as separate businesses. */
 nav.mega a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);
   transform:scaleX(0);transform-origin:left;transition:transform .22s ease;}
 nav.mega a:hover::after{transform:scaleX(1);}
@@ -172,7 +160,10 @@ nav.mega a.active::after{transform:scaleX(1);}
 .hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;}
 .hero .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,10,8,.92),rgba(12,10,8,.66) 44%,rgba(12,10,8,.15) 74%,rgba(12,10,8,.02));}
 .hero .inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:80px 32px;width:100%;}
-.hero .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-bright);}
+/* A pale tint of the accent rather than the accent itself. Mid-teal on a
+   photograph fails contrast wherever the image behind it is light, which it is
+   on the phone crop; this keeps the brand hue and stays readable on any frame. */
+.hero .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#bcd2d8;}
 .hero h1{font-size:clamp(40px,5.6vw,68px);line-height:1.03;margin:18px 0 0;max-width:16ch;color:#fbf8f2;font-weight:700;}
 /* The homepage h1 is the department list, which needs more measure than 16ch
    and less size than a three-word headline, or it runs seven lines deep on a
@@ -180,6 +171,13 @@ nav.mega a.active::after{transform:scaleX(1);}
 .hero h1.wide{max-width:22ch;font-size:clamp(31px,4.2vw,54px);}
 .hero p{margin:20px 0 0;max-width:44ch;font-size:17px;color:#d9d3c8;}
 .hero .btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+/* The desktop scrim is a left-to-right gradient, because on a wide screen the
+   type sits in the left half and the photograph should stay bright on the right.
+   On a phone the type is full width, so that same gradient leaves the headline
+   sitting on an unscrimmed photo. Go vertical instead. */
+@media (max-width:760px){
+  .hero .scrim{background:linear-gradient(180deg,rgba(12,10,8,.50) 0%,rgba(12,10,8,.62) 45%,rgba(12,10,8,.86) 100%);}
+}
 
 /* page header (interior pages) */
 .pagehead{border-bottom:1px solid var(--line);background:var(--cream);}
@@ -276,7 +274,7 @@ section{padding:74px 0;}
 .jc-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .jc-top time{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 .jc-status{font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--gold);color:var(--gold);}
-.jc-status.open{border-color:var(--pink-deep);color:var(--pink-deep);}
+.jc-status.open{border-color:var(--accent);color:var(--accent-ink);}
 .jc-body h2{font-size:25px;margin-top:11px;font-weight:600;line-height:1.22;}
 .jc-body p{font-size:15px;color:var(--ink-2);margin:10px 0 0;max-width:60ch;}
 .jc-body .r{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:15px;display:inline-block;}
@@ -396,10 +394,10 @@ section{padding:74px 0;}
 .feature.dark .txt .k{color:var(--gold-bright);}
 .feature.dark .txt h2{color:#fbf8f2;}
 .feature.dark .txt p{color:#cfc8bc;}
-.feature.pink{background:var(--pink-bg);}
-.feature.pink .txt .k{color:var(--pink-deep);}
-.feature.pink .txt h2{color:#4a2230;}
-.feature.pink .txt p{color:#71404f;}
+/* .feature.pink is gone. The nails band was pale pink with a rose heading and a
+   rose button, which read as a different website mid-scroll. It now uses the
+   same .feature shell as everything else. See ONE BRAND, ONE PALETTE. */
+.feature.quiet{background:var(--cream);}
 
 /* visit / map */
 .visit{background:var(--dark);color:#efe9dd;}
@@ -694,7 +692,7 @@ footer .col a:hover{color:var(--gold-bright);}
 .rl-name:hover{color:var(--gold);}
 .rl-price{font-size:15px;color:var(--ink-2);}
 .rl-x{background:none;border:none;font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:6px 4px;transition:color .15s;}
-.rl-x:hover{color:var(--pink-deep);}
+.rl-x:hover{color:var(--accent);}
 .rl-total{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);}
 .rl-total span:last-child{color:var(--gold);}
 .rl-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
@@ -788,7 +786,7 @@ footer .col a:hover{color:var(--gold-bright);}
    a label reading "Hand-painted · custom" under every tile adds nothing a
    person can't already see. */
 .nailgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.nailshot{margin:0;overflow:hidden;background:var(--pink-bg);border-radius:2px;}
+.nailshot{margin:0;overflow:hidden;background:var(--cream);border-radius:2px;}
 .nailshot img{display:block;width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;}
 @media (max-width:1000px){.nailgrid{grid-template-columns:repeat(3,1fr);}}
 @media (max-width:700px){.nailgrid{grid-template-columns:repeat(2,1fr);gap:10px;}}
@@ -801,9 +799,9 @@ footer .col a:hover{color:var(--gold-bright);}
    because density of real objects is what reads as real inventory.
    ============================================================ */
 
-/* Category tiles. Same grid as .bands, but the photo is the tile and the
-   label sits on it. Each tile can carry its own data-line, so the Lava Lab
-   tile glows orange and Taylor's tile goes pink inside one shared grid. */
+/* Category tiles. Same grid as .bands, but the photo is the tile and the label
+   sits on it. Every tile takes the same accent; the photograph is what makes a
+   department feel like itself. */
 /* align-items:start, or the grid stretches every tile to the tallest row and
    object-fit:cover then crops a 4:3 photo into an extreme close-up. */
 .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;}

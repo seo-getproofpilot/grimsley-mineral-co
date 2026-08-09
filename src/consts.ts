@@ -18,7 +18,10 @@ export function u(path = ""): string {
 // ---------------------------------------------------------------------------
 export const SITE = {
   name: "Grimsley Mineral Co.",
-  tagline: "Cataloged minerals, fossils and hand-built lava lamps.",
+  // Feeds the Store description in schema. Kept current with the six
+  // departments; it used to name only minerals, fossils and lava lamps.
+  tagline:
+    "Six departments in one room: minerals, fossils, gemstones, hand-built lava lamps, hand-painted press-on nails and world currency.",
   url: "https://seo-getproofpilot.github.io/grimsley-mineral-co",
 
   // CONFIRM: the inbox that contact-form messages should land in.

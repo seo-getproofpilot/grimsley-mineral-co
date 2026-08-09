@@ -10,7 +10,7 @@ import Base from "../../layouts/Base.astro";
 import { u } from "../../consts";
 import SpecimenCard from "../../components/SpecimenCard.astro";
 import { LOCALITIES } from "../../data/localities";
-import specimens from "../../data/specimens.json";
+import specimens from "../../data/catalog";
 
 export function getStaticPaths() {
   return LOCALITIES.map((loc) => ({ params: { slug: loc.slug }, props: { loc } }));

@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import ShelfWall from "../components/ShelfWall.astro";
-import specimens from "../data/specimens.json";
+import specimens from "../data/catalog";
 import { u } from "../consts";
 
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
@@ -42,19 +42,34 @@ const underHundred = specimens
   .sort((a, b) => (b.price as number) - (a.price as number))
   .slice(0, 8);
 
-// The hero photograph is the largest paint on the page. It is the cabinet wall
-// where the minerals, the gemstone case, the UV shelf, the Elmwood fluorite and
-// the lava lamps all sit in one grid — the argument for this being one business
-// rather than three, made without a sentence of copy.
-const HERO = "img/lifestyle/room-wall-hero.webp";
+// The hero photograph is the largest paint on the page, so it gets a frame cut
+// for the shape it actually fills.
+//
+// What was here before: the cabinet-wall photo, a PORTRAIT 1200x1600 file, used
+// as a cover background on a full-bleed LANDSCAPE band. Cover on a 2.4:1 band
+// crops a portrait file to a narrow horizontal sliver, which is why the hero read
+// as an extreme close-up with the cabinet grid invisible, a hand-lettered
+// UV REACTIVE ROCKS starburst as the loudest thing on the page, and a hard
+// vertical seam where the scrim ran out.
+//
+// These two are cut from the ORIGINAL 4284x5712 (IMG_4544, the black-table
+// spread) at full resolution, one frame per shape. Black ground, real specimens,
+// wood risers, and no signs or price tags anywhere in either frame.
+const HERO_WIDE = "img/lifestyle/hero-table.webp";        // 2400x1000, >=761px
+const HERO_TALL = "img/lifestyle/hero-table-mobile.webp"; // 1000x1250, phones
 const heroCss =
-  `.hero .bg{background-image:url("${u(HERO)}");background-position:center 46%;}`;
+  `.hero .bg{background-image:url("${u(HERO_TALL)}");background-position:center 44%;}` +
+  `@media (min-width:761px){.hero .bg{background-image:url("${u(HERO_WIDE)}");` +
+  `background-position:center 52%;}}`;
 ---
 <Base
   title="Minerals, Fossils, Gemstones, Lava Lamps & Nails — Grimsley Mineral Co."
   description="Six departments in one room on US-127. Minerals, fossils, gemstones, hand-built lava lamps, hand-painted press-on nails and world currency, out of Grimsley, Tennessee."
   headCss={heroCss}
-  preloadImage={[{ file: HERO }]}
+  preloadImage={[
+    { file: HERO_TALL, media: "(max-width:760px)" },
+    { file: HERO_WIDE, media: "(min-width:761px)" },
+  ]}
 >
   <!-- HERO
        One line, one photograph, two buttons. Every extra sentence here is the
@@ -83,7 +98,7 @@ const heroCss =
         {DEPARTMENTS.map((d) => {
           const n = count(d.line);
           return (
-            <a class="dept" href={u(d.href)} data-line={d.house || undefined}>
+            <a class="dept" href={u(d.href)}>
               <img src={u(`img/departments/${d.img}.webp`)} alt={d.alt} width="1200" height="1600" loading="lazy" decoding="async" />
               <div class="cap">
                 <div class="n">{d.name}</div>
@@ -112,7 +127,7 @@ const heroCss =
   <!-- ONE OF ONE — the two departments where the piece is made, not found.
        Same treatment for both, deliberately. A $250 nail set gets the same
        block, the same photograph size and the same type as a rebuilt lamp. -->
-  <div class="feature dark" data-line="lava">
+  <div class="feature dark">
     <div class="split">
       <div class="txt">
         <div class="k">One of one</div>
@@ -124,14 +139,14 @@ const heroCss =
     </div>
   </div>
 
-  <div class="feature pink" data-line="nails">
+  <div class="feature quiet">
     <div class="split">
       <div class="pic"><img src={u("img/nails/press-board.webp")} alt="Rows of hand-painted press-on nails on Taylor's pick and press board" width="666" height="888" loading="lazy" decoding="async" /></div>
       <div class="txt">
         <div class="k">One of one</div>
         <h2>Sets painted one nail at a time.</h2>
         <p>Find your size, pick your case, build your set. Taylor sculpts and paints every one.</p>
-        <div class="btns"><a class="btn btn-pink" href={u("nails")}>See what she makes</a></div>
+        <div class="btns"><a class="btn btn-gold" href={u("nails")}>See what she makes</a></div>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { u, TIERS } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import Origins from "../components/Origins.astro";
 import ShelfWall from "../components/ShelfWall.astro";
-import specimens from "../data/specimens.json";
+import specimens from "../data/catalog";
 const items = specimens.filter((s) => s.line === "minerals");
 const sizes = [...new Set(items.map((s) => s.sizeClass))].filter((s) => s !== "Assorted").sort();
 const country = (loc) => (loc || "").split(",").pop().trim();

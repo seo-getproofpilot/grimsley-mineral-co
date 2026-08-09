@@ -34,12 +34,11 @@ const {
   noindex = false,
 } = Astro.props;
 
-// Which house this page belongs to. Sets --accent for the whole document;
-// individual blocks can still override it with their own data-line. Pages
-// that aren't specific to one line (home, about, contact) get the default,
-// which is the mineral house.
-const LINE_OF = { lava: "lava", nails: "nails" };
-const line = LINE_OF[active] || null;
+// There is one brand palette. There used to be a per-department "house" here
+// that recoloured the whole document for /lava-lamps and /nails, which is the
+// fragmentation Marcos rejected: the brand level is unified, the department
+// level specializes through photography and field sets, never brand colour.
+// See "ONE BRAND, ONE PALETTE" in global.css before adding anything like it back.
 
 // Canonical + OG url resolve against the configured `site` in astro.config.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -96,7 +95,7 @@ const fontCss = FONTS.map(
 ).join("");
 ---
 <!doctype html>
-<html lang="en" data-base={import.meta.env.BASE_URL} data-booth={boothPhase || undefined} data-line={line || undefined}>
+<html lang="en" data-base={import.meta.env.BASE_URL} data-booth={boothPhase || undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

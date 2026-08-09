@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import { u } from "../consts";
 import SpecimenCard from "../components/SpecimenCard.astro";
 import Origins from "../components/Origins.astro";
-import specimens from "../data/specimens.json";
+import specimens from "../data/catalog";
 const items = specimens.filter((s) => s.line === "fossils");
 ---
 <Base

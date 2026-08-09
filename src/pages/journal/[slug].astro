@@ -3,7 +3,7 @@ import Base from "../../layouts/Base.astro";
 import SpecimenCard from "../../components/SpecimenCard.astro";
 import { u, SITE, JOURNAL_STATUS, journalSorted, journalDate } from "../../consts";
 import entries from "../../data/journal.json";
-import specimens from "../../data/specimens.json";
+import specimens from "../../data/catalog";
 
 export function getStaticPaths() {
   const all = journalSorted(entries as any[]);
