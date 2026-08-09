@@ -1,6 +1,40 @@
 ---
 import { u, SITE, FULL_ADDRESS } from "../consts";
 import EmailCapture from "./EmailCapture.astro";
+import { MINERALS } from "../data/minerals";
+import { LOCALITIES } from "../data/localities";
+import articles from "../data/articles.json";
+import specimens from "../data/catalog";
+
+// The footer is the site's only complete map. Nothing else on the site shows you
+// that there are 12 species pages, 14 locality pages and 5 guides behind the
+// six departments, and before this it did not either: 17 links in four columns
+// with no counts, no structure, and two of the six departments (Gemstones and
+// Coins & Currency) missing from the Shop column entirely.
+//
+// Three rules here, because all three were broken:
+//
+// 1. DEPARTMENTS ARE THE FIRST COLUMN AND ALL SIX ARE IN IT, with the same
+//    labels and the same order as the nav in Header.astro. "Lava Lab" here vs
+//    "Lava Lamps" in the nav was one page wearing two names.
+// 2. REFERENCE MATERIAL COLLAPSES TO ITS HUB, and the hub carries a count. A
+//    reader can see the depth without 31 links in a footer, and a count tells
+//    them whether the hub is worth a click.
+// 3. EVERY COUNT IS COMPUTED from the same data the pages are built from. Type
+//    "12 species" here and it is wrong the first time somebody adds a mineral.
+const DEPARTMENTS = [
+  { href: "minerals", label: "Minerals" },
+  { href: "fossils", label: "Fossils & Shells" },
+  { href: "gemstones", label: "Gemstones" },
+  { href: "lava-lamps", label: "Lava Lamps" },
+  { href: "nails", label: "Bugged Out Nails" },
+  { href: "currency", label: "Coins & Currency" },
+];
+
+const nSpecies = Object.keys(MINERALS).length;
+const nLocalities = Object.keys(LOCALITIES).length;
+const nGuides = articles.length;
+const nSold = specimens.filter((s) => s.status === "sold").length;
 ---
 <footer class="site">
   <EmailCapture />
@@ -14,31 +48,32 @@ import EmailCapture from "./EmailCapture.astro";
       <div class="pay"><span>Square</span><span>Apple Pay</span><span>Zelle</span><span>Cash App</span><span>Cash</span></div>
     </div>
     <div class="col">
-      <h5>Shop</h5>
-      <a href={u("minerals")}>Minerals</a>
-      <a href={u("fossils")}>Fossils &amp; Shells</a>
-      <a href={u("lava-lamps")}>Lava Lab</a>
-      <a href={u("nails")}>Bugged Out Nails</a>
-      <a href={u("localities")}>Browse by Locality</a>
-      <a href={u("sold")}>Sold Archive</a>
+      <h5>Departments</h5>
+      {DEPARTMENTS.map((d) => <a href={u(d.href)}>{d.label}</a>)}
     </div>
     <div class="col">
-      <h5>Read</h5>
-      <a href={u("journal")}>Journal</a>
-      <a href={u("field-notes")}>Guides</a>
-      <a href={u("what-its-worth")}>What a Specimen Is Worth</a>
-      <a href={u("standard")}>Our Standard</a>
-      <a href={u("authenticity")}>Authenticity &amp; Honesty</a>
+      <h5>Browse</h5>
+      <a href={u("localities")}>By locality <span class="fnum">{nLocalities}</span></a>
+      <a href={`${u("what-its-worth")}#species`}>By species <span class="fnum">{nSpecies}</span></a>
       <a href={u("fluorescent")}>Under the UV</a>
-      <a href={u("about")}>Our Story</a>
+      {nSold > 0 && <a href={u("sold")}>Sold archive <span class="fnum">{nSold}</span></a>}
     </div>
     <div class="col">
-      <h5>Contact</h5>
-      <a href={u("contact")}>Get in Touch</a>
-      <a href={u("contact")}>Commission a Lamp</a>
-      <a href={u("shipping")}>Shipping &amp; Returns</a>
+      <h5>Reference</h5>
+      <a href={u("field-notes")}>Guides <span class="fnum">{nGuides}</span></a>
+      <a href={u("what-its-worth")}>What a specimen is worth</a>
+      <a href={u("standard")}>Our standard</a>
+      <a href={u("authenticity")}>Authenticity &amp; honesty</a>
+      <a href={u("journal")}>Journal</a>
+    </div>
+    <div class="col">
+      <h5>Visit &amp; contact</h5>
+      <a href={u("visit")}>Where we are</a>
+      <a href={u("contact")}>Get in touch</a>
+      <a href={u("contact")}>Commission a lamp</a>
+      <a href={u("shipping")}>Shipping &amp; returns</a>
       <a href={u("faq")}>FAQ</a>
-      <a href={u("visit")}>Where We Are</a>
+      <a href={u("about")}>Our story</a>
     </div>
   </div>
   <div class="colo">

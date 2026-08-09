@@ -4,7 +4,18 @@ import { u } from "../consts";
 import specimens from "../data/catalog";
 
 // No gemstone has a record yet, so this page is deliberately a photograph and
-// a short honest statement rather than a grid of placeholders. Every fact on
+// a short honest statement rather than a grid of placeholders.
+//
+// ONE photograph, and it is the parcel in the gem box, not the booth shelf. The
+// parcel shot is the only image on the site showing actual faceted material,
+// which is what someone on this page came to see. The booth-section shot is
+// still the department tile on the homepage, so nothing is lost by leaving it
+// off here, and it is one of the three pale-wall hot-pink-sign frames waiting on
+// a reshoot.
+//
+// The caption gives colour and count and nothing else. The species and the carat
+// weights of these stones have never been measured, so naming one would be
+// inventing a fact. Every fact on
 // it comes from what is visibly in the frame or from Marcos's own booth
 // signage. Nothing here names a species, a carat weight or an origin, because
 // none of that has been measured.
@@ -25,9 +36,12 @@ const items = specimens.filter((s) => s.line === "gemstones");
 
   <section style="padding-top:0;">
     <div class="wrap">
-      <figure class="photoband">
-        <img src={u("img/departments/gemstones.webp")} alt="The gemstone section of the booth: a hand-lettered Gemstones sign above a shelf of gem boxes, loose stones and a sodalite point, beside a shelf of UV reactive rocks" width="1200" height="1600" loading="eager" decoding="async" />
-      </figure>
+      <div class="photopair one">
+        <figure>
+          <img src={u("img/gemstones/faceted-parcel-gem-box.webp")} alt="A white gem box held up to the light holding roughly a dozen faceted stones in pinks, purples and blues" width="1200" height="1600" loading="eager" decoding="async" />
+        </figure>
+      </div>
+      <p class="cap-mono">Part of the parcel, held to the light. Nothing here has been weighed or identified yet.</p>
     </div>
   </section>
 

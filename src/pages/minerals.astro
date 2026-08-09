@@ -74,7 +74,10 @@ const byTier = (t) => items.filter((s) => s.tier === t);
         <p>Ask about anything you see.</p>
       </div>
     </div>
-    <div style="padding:0 8px;"><ShelfWall limit={24} /></div>
+    <!-- No limit here on purpose. The homepage shows the first 18; this page is
+         the only place the whole wall renders, and with a limit of 24 the last
+         six curated photographs appeared on no page at all. -->
+    <div style="padding:0 8px;"><ShelfWall /></div>
   </section>
 
   <Origins items={items} />

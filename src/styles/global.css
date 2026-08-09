@@ -502,7 +502,9 @@ section{padding:74px 0;}
 
 /* footer */
 footer.site{background:var(--dark);color:#cfc8bc;padding:64px 0 34px;}
-.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+/* Five columns, not four: the brand block plus Departments, Browse, Reference,
+   Visit. Gap comes down from 40 to 32 to buy the fifth column its room. */
+.fgrid{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:32px;max-width:var(--maxw);margin:0 auto;padding:0 32px;}
 footer .name{font-family:var(--serif);font-size:var(--t-6);font-weight:700;color:#fbf8f2;}
 footer .blurb{font-size:var(--t-3);margin-top:12px;max-width:32ch;color:#a9a296;}
 .pay{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
@@ -510,6 +512,10 @@ footer .blurb{font-size:var(--t-3);margin-top:12px;max-width:32ch;color:#a9a296;
 footer h5{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:#8b8479;margin:0 0 14px;font-weight:600;}
 footer .col a{display:block;font-size:var(--t-3);color:#cfc8bc;padding:5px 0;transition:color .15s;}
 footer .col a:hover{color:var(--accent-on-dark);}
+/* How many pages sit behind a hub link. Dimmer than the label because it is a
+   fact about the link, not part of the link's name. Every one is computed in
+   Footer.astro, never typed. */
+.fnum{font-family:var(--mono);font-size:var(--t-1);color:#8b8479;margin-left:6px;}
 .colo{max-width:var(--maxw);margin:44px auto 0;padding:20px 32px 0;border-top:1px solid #322d26;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:var(--t-1);color:#8b8479;letter-spacing:.04em;}
 
 /* Footer email signup */
@@ -918,12 +924,20 @@ footer .col a:hover{color:var(--accent-on-dark);}
    describe only what is in the frame — no dates, no events, no localities. */
 .photoband{margin:0;background:var(--cream);}
 .photoband img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
+/* Standalone photo caption, same voice as .photoband figcaption. Used where a
+   pair of photographs needs one caption under both rather than one each. */
+.cap-mono{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.05em;color:var(--muted);
+  max-width:var(--maxw);margin:14px auto 0;text-transform:none;}
 .photoband figcaption{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.05em;
   color:var(--muted);max-width:var(--maxw);margin:12px auto 0;padding:0 26px;}
 .photopair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 /* One-up variant, for when a pair loses a photo and the survivor should not be
-   cropped to 16/9 by .photoband. Keeps the 4/5 frame the pair already uses. */
-.photopair.one{grid-template-columns:1fr;}
+   cropped to 16/9 by .photoband. Keeps the 4/5 frame the pair already uses.
+   CAPPED ON PURPOSE. Every photo in this project is portrait, and a portrait in
+   a 4/5 frame at the full 1216px container renders over 1500px tall: the viewer
+   gets an extreme close-up and has to scroll to see the object. The cap keeps a
+   lone photo at the same width it would have had as half of a pair. */
+.photopair.one{grid-template-columns:1fr;max-width:calc((var(--maxw) - 10px) / 2);}
 .photopair figure{margin:0;overflow:hidden;background:var(--cream);}
 .photopair img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
 @media (max-width:760px){
