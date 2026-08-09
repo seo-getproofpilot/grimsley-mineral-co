@@ -149,7 +149,14 @@ header.site{background:var(--bg);border-bottom:1px solid var(--line);position:st
 .wordmark .tag{font-size:10px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-top:7px;}
 .ico{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6;}
 nav.mega{border-top:1px solid var(--line);}
-nav.mega ul{list-style:none;display:flex;justify-content:center;gap:34px;margin:0 auto;padding:15px 0;max-width:var(--maxw);flex-wrap:wrap;}
+/* nowrap, not wrap. Six departments wrapped to two rows on a phone and the
+   header ate 235px, 28% of a 390x844 viewport, on every page. Scrolling the
+   bar sideways costs one row instead of a quarter of the screen, and the
+   departments past the fold are still reachable. */
+nav.mega ul{list-style:none;display:flex;justify-content:center;gap:34px;margin:0 auto;padding:15px 0;max-width:var(--maxw);
+  flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+nav.mega ul::-webkit-scrollbar{display:none;}
+nav.mega li{flex:0 0 auto;}
 nav.mega a{position:relative;display:block;padding-bottom:5px;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);transition:color .18s;}
 nav.mega a:hover,nav.mega a.active{color:var(--accent);}
 /* The rule under each item is that item's own house colour, because each li
@@ -167,6 +174,10 @@ nav.mega a.active::after{transform:scaleX(1);}
 .hero .inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:80px 32px;width:100%;}
 .hero .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-bright);}
 .hero h1{font-size:clamp(40px,5.6vw,68px);line-height:1.03;margin:18px 0 0;max-width:16ch;color:#fbf8f2;font-weight:700;}
+/* The homepage h1 is the department list, which needs more measure than 16ch
+   and less size than a three-word headline, or it runs seven lines deep on a
+   phone and pushes everything else off the screen. */
+.hero h1.wide{max-width:22ch;font-size:clamp(31px,4.2vw,54px);}
 .hero p{margin:20px 0 0;max-width:44ch;font-size:17px;color:#d9d3c8;}
 .hero .btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
 
@@ -603,7 +614,9 @@ footer .col a:hover{color:var(--gold-bright);}
 @media(max-width:960px){
   .head{grid-template-columns:auto 1fr auto;}
   .head .left span{display:none;}
-  nav.mega ul{gap:18px;padding:12px 16px;}
+  /* justify-content:flex-start, or a scrolling row that overflows gets its
+     first item pushed off the left edge and unreachable. */
+  nav.mega ul{gap:22px;padding:12px 16px;justify-content:flex-start;}
   .cats{grid-template-columns:1fr 1fr;}
   .grid,.grid.g4{grid-template-columns:1fr 1fr;}
   .trust .cols{grid-template-columns:1fr 1fr;}
@@ -832,6 +845,37 @@ footer .col a:hover{color:var(--gold-bright);}
   .cats{grid-template-columns:1fr;}
   .shelfwall{grid-template-columns:repeat(3,1fr);gap:6px;}
 }
+
+/* ---------- DEPARTMENTS ----------
+   The store's front door. Six portrait photographs of the actual sections,
+   sized to be walked into rather than scanned. Portrait on purpose: 3:4 reads
+   as a doorway, 4:3 reads as a blog card, and every one of these was shot
+   vertically on a phone anyway, so cropping to landscape would throw away the
+   top and bottom of a shelf.
+
+   No description line. A department is named or it is not; a sentence under
+   the name is the explaining that made this page feel written by a machine. */
+.depts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.dept{position:relative;display:block;overflow:hidden;background:var(--dark);
+  border:1px solid var(--line-2);transition:border-color .2s;}
+.dept:hover{border-color:var(--accent);}
+/* height:auto is load-bearing. The width/height attributes on the <img> are a
+   presentational hint that sets a literal pixel height and silently defeats
+   aspect-ratio, which is how the category tiles once rendered 1200px tall. */
+.dept img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;
+  transition:transform .7s ease;}
+.dept:hover img{transform:scale(1.035);}
+.dept .cap{position:absolute;left:0;right:0;bottom:0;padding:74px 20px 18px;color:#fff;
+  background:linear-gradient(to top,rgba(8,8,10,.9),rgba(8,8,10,.55) 42%,transparent);}
+.dept .cap .n{font-family:var(--serif);font-size:clamp(22px,2.1vw,29px);line-height:1.05;}
+/* The count is a fact, so it goes in the mono voice with everything else that
+   is a fact. Departments with nothing listed yet say where the pieces are
+   instead of claiming a number. */
+.dept .cap .c{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px;}
+
+@media (max-width:1000px){ .depts{grid-template-columns:repeat(2,1fr);gap:12px;} }
+@media (max-width:520px){ .depts{gap:10px;} }
 
 /* Full-bleed photo bands. Used where a photograph explains the place better
    than a paragraph does: the room, the table, the floor mid-sort. Captions

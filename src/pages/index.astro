@@ -1,137 +1,158 @@
 ---
 import Base from "../layouts/Base.astro";
 import SpecimenCard from "../components/SpecimenCard.astro";
-import Recent from "../components/Recent.astro";
-import Workbench from "../components/Workbench.astro";
 import ShelfWall from "../components/ShelfWall.astro";
 import specimens from "../data/specimens.json";
-import journal from "../data/journal.json";
 import { u } from "../consts";
 
-const featuredMinerals = specimens.filter((s) => s.line === "minerals" && s.featured).slice(0, 6);
 const mapDest = "5521%20South%20York%20Highway%2C%20Grimsley%2C%20TN%2038565";
 
-// The hero's first button points at the journal once there is a journal to
-// point at, and at the catalog until then. A "see what we're working on" link
-// into an empty page is a worse first impression than no link at all.
-const hasJournal = (journal as any[]).length > 0;
+// ---------- DEPARTMENTS ----------
+// The six departments, in merchandising order, each fronted by a photograph of
+// the actual section of the room. The count under each name is read off the
+// catalog, never typed in, so it can't drift out of date. Departments with
+// nothing listed say where the pieces are instead of claiming a number, which
+// is the honest version of "coming soon" and does not require a promise.
+const count = (line: string) => specimens.filter((s) => s.line === line).length;
+const DEPARTMENTS = [
+  { href: "minerals",   img: "minerals",   name: "Minerals",         line: "minerals",
+    alt: "The mineral table at the booth: dozens of specimens on black cloth with wooden risers, including spirit quartz, cobaltoan calcite, desert rose selenite and a pyrite sun" },
+  { href: "fossils",    img: "fossils",    name: "Fossils",          line: "fossils",
+    alt: "The fossil table on black cloth, with a hand-lettered Fossils sign on the wall behind it" },
+  { href: "gemstones",  img: "gemstones",  name: "Gemstones",        line: "gemstones",
+    alt: "A hand-lettered Gemstones sign above a shelf of gem boxes and loose stones, next to a shelf of UV reactive rocks" },
+  { href: "lava-lamps", img: "lava-lamps", name: "Lava Lamps",       line: "lava", house: "lava",
+    alt: "Three shelves of lava lamps in every colour, lit and running" },
+  { href: "nails",      img: "nails",      name: "Nails",            line: "nails", house: "nails",
+    alt: "Taylor's press-on nail display, with hand-lettered signs reading Find Your Size, Pick Your Case and Build Your Set" },
+  { href: "currency",   img: "currency",   name: "Coins & Currency", line: "currency",
+    alt: "A table of sleeved world banknotes laid out flat, with framed notes standing behind" },
+];
 
-// The hero photo is the largest paint on the page, so a phone should not be
-// made to download the desktop file. Two sizes, picked by media query, and
-// preloaded to match. Written here rather than in global.css because the URLs
-// have to run through u() to survive the GitHub Pages base path.
-const HERO_MOBILE = "img/lifestyle/cabinet-hero-mobile.webp";
-const HERO_DESKTOP = "img/lifestyle/cabinet-hero.webp";
+// ---------- EXCEPTIONAL ----------
+// Vault tier, straight from the catalog. These are the pieces that carry the
+// room, so they get their own row above the general shop, not a badge inside it.
+const exceptional = specimens.filter((s) => s.tier === "vault");
+
+// ---------- UNDER $100 ----------
+// A real shopping collection rather than a curated one: everything the catalog
+// prices under a hundred dollars, most expensive first so the row opens strong.
+const underHundred = specimens
+  .filter((s) => typeof s.price === "number" && s.price < 100)
+  .sort((a, b) => (b.price as number) - (a.price as number))
+  .slice(0, 8);
+
+// The hero photograph is the largest paint on the page. It is the cabinet wall
+// where the minerals, the gemstone case, the UV shelf, the Elmwood fluorite and
+// the lava lamps all sit in one grid — the argument for this being one business
+// rather than three, made without a sentence of copy.
+const HERO = "img/lifestyle/room-wall-hero.webp";
 const heroCss =
-  `.hero .bg{background-image:url("${u(HERO_MOBILE)}");background-position:center 30%;}` +
-  `@media (min-width:900px){.hero .bg{background-image:url("${u(HERO_DESKTOP)}");}}`;
+  `.hero .bg{background-image:url("${u(HERO)}");background-position:center 46%;}`;
 ---
 <Base
-  title="Minerals, Fossils &amp; Hand-Built Lava Lamps — Grimsley Mineral Co."
-  description="One-of-one mineral and fossil specimens and hand-built lava lamps. Documented, measured, priced and shipped from Grimsley, Tennessee."
+  title="Minerals, Fossils, Gemstones, Lava Lamps & Nails — Grimsley Mineral Co."
+  description="Six departments in one room on US-127. Minerals, fossils, gemstones, hand-built lava lamps, hand-painted press-on nails and world currency, out of Grimsley, Tennessee."
   headCss={heroCss}
-  preloadImage={[
-    { file: HERO_MOBILE, media: "(max-width:899px)" },
-    { file: HERO_DESKTOP, media: "(min-width:900px)" },
-  ]}
+  preloadImage={[{ file: HERO }]}
 >
   <!-- HERO
-       One line. The photograph behind it is doing the explaining, and a
-       paragraph here would only be describing what you can already see. -->
+       One line, one photograph, two buttons. Every extra sentence here is the
+       site explaining itself instead of showing you the room. -->
   <div class="hero">
     <div class="bg"></div>
     <div class="scrim"></div>
     <div class="inner">
       <div class="kicker">Grimsley, Tennessee</div>
-      <h1>Minerals, fossils and hand-built lava lamps.</h1>
-      <p>Documented, measured, priced. Shipped from Grimsley, Tennessee.</p>
+      <h1 class="wide">Minerals, fossils, gemstones, lava lamps, nails and currency.</h1>
       <div class="btns">
-        {hasJournal
-          ? <a class="btn btn-gold" href={u("journal")}>See what we're working on</a>
-          : <a class="btn btn-gold" href={u("minerals")}>Shop the minerals</a>}
-        <a class="btn btn-line" href={u("lava-lamps")}>Into the Lava Lab</a>
+        <a class="btn btn-gold" href="#departments">Shop the departments</a>
+        <a class="btn btn-line" href={u("visit")}>Where we are</a>
       </div>
     </div>
   </div>
 
-  <Workbench />
-  <Recent limit={3} />
-
-  <!-- LAVA — leads the categories because it is the most unusual thing we do. -->
-  <div class="feature dark" id="lava" data-line="lava">
-    <div class="split">
-      <div class="txt">
-        <div class="k">The Lava Lab</div>
-        <h2>Lava lamps, built here.</h2>
-        <p>We collect them, fix them, change the wax and fluid, and sometimes rebuild one from the base up.</p>
-        <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a></div>
-      </div>
-      <div class="pic"><img src={u("img/lifestyle/lava-collection.webp")} alt="Part of our lava lamp collection, lit" width="1200" height="1600" loading="lazy" decoding="async" /></div>
-    </div>
-  </div>
-
-  <!-- MINERALS — the specimen photos are the section. -->
-  <section>
+  <!-- DEPARTMENTS — the front door, and the first thing below the fold. -->
+  <section id="departments">
     <div class="wrap">
       <div class="sec-top">
-        <div class="k">For sale</div>
-        <h2>Minerals</h2>
-        <p>Every piece photographed as it is.</p>
+        <div class="k">The store</div>
+        <h2>Six departments.</h2>
       </div>
-      <div class="grid">
-        {featuredMinerals.map((item) => <SpecimenCard item={item} />)}
+      <div class="depts">
+        {DEPARTMENTS.map((d) => {
+          const n = count(d.line);
+          return (
+            <a class="dept" href={u(d.href)} data-line={d.house || undefined}>
+              <img src={u(`img/departments/${d.img}.webp`)} alt={d.alt} width="1200" height="1600" loading="lazy" decoding="async" />
+              <div class="cap">
+                <div class="n">{d.name}</div>
+                <div class="c">{n === 0 ? "At the booth" : n === 1 ? "1 listed, more at the booth" : `${n} listed`}</div>
+              </div>
+            </a>
+          );
+        })}
       </div>
-      <div class="center-cta"><a class="btn btn-dark" href={u("minerals")}>See all of them</a></div>
     </div>
   </section>
 
-  <!-- NAILS -->
-  <div class="feature pink" id="nails" data-line="nails">
+  <!-- EXCEPTIONAL — the best pieces, given room instead of a badge. -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">The best of it</div>
+        <h2>Exceptional pieces</h2>
+      </div>
+      <div class="grid">
+        {exceptional.map((item) => <SpecimenCard item={item} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE OF ONE — the two departments where the piece is made, not found.
+       Same treatment for both, deliberately. A $250 nail set gets the same
+       block, the same photograph size and the same type as a rebuilt lamp. -->
+  <div class="feature dark" data-line="lava">
+    <div class="split">
+      <div class="txt">
+        <div class="k">One of one</div>
+        <h2>Lamps rebuilt from the base up.</h2>
+        <p>We collect them, fix them, change the wax and the fluid, and sometimes build one that did not exist before.</p>
+        <div class="btns"><a class="btn btn-gold" href={u("lava-lamps")}>See the lamps</a></div>
+      </div>
+      <div class="pic"><img src={u("img/lifestyle/lava-window.webp")} alt="Six lava lamps running in a windowsill in daylight" width="1200" height="1600" loading="lazy" decoding="async" /></div>
+    </div>
+  </div>
+
+  <div class="feature pink" data-line="nails">
     <div class="split">
       <div class="pic"><img src={u("img/nails/press-board.webp")} alt="Rows of hand-painted press-on nails on Taylor's pick and press board" width="666" height="888" loading="lazy" decoding="async" /></div>
       <div class="txt">
-        <div class="k">Bugged Out Nails</div>
-        <h2>Taylor makes tiny things that get out of hand.</h2>
-        <p>Custom press-ons, hand-painted and sculpted one nail at a time.</p>
+        <div class="k">One of one</div>
+        <h2>Sets painted one nail at a time.</h2>
+        <p>Find your size, pick your case, build your set. Taylor sculpts and paints every one.</p>
         <div class="btns"><a class="btn btn-pink" href={u("nails")}>See what she makes</a></div>
       </div>
     </div>
   </div>
 
-  <!-- SECONDARY LINES
-       Was three text-only cards asking you to read a taxonomy. Now each one
-       leads with a photograph of the actual thing, because that is what both
-       Arkenstone and FossilEra do and it is the difference between a category
-       list and visible inventory. -->
-  <section style="padding-top:0;">
+  <!-- UNDER $100 — a price shelf, because a store needs somewhere to start. -->
+  <section>
     <div class="wrap">
       <div class="sec-top">
-        <div class="k">Also for sale</div>
-        <h2>More to buy</h2>
+        <div class="k">Somewhere to start</div>
+        <h2>Under $100</h2>
       </div>
-      <!-- Coins came off the site entirely. There is no coin in the catalog
-           and no photograph of one, and it was never the thing that sells.
-           It comes back when there is something real to show. -->
-      <div class="cats">
-        <a class="cattile" href={u("fossils")}>
-          <img src={u("img/shelf/green-river-fish-plate-in-hand.webp")} alt="A Green River fish fossil plate held in one hand" style="object-position:50% 62%;" loading="lazy" decoding="async" />
-          <div class="cap"><div class="p">Fossils &amp; Shells</div><div class="l">Fish plates, coral, shark teeth, pearls.</div><div class="g">See the fossils →</div></div>
-        </a>
-        <a class="cattile" href={u("localities")}>
-          <img src={u("img/shelf/vanadinite-and-quartz-calcite.webp")} alt="Orange vanadinite crystals beside quartz and calcite" loading="lazy" decoding="async" />
-          <div class="cap"><div class="p">Localities</div><div class="l">Where these came from, mine by mine.</div><div class="g">Browse by place →</div></div>
-        </a>
-        <a class="cattile" href={u("visit")}>
-          <img src={u("img/room/built-in-niche-wall-early.webp")} alt="The built-in lit niche holding minerals and vintage lava lamps" style="object-position:50% 40%;" loading="lazy" decoding="async" />
-          <div class="cap"><div class="p">The Room</div><div class="l">Where all of it is packed, shot and shipped from.</div><div class="g">Where we are →</div></div>
-        </a>
+      <div class="grid">
+        {underHundred.map((item) => <SpecimenCard item={item} />)}
       </div>
+      <div class="center-cta"><a class="btn btn-dark" href={u("minerals")}>See everything</a></div>
     </div>
   </section>
 
   <!-- THE SHELF
-       Makes no claims, so it needs no facts checked. It is here purely to
-       show the volume of real material before anyone reads another sentence. -->
+       Makes no claims, so it needs no facts checked. It is here purely to show
+       the volume of real material before anyone reads another sentence. -->
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="sec-top">

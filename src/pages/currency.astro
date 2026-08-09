@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+import { u } from "../consts";
+import specimens from "../data/specimens.json";
+
+// This department is currency first and coins second, because the currency is
+// what actually exists in quantity: a full table of sleeved world banknotes.
+// An earlier /coins page was deleted for having nothing behind it. This one
+// leads with the photograph of the real table, and claims nothing about any
+// individual note — no country counts, no years, no grades, none of which
+// have been catalogued.
+const items = specimens.filter((s) => s.line === "currency");
+---
+<Base
+  title="Coins & Currency — Grimsley Mineral Co."
+  description="Sleeved world banknotes, laid out and sold from the table in Grimsley, Tennessee."
+  active="currency"
+>
+  <div class="pagehead">
+    <div class="inner">
+      <div class="crumb"><a href={u("")}>Home</a> / Coins &amp; Currency</div>
+      <h1>Coins &amp; Currency</h1>
+      <p>World banknotes, sleeved and laid out on the table.</p>
+    </div>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <figure class="photoband">
+        <img src={u("img/departments/currency.webp")} alt="A table of sleeved world banknotes laid out flat, with framed notes standing behind them" width="1200" height="1600" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  {items.length > 0 && (
+    <section style="padding-top:0;">
+      <div class="wrap">
+        <div class="grid">{items.map((item) => <a class="card" href={u(`specimen/${item.slug}`)}>{item.name}</a>)}</div>
+      </div>
+    </section>
+  )}
+
+  <section>
+    <div class="wrap">
+      <div class="sec-top">
+        <div class="k">Why nothing is listed here yet</div>
+        <h2>Notes get listed one at a time, or not at all.</h2>
+      </div>
+      <p style="max-width:56ch;font-size:16px;color:var(--ink-2);">
+        A banknote is worth what its country, year and condition make it worth,
+        and none of that is guesswork we are willing to do in public. Each note
+        gets read and photographed before it goes up. Until then the table is
+        the catalog, and it is at the booth.
+      </p>
+      <div class="center-cta" style="text-align:left;">
+        <a class="btn btn-gold" href={u("contact")}>Ask what's in the stack</a>
+        <a class="btn btn-ghost" href={u("visit")}>Where we are</a>
+      </div>
+    </div>
+  </section>
+</Base>

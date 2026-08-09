@@ -2,21 +2,22 @@
 import { u } from "../consts";
 const { active = "" } = Astro.props;
 
-// Six items. The nav is not the sitemap — it does not have to expose our
-// internal taxonomy. Minerals stands in for the shop because minerals are
-// overwhelmingly what sells. Fossils, Coins, Localities, Sold and Our
-// Standard all still exist, still get linked from the footer and from the
-// pages they belong to, and don't need to compete here.
+// The nav is the departments, in the order they are merchandised, and nothing
+// else. It used to mix one department (Minerals) with two houses (Lava Lab,
+// Taylor's Nails) and two content sections (Journal, Guides), which is a
+// sitemap, not a store. Journal and Guides still exist and are still linked
+// from the footer; they are not what someone is here to buy.
 // `line` is which house the item belongs to. It colours the item's own rule,
-// so the navigation itself shows you that Lava Lab and Taylor's Nails are
+// so the navigation itself shows you that the Lava Lab and Taylor's Nails are
 // different rooms in the same building. Items with no line inherit whatever
 // the page is set to.
 const nav = [
   { href: "minerals", label: "Minerals", key: "minerals" },
-  { href: "lava-lamps", label: "Lava Lab", key: "lava", line: "lava" },
-  { href: "nails", label: "Taylor's Nails", key: "nails", line: "nails" },
-  { href: "journal", label: "Journal", key: "journal" },
-  { href: "field-notes", label: "Guides", key: "guides" },
+  { href: "fossils", label: "Fossils", key: "fossils" },
+  { href: "gemstones", label: "Gemstones", key: "gemstones" },
+  { href: "lava-lamps", label: "Lava Lamps", key: "lava", line: "lava" },
+  { href: "nails", label: "Nails", key: "nails", line: "nails" },
+  { href: "currency", label: "Coins & Currency", key: "currency" },
 ];
 ---
 <header class="site">
