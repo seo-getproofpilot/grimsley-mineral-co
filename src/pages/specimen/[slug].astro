@@ -167,7 +167,7 @@ const productSchema = {
       <h1>{item.name}</h1>
       <span class={`status ${item.status}`}>{st.label}</span>
       {priced ? (
-        <div class="price">${item.price}.00{item.priceNote && <span style="font-size:15px;color:var(--muted);"> {item.priceNote}</span>}</div>
+        <div class="price">${item.price}.00{item.priceNote && <span style="font-size:var(--t-4);color:var(--muted);"> {item.priceNote}</span>}</div>
       ) : !isSold && (
         <div class="notforsale">
           <div class="nfs-label">{st.label}</div>
@@ -192,7 +192,7 @@ const productSchema = {
       <p class="desc">{item.description}</p>
 
       {item.asIdentified && (
-        <p class="desc" style="font-size:14px;color:var(--gold);border-left:2px solid var(--gold);padding-left:12px;">Identified from research and inspection, not lab-confirmed. We are verifying this one before it lists at full price, in keeping with our honest-grading promise.</p>
+        <p class="desc" style="font-size:var(--t-3);color:var(--gold);border-left:2px solid var(--gold);padding-left:12px;">Identified from research and inspection, not lab-confirmed. We are verifying this one before it lists at full price, in keeping with our honest-grading promise.</p>
       )}
 
       <div class="cta">

@@ -21,9 +21,9 @@ const DEPARTMENTS = [
     alt: "The fossil table on black cloth, with a hand-lettered Fossils sign on the wall behind it" },
   { href: "gemstones",  img: "gemstones",  name: "Gemstones",        line: "gemstones",
     alt: "A hand-lettered Gemstones sign above a shelf of gem boxes and loose stones, next to a shelf of UV reactive rocks" },
-  { href: "lava-lamps", img: "lava-lamps", name: "Lava Lamps",       line: "lava", house: "lava",
+  { href: "lava-lamps", img: "lava-lamps", name: "Lava Lamps",       line: "lava",
     alt: "Three shelves of lava lamps in every colour, lit and running" },
-  { href: "nails",      img: "nails",      name: "Nails",            line: "nails", house: "nails",
+  { href: "nails",      img: "nails",      name: "Nails",            line: "nails",
     alt: "Taylor's press-on nail display, with hand-lettered signs reading Find Your Size, Pick Your Case and Build Your Set" },
   { href: "currency",   img: "currency",   name: "Coins & Currency", line: "currency",
     alt: "A table of sleeved world banknotes laid out flat, with framed notes standing behind" },
@@ -171,8 +171,8 @@ const heroCss =
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="sec-top">
-        <div class="k">Grimsley, Tennessee</div>
-        <h2>In the room right now</h2>
+        <div class="k">The room</div>
+        <h2>The rest of the shelf</h2>
       </div>
     </div>
     <div style="padding:0 8px;"><ShelfWall limit={18} /></div>
@@ -202,7 +202,7 @@ const heroCss =
           5521 South York Hwy, Grimsley, TN 38565<br />
           On US-127, between Dollar General &amp; Taco Bros
         </div>
-        <p style="color:var(--muted);font-size:15px;margin:18px 0 0;max-width:46ch;">This is where the collection, the lamps, the workbench and the photography all live. Not a storefront with posted hours.</p>
+        <p style="color:var(--muted-on-dark);font-size:var(--t-4);margin:18px 0 0;max-width:46ch;">This is where the collection, the lamps, the workbench and the photography all live. Not a storefront with posted hours.</p>
         <div class="btns">
           <a class="btn btn-gold" href={u("contact")}>Get in touch</a>
           <a class="btn btn-line" href={`https://www.google.com/maps/dir/?api=1&destination=${mapDest}`} target="_blank" rel="noopener">Get directions</a>

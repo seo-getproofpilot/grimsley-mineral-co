@@ -41,12 +41,15 @@
       body.append("source", window.location.pathname);
 
       // Apps Script web apps do not return CORS headers, so this is a no-cors
-      // POST: the write succeeds but the response is opaque and cannot be read.
-      // Treat a resolved fetch as success and a rejected one as failure.
+      // POST and the response is OPAQUE. A resolved fetch means the request left
+      // the browser. It does NOT mean the row landed in the sheet, so the message
+      // below must not claim it did: a broken endpoint would otherwise show every
+      // visitor a confident "you're on the list" forever. Say what is known, and
+      // give them a way out.
       fetch(endpoint, { method: "POST", mode: "no-cors", body: body })
         .then(function () {
           form.reset();
-          say("You're on the list. We'll be in touch when new pieces land.", true);
+          say("Sent. If you don't hear from us when new pieces land, email " + fallback + " and we'll add you.", true);
         })
         .catch(function () {
           say("That didn't go through. Email " + fallback + " and we'll add you.", false);

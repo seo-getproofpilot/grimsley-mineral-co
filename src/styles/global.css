@@ -22,12 +22,40 @@
 :root{
   color-scheme: light;
 
+  /* ---------- TYPE RAMP ----------
+     Eight steps. Before this the stylesheet declared font-size 194 times across
+     THIRTY distinct static values, including 8.5, 10.5, 11.5, 12.5, 13.5, 14.5,
+     15.5 and 16.5px. Half-pixel sizes carry no design intent, and eight sizes
+     inside an 8px band is not a hierarchy, it is drift. A page cannot read as
+     designed on top of that, which is why re-arranging the homepage four times
+     never fixed the "does not feel cohesive" problem.
+
+     Each step below is the most frequent member of the cluster it replaced, so
+     the visual result stays close to what shipped while the system becomes real.
+     Heading clamp() ranges are deliberately left alone: they are fluid by design.
+
+     Add a size only by adding a step here. Never write a raw px font-size again.
+     ---------------------------------------------------------------------- */
+  --t-1:11px;
+  --t-2:12px;
+  --t-3:14px;
+  --t-4:16px;
+  --t-5:19px;
+  --t-6:22px;
+  --t-7:27px;
+  --t-8:34px;
+
+
   /* ---------- THE CHASSIS. Identical on every page, every house. ---------- */
   --bg:#faf9f6;
   --paper:#ffffff;
   --ink:#191a1c;
   --ink-2:#3d4045;
-  --muted:#7c8087;
+  /* WAS #7c8087, which measured 3.54 to 3.97 against the three page
+     backgrounds where small text needs 4.5. This is the colour of every
+     locality, dimension, caption and card label on the site, so it was the
+     single most widespread contrast failure. #656970 measures 4.93 at worst. */
+  --muted:#656970;
   --line:#e6e3dc;
   --line-2:#dedbd2;
   --maxw:1290px;
@@ -47,6 +75,16 @@
   --accent-hi:#3d7787;
   --accent-ink:#1d3b45;
   --accent-bg:#eef3f4;
+  /* Small text on a dark surface. --accent-hi cannot do this job: it is also the
+     .btn-gold hover background with white text on it, so lightening it to pass
+     as text would fail as a button. Two jobs, two tokens. #5f9dae measures 5.09
+     at worst against --dark-2. */
+  --accent-on-dark:#5f9dae;
+  /* Secondary text on a dark surface. --muted is tuned for the light page
+     backgrounds and measures only 3.19 against --dark, so using it on a dark
+     panel silently fails AA. Two surfaces, two tokens. #a39c90 measures 5.68
+     at worst against --dark-2. */
+  --muted-on-dark:#a39c90;
   --dark:#131a1d;
   --dark-2:#1b262b;
 
@@ -84,7 +122,7 @@
    gone with them. */
 *{box-sizing:border-box;}
 html,body{margin:0;}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--t-4);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
 a{color:inherit;text-decoration:none;}
 /* The V2 draft was the only page on the site with a visible keyboard focus
@@ -108,7 +146,7 @@ img{display:block;max-width:100%;}
    The translateY(-1px) hover lift came off every button at the same time.
    Nothing else on these pages moves when you point at it, and a button that
    hops is the one gesture that makes a catalog feel like a template. */
-.btn{font-family:var(--sans);font-size:12px;letter-spacing:.13em;text-transform:uppercase;padding:14px 24px;cursor:pointer;border:1px solid transparent;transition:background .18s,color .18s,border-color .18s;display:inline-block;}
+.btn{font-family:var(--sans);font-size:var(--t-2);letter-spacing:.13em;text-transform:uppercase;padding:14px 24px;cursor:pointer;border:1px solid transparent;transition:background .18s,color .18s,border-color .18s;display:inline-block;}
 .btn-gold{background:var(--gold);color:#fff;}
 .btn-gold:hover{background:var(--gold-bright);}
 .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.5);}
@@ -124,18 +162,18 @@ img{display:block;max-width:100%;}
    every other department, which is the point. See ONE BRAND, ONE PALETTE. */
 
 /* promo bar */
-.promo{background:var(--dark);color:#efe9dd;text-align:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;}
-.promo b{color:var(--gold-bright);font-weight:600;}
+.promo{background:var(--dark);color:#efe9dd;text-align:center;font-size:var(--t-2);letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;}
+.promo b{color:var(--accent-on-dark);font-weight:600;}
 
 /* header */
 header.site{background:var(--bg);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;}
 .head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:20px 32px;max-width:var(--maxw);margin:0 auto;gap:20px;}
-.head .left{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;}
-.head .right{display:flex;align-items:center;justify-content:flex-end;gap:20px;color:var(--ink-2);font-size:13px;}
+.head .left{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:var(--t-3);}
+.head .right{display:flex;align-items:center;justify-content:flex-end;gap:20px;color:var(--ink-2);font-size:var(--t-3);}
 .head .right a{display:flex;align-items:center;gap:6px;}
 .wordmark{text-align:center;}
-.wordmark .name{font-family:var(--serif);font-synthesis-weight:none;font-weight:400;font-size:29px;letter-spacing:0;line-height:1;color:var(--ink);}
-.wordmark .tag{font-size:10px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-top:7px;}
+.wordmark .name{font-family:var(--serif);font-synthesis-weight:none;font-weight:400;font-size:var(--t-7);letter-spacing:0;line-height:1;color:var(--ink);}
+.wordmark .tag{font-size:var(--t-1);letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-top:7px;}
 .ico{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6;}
 nav.mega{border-top:1px solid var(--line);}
 /* nowrap, not wrap. Six departments wrapped to two rows on a phone and the
@@ -146,7 +184,7 @@ nav.mega ul{list-style:none;display:flex;justify-content:center;gap:34px;margin:
   flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 nav.mega ul::-webkit-scrollbar{display:none;}
 nav.mega li{flex:0 0 auto;}
-nav.mega a{position:relative;display:block;padding-bottom:5px;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);transition:color .18s;}
+nav.mega a{position:relative;display:block;padding-bottom:5px;font-size:var(--t-3);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);transition:color .18s;}
 nav.mega a:hover,nav.mega a.active{color:var(--accent);}
 /* One accent under every nav item. The rule used to take each item's own house
    colour, so the bar itself advertised the departments as separate businesses. */
@@ -163,13 +201,13 @@ nav.mega a.active::after{transform:scaleX(1);}
 /* A pale tint of the accent rather than the accent itself. Mid-teal on a
    photograph fails contrast wherever the image behind it is light, which it is
    on the phone crop; this keeps the brand hue and stays readable on any frame. */
-.hero .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#bcd2d8;}
+.hero .kicker{font-size:var(--t-2);letter-spacing:.28em;text-transform:uppercase;color:#bcd2d8;}
 .hero h1{font-size:clamp(40px,5.6vw,68px);line-height:1.03;margin:18px 0 0;max-width:16ch;color:#fbf8f2;font-weight:700;}
 /* The homepage h1 is the department list, which needs more measure than 16ch
    and less size than a three-word headline, or it runs seven lines deep on a
    phone and pushes everything else off the screen. */
 .hero h1.wide{max-width:22ch;font-size:clamp(31px,4.2vw,54px);}
-.hero p{margin:20px 0 0;max-width:44ch;font-size:17px;color:#d9d3c8;}
+.hero p{margin:20px 0 0;max-width:44ch;font-size:var(--t-5);color:#d9d3c8;}
 .hero .btns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
 /* The desktop scrim is a left-to-right gradient, because on a wide screen the
    type sits in the left half and the photograph should stay bright on the right.
@@ -182,22 +220,22 @@ nav.mega a.active::after{transform:scaleX(1);}
 /* page header (interior pages) */
 .pagehead{border-bottom:1px solid var(--line);background:var(--cream);}
 .pagehead .inner{max-width:var(--maxw);margin:0 auto;padding:64px 32px 56px;}
-.pagehead .crumb{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.pagehead .crumb{font-size:var(--t-2);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 .pagehead .crumb a:hover{color:var(--gold);}
 .pagehead h1{font-size:clamp(34px,4.6vw,52px);margin-top:14px;font-weight:700;}
-.pagehead p{margin:16px 0 0;max-width:62ch;color:var(--ink-2);font-size:16.5px;}
+.pagehead p{margin:16px 0 0;max-width:62ch;color:var(--ink-2);font-size:var(--t-4);}
 
 /* section shell */
 section{padding:74px 0;}
 .sec-top{text-align:center;margin-bottom:40px;}
-.sec-top .k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
+.sec-top .k{font-size:var(--t-2);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
 .sec-top h2{font-size:clamp(28px,3.6vw,40px);margin-top:12px;font-weight:600;}
-.sec-top p{color:var(--muted);margin:12px auto 0;max-width:56ch;font-size:15.5px;}
+.sec-top p{color:var(--muted);margin:12px auto 0;max-width:56ch;font-size:var(--t-4);}
 
 /* trust bar */
 .trustbar{border-bottom:1px solid var(--line);background:#fff;}
 .trustbar .row{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 34px;padding:16px 32px;max-width:var(--maxw);margin:0 auto;}
-.trustbar span{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:9px;}
+.trustbar span{font-size:var(--t-1);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:9px;}
 .trustbar span::before{content:"";width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex:none;}
 
 /* category tiles */
@@ -207,8 +245,8 @@ section{padding:74px 0;}
 .cat.solid{background:linear-gradient(150deg,#26221b,#14110c);}
 .cat:hover img{transform:scale(1.05);}
 .cat .lab{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(0deg,rgba(10,8,6,.82),transparent);color:#fff;}
-.cat .lab .n{font-family:var(--serif);font-size:25px;font-weight:600;}
-.cat .lab .m{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-bright);margin-top:6px;}
+.cat .lab .n{font-family:var(--serif);font-size:var(--t-7);font-weight:600;}
+.cat .lab .m{font-size:var(--t-2);letter-spacing:.15em;text-transform:uppercase;color:var(--accent-on-dark);margin-top:6px;}
 
 /* specimen grid + cards (cutout on studio gradient) */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 28px;}
@@ -224,37 +262,37 @@ section{padding:74px 0;}
    real photographs and multiplying one against the gradient vignettes it. */
 .card .imgwrap img[src*="img/specimens/"],
 .detail .gallery .main img[src*="img/specimens/"]{mix-blend-mode:multiply;}
-.card .badge{position:absolute;top:12px;left:12px;font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;background:rgba(255,255,255,.92);color:var(--ink);border:1px solid var(--line);}
+.card .badge{position:absolute;top:12px;left:12px;font-family:var(--sans);font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;background:rgba(255,255,255,.92);color:var(--ink);border:1px solid var(--line);}
 .card .badge.reserved{background:var(--gold);color:#fff;border-color:var(--gold);}
 .card .badge.sold{background:rgba(24,21,17,.86);color:#efe9dd;border-color:transparent;}
 .card .meta{padding:16px 2px 0;}
-.card .sp{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.2;color:var(--ink);}
+.card .sp{font-family:var(--serif);font-size:var(--t-5);font-weight:600;line-height:1.2;color:var(--ink);}
 /* Hard facts get the monospace face. Locality, size, reference number and
    treatment are the things a collector actually checks, and setting them apart
    from the marketing voice is the honesty policy expressed as typography. */
-.card .loc{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px;letter-spacing:-.01em;}
-.card .dims{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.card .loc{font-family:var(--mono);font-size:var(--t-1);color:var(--muted);margin-top:7px;letter-spacing:-.01em;}
+.card .dims{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 .card .row{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;}
 /* Price moves into the mono face. The rule this file already states is that
    Plex Mono carries every hard fact, and the price is the hardest one on the
    card — it was the single field still being set in the marketing voice.
    Mono runs optically larger than Archivo, so 13.5 here matches the old 15. */
-.card .price{font-family:var(--mono);font-size:13.5px;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink);}
+.card .price{font-family:var(--mono);font-size:var(--t-3);letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink);}
 .card .price .cur{color:var(--muted);margin-right:2px;}
 .card.soldout .sp,.card.soldout .price{color:var(--muted);}
-.card .statusline{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--gold);}
+.card .statusline{font-family:var(--serif);font-size:var(--t-5);font-weight:600;color:var(--gold);}
 
 /* ---- collection vs inventory ------------------------------------------
    Not everything with a page is for sale. A permanent-collection piece gets
    this where the price would go, so it reads as deliberately not for sale
    rather than as a listing someone forgot to price. */
 .notforsale{border-left:2px solid var(--gold);padding:2px 0 2px 14px;margin:18px 0 0;}
-.notforsale .nfs-label{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);line-height:1.2;}
-.notforsale p{margin:7px 0 0;font-size:14.5px;color:var(--ink-2);max-width:46ch;}
+.notforsale .nfs-label{font-family:var(--serif);font-size:var(--t-7);font-weight:700;color:var(--ink);line-height:1.2;}
+.notforsale p{margin:7px 0 0;font-size:var(--t-3);color:var(--ink-2);max-width:46ch;}
 
 /* Plain-language note about how a purchase actually happens. There is no
    checkout, so saying so up front beats letting someone hunt for a cart. */
-.buynote{background:var(--cream);border:1px solid var(--line);padding:16px 18px;font-size:13.5px;color:var(--ink-2);}
+.buynote{background:var(--cream);border:1px solid var(--line);padding:16px 18px;font-size:var(--t-3);color:var(--ink-2);}
 .buynote b{color:var(--ink);}
 .detail .buy .buynote{margin-top:22px;}
 
@@ -272,35 +310,35 @@ section{padding:74px 0;}
 .jc-img img{width:100%;height:100%;object-fit:cover;}
 .jc-body{padding:26px 30px;}
 .jc-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.jc-top time{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.jc-status{font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--gold);color:var(--gold);}
+.jc-top time{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.jc-status{font-size:var(--t-1);letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--gold);color:var(--gold);}
 .jc-status.open{border-color:var(--accent);color:var(--accent-ink);}
-.jc-body h2{font-size:25px;margin-top:11px;font-weight:600;line-height:1.22;}
-.jc-body p{font-size:15px;color:var(--ink-2);margin:10px 0 0;max-width:60ch;}
-.jc-body .r{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:15px;display:inline-block;}
+.jc-body h2{font-size:var(--t-7);margin-top:11px;font-weight:600;line-height:1.22;}
+.jc-body p{font-size:var(--t-4);color:var(--ink-2);margin:10px 0 0;max-width:60ch;}
+.jc-body .r{font-size:var(--t-2);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:15px;display:inline-block;}
 .jfilters{justify-content:center;}
 .emptyjournal{text-align:center;max-width:52ch;margin:0 auto;padding:40px 0 20px;}
-.emptyjournal h2{font-size:30px;}
+.emptyjournal h2{font-size:var(--t-7);}
 .emptyjournal p{color:var(--ink-2);margin:14px 0 26px;}
 
 /* Unknowns. The point of publishing a question is that it stays a question
    until it isn't, so this is styled as an open thread, not a footnote. */
 .unknowns{border:1px solid var(--gold);background:#fdfaf1;padding:24px 26px;margin:34px 0;}
-.unknowns h3{font-size:19px;font-weight:700;}
+.unknowns h3{font-size:var(--t-5);font-weight:700;}
 .unknowns ul{margin:12px 0 0;padding-left:20px;}
-.unknowns li{font-size:15px;color:var(--ink-2);margin-top:7px;}
+.unknowns li{font-size:var(--t-4);color:var(--ink-2);margin-top:7px;}
 
 /* Workbench. Renders only when something is genuinely in progress, and
    disappears entirely when nothing is — so it can never go stale. */
 .bench{background:var(--dark);color:#efe9dd;}
 .bench .sec-top h2{color:#fbf8f2;}
-.bench .sec-top .k{color:var(--gold-bright);}
+.bench .sec-top .k{color:var(--accent-on-dark);}
 .bench-list{display:grid;gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);max-width:880px;margin:0 auto;}
 .bench-row{display:flex;gap:20px;align-items:baseline;padding:20px 26px;background:var(--dark);transition:background .18s;}
 .bench-row:hover{background:var(--dark-2);}
-.bench-row .bd{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-bright);flex:none;width:104px;}
-.bench-row .bt{font-family:var(--serif);font-size:19px;color:#fbf8f2;}
-.bench-row .bx{font-size:14px;color:#b6afa2;margin-top:5px;}
+.bench-row .bd{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-on-dark);flex:none;width:104px;}
+.bench-row .bt{font-family:var(--serif);font-size:var(--t-5);color:#fbf8f2;}
+.bench-row .bx{font-size:var(--t-3);color:#b6afa2;margin-top:5px;}
 @media (max-width:700px){
   .jcard,.jcard:not(:has(.jc-img)){grid-template-columns:1fr;}
   .jc-img{aspect-ratio:16/9;}
@@ -311,24 +349,24 @@ section{padding:74px 0;}
 /* faceted filters */
 .filters{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center;margin-bottom:34px;padding-bottom:24px;border-bottom:1px solid var(--line);}
 .filters .grp{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-.filters .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:2px;}
-.chip{font-family:var(--sans);font-size:12.5px;letter-spacing:.03em;padding:8px 15px;border:1px solid var(--line-2);background:#fff;color:var(--ink-2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+.filters .lbl{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:2px;}
+.chip{font-family:var(--sans);font-size:var(--t-2);letter-spacing:.03em;padding:8px 15px;border:1px solid var(--line-2);background:#fff;color:var(--ink-2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
 .chip:hover{border-color:var(--gold);color:var(--ink);}
 .chip.on{background:var(--dark);color:#fff;border-color:var(--dark);}
 .filters .sep{width:1px;height:24px;background:var(--line-2);margin:0 6px;}
-.filters .count{font-size:12.5px;color:var(--muted);margin-left:auto;}
+.filters .count{font-size:var(--t-2);color:var(--muted);margin-left:auto;}
 .card.hide{display:none;}
-.card .prov{font-size:11.5px;color:var(--gold);font-style:italic;margin-top:5px;}
+.card .prov{font-size:var(--t-1);color:var(--gold);font-style:italic;margin-top:5px;}
 .card .flags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;}
-.card .flag{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-2);border-radius:100px;padding:3px 8px;background:var(--cream);}
-.card .price .pn{font-size:12px;color:var(--muted);}
+.card .flag{font-size:var(--t-1);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-2);border-radius:100px;padding:3px 8px;background:var(--cream);}
+.card .price .pn{font-size:var(--t-2);color:var(--muted);}
 
 /* tier sections (minerals decor vs collector split) */
 .tier .th{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:34px;margin:44px 0 20px;}
 .tier:first-of-type .th{border-top:none;padding-top:0;margin-top:0;}
-.tier .th h2{font-size:27px;font-weight:600;}
-.tier .th .n{font-size:13.5px;color:var(--muted);max-width:52ch;flex:1;min-width:220px;}
-.tier .th .cnt{font-family:var(--sans);font-size:12px;color:var(--gold);white-space:nowrap;}
+.tier .th h2{font-size:var(--t-7);font-weight:600;}
+.tier .th .n{font-size:var(--t-3);color:var(--muted);max-width:52ch;flex:1;min-width:220px;}
+.tier .th .cnt{font-family:var(--sans);font-size:var(--t-2);color:var(--gold);white-space:nowrap;}
 .tier.hide{display:none;}
 
 .card .flag.treated,.card .flag.fragile{border-color:color-mix(in srgb, var(--gold) 40%, transparent);color:var(--gold);}
@@ -337,26 +375,26 @@ section{padding:74px 0;}
 .subcol{border-top:1px solid var(--line);padding-top:40px;margin-top:8px;}
 .subcol:first-of-type{border-top:none;padding-top:0;}
 .subcol .sh{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:10px;}
-.subcol .sh h2{font-size:26px;font-weight:600;}
-.subcol .sh .tag{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
-.subcol > p{color:var(--ink-2);max-width:64ch;font-size:15.5px;margin:0 0 22px;}
-.subcol .soon{border:1px dashed var(--line-2);background:var(--cream);padding:26px 28px;font-size:14.5px;color:var(--ink-2);}
+.subcol .sh h2{font-size:var(--t-7);font-weight:600;}
+.subcol .sh .tag{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
+.subcol > p{color:var(--ink-2);max-width:64ch;font-size:var(--t-4);margin:0 0 22px;}
+.subcol .soon{border:1px dashed var(--line-2);background:var(--cream);padding:26px 28px;font-size:var(--t-3);color:var(--ink-2);}
 
 /* grading scale table (coins) */
 .tablewrap{overflow-x:auto;margin:20px 0 6px;}
-.gradescale{width:100%;min-width:520px;border-collapse:collapse;font-size:14px;}
+.gradescale{width:100%;min-width:520px;border-collapse:collapse;font-size:var(--t-3);}
 .gradescale th,.gradescale td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
-.gradescale th{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.gradescale th{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;}
 .gradescale td.g{font-family:var(--serif);font-weight:600;color:var(--ink);white-space:nowrap;}
-.gradescale td.band{color:var(--gold);white-space:nowrap;font-size:13px;}
+.gradescale td.band{color:var(--gold);white-space:nowrap;font-size:var(--t-3);}
 
 /* price bands */
 .bands{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .bandcard{border:1px solid var(--line-2);padding:34px 30px;display:flex;flex-direction:column;gap:5px;transition:border-color .18s,transform .18s;}
 .bandcard:hover{border-color:var(--gold);transform:translateY(-2px);}
-.bandcard .p{font-family:var(--serif);font-size:29px;font-weight:700;color:var(--ink);}
-.bandcard .l{font-size:14px;color:var(--ink-2);}
-.bandcard .g{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:12px;}
+.bandcard .p{font-family:var(--serif);font-size:var(--t-7);font-weight:700;color:var(--ink);}
+.bandcard .l{font-size:var(--t-3);color:var(--ink-2);}
+.bandcard .g{font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:12px;}
 
 /* trust / standard block */
 .trust{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
@@ -367,18 +405,18 @@ section{padding:74px 0;}
    the thing it is describing. Layout is unchanged: still four across. */
 .trust .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 36px;}
 .trust .c{border-top:1px solid var(--line-2);padding-top:16px;}
-.trust .c .n{font-family:var(--serif);font-size:17px;color:var(--ink);margin-bottom:7px;line-height:1.25;}
-.trust .c p{font-size:14px;color:var(--ink-2);margin:0;line-height:1.6;}
+.trust .c .n{font-family:var(--serif);font-size:var(--t-5);color:var(--ink);margin-bottom:7px;line-height:1.25;}
+.trust .c p{font-size:var(--t-3);color:var(--ink-2);margin:0;line-height:1.6;}
 
 /* field notes / learn */
 .learn{background:#fff;border-top:1px solid var(--line);}
 .learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .learn .t{border:1px solid var(--line-2);padding:32px 30px;background:var(--cream);transition:border-color .18s,transform .18s;display:block;}
 .learn .t:hover{border-color:var(--gold);transform:translateY(-2px);}
-.learn .t .num{font-family:var(--sans);font-size:11px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;}
-.learn .t h3{font-size:22px;margin-top:14px;font-weight:600;line-height:1.2;}
-.learn .t p{font-size:14px;color:var(--ink-2);margin:11px 0 0;}
-.learn .t .r{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:16px;display:inline-block;}
+.learn .t .num{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;color:var(--gold);text-transform:uppercase;}
+.learn .t h3{font-size:var(--t-6);margin-top:14px;font-weight:600;line-height:1.2;}
+.learn .t p{font-size:var(--t-3);color:var(--ink-2);margin:11px 0 0;}
+.learn .t .r{font-size:var(--t-2);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:16px;display:inline-block;}
 
 /* split feature (lava / nails) */
 .feature{overflow:hidden;}
@@ -386,12 +424,12 @@ section{padding:74px 0;}
 .feature .pic{position:relative;min-height:520px;}
 .feature .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .feature .txt{padding:84px 64px;}
-.feature .txt .k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;}
+.feature .txt .k{font-size:var(--t-2);letter-spacing:.26em;text-transform:uppercase;}
 .feature .txt h2{font-size:clamp(30px,3.4vw,44px);margin-top:14px;font-weight:700;}
-.feature .txt p{margin-top:18px;max-width:44ch;font-size:16px;}
+.feature .txt p{margin-top:18px;max-width:44ch;font-size:var(--t-4);}
 .feature .txt .btns{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
 .feature.dark{background:var(--dark);color:#fff;}
-.feature.dark .txt .k{color:var(--gold-bright);}
+.feature.dark .txt .k{color:var(--accent-on-dark);}
 .feature.dark .txt h2{color:#fbf8f2;}
 .feature.dark .txt p{color:#cfc8bc;}
 /* .feature.pink is gone. The nails band was pale pink with a rose heading and a
@@ -403,9 +441,9 @@ section{padding:74px 0;}
 .visit{background:var(--dark);color:#efe9dd;}
 .visit .split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
 .visit .info{padding:74px 60px;}
-.visit .info .k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-bright);}
+.visit .info .k{font-size:var(--t-2);letter-spacing:.24em;text-transform:uppercase;color:var(--accent-on-dark);}
 .visit .info h2{font-size:clamp(28px,3.2vw,40px);margin-top:14px;color:#fbf8f2;font-weight:700;}
-.visit .info .addr{margin-top:18px;font-size:16px;color:#cfc8bc;line-height:1.7;}
+.visit .info .addr{margin-top:18px;font-size:var(--t-4);color:#cfc8bc;line-height:1.7;}
 .visit .info .addr b{color:#fff;font-weight:600;}
 .visit .info .btns{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;}
 .visit .mapbox{position:relative;min-height:440px;overflow:hidden;border-left:1px solid #322d26;background:linear-gradient(135deg,#20242a,#161a1f);display:grid;place-items:center;}
@@ -417,47 +455,47 @@ section{padding:74px 0;}
 .visit .mapbox .r2{left:0;right:0;top:58%;height:10px;}
 .visit .mapbox .pin{position:relative;text-align:center;z-index:2;}
 .visit .mapbox .pin .dot{width:22px;height:22px;border-radius:50% 50% 50% 0;background:var(--gold-bright);transform:rotate(-45deg);margin:0 auto;box-shadow:0 0 0 7px rgba(200,153,47,.22);}
-.visit .mapbox .pin .t{margin-top:16px;font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#efe9dd;}
-.visit .mapbox .note{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7f776a;z-index:2;}
+.visit .mapbox .pin .t{margin-top:16px;font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:#efe9dd;}
+.visit .mapbox .note{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;color:#7f776a;z-index:2;}
 
 /* prose (about / standard / article) */
 .prose{max-width:70ch;margin:0 auto;padding:70px 32px;}
-.prose h2{font-size:26px;margin:36px 0 12px;font-weight:600;}
-.prose h3{font-size:20px;margin:30px 0 8px;font-weight:600;}
-.prose p{margin:0 0 18px;color:var(--ink-2);font-size:17px;line-height:1.75;}
-.prose .lead{font-size:19px;color:var(--ink);}
+.prose h2{font-size:var(--t-7);margin:36px 0 12px;font-weight:600;}
+.prose h3{font-size:var(--t-6);margin:30px 0 8px;font-weight:600;}
+.prose p{margin:0 0 18px;color:var(--ink-2);font-size:var(--t-5);line-height:1.75;}
+.prose .lead{font-size:var(--t-5);color:var(--ink);}
 .prose ol{padding-left:0;list-style:none;counter-reset:s;}
 .prose ol li{position:relative;padding:16px 0 16px 46px;border-top:1px solid var(--line);counter-increment:s;}
-.prose ol li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:18px;font-family:var(--sans);font-size:12px;letter-spacing:.1em;color:var(--gold);}
-.prose ol li b{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);display:block;margin-bottom:3px;}
+.prose ol li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:18px;font-family:var(--sans);font-size:var(--t-2);letter-spacing:.1em;color:var(--gold);}
+.prose ol li b{font-family:var(--serif);font-size:var(--t-5);font-weight:600;color:var(--ink);display:block;margin-bottom:3px;}
 
 /* specimen detail */
 .detail{max-width:var(--maxw);margin:0 auto;padding:56px 32px 80px;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;}
 .detail .gallery .main{background:var(--photo-bg);border:1px solid var(--line);aspect-ratio:1/1;display:grid;place-items:center;}
 .detail .gallery .main img{width:100%;height:100%;object-fit:contain;padding:8%;}
 .detail .buy{position:sticky;top:110px;}
-.detail .buy .crumb{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.detail .buy h1{font-size:34px;margin-top:12px;font-weight:700;}
-.detail .buy .status{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--gold);color:var(--gold);}
+.detail .buy .crumb{font-size:var(--t-2);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.detail .buy h1{font-size:var(--t-8);margin-top:12px;font-weight:700;}
+.detail .buy .status{display:inline-block;margin-top:14px;font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--gold);color:var(--gold);}
 .detail .buy .status.reserved{background:var(--gold);color:#fff;}
 .detail .buy .status.sold{border-color:var(--line-2);color:var(--muted);}
 /* Same move as the card price, at buy-box size, plus the hairline V2 drew
    above it. The rule is what makes it read as the last line of a spec sheet
    rather than as the headline of an offer. */
-.detail .buy .price{font-family:var(--mono);font-weight:500;font-size:25px;font-variant-numeric:tabular-nums;color:var(--ink);margin-top:22px;padding-top:16px;border-top:1px solid var(--line-2);}
-.detail .buy .desc{margin-top:18px;color:var(--ink-2);font-size:16px;line-height:1.7;}
+.detail .buy .price{font-family:var(--mono);font-weight:500;font-size:var(--t-7);font-variant-numeric:tabular-nums;color:var(--ink);margin-top:22px;padding-top:16px;border-top:1px solid var(--line-2);}
+.detail .buy .desc{margin-top:18px;color:var(--ink-2);font-size:var(--t-4);line-height:1.7;}
 .detail .buy .cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
 .detail .spec{margin-top:30px;border-top:1px solid var(--line);}
-.detail .spec .r{display:grid;grid-template-columns:34% 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;}
+.detail .spec .r{display:grid;grid-template-columns:34% 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:var(--t-3);}
 /* V2's specimen label, and its reasoning: a workshop labels things so they can
    be read, not so they look expensive. Tracked caps are vitrine typography.
    Mono at reading size in the dim neutral says "this is a field" without
    shouting it, and it puts the label in the same voice as the value. */
-.detail .spec .r dt{font-family:var(--mono);color:var(--muted);letter-spacing:.06em;font-size:11px;text-transform:none;padding-top:2px;}
+.detail .spec .r dt{font-family:var(--mono);color:var(--muted);letter-spacing:.06em;font-size:var(--t-1);text-transform:none;padding-top:2px;}
 .detail .spec .r dd{margin:0;color:var(--ink-2);}
 .detail .guarantee{margin-top:26px;background:var(--cream);border:1px solid var(--line);padding:22px;}
-.detail .guarantee h4{font-family:var(--serif);font-size:16px;font-weight:600;}
-.detail .guarantee p{font-size:13.5px;color:var(--ink-2);margin:8px 0 0;}
+.detail .guarantee h4{font-family:var(--serif);font-size:var(--t-4);font-weight:600;}
+.detail .guarantee p{font-size:var(--t-3);color:var(--ink-2);margin:8px 0 0;}
 
 .empty{max-width:60ch;margin:0 auto;text-align:center;padding:60px 32px;}
 .empty p{color:var(--muted);}
@@ -465,58 +503,58 @@ section{padding:74px 0;}
 /* footer */
 footer.site{background:var(--dark);color:#cfc8bc;padding:64px 0 34px;}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;max-width:var(--maxw);margin:0 auto;padding:0 32px;}
-footer .name{font-family:var(--serif);font-size:22px;font-weight:700;color:#fbf8f2;}
-footer .blurb{font-size:13.5px;margin-top:12px;max-width:32ch;color:#a9a296;}
+footer .name{font-family:var(--serif);font-size:var(--t-6);font-weight:700;color:#fbf8f2;}
+footer .blurb{font-size:var(--t-3);margin-top:12px;max-width:32ch;color:#a9a296;}
 .pay{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
-.pay span{font-size:11px;letter-spacing:.08em;color:#cfc8bc;border:1px solid #3a352d;padding:5px 10px;}
-footer h5{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8b8479;margin:0 0 14px;font-weight:600;}
-footer .col a{display:block;font-size:14px;color:#cfc8bc;padding:5px 0;transition:color .15s;}
-footer .col a:hover{color:var(--gold-bright);}
-.colo{max-width:var(--maxw);margin:44px auto 0;padding:20px 32px 0;border-top:1px solid #322d26;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11.5px;color:#8b8479;letter-spacing:.04em;}
+.pay span{font-size:var(--t-1);letter-spacing:.08em;color:#cfc8bc;border:1px solid #3a352d;padding:5px 10px;}
+footer h5{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:#8b8479;margin:0 0 14px;font-weight:600;}
+footer .col a{display:block;font-size:var(--t-3);color:#cfc8bc;padding:5px 0;transition:color .15s;}
+footer .col a:hover{color:var(--accent-on-dark);}
+.colo{max-width:var(--maxw);margin:44px auto 0;padding:20px 32px 0;border-top:1px solid #322d26;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:var(--t-1);color:#8b8479;letter-spacing:.04em;}
 
 /* Footer email signup */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .signup{max-width:var(--maxw);margin:0 auto 48px;padding:0 32px 44px;border-bottom:1px solid #322d26;}
-.signup h5{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);margin:0 0 10px;font-weight:600;}
-.signup>p{font-size:14px;color:#a9a296;margin:0 0 16px;max-width:46ch;}
+.signup h5{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:var(--accent-on-dark);margin:0 0 10px;font-weight:600;}
+.signup>p{font-size:var(--t-3);color:#a9a296;margin:0 0 16px;max-width:46ch;}
 .signup form{display:flex;flex-wrap:wrap;gap:10px;max-width:480px;}
-.signup input{flex:1 1 220px;min-width:0;background:#221e18;border:1px solid #3a352d;color:#fbf8f2;font:inherit;font-size:15px;padding:12px 14px;border-radius:2px;}
+.signup input{flex:1 1 220px;min-width:0;background:#221e18;border:1px solid #3a352d;color:#fbf8f2;font:inherit;font-size:var(--t-4);padding:12px 14px;border-radius:2px;}
 .signup input::placeholder{color:#7d766b;}
 .signup input:focus{outline:2px solid var(--gold-bright);outline-offset:1px;border-color:transparent;}
-.signup button{background:var(--gold);color:#fbf8f2;border:0;font:inherit;font-size:14px;font-weight:600;letter-spacing:.02em;padding:12px 22px;border-radius:2px;cursor:pointer;transition:background .15s;}
+.signup button{background:var(--gold);color:#fbf8f2;border:0;font:inherit;font-size:var(--t-3);font-weight:600;letter-spacing:.02em;padding:12px 22px;border-radius:2px;cursor:pointer;transition:background .15s;}
 .signup button:hover:not(:disabled){background:var(--gold-bright);}
 .signup button:disabled{opacity:.6;cursor:default;}
-.signup .signup-msg{font-size:13.5px;margin:12px 0 0;min-height:1em;}
-.signup .signup-msg.ok{color:var(--gold-bright);}
+.signup .signup-msg{font-size:var(--t-3);margin:12px 0 0;min-height:1em;}
+.signup .signup-msg.ok{color:var(--accent-on-dark);}
 .signup .signup-msg.err{color:#d99a8a;}
 
 /* ── Localities ───────────────────────────────────────────────
    Locality hubs + the browse index. Uses the same cream/gold
    system as the mineral reference pages so the two axes of the
    catalog feel like siblings, not different sites. */
-.pagehead .loc-region{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin:10px 0 18px;}
+.pagehead .loc-region{font-size:var(--t-2);letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin:10px 0 18px;}
 
 .loc-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:52px;}
 .loc-facts .f{background:var(--bg);padding:18px 22px;display:flex;flex-direction:column;gap:5px;}
-.loc-facts .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
-.loc-facts .v{font-size:15px;color:var(--ink);line-height:1.45;}
+.loc-facts .l{font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.loc-facts .v{font-size:var(--t-4);color:var(--ink);line-height:1.45;}
 
 .loc-related{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
 .loc-related .lr{border:1px solid var(--line-2);padding:18px 20px;display:flex;flex-direction:column;gap:4px;transition:border-color .18s,transform .12s;}
 .loc-related .lr:hover{border-color:var(--gold);transform:translateY(-2px);}
-.loc-related .n{font-family:var(--serif);font-size:19px;color:var(--ink);}
-.loc-related .r{font-size:13px;color:var(--muted);}
-.loc-related .c{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:6px;}
+.loc-related .n{font-family:var(--serif);font-size:var(--t-5);color:var(--ink);}
+.loc-related .r{font-size:var(--t-3);color:var(--muted);}
+.loc-related .c{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:6px;}
 
 .loc-index{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
 .loc-index .li{border:1px solid var(--line-2);padding:24px 26px;display:flex;flex-direction:column;gap:10px;transition:border-color .18s,transform .12s;}
 .loc-index .li:hover{border-color:var(--gold);transform:translateY(-2px);}
 .loc-index .li-head{display:flex;flex-direction:column;gap:3px;}
-.loc-index .n{font-family:var(--serif);font-size:23px;color:var(--ink);line-height:1.2;}
-.loc-index .r{font-size:13px;color:var(--muted);}
-.loc-index .k{font-size:14.5px;color:var(--ink-2);margin:0;line-height:1.55;}
+.loc-index .n{font-family:var(--serif);font-size:var(--t-6);color:var(--ink);line-height:1.2;}
+.loc-index .r{font-size:var(--t-3);color:var(--muted);}
+.loc-index .k{font-size:var(--t-3);color:var(--ink-2);margin:0;line-height:1.55;}
 .loc-index .li-foot{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px;}
-.loc-index .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--line-2);color:var(--muted);}
+.loc-index .tag{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--line-2);color:var(--muted);}
 .loc-index .tag.av{border-color:var(--gold);color:var(--gold);}
 .loc-index .tag.so{background:var(--cream);}
 
@@ -524,19 +562,19 @@ footer .col a:hover{color:var(--gold-bright);}
    A price record, so it reads as data: tabular figures, quiet
    rules, nothing decorative competing with the numbers. */
 .soldwrap{overflow-x:auto;border:1px solid var(--line);}
-.soldtable{width:100%;border-collapse:collapse;font-size:15px;min-width:660px;}
-.soldtable th{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:15px 20px;background:var(--cream);border-bottom:1px solid var(--line);white-space:nowrap;}
+.soldtable{width:100%;border-collapse:collapse;font-size:var(--t-4);min-width:660px;}
+.soldtable th{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:left;padding:15px 20px;background:var(--cream);border-bottom:1px solid var(--line);white-space:nowrap;}
 .soldtable td{padding:16px 20px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);}
 .soldtable tr:last-child td{border-bottom:0;}
 .soldtable tbody tr:hover{background:var(--cream);}
 .soldtable .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
-.soldtable .pc a{font-family:var(--serif);font-size:17px;color:var(--ink);border-bottom:1px solid transparent;transition:border-color .18s;}
+.soldtable .pc a{font-family:var(--serif);font-size:var(--t-5);color:var(--ink);border-bottom:1px solid transparent;transition:border-color .18s;}
 .soldtable .pc a:hover{border-color:var(--gold);}
-.soldtable .pc .ref{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.soldtable .pc .ref{display:block;font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
 .soldtable td a{color:var(--gold);}
 .soldtable .price{color:var(--ink);font-weight:600;}
 .soldtable .date{color:var(--muted);}
-.soldnote{font-size:13.5px;color:var(--muted);max-width:70ch;margin:18px 0 0;}
+.soldnote{font-size:var(--t-3);color:var(--muted);max-width:70ch;margin:18px 0 0;}
 
 /* ── What it's worth ──────────────────────────────────────────
    Pricing guidance. Reads as reference material rather than
@@ -549,64 +587,64 @@ footer .col a:hover{color:var(--gold-bright);}
 .vfactors{list-style:none;margin:0 auto;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);max-width:1020px;}
 .vf{background:var(--bg);padding:30px 32px;}
 .vf-head{display:flex;gap:20px;align-items:baseline;margin-bottom:12px;}
-.vf-n{font-family:var(--serif);font-size:30px;color:var(--line-2);line-height:1;font-variant-numeric:tabular-nums;}
-.vf h3{font-size:23px;font-weight:600;line-height:1.15;}
-.vf-w{display:inline-block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.vf-n{font-family:var(--serif);font-size:var(--t-7);color:var(--line-2);line-height:1;font-variant-numeric:tabular-nums;}
+.vf h3{font-size:var(--t-6);font-weight:600;line-height:1.15;}
+.vf-w{display:inline-block;font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 .vf-w.w-biggest{color:var(--gold);}
 .vf-w.w-major{color:var(--ink-2);}
-.vf p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.72;max-width:78ch;}
+.vf p{margin:0;color:var(--ink-2);font-size:var(--t-4);line-height:1.72;max-width:78ch;}
 
 .vbands{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
 .vb{background:var(--bg);border:1px solid var(--line-2);padding:26px 28px;}
-.vb-name{font-family:var(--serif);font-size:21px;color:var(--ink);}
-.vb-range{font-family:var(--serif);font-size:31px;color:var(--gold);margin-top:8px;font-variant-numeric:tabular-nums;line-height:1.1;}
-.vb-count{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
-.vb p{font-size:14px;color:var(--ink-2);margin:14px 0 0;line-height:1.6;}
-.vnote{font-size:15px;color:var(--ink-2);max-width:80ch;margin:26px 0 0;line-height:1.7;}
+.vb-name{font-family:var(--serif);font-size:var(--t-6);color:var(--ink);}
+.vb-range{font-family:var(--serif);font-size:var(--t-7);color:var(--gold);margin-top:8px;font-variant-numeric:tabular-nums;line-height:1.1;}
+.vb-count{font-size:var(--t-1);letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.vb p{font-size:var(--t-3);color:var(--ink-2);margin:14px 0 0;line-height:1.6;}
+.vnote{font-size:var(--t-4);color:var(--ink-2);max-width:80ch;margin:26px 0 0;line-height:1.7;}
 
 .vasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
 .va{border-left:2px solid var(--gold);padding:2px 0 2px 20px;}
-.va h4{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.3;}
-.va p{font-size:14.5px;color:var(--ink-2);margin:9px 0 0;line-height:1.65;}
+.va h4{font-family:var(--serif);font-size:var(--t-5);font-weight:600;line-height:1.3;}
+.va p{font-size:var(--t-3);color:var(--ink-2);margin:9px 0 0;line-height:1.65;}
 
 .vpromise{margin-top:44px;background:var(--cream);border:1px solid var(--line-2);padding:30px 32px;}
-.vpromise h4{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-.vpromise p{font-size:15.5px;color:var(--ink-2);margin:14px 0 0;line-height:1.72;max-width:80ch;}
+.vpromise h4{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.vpromise p{font-size:var(--t-4);color:var(--ink-2);margin:14px 0 0;line-height:1.72;max-width:80ch;}
 .vpromise a{color:var(--gold);border-bottom:1px solid currentColor;}
 
 .vspecies{display:flex;flex-wrap:wrap;gap:10px;}
-.vspecies .vs{border:1px solid var(--line-2);background:var(--bg);padding:11px 20px;font-size:14.5px;color:var(--ink);transition:border-color .18s,color .18s;}
+.vspecies .vs{border:1px solid var(--line-2);background:var(--bg);padding:11px 20px;font-size:var(--t-3);color:var(--ink);transition:border-color .18s,color .18s;}
 .vspecies .vs:hover{border-color:var(--gold);color:var(--gold);}
 
 /* Per-species value block on /mineral/[key]/ */
 .valgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
 .val{background:var(--bg);padding:26px 28px;}
-.val h4{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);}
+.val h4{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);}
 .val.v-drive h4{color:var(--gold);}
-.val p{font-size:15px;color:var(--ink-2);margin:12px 0 0;line-height:1.7;}
+.val p{font-size:var(--t-4);color:var(--ink-2);margin:12px 0 0;line-height:1.7;}
 
 .valband{margin-top:26px;border:1px solid var(--line-2);background:var(--cream);padding:24px 28px;display:flex;flex-direction:column;gap:5px;}
-.valband .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
-.valband .v{font-family:var(--serif);font-size:30px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1;}
-.valband .n{font-size:13.5px;color:var(--muted);max-width:74ch;line-height:1.6;margin-top:4px;}
+.valband .l{font-size:var(--t-1);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.valband .v{font-family:var(--serif);font-size:var(--t-7);color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1;}
+.valband .n{font-size:var(--t-3);color:var(--muted);max-width:74ch;line-height:1.6;margin-top:4px;}
 
-.worthlink{font-size:14px;color:var(--muted);border-top:1px solid var(--line);margin:20px 0 0;padding-top:16px;line-height:1.6;}
+.worthlink{font-size:var(--t-3);color:var(--muted);border-top:1px solid var(--line);margin:20px 0 0;padding-top:16px;line-height:1.6;}
 .worthlink a{color:var(--gold);border-bottom:1px solid currentColor;}
 
-.valloc{font-size:15px;color:var(--ink-2);margin:22px 0 0;}
+.valloc{font-size:var(--t-4);color:var(--ink-2);margin:22px 0 0;}
 .valloc a{color:var(--gold);border-bottom:1px solid currentColor;}
 
-.valfactors{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.valfactors .vfl{letter-spacing:.14em;text-transform:uppercase;font-size:11px;}
+.valfactors{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-3);color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.valfactors .vfl{letter-spacing:.14em;text-transform:uppercase;font-size:var(--t-1);}
 .valfactors a{color:var(--ink-2);border-bottom:1px solid var(--line-2);}
 .valfactors a:hover{color:var(--gold);border-color:var(--gold);}
 .valfactors .sep{color:var(--line-2);}
 
 /* Sold banner on an individual specimen page. */
 .soldbanner{border:1px solid var(--line-2);background:var(--cream);padding:20px 22px;margin:4px 0 22px;}
-.soldbanner .sb-top{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
-.soldbanner .sb-price{font-family:var(--serif);font-size:26px;color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums;}
-.soldbanner p{font-size:14px;color:var(--ink-2);margin:10px 0 0;line-height:1.6;}
+.soldbanner .sb-top{font-size:var(--t-1);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.soldbanner .sb-price{font-family:var(--serif);font-size:var(--t-7);color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums;}
+.soldbanner p{font-size:var(--t-3);color:var(--ink-2);margin:10px 0 0;line-height:1.6;}
 .soldbanner a{color:var(--gold);border-bottom:1px solid currentColor;}
 
 @media(max-width:960px){
@@ -635,11 +673,11 @@ footer .col a:hover{color:var(--gold-bright);}
   /* The sold table keeps its columns and scrolls inside .soldwrap rather than
      collapsing — a price record is only readable as a table. Tighter padding
      just means less of it is off-screen at any one time. */
-  .soldtable{min-width:560px;font-size:14px;}
+  .soldtable{min-width:560px;font-size:var(--t-3);}
   .soldtable th,.soldtable td{padding:13px 14px;}
-  .soldtable .pc a{font-size:16px;}
+  .soldtable .pc a{font-size:var(--t-4);}
   .loc-index .li{padding:20px 22px;}
-  .loc-index .n{font-size:21px;}
+  .loc-index .n{font-size:var(--t-6);}
 }
 /* ============================================================
    Mineral data panel + reference pages
@@ -647,29 +685,29 @@ footer .col a:hover{color:var(--gold-bright);}
 .mineralpanel{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:60px 0;}
 .mineralpanel.refpage{background:#fff;border-top:none;padding-top:48px;}
 .mp-head{max-width:70ch;margin-bottom:34px;}
-.mp-head .k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
+.mp-head .k{font-size:var(--t-2);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
 .mp-head h2{font-size:clamp(26px,3.2vw,36px);margin-top:12px;font-weight:600;}
 .mp-head h2 .var{color:var(--muted);font-weight:400;}
-.mp-head p{margin:14px 0 0;color:var(--ink-2);font-size:16px;line-height:1.7;}
+.mp-head p{margin:14px 0 0;color:var(--ink-2);font-size:var(--t-4);line-height:1.7;}
 .mp-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
-.mp-facts .f{display:grid;grid-template-columns:44% 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;}
-.mp-facts .f .l{font-family:var(--mono);color:var(--muted);letter-spacing:.06em;font-size:11px;text-transform:none;padding-top:2px;}
+.mp-facts .f{display:grid;grid-template-columns:44% 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:var(--t-3);}
+.mp-facts .f .l{font-family:var(--mono);color:var(--muted);letter-spacing:.06em;font-size:var(--t-1);text-transform:none;padding-top:2px;}
 .mp-facts .f .v{color:var(--ink);}
 .mp-facts .f .v sub{font-size:.72em;}
 .mp-hardness{padding-top:6px;}
-.mp-hardness .l{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:12px;display:block;margin-bottom:20px;}
+.mp-hardness .l{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:var(--t-2);display:block;margin-bottom:20px;}
 .mp-hardness .bar{position:relative;height:8px;background:#e6e3dc;border-radius:100px;margin:0 0 6px;}
 .mp-hardness .bar .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:100px;}
 .mp-hardness .bar .dot{position:absolute;top:50%;width:16px;height:16px;background:var(--dark);border:3px solid #fff;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 1px 4px rgba(0,0,0,.25);}
 .mp-hardness .bar .tick{position:absolute;top:-4px;bottom:-4px;width:1px;background:rgba(0,0,0,.14);}
 .mp-hardness .scaleref{position:relative;height:34px;margin-top:4px;}
-.mp-hardness .scaleref span{position:absolute;transform:translateX(-50%);font-size:10px;letter-spacing:.04em;color:var(--muted);white-space:nowrap;text-align:center;line-height:1.3;top:0;}
-.mp-fluor{margin-top:30px;background:#efeafc;border:1px solid #d9cef4;padding:16px 18px;font-size:14px;color:#41307a;}
+.mp-hardness .scaleref span{position:absolute;transform:translateX(-50%);font-size:var(--t-1);letter-spacing:.04em;color:var(--muted);white-space:nowrap;text-align:center;line-height:1.3;top:0;}
+.mp-fluor{margin-top:30px;background:#efeafc;border:1px solid #d9cef4;padding:16px 18px;font-size:var(--t-3);color:#41307a;}
 .mp-fluor b{color:#2e2159;}
 .mp-foot{margin-top:26px;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;}
-.mp-foot p{font-size:13.5px;color:var(--ink-2);margin:0;max-width:60ch;}
-.mp-link{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
-.mp-link:hover{color:var(--gold-bright);}
+.mp-foot p{font-size:var(--t-3);color:var(--ink-2);margin:0;max-width:60ch;}
+.mp-link{font-size:var(--t-2);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
+.mp-link:hover{color:var(--accent-ink);}
 
 /* mineral cross-links on the spec sheet */
 .detail .buy .spec .r dd a{color:var(--gold);}
@@ -677,10 +715,10 @@ footer .col a:hover{color:var(--gold-bright);}
 /* ============================================================
    Reserve list — floating pill + page
    ============================================================ */
-.reserve-pill{position:fixed;right:20px;bottom:20px;z-index:80;display:none;align-items:center;gap:9px;background:var(--dark);color:#fbf8f2;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;box-shadow:0 6px 24px rgba(0,0,0,.28);transition:transform .15s,background .18s;}
+.reserve-pill{position:fixed;right:20px;bottom:20px;z-index:80;display:none;align-items:center;gap:9px;background:var(--dark);color:#fbf8f2;font-size:var(--t-2);letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;box-shadow:0 6px 24px rgba(0,0,0,.28);transition:transform .15s,background .18s;}
 .reserve-pill:hover{background:var(--dark-2);transform:translateY(-2px);}
-.reserve-pill .rp-ico{color:var(--gold-bright);}
-.reserve-pill .rp-n{background:var(--gold);color:#fff;min-width:20px;height:20px;border-radius:100px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;padding:0 6px;}
+.reserve-pill .rp-ico{color:var(--accent-on-dark);}
+.reserve-pill .rp-n{background:var(--gold);color:#fff;min-width:20px;height:20px;border-radius:100px;display:inline-flex;align-items:center;justify-content:center;font-size:var(--t-2);padding:0 6px;}
 .js-reserve.in-list{background:var(--gold);border-color:var(--gold);}
 .js-reserve.in-list:hover{background:var(--gold-bright);}
 
@@ -688,92 +726,92 @@ footer .col a:hover{color:var(--gold-bright);}
 .rl-empty p{color:var(--muted);margin:0 0 20px;}
 .rl-rows{border-top:1px solid var(--line);}
 .rl-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);}
-.rl-name{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);}
+.rl-name{font-family:var(--serif);font-size:var(--t-5);font-weight:600;color:var(--ink);}
 .rl-name:hover{color:var(--gold);}
-.rl-price{font-size:15px;color:var(--ink-2);}
-.rl-x{background:none;border:none;font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:6px 4px;transition:color .15s;}
+.rl-price{font-size:var(--t-4);color:var(--ink-2);}
+.rl-x{background:none;border:none;font-family:var(--sans);font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:6px 4px;transition:color .15s;}
 .rl-x:hover{color:var(--accent);}
-.rl-total{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);}
+.rl-total{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;font-family:var(--serif);font-size:var(--t-6);font-weight:600;color:var(--ink);}
 .rl-total span:last-child{color:var(--gold);}
 .rl-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
-.rl-note{margin-top:22px;font-size:13px;color:var(--muted);max-width:64ch;}
+.rl-note{margin-top:22px;font-size:var(--t-3);color:var(--muted);max-width:64ch;}
 
 /* condition & disclosure block (specimen page) */
 .disclosure{margin-top:26px;border:1px solid var(--line-2);padding:22px 24px;}
-.disclosure h4{font-family:var(--serif);font-size:16px;font-weight:600;}
-.disclosure .dl-lead{font-size:13.5px;color:var(--muted);margin:6px 0 16px;}
+.disclosure h4{font-family:var(--serif);font-size:var(--t-4);font-weight:600;}
+.disclosure .dl-lead{font-size:var(--t-3);color:var(--muted);margin:6px 0 16px;}
 .disclosure .dl-rows{display:grid;gap:0;}
-.disclosure .dl-r{display:grid;grid-template-columns:32% 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:14px;}
+.disclosure .dl-r{display:grid;grid-template-columns:32% 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:var(--t-3);}
 .disclosure .dl-r:first-child{border-top:none;}
-.disclosure .dl-l{font-family:var(--mono);color:var(--muted);letter-spacing:.06em;font-size:11px;text-transform:none;padding-top:2px;}
+.disclosure .dl-l{font-family:var(--mono);color:var(--muted);letter-spacing:.06em;font-size:var(--t-1);text-transform:none;padding-top:2px;}
 .disclosure .dl-v{color:var(--ink-2);}
-.disclosure .dl-foot{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.6;}
+.disclosure .dl-foot{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--t-2);color:var(--muted);line-height:1.6;}
 .disclosure .dl-foot b{color:var(--ink);}
 .disclosure .dl-foot a{color:var(--gold);white-space:nowrap;}
 
 /* one-of-one scarcity + confidence stack (specimen page) */
-.oneofone{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:13.5px;color:var(--ink-2);}
+.oneofone{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:var(--t-3);color:var(--ink-2);}
 .oneofone .dot{width:7px;height:7px;background:var(--gold);border-radius:50%;flex:none;box-shadow:0 0 0 4px rgba(156,122,30,.14);}
 .confidence{margin-top:26px;background:var(--cream);border:1px solid var(--line);padding:22px 24px;}
-.confidence h4{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:12px;}
+.confidence h4{font-family:var(--serif);font-size:var(--t-4);font-weight:600;margin-bottom:12px;}
 .confidence ul{list-style:none;margin:0;padding:0;display:grid;gap:11px;}
-.confidence li{position:relative;padding-left:22px;font-size:13.5px;color:var(--ink-2);line-height:1.55;}
+.confidence li{position:relative;padding-left:22px;font-size:var(--t-3);color:var(--ink-2);line-height:1.55;}
 .confidence li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);}
 .confidence li b{color:var(--ink);font-weight:600;}
 
 /* size-in-hand scale (specimen page) */
 .sizescale{margin-top:22px;border:1px solid var(--line);padding:16px 18px;background:#fff;}
-.ss-head{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.ss-head{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
 .ss-head .ss-dim{color:var(--ink);letter-spacing:.04em;}
 .ss-track{display:flex;flex-direction:column;gap:8px;}
 .ss-piece,.ss-quarter{height:22px;display:flex;align-items:center;padding:0 10px;border-radius:3px;min-width:64px;}
 .ss-piece{background:var(--dark);}
-.ss-piece span{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#efe9dd;white-space:nowrap;}
+.ss-piece span{font-size:var(--t-1);letter-spacing:.06em;text-transform:uppercase;color:#efe9dd;white-space:nowrap;}
 .ss-quarter{background:linear-gradient(90deg,var(--gold),var(--gold-bright));}
-.ss-quarter span{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap;}
+.ss-quarter span{font-size:var(--t-1);letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap;}
 
 /* specimen image lightbox */
 .detail .gallery .main{position:relative;}
-.zoomtag{position:absolute;bottom:12px;right:12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(24,21,17,.8);color:#efe9dd;padding:6px 11px;pointer-events:none;opacity:.85;}
+.zoomtag{position:absolute;bottom:12px;right:12px;font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;background:rgba(24,21,17,.8);color:#efe9dd;padding:6px 11px;pointer-events:none;opacity:.85;}
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(16,14,11,.94);display:none;align-items:center;justify-content:center;padding:40px;}
 .lightbox.on{display:flex;}
 .lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;cursor:zoom-in;transition:transform .2s ease;}
 .lightbox img.zoomed{transform:scale(1.9);cursor:zoom-out;}
-.lb-close{position:absolute;top:20px;right:26px;background:none;border:none;color:#efe9dd;font-size:38px;line-height:1;cursor:pointer;opacity:.8;transition:opacity .15s;}
+.lb-close{position:absolute;top:20px;right:26px;background:none;border:none;color:#efe9dd;font-size:var(--t-8);line-height:1;cursor:pointer;opacity:.8;transition:opacity .15s;}
 .lb-close:hover{opacity:1;}
-.lb-hint{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8b8479;}
+.lb-hint{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:var(--t-1);letter-spacing:.12em;text-transform:uppercase;color:#8b8479;}
 
 /* geologic timeline (fossil panel) */
 .timeline{position:relative;height:30px;border-radius:4px;overflow:hidden;background:#e6e3dc;margin:0 0 8px;display:flex;}
 .timeline .band{position:absolute;top:0;bottom:0;border-right:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .timeline .band:nth-child(odd){background:#ece8df;}
 .timeline .band:nth-child(even){background:#e2ddd2;}
-.timeline .band i{font-style:normal;font-size:8.5px;letter-spacing:.02em;color:#9a9284;text-transform:uppercase;}
+.timeline .band i{font-style:normal;font-size:var(--t-1);letter-spacing:.02em;color:#9a9284;text-transform:uppercase;}
 .timeline .agespan{position:absolute;top:0;bottom:0;background:rgba(156,122,30,.32);border-left:1px solid var(--gold);border-right:1px solid var(--gold);}
 .timeline .agedot{position:absolute;top:50%;width:14px;height:14px;background:var(--dark);border:3px solid #fff;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 1px 4px rgba(0,0,0,.3);z-index:2;}
-.tl-ends{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
-.tl-note{margin:10px 0 0;font-size:12.5px;color:var(--muted);}
+.tl-ends{display:flex;justify-content:space-between;font-size:var(--t-1);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.tl-note{margin:10px 0 0;font-size:var(--t-2);color:var(--muted);}
 
 /* locality confidence + note (specimen page) */
-.detail .buy .spec .loc-q{display:inline-block;margin-left:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:100px;padding:2px 8px;vertical-align:middle;}
+.detail .buy .spec .loc-q{display:inline-block;margin-left:8px;font-size:var(--t-1);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:100px;padding:2px 8px;vertical-align:middle;}
 .locnote{margin-top:22px;display:flex;gap:14px;background:var(--cream);border:1px solid var(--line);padding:18px 20px;}
-.locnote .pin{color:var(--gold);font-size:18px;line-height:1.4;flex:none;}
-.locnote .lh{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-.locnote p{margin:5px 0 0;font-size:14px;color:var(--ink-2);line-height:1.6;}
-.locnote .hedge{margin-top:8px;font-size:12.5px;color:var(--muted);font-style:italic;}
+.locnote .pin{color:var(--gold);font-size:var(--t-5);line-height:1.4;flex:none;}
+.locnote .lh{font-family:var(--sans);font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.locnote p{margin:5px 0 0;font-size:var(--t-3);color:var(--ink-2);line-height:1.6;}
+.locnote .hedge{margin-top:8px;font-size:var(--t-2);color:var(--muted);font-style:italic;}
 
 /* origins / world sourcing strip (minerals page) */
 .origins{background:var(--dark);color:#e6e0d4;border-top:1px solid var(--line);}
-.origins .sec-top .k{color:var(--gold-bright);}
+.origins .sec-top .k{color:var(--accent-on-dark);}
 .origins .sec-top h2{color:#fbf8f2;}
 .origins .sec-top p{color:#b3ab9d;max-width:64ch;}
 .worldline{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;background:#322d26;border:1px solid #322d26;margin-top:12px;}
 .origin{background:var(--dark);padding:22px 22px 24px;position:relative;}
 .origin::before{content:"";position:absolute;top:22px;left:22px;width:7px;height:7px;background:var(--gold-bright);border-radius:50%;box-shadow:0 0 0 4px rgba(200,153,47,.16);}
-.origin .oc{font-family:var(--serif);font-size:19px;font-weight:600;color:#fbf8f2;padding-left:18px;}
-.origin .on{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-bright);margin-top:4px;padding-left:18px;}
+.origin .oc{font-family:var(--serif);font-size:var(--t-5);font-weight:600;color:#fbf8f2;padding-left:18px;}
+.origin .on{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-on-dark);margin-top:4px;padding-left:18px;}
 .origin .op{margin-top:12px;display:flex;flex-direction:column;gap:3px;}
-.origin .op a{font-size:13px;color:#c3bcae;padding:2px 0;transition:color .15s;}
+.origin .op a{font-size:var(--t-3);color:#c3bcae;padding:2px 0;transition:color .15s;}
 .origin .op a:hover{color:#fff;}
 
 @media(max-width:820px){
@@ -814,10 +852,10 @@ footer .col a:hover{color:var(--gold-bright);}
 .cattile:hover img{transform:scale(1.04);}
 .cattile .cap{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;
   background:linear-gradient(to top,rgba(10,10,12,.93),rgba(10,10,12,.6) 46%,rgba(10,10,12,.08) 88%,transparent);color:#fff;}
-.cattile .cap .p{font-family:var(--serif);font-size:27px;line-height:1.08;}
-.cattile .cap .l{font-size:13px;color:rgba(255,255,255,.82);margin-top:4px;}
-.cattile .cap .g{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--accent-hi);margin-top:11px;}
+.cattile .cap .p{font-family:var(--serif);font-size:var(--t-7);line-height:1.08;}
+.cattile .cap .l{font-size:var(--t-3);color:rgba(255,255,255,.82);margin-top:4px;}
+.cattile .cap .g{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-on-dark);margin-top:11px;}
 
 /* The shelf. A deliberately dense, unlabelled wall of what is actually here.
    No names, no prices, no claims — it exists to answer "do these people
@@ -832,7 +870,7 @@ footer .col a:hover{color:var(--gold-bright);}
 .shelfwall figure:hover img{transform:scale(1.05);}
 
 /* Caption strip under a photo band, in the data voice. */
-.shelfnote{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--muted);
+.shelfnote{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.05em;color:var(--muted);
   margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 22px;}
 
 @media (max-width:1000px){
@@ -869,7 +907,7 @@ footer .col a:hover{color:var(--gold-bright);}
 /* The count is a fact, so it goes in the mono voice with everything else that
    is a fact. Departments with nothing listed yet say where the pieces are
    instead of claiming a number. */
-.dept .cap .c{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+.dept .cap .c{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.13em;
   text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px;}
 
 @media (max-width:1000px){ .depts{grid-template-columns:repeat(2,1fr);gap:12px;} }
@@ -880,7 +918,7 @@ footer .col a:hover{color:var(--gold-bright);}
    describe only what is in the frame — no dates, no events, no localities. */
 .photoband{margin:0;background:var(--cream);}
 .photoband img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
-.photoband figcaption{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;
+.photoband figcaption{font-family:var(--mono);font-size:var(--t-1);letter-spacing:.05em;
   color:var(--muted);max-width:var(--maxw);margin:12px auto 0;padding:0 26px;}
 .photopair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 /* One-up variant, for when a pair loses a photo and the survivor should not be
