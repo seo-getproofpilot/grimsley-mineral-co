@@ -25,7 +25,7 @@ const GALLERY = [
     <div class="inner">
       <div class="crumb"><a href={u("")}>Home</a> / Bugged Out Nails</div>
       <h1>Bugged Out Nails</h1>
-      <p>Taylor paints and sculpts every nail herself. Orders and custom sets happen through <a href={SITE.social.instagram} target="_blank" rel="noopener" style="color:var(--pink-deep);">Instagram</a> or <a href={SITE.social.facebook} target="_blank" rel="noopener" style="color:var(--pink-deep);">Facebook</a>.</p>
+      <p>Taylor paints and sculpts every nail herself. Orders and custom sets happen through <a href={SITE.social.instagram} target="_blank" rel="noopener" style="color:var(--pink-deep);">Instagram</a>{SITE.social.facebook && <> or <a href={SITE.social.facebook} target="_blank" rel="noopener" style="color:var(--pink-deep);">Facebook</a></>}.</p>
     </div>
   </div>
 
@@ -38,7 +38,7 @@ const GALLERY = [
         <p>The board holds singles you can mix into a set. Or describe what you want and she paints it from scratch.</p>
         <div class="btns">
           <a class="btn btn-pink" href={SITE.social.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
-          <a class="btn btn-pinkline" href={SITE.social.facebook} target="_blank" rel="noopener">Message on Facebook</a>
+          {SITE.social.facebook && <a class="btn btn-pinkline" href={SITE.social.facebook} target="_blank" rel="noopener">Message on Facebook</a>}
         </div>
       </div>
     </div>

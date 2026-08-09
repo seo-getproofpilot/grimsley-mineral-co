@@ -40,10 +40,21 @@ export const SITE = {
     lng: -84.9866,
   },
 
-  // Bugged Out Nails (Taylor). CONFIRM: real handles before launch.
+  // Bugged Out Nails (Taylor).
+  //
+  // The Instagram handle is read off Taylor's own booth chalkboard in
+  // public/img/departments/nails.webp, which is first-party: it is her sign, in
+  // her handwriting, next to the Instagram glyph. It reads "@ buggedout.nails"
+  // WITH the dot. The previous value here had no dot and was guessed from the
+  // brand name, under a comment saying to confirm it before launch. It never was.
+  //
+  // The same chalkboard gives Facebook only as the page NAME, "Bugged Out Nails",
+  // not a URL slug, so the Facebook vanity URL is still unconfirmed and is left
+  // out rather than guessed a second time. Nothing renders a Facebook link while
+  // this is null.
   social: {
-    instagram: "https://www.instagram.com/buggedoutnails",
-    facebook: "https://www.facebook.com/buggedoutnails",
+    instagram: "https://www.instagram.com/buggedout.nails",
+    facebook: null as string | null,
   },
 
   // The grand-opening event. Booth is cash + in person.

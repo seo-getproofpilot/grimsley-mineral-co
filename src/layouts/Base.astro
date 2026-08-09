@@ -68,7 +68,9 @@ const localBusiness = {
     "latitude": SITE.address.lat,
     "longitude": SITE.address.lng,
   },
-  "sameAs": [SITE.social.instagram, SITE.social.facebook],
+  // sameAs tells Google these profiles ARE this business, so an unconfirmed URL
+  // here is worse than a missing one. Nulls are dropped rather than published.
+  "sameAs": [SITE.social.instagram, SITE.social.facebook].filter(Boolean),
 };
 
 const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
